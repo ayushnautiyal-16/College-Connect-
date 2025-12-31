@@ -1,0 +1,193 @@
+/* Logo Ticker Section */
+.logo-ticker-section {
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.ticker-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2937;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo Ticker Container */
+.logo-ticker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Ticker Wrapper for Each Row */
+.logo-ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 1rem 0;
+}
+
+/* Gradient overlays for smooth fade effect */
+.logo-ticker-wrapper::before,
+.logo-ticker-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-ticker-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0));
+}
+
+.logo-ticker-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0));
+}
+
+/* Ticker Track */
+.logo-ticker-track {
+  display: flex;
+  gap: 3rem;
+  width: fit-content;
+}
+
+/* Scroll Left Animation (Right to Left) */
+.scroll-left {
+  animation: scrollLeft 40s linear infinite;
+}
+
+/* Scroll Right Animation (Left to Right) */
+.scroll-right {
+  animation: scrollRight 40s linear infinite;
+}
+
+/* Pause on hover for both rows */
+.logo-ticker-wrapper:hover .logo-ticker-track {
+  animation-play-state: paused;
+}
+
+/* Logo Item */
+.logo-ticker-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 200px;
+  height: 85px;
+}
+
+.logo-ticker-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo Image */
+.logo-ticker-image {
+  max-width: 180px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(30%);
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.logo-ticker-item:hover .logo-ticker-image {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Scroll Animations */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo-ticker-section {
+    padding: 2rem 0;
+  }
+
+  .ticker-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo-ticker-container {
+    gap: 1rem;
+  }
+
+  .logo-ticker-track {
+    gap: 2rem;
+  }
+
+  .scroll-left,
+  .scroll-right {
+    animation-duration: 25s;
+  }
+
+  .logo-ticker-item {
+    min-width: 160px;
+    height: 90px;
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-ticker-image {
+    max-width: 140px;
+    max-height: 65px;
+  }
+
+  .logo-ticker-wrapper::before,
+  .logo-ticker-wrapper::after {
+    width: 80px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-left,
+  .scroll-right {
+    animation: none;
+  }
+  
+  .logo-ticker-wrapper:hover .logo-ticker-track {
+    animation: none;
+  }
+}
+
+/* Smooth scrolling for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .logo-ticker-item:hover {
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+}
