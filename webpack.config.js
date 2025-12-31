@@ -57,5 +57,28 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          priority: 10,
+        },
+        react: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+          name: 'react-vendor',
+          priority: 20,
+        },
+      },
+    },
+    runtimeChunk: 'single',
+  },
 };
 
