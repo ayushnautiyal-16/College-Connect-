@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../../pages/Apply/Apply.css'; // Import custom animations
 
 function HeroSlider() {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ function HeroSlider() {
   const slides = [
     {
       id: 1,
-      headline: 'Admissions Open 2025',
+      headline: 'Admissions Open 2026',
       ctaText: 'Apply Now',
-      ctaLink: '/contact',
+      ctaLink: '/apply',
       video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766775114/geu-homepage-video_nrlm4m.mp4',
       bgGradient: 'from-blue-600 via-indigo-600 to-purple-600',
       videoDuration: 20, // Auto-advance after 20 seconds
@@ -206,12 +207,12 @@ function HeroSlider() {
                     }`}
                 >
                   <div className="relative z-10">
-                    <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white">
+                    <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white animate-text-glow">
                       {slide.headline}
                     </h1>
                     <button
                       onClick={() => handleCTAClick(slide.ctaLink)}
-                      className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8 py-4 md:px-10 md:py-5 rounded-lg text-lg md:text-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50"
+                      className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8 py-4 md:px-10 md:py-5 rounded-lg text-lg md:text-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
                     >
                       {slide.ctaText}
                     </button>

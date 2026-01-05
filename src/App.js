@@ -7,6 +7,7 @@ import Campuses from './pages/Campuses/Campuses';
 import Blog from './pages/Blog/Blog';
 import Contact from './pages/Contact/Contact';
 import CollegeDetails from './pages/CollegeDetails/CollegeDetails';
+import Apply from './pages/Apply/Apply';
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -60,6 +61,7 @@ function App() {
             <Route path="/college/:id" element={<CollegeDetails />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/apply" element={<Apply />} />
             <Route path="*" element={
               <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center">

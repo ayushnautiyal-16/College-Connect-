@@ -2,26 +2,29 @@ import React from 'react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
-    const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 });
+    const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
     return (
-        <div ref={ref} className="text-center mb-12">
+        <div ref={ref} className="text-center mb-16 relative">
+            {/* Main Heading */}
             <h2
-                className={`text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4 transition-all duration-[1600ms] transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+                className={`text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
-                style={{
-                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
             >
-                {leftText} <span className="text-primary-600">{rightText}</span>
+                {leftText} <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">{rightText}</span>
             </h2>
+
+            {/* Decorative Underline */}
+            <div className={`h-1.5 w-32 mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-8 transition-all duration-1000 delay-300 ease-out ${isVisible ? 'w-32 opacity-100' : 'w-0 opacity-0'
+                }`}></div>
+
+            {/* Subtitle */}
             {subtitle && (
                 <p
-                    className={`text-gray-600 text-lg max-w-3xl mx-auto transition-all duration-[1200ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    className={`text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}
                     style={{
-                        transitionDelay: '500ms',
-                        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                        transitionDelay: '500ms'
                     }}
                 >
                     {subtitle}
