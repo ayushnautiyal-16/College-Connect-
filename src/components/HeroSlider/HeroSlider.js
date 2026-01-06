@@ -26,7 +26,7 @@ function HeroSlider() {
     {
       id: 2,
       headline: 'Your Dream College',
-      ctaText: 'Get Free Counseling',
+      ctaText: 'Get Free Counselling',
       ctaLink: '/contact',
       video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766775565/Life_at_UPES_UPES_Dehradun_-_UPES_1080p_h264_hepxuc.mp4',
       bgGradient: 'from-primary-600 via-primary-500 to-primary-700',
@@ -35,7 +35,7 @@ function HeroSlider() {
     {
       id: 3,
       headline: 'Expert Admission Guidance',
-      ctaText: 'Explore Colleges',
+      ctaText: 'Expert Admission Counselling',
       ctaLink: '/campuses',
       video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766776995/Why_Uttaranchal_University_is_North_India_s_Top_Choice_750_Recruiters_2356_Placements_in_2024_-_Uttaranchal_University_1080p_h264_apekiz.mp4',
       bgGradient: 'from-green-600 via-emerald-600 to-teal-600',
@@ -212,7 +212,7 @@ function HeroSlider() {
                     </h1>
                     <button
                       onClick={() => handleCTAClick(slide.ctaLink)}
-                      className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8 py-4 md:px-10 md:py-5 rounded-lg text-lg md:text-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
+                      className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
                     >
                       {slide.ctaText}
                     </button>

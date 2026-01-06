@@ -5,6 +5,8 @@ function GetInTouchPopup() {
     const [isVisible, setIsVisible] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
+    const [selectedCourse, setSelectedCourse] = useState('');
+
     useEffect(() => {
         // Show popup after 8-12 seconds (random delay) on every page load
         const delay = Math.random() * 4000 + 8000; // 8000ms to 12000ms
@@ -26,11 +28,18 @@ function GetInTouchPopup() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+
+        // Handle "Other" course selection
+        let course = formData.get('course');
+        if (course === 'Other') {
+            course = formData.get('customCourse') || 'Other';
+        }
+
         const data = {
             name: formData.get('name'),
             phone: formData.get('phone'),
             email: formData.get('email'),
-            course: formData.get('course'),
+            course: course,
         };
 
         // Here you would typically send data to your backend
@@ -77,12 +86,23 @@ function GetInTouchPopup() {
 
                 {/* Popup Content */}
                 <div className="popup-header">
-                    <div className="popup-icon">
-                        🎓
+                    <div className="popup-icon-container">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="popup-header-icon"
+                        >
+                            <path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.24 50.552 50.552 0 00-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                        </svg>
                     </div>
-                    <h2 className="popup-title">Apply Now!</h2>
+                    <h2 className="popup-title">Start Your Journey</h2>
                     <p className="popup-subtitle">
-                        Take the first step towards your dream college. Our admission experts will help you choose the perfect course and secure your future!
+                        Get expert guidance for your admission. Fill the form below.
                     </p>
                 </div>
 
@@ -126,7 +146,13 @@ function GetInTouchPopup() {
 
                     <div className="form-group">
                         <label htmlFor="course">Course Interest *</label>
-                        <select id="course" name="course" required>
+                        <select
+                            id="course"
+                            name="course"
+                            required
+                            value={selectedCourse}
+                            onChange={(e) => setSelectedCourse(e.target.value)}
+                        >
                             <option value="">Select your course</option>
                             <option value="B.Tech">B.Tech / Engineering</option>
                             <option value="MBA">MBA / Management</option>
@@ -138,6 +164,20 @@ function GetInTouchPopup() {
                             <option value="Other">Other</option>
                         </select>
                     </div>
+
+                    {/* Conditional input for "Other" course */}
+                    {selectedCourse === 'Other' && (
+                        <div className="form-group animate-slide-in">
+                            <label htmlFor="customCourse">Specify Course *</label>
+                            <input
+                                type="text"
+                                id="customCourse"
+                                name="customCourse"
+                                placeholder="Enter specific course name"
+                                required
+                            />
+                        </div>
+                    )}
 
                     <button type="submit" className="popup-submit-btn">
                         <span>Request Free Callback</span>

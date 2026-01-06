@@ -3,19 +3,36 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Handle scroll effect for navbar shadow
+  // Handle scroll effect for navbar shadow and auto-hide
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+
+      // Shadow logic
+      setIsScrolled(currentScrollY > 10);
+
+      // Auto-hide logic
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & passed threshold -> Hide
+        setIsVisible(false);
+        setIsMobileMenuOpen(false); // Close mobile menu if open
+      } else {
+        // Scrolling up -> Show
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -42,7 +59,8 @@ function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? 'shadow-lg' : 'shadow-sm'
+      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 transform ${isVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${isScrolled ? 'shadow-lg' : 'shadow-none'
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -66,7 +84,7 @@ function Header() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`nav-link ${isActive(link.path) ? 'active text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                  className={`nav-link text-base font-medium transition-colors duration-200 ${isActive(link.path) ? 'active text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
                 >
                   {link.label}
                 </Link>
@@ -74,7 +92,7 @@ function Header() {
             </nav>
             <button
               onClick={() => navigate('/apply')}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg text-sm md:text-base whitespace-nowrap transition-all duration-300 flex items-center gap-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg text-sm md:text-base whitespace-nowrap transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
@@ -106,30 +124,32 @@ function Header() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white border-t ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white border-t border-gray-100 ${isMobileMenuOpen ? 'max-h-96 opacity-100 py-4' : 'max-h-0 opacity-0 py-0'
             }`}
         >
-          <nav className="flex flex-col space-y-4 py-4">
+          <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200 py-2 ${isActive(link.path) ? 'text-blue-600 border-l-4 border-blue-600 pl-4' : 'pl-0'
+                className={`text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50 ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : ''
                   }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <button
-              onClick={() => { navigate('/apply'); setIsMobileMenuOpen(false); }}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg w-full mt-4 transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-              </svg>
-              Apply Now
-            </button>
+            <div className="px-4 mt-2">
+              <button
+                onClick={() => { navigate('/apply'); setIsMobileMenuOpen(false); }}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg w-full transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                </svg>
+                Apply Now
+              </button>
+            </div>
           </nav>
         </div>
       </div>

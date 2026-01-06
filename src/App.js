@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Campuses from './pages/Campuses/Campuses';
 import Blog from './pages/Blog/Blog';
+import BlogPost from './pages/BlogPost/BlogPost';
 import Contact from './pages/Contact/Contact';
 import CollegeDetails from './pages/CollegeDetails/CollegeDetails';
 import Apply from './pages/Apply/Apply';
@@ -60,6 +61,7 @@ function App() {
             <Route path="/campuses" element={<Campuses />} />
             <Route path="/college/:id" element={<CollegeDetails />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/apply" element={<Apply />} />
             <Route path="*" element={
