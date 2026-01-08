@@ -59,12 +59,12 @@ function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 transform ${isVisible ? 'translate-y-0' : '-translate-y-full'
-        } ${isScrolled ? 'shadow-lg' : 'shadow-none'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${isVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100' : 'bg-white/80 backdrop-blur-md'
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
+        <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo - Left Side */}
           <Link
             to="/"
@@ -73,31 +73,39 @@ function Header() {
             <img
               src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1766824093/Gemini_Generated_Image_8r81ar8r81ar8r81__1_-removebg-preview_sal8sh.png"
               alt="College Connect Logo"
-              className="h-12 md:h-14"
+              className="h-9 md:h-10"
             />
           </Link>
 
           {/* Desktop Navigation + Phone - Right Side */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <nav className="flex items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center gap-x-6 lg:gap-x-8">
+            <nav className="flex items-center gap-x-6 lg:gap-x-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`nav-link text-base font-medium transition-colors duration-200 ${isActive(link.path) ? 'active text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                  className={`relative group py-2 text-sm lg:text-base font-medium tracking-wide transition-colors duration-300 ${isActive(link.path) ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'
+                    }`}
                 >
                   {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 w-full h-0.5 rounded-full bg-primary-600 transform transition-all duration-300 ease-out ${isActive(link.path) ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
+                      }`}
+                  />
                 </Link>
               ))}
             </nav>
             <button
               onClick={() => navigate('/apply')}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg text-sm md:text-base whitespace-nowrap transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              className="group relative px-6 py-2.5 rounded-full bg-primary-600 text-white text-sm font-semibold shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-              </svg>
-              Apply Now
+              <div className="absolute inset-0 rounded-full ring-2 ring-white/20 group-hover:ring-white/40 transition-all duration-300" />
+              <div className="relative flex items-center gap-2">
+                <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-1">Apply Now</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform transition-all duration-300 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
             </button>
           </div>
 
@@ -132,7 +140,9 @@ function Header() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50 ${isActive(link.path) ? 'text-blue-600 bg-blue-50' : ''
+                className={`transition-colors duration-200 px-4 py-3 rounded-lg flex items-center ${isActive(link.path)
+                  ? 'text-primary-600 bg-primary-50 font-semibold'
+                  : 'text-gray-700 font-medium hover:text-primary-600 hover:bg-gray-50'
                   }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -142,7 +152,7 @@ function Header() {
             <div className="px-4 mt-2">
               <button
                 onClick={() => { navigate('/apply'); setIsMobileMenuOpen(false); }}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg w-full transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
+                className="bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-lg w-full transition-all duration-300 flex items-center justify-center gap-2 shadow-md active:scale-95"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />

@@ -20,6 +20,8 @@ function CollegeDetails() {
     const facilitiesRef = useScrollAnimation({ threshold: 0.15 });
     const recruitersRef = useScrollAnimation({ threshold: 0.15 });
     const overviewRef = useScrollAnimation({ threshold: 0.15 });
+    const departmentsRef = useScrollAnimation({ threshold: 0.15 });
+    const coursesRef = useScrollAnimation({ threshold: 0.15 });
     const galleryRef = useScrollAnimation({ threshold: 0.15 });
     const ctaRef = useScrollAnimation({ threshold: 0.15 });
 
@@ -174,6 +176,76 @@ function CollegeDetails() {
         return facilitiesMap[collegeId] || defaultFacilities;
     };
 
+    // Helper function to get college departments (Schools) - Mainly for Graphic Era
+    const getCollegeDepartments = (collegeId) => {
+        if (collegeId === 1) { // Graphic Era
+            return [
+                { name: 'School of Engineering & Technology', icon: 'engineering', description: 'Cutting-edge engineering programs with modern labs', image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1000' },
+                { name: 'School of Management', icon: 'management', description: 'Developing future business leaders and entrepreneurs', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1000' },
+                { name: 'School of Computer Applications', icon: 'computer', description: 'Advanced computing and software development', image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?auto=format&fit=crop&q=80&w=1000' },
+                { name: 'School of Commerce', icon: 'commerce', description: 'Excellence in financial and business education', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1000' },
+                { name: 'School of Humanities', icon: 'humanities', description: 'Exploring society, culture, and human behavior', image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1000' },
+                { name: 'School of Applied Sciences', icon: 'science', description: 'Research-driven scientific education', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1000' }
+            ];
+        }
+        return [];
+    };
+
+    // Helper function to get detailed courses list - Mainly for Graphic Era
+    const getAllCourses = (collegeId) => {
+        if (collegeId === 1) { // Graphic Era
+            return [
+                {
+                    category: 'Engineering',
+                    courses: [
+                        { name: 'B.Tech Computer Science', duration: '4 Years' },
+                        { name: 'B.Tech Mechanical', duration: '4 Years' },
+                        { name: 'B.Tech Civil', duration: '4 Years' },
+                        { name: 'B.Tech Electronics & Comm.', duration: '4 Years' },
+                        { name: 'B.Tech Biotech', duration: '4 Years' },
+                        { name: 'B.Tech Aerospace', duration: '4 Years' },
+                        { name: 'M.Tech', duration: '2 Years' }
+                    ]
+                },
+                {
+                    category: 'Management',
+                    courses: [
+                        { name: 'MBA (General)', duration: '2 Years' },
+                        { name: 'MBA (Marketing)', duration: '2 Years' },
+                        { name: 'MBA (Finance)', duration: '2 Years' },
+                        { name: 'BBA', duration: '3 Years' },
+                        { name: 'BBA (International Finance)', duration: '3 Years' },
+                        { name: 'B.Com (Hons)', duration: '3 Years' }
+                    ]
+                },
+                {
+                    category: 'Computer Applications',
+                    courses: [
+                        { name: 'BCA', duration: '3 Years' },
+                        { name: 'MCA', duration: '2 Years' },
+                        { name: 'B.Sc IT', duration: '3 Years' },
+                        { name: 'B.Sc Animation & Gaming', duration: '3 Years' },
+                        { name: 'M.Sc IT', duration: '2 Years' }
+                    ]
+                },
+                {
+                    category: 'Others',
+                    courses: [
+                        { name: 'B.Sc (Hons)', duration: '3 Years' },
+                        { name: 'BA (Hons) Psychology', duration: '3 Years' },
+                        { name: 'BA (Hons) Economics', duration: '3 Years' },
+                        { name: 'BHM (Hotel Mgmt)', duration: '4 Years' },
+                        { name: 'Ph.D Programs', duration: '3-5 Years' }
+                    ]
+                }
+            ];
+        }
+        return [];
+    };
+
+    const departments = getCollegeDepartments(collegeId);
+    const detailedCourses = getAllCourses(collegeId);
+
     const collegeRating = getCollegeRating(collegeId);
     const collegeFacilities = getCollegeFacilities(collegeId);
 
@@ -228,7 +300,7 @@ function CollegeDetails() {
     ].filter(Boolean);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-slate-50 to-blue-50 animate-gradient-x animate-page-enter">
             {/* Back Button with Animation */}
             <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-6">
                 <button
@@ -296,39 +368,39 @@ function CollegeDetails() {
                                 return (
                                     <div
                                         key={index}
-                                        className="group relative bg-white rounded-xl border-2 border-gray-200 p-5 shadow-sm hover:shadow-xl hover:border-primary-300 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                                        className={`group relative rounded-lg border border-gray-100 p-3 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 overflow-hidden ${iconBgClasses[highlight.color]}`}
                                         style={{ transitionDelay: `${400 + index * 100}ms` }}
                                     >
                                         {/* Animated Background Gradient */}
                                         <div className={`absolute inset-0 ${iconBgClasses[highlight.color]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-                                        <div className="relative z-10 flex items-center gap-4">
-                                            <div className={`${iconClasses[highlight.color]} rounded-xl p-3 shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                                        <div className="relative z-10 flex items-center gap-3">
+                                            <div className={`${iconClasses[highlight.color]} rounded-lg p-2 shadow-sm transform group-hover:scale-110 transition-all duration-300`}>
                                                 {highlight.icon === 'calendar' && (
-                                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                     </svg>
                                                 )}
                                                 {highlight.icon === 'badge' && (
-                                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                                     </svg>
                                                 )}
                                                 {highlight.icon === 'location' && (
-                                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     </svg>
                                                 )}
                                                 {highlight.icon === 'building' && (
-                                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                                     </svg>
                                                 )}
                                             </div>
-                                            <div className="flex-1">
-                                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{highlight.label}</p>
-                                                <p className="text-base font-bold text-gray-900 line-clamp-2">{highlight.value}</p>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-0.5">{highlight.label}</p>
+                                                <p className="text-sm font-semibold text-gray-900 truncate">{highlight.value}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -407,66 +479,93 @@ function CollegeDetails() {
                 </div>
             </section>
 
-            {/* College Ratings Section */}
+            {/* Compact Ratings Section */}
             <section
                 ref={ratingsRef.ref}
-                className={`bg-white py-16 transform transition-all duration-1000 ease-out ${ratingsRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                className={`bg-white py-8 border-b border-gray-100 transform transition-all duration-1000 ease-out ${ratingsRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
                 <div className="container mx-auto px-4 md:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">College Ratings & Reviews</h2>
-                        <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-indigo-500 rounded-full mx-auto mb-3"></div>
-                        <p className="text-lg text-gray-600">What students say about {college.name}</p>
-                    </div>
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-gray-50 to-white rounded-xl p-6 border border-gray-100 shadow-sm">
 
-                    {/* Overall Rating Card */}
-                    <div className="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-2xl p-8 md:p-12 mb-8 border-2 border-primary-100">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                            <div className="text-center md:text-left">
-                                <div className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">{collegeRating.overall}</div>
-                                <div className="flex items-center justify-center md:justify-start gap-1 mb-2">
-                                    {[...Array(5)].map((_, i) => (
-                                        <svg
-                                            key={i}
-                                            className={`w-8 h-8 ${i < Math.floor(collegeRating.overall) ? 'text-yellow-400' : i < collegeRating.overall ? 'text-yellow-300' : 'text-gray-300'}`}
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                        >
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        {/* Overall Rating Pill */}
+                        <div className="flex items-center gap-4 pr-0 md:pr-8 md:border-r border-gray-200">
+                            <div className="bg-yellow-400 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold p-1 shadow-md ring-4 ring-yellow-50">
+                                {collegeRating.overall}
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 leading-none mb-1">Excellent</h3>
+                                <p className="text-sm text-gray-500">Overall Rating</p>
+                            </div>
+                        </div>
+
+                        {/* Compact Stats Grid */}
+                        <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                            {[
+                                { label: 'Academics', value: collegeRating.academics, icon: 'M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z' },
+                                { label: 'Infrastructure', value: collegeRating.infrastructure, icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
+                                { label: 'Placement', value: collegeRating.placement, icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+                                { label: 'Life', value: collegeRating.campus, icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }
+                            ].map((item, index) => (
+                                <div key={index} className="flex items-center gap-3 bg-white p-2.5 rounded-lg border border-gray-100 hover:border-gray-300 transition-colors">
+                                    <div className="text-gray-400 bg-gray-50 p-1.5 rounded-md">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={item.icon} />
                                         </svg>
-                                    ))}
-                                </div>
-                                <p className="text-xl font-semibold text-gray-700">Overall Rating</p>
-                            </div>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-1 max-w-2xl">
-                                {[
-                                    { label: 'Academics', value: collegeRating.academics },
-                                    { label: 'Infrastructure', value: collegeRating.infrastructure },
-                                    { label: 'Placement', value: collegeRating.placement },
-                                    { label: 'Campus Life', value: collegeRating.campus }
-                                ].map((item, index) => (
-                                    <div key={index} className="text-center p-4 bg-white rounded-xl shadow-sm">
-                                        <div className="text-2xl font-bold text-gray-900 mb-1">{item.value}</div>
-                                        <div className="flex items-center justify-center gap-0.5 mb-1">
-                                            {[...Array(5)].map((_, i) => (
-                                                <svg
-                                                    key={i}
-                                                    className={`w-4 h-4 ${i < Math.floor(item.value) ? 'text-yellow-400' : i < item.value ? 'text-yellow-300' : 'text-gray-300'}`}
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                                </svg>
-                                            ))}
-                                        </div>
-                                        <p className="text-xs font-medium text-gray-600">{item.label}</p>
                                     </div>
-                                ))}
-                            </div>
+                                    <div>
+                                        <div className="text-sm font-bold text-gray-900">{item.value}/5</div>
+                                        <div className="text-xs text-gray-500 font-medium">{item.label}</div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* Comprehensive Course Offerings - Only if data exists */}
+            {detailedCourses.length > 0 && (
+                <section
+                    ref={coursesRef.ref}
+                    className={`bg-white pb-16 transform transition-all duration-1000 ease-out ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                >
+                    <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                            <div className="p-8 md:p-12 bg-gradient-to-r from-gray-900 to-indigo-900 text-white text-center">
+                                <h2 className="text-3xl md:text-4xl font-bold mb-4">Academic Programs</h2>
+                                <p className="text-indigo-200 text-lg max-w-2xl mx-auto">Explore our diverse range of industry-aligned programs designed to shape your future.</p>
+                            </div>
+                            <div className="p-8 md:p-12 bg-white">
+                                <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                                    {detailedCourses.map((category, idx) => (
+                                        <div key={idx} className="group">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                                    </svg>
+                                                </div>
+                                                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">{category.category}</h3>
+                                            </div>
+                                            <ul className="space-y-3">
+                                                {category.courses.map((course, cIdx) => (
+                                                    <li key={cIdx} className="flex items-center justify-between gap-3 text-gray-600 group-hover:text-gray-900 transition-colors pl-2 border-l-2 border-transparent hover:border-indigo-300 hover:bg-gray-50 rounded-r-lg p-2">
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                                                            <span className="font-medium">{course.name}</span>
+                                                        </div>
+                                                        <span className="text-xs font-semibold text-indigo-500 bg-indigo-50 px-2 py-1 rounded-full">{course.duration}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* College Facilities Section */}
             <section
@@ -615,6 +714,46 @@ function CollegeDetails() {
                         </div>
                     </div>
                 </section>
+
+                {/* Schools & Departments Section - Only if data exists */}
+                {departments.length > 0 && (
+                    <section
+                        ref={departmentsRef.ref}
+                        className={`mb-16 transform transition-all duration-1000 ease-out ${departmentsRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                    >
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Schools & Departments</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-indigo-500 rounded-full mx-auto mb-3"></div>
+                            <p className="text-lg text-gray-600">Centers of excellence fostering learning and innovation</p>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {departments.map((dept, index) => (
+                                <div
+                                    key={index}
+                                    className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                                >
+                                    <div className="absolute inset-0">
+                                        <img
+                                            src={dept.image}
+                                            alt={dept.name}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                        <h3 className="text-xl font-bold text-white mb-2">{dept.name}</h3>
+                                        <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 transform translate-y-4 group-hover:translate-y-0">
+                                            {dept.description}
+                                        </p>
+                                        <div className="mt-4 w-12 h-1 bg-primary-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+
 
                 {/* Campus Gallery Section */}
                 <section

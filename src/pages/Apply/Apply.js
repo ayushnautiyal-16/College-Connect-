@@ -6,6 +6,7 @@ function Apply() {
         fullName: '',
         mobileNumber: '',
         preferredCollege: '',
+        otherCollege: '',
         preferredCourse: ''
     });
 
@@ -61,6 +62,9 @@ function Apply() {
             newErrors.mobileNumber = 'Valid 10-digit number required';
         }
         if (!formData.preferredCollege) newErrors.preferredCollege = 'Please select a college';
+        if (formData.preferredCollege === 'Other' && !formData.otherCollege?.trim()) {
+            newErrors.otherCollege = 'Please specify your college name';
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -80,192 +84,218 @@ function Apply() {
     };
 
     return (
-        <div className="min-h-screen relative flex items-center justify-center p-4 overflow-hidden font-sans">
-            {/* Dynamic Background with deeper rich colors */}
-            <div className="absolute inset-0 bg-slate-900">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/90 via-purple-950/90 to-slate-950/90 z-0"></div>
+        <div className="min-h-screen relative flex items-center justify-center p-4 pt-24 overflow-hidden font-sans bg-slate-900">
+            {/* Dynamic Animated Background */}
+            <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/50 via-slate-900 to-black"></div>
 
-                {/* Animated Orbs */}
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-40">
-                    <div className="absolute top-[10%] left-[10%] w-[35rem] h-[35rem] bg-indigo-600 rounded-full blur-[120px] animate-float mix-blend-screen"></div>
-                    <div className="absolute bottom-[10%] right-[10%] w-[40rem] h-[40rem] bg-pink-600 rounded-full blur-[130px] animate-float-delayed mix-blend-screen"></div>
-                    <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[30rem] h-[30rem] bg-purple-600 rounded-full blur-[110px] animate-float mix-blend-screen"></div>
-                </div>
+                {/* Moving Gradients/Orbs */}
+                <div className="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-indigo-600/30 rounded-full blur-[120px] animate-float mix-blend-screen"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-fuchsia-600/30 rounded-full blur-[120px] animate-float-delayed mix-blend-screen"></div>
+                <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[35rem] h-[35rem] bg-cyan-500/10 rounded-full blur-[100px] animate-float mix-blend-screen"></div>
             </div>
 
             {/* Main Content Container */}
-            <div className={`relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className={`relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
                 {/* Left Side: Text/Info */}
-                <div className="text-white hidden lg:block space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-sm font-medium text-indigo-300">
-                        <span className="relative flex h-3 w-3">
+                <div className="hidden lg:block space-y-8 pr-4">
+                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(99,102,241,0.3)] text-xs font-bold tracking-wide text-indigo-300 uppercase">
+                        <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-400"></span>
                         </span>
-                        Admissions Open 2024-25
+                        Admissions Open 2026-27
                     </div>
 
-                    <h1 className="text-6xl font-black leading-tight tracking-tight">
-                        Shape Your <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-pulse">
-                            Dream Future
+                    <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-tight text-white drop-shadow-2xl">
+                        Your Admission,<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 animate-gradient-x">
+                            Our Responsibility
                         </span>
                     </h1>
 
-                    <p className="text-slate-300 text-lg max-w-lg leading-relaxed">
-                        Join thousands of successful students who found their perfect college match. Get <span className="text-white font-semibold">free expert counseling</span> today.
+                    <p className="text-slate-300 text-lg leading-relaxed font-medium max-w-xl">
+                        Unsure about which college or course to choose? Our expert counselors provide personalized guidance to help you decide. Secure verified admission in <span className="text-white font-bold decoration-wavy underline decoration-indigo-500">Dehradun's private colleges</span> with our trusted support.
                     </p>
 
                     {/* Trust Badges */}
-                    <div className="grid grid-cols-2 gap-4 pt-4">
-                        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                            <div className="text-3xl font-bold text-white mb-1">5000+</div>
-                            <div className="text-indigo-200 text-sm font-medium">Students Placed</div>
+                    <div className="grid grid-cols-2 gap-6 pt-6">
+                        <div className="group p-5 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 backdrop-blur-md hover:border-cyan-500/30 transition-all duration-500 hover:transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                            <div className="text-3xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">5000+</div>
+                            <div className="text-slate-400 text-xs font-bold uppercase tracking-widest">Students Placed</div>
                         </div>
-                        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                            <div className="text-3xl font-bold text-white mb-1">100%</div>
-                            <div className="text-purple-200 text-sm font-medium">Satisfaction Rate</div>
+                        <div className="group p-5 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 backdrop-blur-md hover:border-fuchsia-500/30 transition-all duration-500 hover:transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(232,121,249,0.2)]">
+                            <div className="text-3xl font-bold text-white mb-1 group-hover:text-fuchsia-400 transition-colors">100%</div>
+                            <div className="text-slate-400 text-xs font-bold uppercase tracking-widest">Success Rate</div>
                         </div>
                     </div>
                 </div>
 
                 {/* Right Side: Form Card */}
-                <div className="glass-card rounded-3xl p-8 md:p-10 relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
+                <div className="relative group perspective-1000">
+                    {/* Animated Border Gradient */}
+                    <div className="absolute -inset-[2px] rounded-[2.2rem] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 opacity-70 blur-md group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
 
-                    {submitted ? (
-                        <div className="h-[520px] flex flex-col items-center justify-center text-center space-y-6 animate-check">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-green-500 blur-2xl opacity-20 rounded-full"></div>
-                                <div className="relative w-24 h-24 bg-gradient-to-tr from-green-400 to-emerald-600 rounded-full flex items-center justify-center shadow-xl shadow-green-500/30">
-                                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <h2 className="text-4xl font-black text-gray-800 tracking-tight">You're All Set! 🚀</h2>
-                                <p className="text-gray-500 text-lg">Our expert counselors will call you shortly.</p>
-                            </div>
-                            <div className="p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-indigo-700 text-sm">
-                                Check your email for a welcome kit!
-                            </div>
-                            <button
-                                onClick={() => setSubmitted(false)}
-                                className="mt-6 text-gray-500 font-semibold hover:text-indigo-600 transition-colors flex items-center gap-2"
-                            >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                                Submit Another Application
-                            </button>
+                    <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden border border-white/10 isolate">
+                        {/* Background Image with Overlay */}
+                        <div className="absolute inset-0 z-0">
+                            <img
+                                src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1767376541/desk-students_t0muq8.webp"
+                                alt="Students Studying"
+                                className="w-full h-full object-cover opacity-60 mix-blend-overlay hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/95 to-slate-900/90"></div>
                         </div>
-                    ) : (
-                        <div className="relative">
-                            <div className="mb-8 text-center">
-                                <h2 className="text-3xl font-black mb-2 text-gradient-animated tracking-tight">
-                                    Apply Now
-                                </h2>
-                                <p className="text-gray-500 font-medium">
-                                    Unlock your potential with expert guidance
-                                </p>
-                            </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* Name Input */}
-                                <div className={`relative group transition-all duration-300 ${activeField === 'name' ? 'scale-[1.02]' : ''}`}>
-                                    <label className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1.5 block ml-1">
-                                        Full Name
-                                    </label>
-                                    <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-hover:text-indigo-500 transition-colors">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        {/* Card Content */}
+                        <div className="relative z-10 p-8 md:p-10">
+                            {submitted ? (
+                                <div className="py-20 flex flex-col items-center justify-center text-center space-y-8 animate-fade-in">
+                                    <div className="relative group/check">
+                                        <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl scale-150 animate-pulse"></div>
+                                        <div className="relative w-24 h-24 bg-gradient-to-br from-emerald-400 to-green-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)] group-hover/check:scale-110 transition-transform duration-300">
+                                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                                         </div>
-                                        <input
-                                            type="text"
-                                            name="fullName"
-                                            value={formData.fullName}
-                                            onChange={handleChange}
-                                            onFocus={() => setActiveField('name')}
-                                            onBlur={() => setActiveField(null)}
-                                            className={`w-full pl-12 pr-4 py-3.5 rounded-xl glass-input outline-none font-medium text-gray-700 placeholder-gray-400 ${errors.fullName ? 'border-red-400 shake bg-red-50' : ''}`}
-                                            placeholder="e.g. John Doe"
-                                        />
                                     </div>
-                                    {errors.fullName && <span className="text-xs text-red-500 font-semibold absolute -bottom-5 left-1 animate-slide-in">{errors.fullName}</span>}
-                                </div>
-
-                                {/* Mobile Input */}
-                                <div className={`relative group transition-all duration-300 ${activeField === 'mobile' ? 'scale-[1.02]' : ''}`}>
-                                    <label className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1.5 block ml-1">
-                                        Mobile Number
-                                    </label>
-                                    <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-hover:text-indigo-500 transition-colors">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                        </div>
-                                        <input
-                                            type="tel"
-                                            name="mobileNumber"
-                                            value={formData.mobileNumber}
-                                            onChange={handleChange}
-                                            onFocus={() => setActiveField('mobile')}
-                                            onBlur={() => setActiveField(null)}
-                                            maxLength="10"
-                                            className={`w-full pl-12 pr-4 py-3.5 rounded-xl glass-input outline-none font-medium text-gray-700 placeholder-gray-400 ${errors.mobileNumber ? 'border-red-400 shake bg-red-50' : ''}`}
-                                            placeholder="e.g. 98765 43210"
-                                        />
+                                    <div className="space-y-3">
+                                        <h2 className="text-3xl font-bold text-white">Application Sent! 🚀</h2>
+                                        <p className="text-slate-400 text-base max-w-xs mx-auto">Get ready! We're reviewing your profile and will be in touch shortly.</p>
                                     </div>
-                                    {errors.mobileNumber && <span className="text-xs text-red-500 font-semibold absolute -bottom-5 left-1 animate-slide-in">{errors.mobileNumber}</span>}
+                                    <button
+                                        onClick={() => setSubmitted(false)}
+                                        className="px-6 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-all duration-300 flex items-center gap-2 text-sm hover:scale-105 active:scale-95"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                                        Submit Another
+                                    </button>
                                 </div>
+                            ) : (
+                                <div className="relative">
+                                    <div className="mb-8 text-center lg:text-left">
+                                        <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
+                                            Apply Now
+                                        </h2>
+                                        <p className="text-slate-400 text-sm">
+                                            Fill in your details to begin your journey.
+                                        </p>
+                                    </div>
 
-                                {/* College Select */}
-                                <div className={`relative group transition-all duration-300 ${activeField === 'college' ? 'scale-[1.02]' : ''}`}>
-                                    <label className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1.5 block ml-1">
-                                        Dream College
-                                    </label>
-                                    <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-hover:text-indigo-500 transition-colors z-10">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                    <form onSubmit={handleSubmit} className="space-y-5">
+                                        {/* Name Input */}
+                                        <div className="group space-y-1.5 direction-ltr">
+                                            <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest ml-1">
+                                                Full Name
+                                            </label>
+                                            <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                    <svg className="w-5 h-5 text-slate-500 group-focus-within:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    name="fullName"
+                                                    value={formData.fullName}
+                                                    onChange={handleChange}
+                                                    className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0f172a] border border-slate-700 outline-none font-medium text-white placeholder-slate-600 focus:bg-[#1e293b] focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-300 ${errors.fullName ? 'border-red-500/50 focus:border-red-500' : ''}`}
+                                                    placeholder="e.g. Alex Johnson"
+                                                />
+                                            </div>
+                                            {errors.fullName && <span className="text-[10px] text-red-400 ml-1 flex items-center gap-1 font-medium tracking-wide animate-pulse">{errors.fullName}</span>}
                                         </div>
-                                        <select
-                                            name="preferredCollege"
-                                            value={formData.preferredCollege}
-                                            onChange={handleChange}
-                                            onFocus={() => setActiveField('college')}
-                                            onBlur={() => setActiveField(null)}
-                                            className={`w-full pl-12 pr-10 py-3.5 rounded-xl glass-input outline-none font-medium text-gray-700 cursor-pointer appearance-none ${errors.preferredCollege ? 'border-red-400 shake bg-red-50' : ''}`}
+
+                                        {/* Mobile Input */}
+                                        <div className="group space-y-1.5">
+                                            <label className="text-[10px] font-bold text-fuchsia-400 uppercase tracking-widest ml-1">
+                                                Mobile Number
+                                            </label>
+                                            <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                    <svg className="w-5 h-5 text-slate-500 group-focus-within:text-fuchsia-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                                </div>
+                                                <input
+                                                    type="tel"
+                                                    name="mobileNumber"
+                                                    value={formData.mobileNumber}
+                                                    onChange={handleChange}
+                                                    maxLength="10"
+                                                    className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0f172a] border border-slate-700 outline-none font-medium text-white placeholder-slate-600 focus:bg-[#1e293b] focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 transition-all duration-300 ${errors.mobileNumber ? 'border-red-500/50 focus:border-red-500' : ''}`}
+                                                    placeholder="e.g. 98765 43210"
+                                                />
+                                            </div>
+                                            {errors.mobileNumber && <span className="text-[10px] text-red-400 ml-1 flex items-center gap-1 font-medium tracking-wide animate-pulse">{errors.mobileNumber}</span>}
+                                        </div>
+
+                                        {/* College Select */}
+                                        <div className="group space-y-1.5">
+                                            <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest ml-1">
+                                                Dream College
+                                            </label>
+                                            <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
+                                                    <svg className="w-5 h-5 text-slate-500 group-focus-within:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                                </div>
+                                                <select
+                                                    name="preferredCollege"
+                                                    value={formData.preferredCollege}
+                                                    onChange={handleChange}
+                                                    className={`w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0f172a] border border-slate-700 outline-none font-medium text-white cursor-pointer appearance-none focus:bg-[#1e293b] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300 ${errors.preferredCollege ? 'border-red-500/50 focus:border-red-500' : ''}`}
+                                                >
+                                                    <option value="" disabled hidden className="text-slate-500">Select your target college...</option>
+                                                    {colleges.map((col, i) => <option key={i} value={col} className="bg-slate-800 text-white">{col}</option>)}
+                                                </select>
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 group-focus-within:text-indigo-400 transition-colors">
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                                </div>
+                                            </div>
+                                            {errors.preferredCollege && <span className="text-[10px] text-red-400 ml-1 flex items-center gap-1 font-medium tracking-wide animate-pulse">{errors.preferredCollege}</span>}
+                                        </div>
+
+                                        {/* Other College Input (Conditional) */}
+                                        {formData.preferredCollege === 'Other' && (
+                                            <div className="group space-y-1.5 animate-slide-up">
+                                                <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest ml-1">
+                                                    Specify College Name
+                                                </label>
+                                                <div className="relative transition-all duration-300 focus-within:transform focus-within:-translate-y-1">
+                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                        <svg className="w-5 h-5 text-slate-500 group-focus-within:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        name="otherCollege"
+                                                        value={formData.otherCollege}
+                                                        onChange={handleChange}
+                                                        className={`w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0f172a] border border-slate-700 outline-none font-medium text-white placeholder-slate-600 focus:bg-[#1e293b] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-300 ${errors.otherCollege ? 'border-red-500/50 focus:border-red-500' : ''}`}
+                                                        placeholder="Enter college name"
+                                                    />
+                                                </div>
+                                                {errors.otherCollege && <span className="text-[10px] text-red-400 ml-1 flex items-center gap-1 font-medium tracking-wide animate-pulse">{errors.otherCollege}</span>}
+                                            </div>
+                                        )}
+
+                                        {/* Submit Button */}
+                                        <button
+                                            type="submit"
+                                            className="relative w-full mt-2 group overflow-hidden rounded-xl p-[1px] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-900 shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(79,70,229,0.5)] transition-shadow duration-300"
                                         >
-                                            <option value="">Select your target college...</option>
-                                            {colleges.map((col, i) => <option key={i} value={col}>{col}</option>)}
-                                        </select>
-                                        <div className="absolute right-4 top-4 pointer-events-none text-gray-400">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                        </div>
-                                    </div>
-                                    {errors.preferredCollege && <span className="text-xs text-red-500 font-semibold absolute -bottom-5 left-1 animate-slide-in">{errors.preferredCollege}</span>}
+                                            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-500 animate-gradient-xy"></div>
+                                            <div className="relative bg-[#0f172a] h-full w-full rounded-[11px] items-center justify-center flex transition-all duration-300 group-hover:bg-transparent">
+                                                <span className="font-bold text-white py-4 px-8 tracking-wider flex items-center gap-2 text-sm uppercase group-hover:scale-105 transition-transform">
+                                                    Get Started Now
+                                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                                                </span>
+                                            </div>
+                                        </button>
+
+                                        <p className="text-center text-[10px] text-slate-500 mt-4 flex items-center justify-center gap-2">
+                                            <svg className="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                                            100% Secure Data
+                                        </p>
+                                    </form>
                                 </div>
-
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="group relative w-full mt-6 bg-gray-900 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-500/20 hover:shadow-indigo-600/40 transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                                >
-                                    {/* Animated Gradient Background */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-
-                                    {/* Shine Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-
-                                    <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
-                                        Get Started Now
-                                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                                    </span>
-                                </button>
-
-                                <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
-                                    <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
-                                    Your data is 100% secure with us
-                                </p>
-                            </form>
+                            )}
                         </div>
-                    )}
+                    </div>
                 </div>
             </div>
         </div>

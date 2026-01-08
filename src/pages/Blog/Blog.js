@@ -31,7 +31,7 @@ function Blog() {
           <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold mb-8 tracking-wide animate-fade-in shadow-lg">
             OUR LATEST INSIGHTS
           </span>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+          <h1 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-slide-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
             Knowledge Hub for <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300">
               Aspiring Students
