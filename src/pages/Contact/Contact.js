@@ -161,8 +161,8 @@ function Contact() {
                       </div>
                       <h4 className="font-semibold text-gray-900">Email</h4>
                     </div>
-                    <p className="text-gray-600 ml-13">info@campusfinder.com</p>
-                    <p className="text-gray-600 ml-13">support@campusfinder.com</p>
+                    <p className="text-gray-600 ml-13">info@collegeconnect.com</p>
+                    <p className="text-gray-600 ml-13">support@collegeconnect.com</p>
                   </div>
 
                   <div>

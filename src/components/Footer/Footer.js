@@ -10,7 +10,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12">
           {/* Company Info */}
           <div>
-            <h3 className="font-heading text-xl font-bold text-white mb-4">Campus Finder</h3>
+            <h3 className="font-heading text-xl font-bold text-white mb-4">College Connect</h3>
             <p className="text-gray-400 leading-relaxed mb-4">
               Your trusted partner in finding the perfect college and shaping your educational future.
             </p>
@@ -85,7 +85,7 @@ function Footer() {
                 <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>info@campusfinder.com</span>
+                <span>info@collegeconnect.com</span>
               </li>
               <li className="flex items-start">
                 <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +108,7 @@ function Footer() {
         <div className="border-t border-gray-800 py-6 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm text-center md:text-left">
-              &copy; {currentYear} Campus Finder. All rights reserved.
+              &copy; {currentYear} College Connect. All rights reserved.
             </p>
 
             {/* Developer Credit */}

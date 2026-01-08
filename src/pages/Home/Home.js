@@ -97,7 +97,7 @@ function Home() {
       name: 'Rajesh Kumar',
       college: 'IIT Delhi',
       rating: 5,
-      testimonial: 'Campus Finder helped me find the perfect college that matched my interests. The counseling was excellent and the entire process was smooth.',
+      testimonial: 'College Connect helped me find the perfect college that matched my interests. The counseling was excellent and the entire process was smooth.',
     },
     {
       name: 'Priya Sharma',
@@ -109,7 +109,7 @@ function Home() {
       name: 'Amit Patel',
       college: 'NIT Surat',
       rating: 5,
-      testimonial: 'Professional service and expert guidance. I got admission in my dream college thanks to Campus Finder.',
+      testimonial: 'Professional service and expert guidance. I got admission in my dream college thanks to College Connect.',
     },
   ];
 

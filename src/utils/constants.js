@@ -1,6 +1,6 @@
 // Application Constants
 
-export const APP_NAME = 'Campus Finder';
+export const APP_NAME = 'College Connect';
 export const APP_VERSION = '1.0.0';
 
 export const ROUTES = {
