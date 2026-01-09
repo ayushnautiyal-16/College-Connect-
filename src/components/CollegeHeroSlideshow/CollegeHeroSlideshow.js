@@ -33,7 +33,16 @@ function CollegeHeroSlideshow({ images, className }) {
                     <img
                         src={typeof image === 'string' ? image : image.url}
                         alt={typeof image === 'string' ? `Campus image ${index + 1}` : (image.title || `Campus image ${index + 1}`)}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${(typeof image === 'string' && (
+                            image.includes('5_wazjsp.webp') ||
+                            image.includes('section002-side-image_clige2.jpg') ||
+                            image.includes('1750750305104_ffszrd.jpg') ||
+                            image.includes('t7_uelxey.jpg') ||
+                            image.includes('t5_keegcv.jpg')
+                        ))
+                            ? 'object-[center_35%]'
+                            : ''
+                            }`}
                         loading={index === 0 ? 'eager' : 'lazy'}
                     />
                     {/* Gradient Overlay for better text visibility if needed */}
@@ -49,8 +58,8 @@ function CollegeHeroSlideshow({ images, className }) {
                             key={index}
                             onClick={() => setCurrentIndex(index)}
                             className={`h-1.5 rounded-full transition-all duration-300 backdrop-blur-sm ${index === currentIndex
-                                    ? 'w-8 bg-white'
-                                    : 'w-2 bg-white/40 hover:bg-white/60'
+                                ? 'w-8 bg-white'
+                                : 'w-2 bg-white/40 hover:bg-white/60'
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />

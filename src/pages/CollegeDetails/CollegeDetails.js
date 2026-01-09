@@ -52,6 +52,24 @@ function CollegeDetails() {
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953731/Box-New-color_in8431.jpg',
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953729/15_yplf3g.webp',
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767031601/8_kpjirn.jpg'
+            ],
+            4: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767376541/desk-students_t0muq8.webp',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956998/FarlyNuVQAEvYsE_s99wgi.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956994/FaHf3K7UIAIvEN0_ct1bgh.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956977/FCmXjKUVcAQLMNz_htvnaz.jpg'
+            ],
+            5: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377026/dbuu-campus-webp-1_wdiaej.webp',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377034/5_wazjsp.webp',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377032/17_mjo5ao.webp',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377035/one_aw66o4.webp'
+            ],
+            6: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377576/section002-side-image_clige2.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377575/1750750305104_ffszrd.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377577/t7_uelxey.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377577/t5_keegcv.jpg'
             ]
         };
         return imageMap[collegeId] || [
@@ -140,8 +158,8 @@ function CollegeDetails() {
                                 )}
                             </div>
 
-                            {/* Title with Text Gradient Effect */}
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-none drop-shadow-2xl">
+                            {/* Title with Text Gradient Effect - Updated */}
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none drop-shadow-2xl animate-page-enter">
                                 {college.name}
                             </h1>
 
@@ -149,7 +167,7 @@ function CollegeDetails() {
                             <div className="flex items-center gap-6 text-slate-200 text-lg">
                                 <div className="flex items-center gap-2">
                                     <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    <span>{college.location}</span>
+                                    <span>{collegeId === 6 ? 'Patel Nagar, Dehradun, Uttarakhand 248001' : college.location}</span>
                                 </div>
                                 <div className="hidden md:flex items-center gap-2">
                                     <div className="w-1.5 h-1.5 rounded-full bg-slate-400"></div>
@@ -182,21 +200,21 @@ function CollegeDetails() {
                         </div>
 
                         {/* 2. OVERVIEW / ABOUT */}
-                        <section ref={overviewRef.ref} className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group ${overviewRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-100`}>
+                        <section ref={overviewRef.ref} className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl hover:border-indigo-100 hover:-translate-y-1 transition-all duration-500 ease-out ${overviewRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} delay-100`}>
                             {/* Decorative Blur */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60 group-hover:bg-indigo-100 group-hover:scale-110 transition-all duration-1000"></div>
 
                             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
-                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600">
+                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 group-hover:scale-110 transition-transform duration-300">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 </span>
                                 Overview
                             </h2>
 
                             <div className="relative z-10">
-                                <div className="prose prose-lg text-slate-600 leading-relaxed mb-8">
+                                <div className="prose prose-lg text-slate-600 leading-relaxed mb-8 transition-colors duration-300 group-hover:text-slate-700">
                                     <p>
-                                        <span className="text-5xl float-left mr-3 mt-[-10px] font-serif text-indigo-500 opacity-50">❝</span>
+                                        <span className="text-5xl float-left mr-3 mt-[-10px] font-serif text-indigo-500 opacity-20 animate-pulse">❝</span>
                                         {collegeId === 1 ? (
                                             <>
                                                 Graphic Era Deemed to be University is the culmination of the vision of its founder, Prof (Dr) Kamal Ghanshala, who had the dream to change the destiny of thousands of youth through quality and holistic education.
@@ -215,6 +233,24 @@ function CollegeDetails() {
                                                 <br /><br />
                                                 With a focus on law, engineering, and management, the university offers a world-class learning environment with state-of-the-art infrastructure. Its rigorous curriculum, experienced faculty, and strong industry partnerships ensure students are well-prepared for global challenges, making it a preferred destination for higher education.
                                             </>
+                                        ) : collegeId === 4 ? (
+                                            <>
+                                                UPES University, established in 2003 through the UPES Act, 2003, is a visionary institution located in Dehradun. Recognized by UGC and accredited with NAAC 'A' Grade, UPES is globally renowned for its specialized programs in Energy, Petroleum, Core Sectors, and Allied areas.
+                                                <br /><br />
+                                                With a 90%+ placement track record and partnerships with industry giants, UPES offers a unique blend of domain-focused education and practical learning. The university is dedicated to developing future leaders through its forward-thinking curriculum, world-class faculty, and vibrant campus life.
+                                            </>
+                                        ) : collegeId === 5 ? (
+                                            <>
+                                                Dev Bhoomi Uttarakhand University (DBUU), established in 2005 (formerly DBIT), is a premier self-governed institution spread across a 42-acre lush green campus in Dehradun. The university offers over 120+ programs across Engineering, Management, Pharmacy, and other disciplines.
+                                                <br /><br />
+                                                Accredited AND recognized by UGC, PCI, and AICTE, DBUU focuses on creating industry-ready professionals. With its advanced "Corporate Resource Centre," the university ensures robust industry interfaces and consistent placement success, making it a top choice for students in the region.
+                                            </>
+                                        ) : collegeId === 6 ? (
+                                            <>
+                                                Shri Guru Ram Rai University (SGRRU), established in 2017 in Dehradun, Uttarakhand, by Shri Mahant Devendra Dass Ji Maharaj, is a premier 82.5-acre private university offering over 125 programs across 11 schools, including Medicine, Nursing, Agriculture, and Management.
+                                                <br /><br />
+                                                Recognized by the UGC and accredited by bodies like ICAR, NMC, and INC, SGRRU provides a research-driven environment focused on value-based education.
+                                            </>
                                         ) : (
                                             college.description || `Welcome to ${college.name}, a center of academic excellence and holistic development. Our institution stands as a beacon of knowledge, fostering innovation and leadership in every student. With world-class faculty and state-of-the-art infrastructure, we ensure a transformative learning experience.`
                                         )}
@@ -224,15 +260,15 @@ function CollegeDetails() {
                                 {/* Animated Stats/Badges within Overview */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
                                     {[
-                                        { label: 'Ranking', value: collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 2 ? 'NAAC A Grade' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
-                                        { label: 'Legacy', value: collegeId === 3 ? '10+ Years' : collegeId === 2 ? '25+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
+                                        { label: 'Ranking', value: collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 2 ? 'NAAC A Grade' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'UGC Approved' : collegeId === 6 ? 'NAAC Accredited' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
+                                        { label: 'Legacy', value: collegeId === 3 ? '10+ Years' : collegeId === 2 ? '25+ Years' : collegeId === 4 ? '20+ Years' : collegeId === 5 ? '19+ Years' : collegeId === 6 ? '7+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
                                         { label: 'Global', value: 'Alumni Network', sub: 'Spread across 50+ Nations', icon: '🌍' }
                                     ].map((stat, i) => (
-                                        <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors duration-300 cursor-default">
-                                            <div className="text-2xl filter drop-shadow-sm">{stat.icon}</div>
+                                        <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-transparent hover:border-indigo-200 hover:bg-indigo-50/50 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group/stat">
+                                            <div className="text-3xl filter drop-shadow-sm group-hover/stat:scale-110 transition-transform duration-300">{stat.icon}</div>
                                             <div>
-                                                <div className="font-bold text-slate-800 text-sm">{stat.value}</div>
-                                                <div className="text-xs text-slate-400 font-medium">{stat.label}</div>
+                                                <div className="font-bold text-slate-800 text-sm group-hover/stat:text-indigo-900 transition-colors">{stat.value}</div>
+                                                <div className="text-xs text-slate-400 font-medium group-hover/stat:text-indigo-500 transition-colors">{stat.label}</div>
                                             </div>
                                         </div>
                                     ))}
@@ -256,7 +292,7 @@ function CollegeDetails() {
                                     <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies with record-breaking packages.</p>
 
                                     <div className="flex flex-wrap gap-4">
-                                        {(collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 2 ? ['Palo Alto', 'Amazon', 'Adobe', 'Commvault', 'Microsoft', 'Infosys'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
+                                        {(collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 2 ? ['Palo Alto', 'Amazon', 'Adobe', 'Commvault', 'Microsoft', 'Infosys'] : collegeId === 4 ? ['Microsoft', 'Amazon', 'Shell', 'ONGC', 'Halliburton', 'Maruti Suzuki'] : collegeId === 5 ? ['Infosys', 'Wipro', 'Amazon', 'TCS', 'Adobe', 'Deloitte'] : collegeId === 6 ? ['Accenture', 'Infosys', 'Wipro', 'Deloitte', 'HCL', 'ICICI Bank'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
                                             <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
                                                 {company}
                                             </span>
@@ -269,18 +305,18 @@ function CollegeDetails() {
                                         <div>
                                             <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
                                             <div className="text-4xl lg:text-5xl font-bold text-white mt-1">
-                                                ₹ {collegeId === 3 ? '1.50' : collegeId === 2 ? '58.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
+                                                ₹ {collegeId === 3 ? '1.50' : collegeId === 2 ? '58.00' : collegeId === 4 ? '52.00' : collegeId === 5 ? '40.00' : collegeId === 6 ? '12.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
                                             </div>
                                         </div>
                                         <div className="h-px bg-white/10"></div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Average Package</p>
-                                                <p className="text-xl font-bold">₹ {collegeId === 3 ? '11.00' : collegeId === 2 ? '7.50' : '8.50'} LPA</p>
+                                                <p className="text-xl font-bold">₹ {collegeId === 3 ? '11.00' : collegeId === 2 ? '7.50' : collegeId === 4 ? '8.50' : collegeId === 5 ? '5.50' : collegeId === 6 ? '4.00' : '8.50'} LPA</p>
                                             </div>
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
-                                                <p className="text-xl font-bold">{collegeId === 3 ? '2,350+' : collegeId === 2 ? '1,450+' : '2,500+'}</p>
+                                                <p className="text-xl font-bold">{collegeId === 3 ? '2,350+' : collegeId === 2 ? '1,450+' : collegeId === 4 ? '2,440+' : collegeId === 5 ? '14,500+' : collegeId === 6 ? '300+' : '2,500+'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -366,7 +402,7 @@ function CollegeDetails() {
 
                                 <button
                                     onClick={() => navigate('/apply')}
-                                    className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-lg hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-slate-900/20 mb-3 flex items-center justify-center gap-2"
+                                    className="w-full py-4 rounded-xl bg-[#4338CA] text-white font-bold text-lg hover:bg-[#3730a3] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-500/20 mb-3 flex items-center justify-center gap-2"
                                 >
                                     <span>Apply Now</span>
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -397,7 +433,9 @@ function CollegeDetails() {
                                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 mt-0.5 shrink-0">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                         </div>
-                                        <span className="text-sm text-slate-600 leading-snug">{college.location}, Uttarakhand 248002</span>
+                                        <span className="text-sm text-slate-600 leading-snug">
+                                            {collegeId === 6 ? 'Patel Nagar, Dehradun, Uttarakhand 248001' : `${college.location}, Uttarakhand 248002`}
+                                        </span>
                                     </li>
                                     <li className="flex items-center gap-3">
                                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
