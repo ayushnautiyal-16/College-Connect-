@@ -40,6 +40,18 @@ function CollegeDetails() {
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg',
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948329/grafest-day-one-7_iczpwg.jpg',
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767381831/dit-university-dehradun-229162_ws0ck4.jpg'
+            ],
+            2: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954779/1500x500_mtdnmx.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767381831/dit-university-dehradun-229162_ws0ck4.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954774/Ge54DdyWsAADfss_lnui0u.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954772/Gceo9oYXsAAhsfR_widqbr.jpg'
+            ],
+            3: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953726/Deepa-Panday-Slider-2025-v3_wjgb2p.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953731/Box-New-color_in8431.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953729/15_yplf3g.webp',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767031601/8_kpjirn.jpg'
             ]
         };
         return imageMap[collegeId] || [
@@ -60,11 +72,23 @@ function CollegeDetails() {
         { name: 'MBA (Marketing/Finance)', duration: '2 Years', icon: '📊' },
         { name: 'BBA (Management)', duration: '3 Years', icon: '👔' },
         { name: 'BCA (Applications)', duration: '3 Years', icon: '🖥️' },
-        { name: 'M.Tech Engineering', duration: '2 Years', icon: '⚙️' },
+        { name: 'M.Tech (CSE/ECE/ME)', duration: '2 Years', icon: '⚙️' },
         { name: 'B.Com (Hons)', duration: '3 Years', icon: '📉' },
         { name: 'B.Sc IT', duration: '3 Years', icon: '📱' },
-        { name: 'Hotel Management', duration: '4 Years', icon: '🏨' },
-        { name: 'Ph.D Programs', duration: '3-5 Years', icon: '🎓' }
+        { name: 'B.Sc Agriculture', duration: '4 Years', icon: '🌾' },
+        { name: 'B.Sc Nursing', duration: '4 Years', icon: '🏥' },
+        { name: 'B.Pharma', duration: '4 Years', icon: '💊' },
+        { name: 'D.Pharma', duration: '2 Years', icon: '🔬' },
+        { name: 'Hotel Management (BHM)', duration: '4 Years', icon: '🏨' },
+        { name: 'BA Journalism & Mass Comm', duration: '3 Years', icon: '🎙️' },
+        { name: 'LLB (Law)', duration: '3 Years', icon: '⚖️' },
+        { name: 'BA LLB (Hons)', duration: '5 Years', icon: '⚖️' },
+        { name: 'B.Des (Fashion Design)', duration: '4 Years', icon: '👗' },
+        { name: 'B.Sc Animation & VFX', duration: '3 Years', icon: '🎨' },
+        { name: 'M.Sc (Physics/Chem/Maths)', duration: '2 Years', icon: '🧪' },
+        { name: 'MCA', duration: '3 Years', icon: '☁️' },
+        { name: 'Ph.D Programs', duration: '3-5 Years', icon: '🎓' },
+        { name: 'B.Ed', duration: '2 Years', icon: '📚' }
     ];
 
     const facilities = [
@@ -80,10 +104,10 @@ function CollegeDetails() {
 
     // Render Logic
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/20 to-white font-sans selection:bg-indigo-100 selection:text-indigo-900">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 font-sans selection:bg-indigo-100 selection:text-indigo-900">
 
             {/* --- HERO SECTION --- */}
-            <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+            <div className="relative h-[85vh] min-h-[500px] w-full overflow-hidden">
                 <CollegeHeroSlideshow images={slideshowImages} className="absolute inset-0" />
 
                 {/* Modern Dark Gradient Overlay */}
@@ -179,6 +203,18 @@ function CollegeDetails() {
                                                 <br /><br />
                                                 Established in 1993, the university has now metamorphosed into a global center of learning and is known for its academic excellence, world-class faculty, and state-of-the-art infrastructure. With a legacy spanning over three decades, Graphic Era has created a niche for itself in the field of technical and professional education.
                                             </>
+                                        ) : collegeId === 2 ? (
+                                            <>
+                                                DIT University, formerly known as Dehradun Institute of Technology, was established in 1998 and has since evolved into a premier centre of excellence. Located in the serene foothills of Mussoorie, the university offers a sprawling 21-acre campus equipped with modern infrastructure and world-class facilities.
+                                                <br /><br />
+                                                Accredited with NAAC 'A' Grade and approved by UGC, DIT University is renowned for its holistic approach to education, combining rigorous academics with extensive industry exposure. With over 25 years of legacy, it continues to foster innovation, leadership, and professional growth among students from across the nation.
+                                            </>
+                                        ) : collegeId === 3 ? (
+                                            <>
+                                                Uttaranchal University, established in 2013, is a premier institution located in Dehradun, recognized for its commitment to academic excellence and research. It is the first university in Uttarakhand to be accredited with the prestigious NAAC A+ Grade in its very first cycle.
+                                                <br /><br />
+                                                With a focus on law, engineering, and management, the university offers a world-class learning environment with state-of-the-art infrastructure. Its rigorous curriculum, experienced faculty, and strong industry partnerships ensure students are well-prepared for global challenges, making it a preferred destination for higher education.
+                                            </>
                                         ) : (
                                             college.description || `Welcome to ${college.name}, a center of academic excellence and holistic development. Our institution stands as a beacon of knowledge, fostering innovation and leadership in every student. With world-class faculty and state-of-the-art infrastructure, we ensure a transformative learning experience.`
                                         )}
@@ -188,8 +224,8 @@ function CollegeDetails() {
                                 {/* Animated Stats/Badges within Overview */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
                                     {[
-                                        { label: 'Ranking', value: 'Top 100 NIRF', sub: 'Among Universities', icon: '🏆' },
-                                        { label: 'Legacy', value: '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
+                                        { label: 'Ranking', value: collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 2 ? 'NAAC A Grade' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
+                                        { label: 'Legacy', value: collegeId === 3 ? '10+ Years' : collegeId === 2 ? '25+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
                                         { label: 'Global', value: 'Alumni Network', sub: 'Spread across 50+ Nations', icon: '🌍' }
                                     ].map((stat, i) => (
                                         <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors duration-300 cursor-default">
@@ -220,7 +256,7 @@ function CollegeDetails() {
                                     <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies with record-breaking packages.</p>
 
                                     <div className="flex flex-wrap gap-4">
-                                        {['Google', 'Microsoft', 'Amazon', 'Adobe'].map(company => (
+                                        {(collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 2 ? ['Palo Alto', 'Amazon', 'Adobe', 'Commvault', 'Microsoft', 'Infosys'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
                                             <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
                                                 {company}
                                             </span>
@@ -231,20 +267,20 @@ function CollegeDetails() {
                                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/10 transform transition-transform hover:scale-[1.02]">
                                     <div className="space-y-6">
                                         <div>
-                                            <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest International Package</p>
+                                            <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
                                             <div className="text-4xl lg:text-5xl font-bold text-white mt-1">
-                                                ₹ 54.80 <span className="text-2xl text-indigo-300">LPA</span>
+                                                ₹ {collegeId === 3 ? '1.50' : collegeId === 2 ? '58.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
                                             </div>
                                         </div>
                                         <div className="h-px bg-white/10"></div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Average Package</p>
-                                                <p className="text-xl font-bold">₹ 8.50 LPA</p>
+                                                <p className="text-xl font-bold">₹ {collegeId === 3 ? '11.00' : collegeId === 2 ? '7.50' : '8.50'} LPA</p>
                                             </div>
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
-                                                <p className="text-xl font-bold">2,500+</p>
+                                                <p className="text-xl font-bold">{collegeId === 3 ? '2,350+' : collegeId === 2 ? '1,450+' : '2,500+'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -252,25 +288,31 @@ function CollegeDetails() {
                             </div>
                         </section>
 
-                        {/* 4. POPULAR COURSES (Pill Cloud) */}
+                        {/* 4. COURSES OFFERED */}
                         <section ref={coursesRef.ref} className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-300`}>
                             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
                                 <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                                 </span>
-                                Popular Programs
+                                Courses Offered
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 {courses.map((course, idx) => (
-                                    <div key={idx} className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-indigo-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-default">
-                                        <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-slate-50 text-2xl group-hover:bg-indigo-50 group-hover:scale-110 transition-all duration-300">
-                                            {course.icon}
-                                        </div>
-                                        <div className="min-w-0 pt-0.5">
-                                            <h3 className="text-sm font-bold text-slate-800 leading-tight group-hover:text-indigo-700 transition-colors mb-1.5">{course.name}</h3>
-                                            <div className="text-xs font-medium text-slate-500 bg-slate-100 inline-block px-2 py-1 rounded-md text-indigo-500/90">
-                                                {course.duration}
+                                    <div key={idx} className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-indigo-100 hover:shadow-md transition-all duration-300 cursor-default">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
+                                                {course.icon}
                                             </div>
+                                            <div>
+                                                <h3 className="text-sm font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">{course.name}</h3>
+                                                <p className="text-[10px] text-slate-500 font-medium mt-0.5">Full Time • On Campus</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right pl-2">
+                                            <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Duration</span>
+                                            <span className="inline-block px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-bold border border-indigo-100">
+                                                {course.duration}
+                                            </span>
                                         </div>
                                     </div>
                                 ))}
@@ -361,7 +403,7 @@ function CollegeDetails() {
                                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                                         </div>
-                                        <span className="text-sm text-slate-600">+91 1800-456-7890</span>
+                                        <span className="text-sm text-slate-600">+91 7078964020</span>
                                     </li>
                                 </ul>
                             </div>
