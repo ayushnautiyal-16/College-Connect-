@@ -179,58 +179,58 @@ export const collegesData = [
         name: 'Himalayan Institute of Technology',
         logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816124/logo-hit_gayllo.png',
         logoBgColor: '#ffffff',
-        location: 'Jolly Grant, Dehradun',
-        established: '2006',
-        accreditation: 'AICTE Approved',
-        description: 'Premier technical institute offering top-notch engineering education & support.',
-        courses: ['B.Tech', 'M.Tech', 'MCA', 'Polytechnic', 'Diploma'],
-        collegeType: 'Private Technical Institute',
-        bestKnownFor: 'Strong technical education foundation with experienced faculty in engineering disciplines',
-        mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'M.Tech', 'MCA', 'Polytechnic', 'Diploma Engineering'],
+        location: 'Haridwar Road, Near Central Excise office, Danda Dharampur, Dehradun',
+        established: '2001',
+        accreditation: 'UGC Recognized',
+        description: 'Premier institute known for Hotel Management, Agriculture, and IT programs.',
+        courses: ['BHM', 'B.Sc Agri', 'BCA', 'BBA', 'B.Com', 'M.Sc', 'MBA'],
+        collegeType: 'Private Institute',
+        bestKnownFor: 'Hotel Management and Agriculture programs with practical training',
+        mainCourses: ['BHM', 'B.Sc Agriculture', 'B.Sc Forestry', 'BCA', 'B.Sc IT', 'BBA', 'B.Com (Hons)', 'MBA', 'M.Com', 'M.Sc Agronomy', 'M.Sc Botany', 'M.Sc Zoology', 'M.Sc Chemistry'],
         bestCourses: [
             {
-                name: 'B.Tech Computer Science',
-                description: 'Focused CSE program with strong coding culture and technical club activities'
+                name: 'Bachelor of Hotel Management (BHM)',
+                description: 'Top-ranked program with training in 5-star hotels and industry placements'
             },
             {
-                name: 'B.Tech Electronics & Communication',
-                description: 'Comprehensive ECE program with advanced electronics labs'
+                name: 'B.Sc Agriculture',
+                description: 'Practical-oriented curriculum with field work and modern agricultural labs'
             },
             {
-                name: 'Polytechnic Diploma',
-                description: 'Affordable diploma programs for early career start in engineering'
+                name: 'BCA',
+                description: 'Focused on software development, web technologies, and IT industry readiness'
             }
         ],
-        bestPart: 'Himalayan Institute of Technology provides a focused technical education environment with experienced faculty members dedicated to student success. The institute maintains modern labs and workshops for hands-on learning. With strong emphasis on placement training, students receive packages ranging from 3-5 LPA with opportunities in both core engineering and IT sectors.'
+        bestPart: 'Himalayan Institute of Technology (HIT) is a leader in professional education, particularly in Hotel Management and Agriculture. The institute offers a vibrant campus life with modern practical labs, highly experienced faculty, and strong industry connect. With a focus on holistic development, HIT ensures students are industry-ready through regular workshops, guest lectures, and guaranteed placement support with packages up to 13.5 LPA.'
     },
     {
         id: 8,
         name: 'GRD Institute of Management & Technology',
         logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png',
         logoBgColor: '#2A2866',
-        location: 'Rajpur Road, Dehradun',
-        established: '2007',
+        location: 'Rajpur Road, Near Sai Mandir, Dehradun',
+        established: '1989',
         accreditation: 'AICTE Approved',
-        description: 'Quality engineering & management education fostering innovation and careers.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'Polytechnic'],
+        description: 'Prestigious institute offering quality education in Engineering, Management & Pharmacy.',
+        courses: ['B.Tech', 'MBA', 'B.Pharma', 'BBA', 'BCA', 'D.Pharma'],
         collegeType: 'Private Institute',
-        bestKnownFor: 'Balanced focus on academics and extracurricular activities with strong industry connections',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'Polytechnic', 'B.Tech CSE', 'B.Tech ME', 'B.Tech ECE'],
+        bestKnownFor: 'Balanced focus on academics and extracurriculars with strong placement support',
+        mainCourses: ['B.Tech CSE', 'B.Tech ME', 'B.Tech Civil', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'D.Pharma', 'B.Sc Agriculture', 'B.Com', 'M.Tech', 'BA Journalism'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Well-rounded engineering program with industry exposure and project-based learning'
+                name: 'B.Tech Computer Science',
+                description: 'Comprehensive engineering program with specializations in AI, ML and Cyber Security'
+            },
+            {
+                name: 'B.Pharma',
+                description: 'Pharmacy program with state-of-the-art labs and industry training'
             },
             {
                 name: 'MBA',
-                description: 'Management program with case study approach and corporate interactions'
-            },
-            {
-                name: 'BCA',
-                description: 'Computer applications with focus on software development and web technologies'
+                description: 'Management program focusing on leadership, finance, and marketing strategies'
             }
         ],
-        bestPart: 'GRD Institute combines academic excellence with vibrant campus life, offering students a well-rounded educational experience. The institute has strong industry collaborations providing internships and placement opportunities with packages averaging 3.5-5.5 LPA. Located on Rajpur Road, it offers excellent connectivity and a pleasant learning environment with active student clubs and regular technical and cultural events.'
+        bestPart: 'GRD Institute of Management & Technology is one of the oldest and most reputed institutes in Dehradun, established in 1989. Located on the scenic Rajpur Road, the 14-acre campus offers a perfect blend of academic excellence and vibrant campus life. With strong industry connections, the institute provides excellent placement opportunities with packages reaching up to 20-32 LPA. The campus features modern infrastructure, advanced labs, and a supportive learning environment.'
     },
     {
         id: 9,
@@ -608,6 +608,35 @@ export const collegesData = [
             }
         ],
         bestPart: 'BFIT provides a focused technical education environment with experienced faculty members dedicated to student success. The institute maintains modern labs and workshops for hands-on learning. With strong emphasis on placement training, students receive packages ranging from 3-5 LPA with opportunities in both core engineering and IT sectors.'
+    },
+    {
+        id: 9,
+        name: 'D.D. College Dehradun',
+        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png', // Keeping placeholder as no specific logo URL was provided/found in snippets to replace immediately.
+        logoBgColor: '#ffffff',
+        location: '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand',
+        established: '2014',
+        accreditation: 'NAAC Assessed',
+        description: 'Reputed institution offering diverse programs in Agriculture, Sciences, Commerce & Education.',
+        courses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA', 'M.Sc', 'MA', 'Yoga'],
+        collegeType: 'Private Institute',
+        bestKnownFor: 'Affordable quality education with focus on holistic development',
+        mainCourses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA', 'B.Sc (PCM/CBZ)', 'M.Sc Agronomy', 'M.Sc Chemistry', 'MA Yoga', 'PG Diploma in Yoga', 'BA'],
+        bestCourses: [
+            {
+                name: 'B.Sc Agriculture',
+                description: 'Focus on modern agricultural practices with field training'
+            },
+            {
+                name: 'B.Ed',
+                description: 'NCTE approved program for aspiring educators'
+            },
+            {
+                name: 'MA/PG Diploma in Yoga',
+                description: 'Specialized course maximizing wellness and career opportunities in health sector'
+            }
+        ],
+        bestPart: 'D.D. College, established in 2014, has quickly emerged as a significant center for learning in Dehradun. Located in the serene Garhi Cantt area, it offers a peaceful environment conducive to studies. Affiliated with key universities like HNBGU and Sri Dev Suman University, the college is known for its affordable fee structure, diverse course offerings ranging from Agriculture to Yoga, and a commitment to student support with facilities like well-equipped labs and a rich library.'
     },
     {
         id: 22,
