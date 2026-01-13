@@ -89,6 +89,16 @@ function CollegeDetails() {
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247094/Untitled-design-100_ncsqlb.png',
                 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247091/dd-college1_kujwjv.jpg'
                 // Generic backup
+            ],
+            10: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg', // Placeholder
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328234/sbsu_gallery_0133_g97bky.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328237/sbsu_gallery_0092_fir2rb.jpg',
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328236/sbsu_gallery_0096_gbelvc.jpg'
+            ],
+            11: [
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg', // Using generic/college placeholder
+                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg'
             ]
         };
         return imageMap[collegeId] || [
@@ -98,10 +108,10 @@ function CollegeDetails() {
     };
 
     const highlights = [
-        { label: 'Established', value: collegeId === 1 ? '1993' : collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 7 ? '2001' : collegeId === 8 ? '1989' : collegeId === 9 ? '2014' : (college.established || '1998'), icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-blue-500 to-cyan-400' },
-        { label: 'Accreditation', value: collegeId === 1 ? 'NAAC A+' : collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : (college.accreditation || 'NAAC A+'), icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
-        { label: 'Campus Area', value: collegeId === 1 ? '30 Acres' : collegeId === 2 ? '23 Acres' : collegeId === 3 ? '70+ Acres' : collegeId === 4 ? '44 Acres' : collegeId === 5 ? '42 Acres' : collegeId === 6 ? '80+ Acres' : collegeId === 7 ? '5 Acres' : collegeId === 8 ? '14 Acres' : collegeId === 9 ? '1.5 Acres' : '40 Acres', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'from-orange-500 to-amber-400' },
-        { label: 'Network', value: collegeId === 1 ? '50k+ Alum' : collegeId === 2 ? '10k+ Alum' : collegeId === 3 ? '20k+ Alum' : collegeId === 4 ? '22k+ Alum' : collegeId === 5 ? '22k+ Alum' : collegeId === 6 ? '18k+ Alum' : collegeId === 7 ? '10k+ Alum' : collegeId === 8 ? '15k+ Alum' : collegeId === 9 ? '10k+ Alum' : '15k+ Alum', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
+        { label: 'Established', value: collegeId === 1 ? '1993' : collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 7 ? '2001' : collegeId === 8 ? '1989' : collegeId === 9 ? '2008' : collegeId === 10 ? '1994' : collegeId === 11 ? '2002' : (college.established || '1998'), icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-blue-500 to-cyan-400' },
+        { label: 'Accreditation', value: collegeId === 1 ? 'NAAC A+' : collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'UGC Recognized' : (college.accreditation || 'NAAC A+'), icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
+        { label: 'Campus Area', value: collegeId === 1 ? '30 Acres' : collegeId === 2 ? '23 Acres' : collegeId === 3 ? '70+ Acres' : collegeId === 4 ? '44 Acres' : collegeId === 5 ? '42 Acres' : collegeId === 6 ? '80+ Acres' : collegeId === 7 ? '5 Acres' : collegeId === 8 ? '14 Acres' : collegeId === 9 ? '1.5 Acres' : collegeId === 10 ? '25 Acres' : collegeId === 11 ? '3 Acres' : '40 Acres', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'from-orange-500 to-amber-400' },
+        { label: 'Network', value: collegeId === 1 ? '50k+ Alum' : collegeId === 2 ? '10k+ Alum' : collegeId === 3 ? '20k+ Alum' : collegeId === 4 ? '22k+ Alum' : collegeId === 5 ? '22k+ Alum' : collegeId === 6 ? '18k+ Alum' : collegeId === 7 ? '10k+ Alum' : collegeId === 8 ? '15k+ Alum' : collegeId === 9 ? '10k+ Alum' : collegeId === 10 ? '15k+ Alum' : collegeId === 11 ? '5k+ Alum' : '15k+ Alum', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
     ];
 
     const courses = collegeId === 1 ? [
@@ -275,6 +285,30 @@ function CollegeDetails() {
         { name: 'MA Yoga', duration: '2 Years', icon: '🧘' },
         { name: 'PG Diploma Yoga', duration: '1/2 Years', icon: '🤸' },
         { name: 'BA', duration: '3 Years', icon: '🎨' }
+    ] : collegeId === 10 ? [
+        { name: 'B.Pharm', duration: '4 Years', icon: '💊' },
+        { name: 'BPT (Physiotherapy)', duration: '4.5 Years', icon: '🦴' },
+        { name: 'M.Pharm', duration: '2 Years', icon: '🔬' },
+        { name: 'MPT', duration: '2 Years', icon: '⚕️' },
+        { name: 'B.Sc Biotechnology', duration: '3 Years', icon: '🧬' },
+        { name: 'B.Sc Microbiology', duration: '3 Years', icon: '🦠' },
+        { name: 'B.Tech (Biotech/CSE)', duration: '4 Years', icon: '💻' },
+        { name: 'B.Com (Hons)', duration: '3 Years', icon: '📊' },
+        { name: 'B.Sc Agriculture', duration: '4 Years', icon: '🌾' },
+        { name: 'M.Sc (Chem/Biotech)', duration: '2 Years', icon: '🧪' },
+        { name: 'BBA', duration: '3 Years', icon: '👔' },
+        { name: 'B.Sc Medical Lab Tech', duration: '3.5 Years', icon: '🩸' }
+    ] : collegeId === 11 ? [
+        { name: 'BCA', duration: '3 Years', icon: '💻' },
+        { name: 'BBA', duration: '3 Years', icon: '👔' },
+        { name: 'B.Sc IT', duration: '3 Years', icon: '🖥️' },
+        { name: 'BHM (Hotel Mgmt)', duration: '4 Years', icon: '🏨' },
+        { name: 'M.Sc IT', duration: '2 Years', icon: '💾' },
+        { name: 'B.Com', duration: '3 Years', icon: '📊' },
+        { name: 'BA (Journalism)', duration: '3 Years', icon: '🎙️' },
+        { name: 'B.Lib', duration: '1 Year', icon: '📚' },
+        { name: 'B.Sc Animation', duration: '3 Years', icon: '🎨' },
+        { name: 'DHM (Diploma Hotel Mgmt)', duration: '1 Year', icon: '👨‍🍳' }
     ] : [
         { name: 'B.Tech Computer Science', duration: '4 Years', icon: '💻' },
         { name: 'MBA (Marketing/Finance)', duration: '2 Years', icon: '📊' },
@@ -339,6 +373,20 @@ function CollegeDetails() {
         { name: 'Science Labs', icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z', color: 'bg-purple-50 text-purple-600' },
         { name: 'Cafeteria', icon: 'M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z', color: 'bg-orange-50 text-orange-600' },
         { name: 'WiFi Campus', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-teal-50 text-teal-600' }
+    ] : collegeId === 10 ? [
+        { name: 'Herbal Garden', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'bg-green-50 text-green-600' },
+        { name: 'Physiotherapy OPD', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01', color: 'bg-blue-50 text-blue-600' },
+        { name: 'Advanced Labs', icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-purple-50 text-purple-600' },
+        { name: 'Central Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
+        { name: 'Hostels', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', color: 'bg-orange-50 text-orange-600' },
+        { name: 'Smart Classrooms', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-teal-50 text-teal-600' }
+    ] : collegeId === 11 ? [
+        { name: 'Digital Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
+        { name: 'Computer Labs', icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-blue-50 text-blue-600' },
+        { name: 'Cafeteria', icon: 'M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z', color: 'bg-green-50 text-green-600' },
+        { name: 'Sports Area', icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-orange-50 text-orange-600' },
+        { name: 'Hostel', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', color: 'bg-red-50 text-red-600' },
+        { name: 'WiFi', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-purple-50 text-purple-600' }
     ] : [
         { name: 'Smart Labs', icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-blue-50 text-blue-600' },
         { name: 'Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
@@ -379,11 +427,11 @@ function CollegeDetails() {
                             {/* Badges */}
                             <div className="flex flex-wrap gap-3">
                                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-lg shadow-orange-500/30">
-                                    {collegeId === 1 ? '★ 4.8/5 Rating' : collegeId === 2 ? '★ 4.0/5 Rating' : collegeId === 3 ? '★ 4.2/5 Rating' : collegeId === 4 ? '★ 4.1/5 Rating' : collegeId === 5 ? '★ 3.8/5 Rating' : collegeId === 6 ? '★ 3.9/5 Rating' : collegeId === 7 ? '★ 4.3/5 Rating' : collegeId === 8 ? '★ 3.5/5 Rating' : collegeId === 9 ? '★ 3.9/5 Rating' : '★ Top Rated'}
+                                    {collegeId === 1 ? '★ 4.8/5 Rating' : collegeId === 2 ? '★ 4.0/5 Rating' : collegeId === 3 ? '★ 4.2/5 Rating' : collegeId === 4 ? '★ 4.1/5 Rating' : collegeId === 5 ? '★ 3.8/5 Rating' : collegeId === 6 ? '★ 3.9/5 Rating' : collegeId === 7 ? '★ 4.3/5 Rating' : collegeId === 8 ? '★ 3.5/5 Rating' : collegeId === 9 ? '★ 3.9/5 Rating' : collegeId === 10 ? '★ 4.2/5 Rating' : collegeId === 11 ? '★ 3.8/5 Rating' : '★ Top Rated'}
                                 </span>
                                 {college.accreditation && (
                                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-white/20 backdrop-blur-md text-white border border-white/20">
-                                        {collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : college.accreditation} Accredited
+                                        {collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'UGC Recognized' : college.accreditation} Accredited
                                     </span>
                                 )}
                             </div>
@@ -397,11 +445,11 @@ function CollegeDetails() {
                             <div className="flex items-center gap-6 text-slate-200 text-lg">
                                 <div className="flex items-center gap-2">
                                     <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    <span>{collegeId === 6 ? 'Patel Nagar, Dehradun' : collegeId === 2 ? 'Mussoorie Diversion Road, Dehradun' : collegeId === 3 ? 'Premnagar, Dehradun' : collegeId === 4 ? 'Bidholi, Dehradun' : collegeId === 5 ? 'Chakrata Road, Dehradun' : college.location}</span>
+                                    <span>{collegeId === 6 ? 'Patel Nagar, Dehradun' : collegeId === 2 ? 'Mussoorie Diversion Road, Dehradun' : collegeId === 3 ? 'Premnagar, Dehradun' : collegeId === 4 ? 'Bidholi, Dehradun' : collegeId === 5 ? 'Chakrata Road, Dehradun' : collegeId === 9 ? '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand 248003' : collegeId === 10 ? 'Balawala, Dehradun, Uttarakhand 248161' : collegeId === 11 ? '60, Chakrata Road, Yamuna Colony, Dehradun' : college.location}</span>
                                 </div>
                                 <div className="hidden md:flex items-center gap-2">
                                     <div className="w-1.5 h-1.5 rounded-full bg-slate-400"></div>
-                                    <span>Est. {collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : (college.established || '1998')}</span>
+                                    <span>Est. {collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 9 ? '2008' : collegeId === 10 ? '1994' : collegeId === 11 ? '2002' : (college.established || '1998')}</span>
                                 </div>
                             </div>
                         </div>
@@ -495,9 +543,21 @@ function CollegeDetails() {
                                             </>
                                         ) : collegeId === 9 ? (
                                             <>
-                                                D.D. College, Dehradun, established in 2014, is a premier institution affiliated with HNB Garhwal University and Shri Dev Suman Uttarakhand University. Located in the serene Garhi Cantt area, the college is known for its discipline and affordable quality education.
+                                                D.D. College, Dehradun, established in 2008, is a premier institution affiliated with HNB Garhwal University and Shri Dev Suman Uttarakhand University. Located in the serene Garhi Cantt area, the college is known for its discipline and affordable quality education.
                                                 <br /><br />
                                                 Offering a robust mix of traditional courses like Agriculture, Commerce, and Sciences, alongside unique programs in Yoga and Education (B.Ed), DD College focuses on holistic student growth. With modern facilities including well-equipped science labs, a rich library, and a dedicated Yoga center, it provides a nurturing environment for students to excel academically and personally.
+                                            </>
+                                        ) : collegeId === 10 ? (
+                                            <>
+                                                Sardar Bhagwan Singh University (SBS University), established in 1994 (formerly SBSPGI), is a premier institution in Dehradun dedicated to biomedical and allied health sciences. It was the first institute in North India to offer professional courses in Physiotherapy and Pharmacy.
+                                                <br /><br />
+                                                With a 25-acre lush green campus, the university focuses on value-based education and research. It boasts state-of-the-art laboratories, a medicinal herbal garden, and a dedicated Physiotherapy OPD. Accredited by NAAC and recognized by UGC, SBS University continues its legacy of producing top-notch professionals in the healthcare and life sciences sectors.
+                                            </>
+                                        ) : collegeId === 11 ? (
+                                            <>
+                                                Institute of Technology and Management (ITM), Dehradun, established in 2002, is a pioneering institution situated in the heart of the city, adjacent to the Doon School. It has played a significant role in introducing competitive IT and Management education in Uttarakhand.
+                                                <br /><br />
+                                                Affiliated with HNB Garhwal University (Central University) and Sri Dev Suman University, ITM offers a wide range of professional programs including BCA, B.Sc IT, BBA, and Hotel Management. The institute boasts a 90% placement record, specialized labs, and a focus on holistic student development, making it a preferred choice for aspiring professionals.
                                             </>
                                         ) : (
                                             college.description || `Welcome to ${college.name}, a center of academic excellence and holistic development. Our institution stands as a beacon of knowledge, fostering innovation and leadership in every student. With world-class faculty and state-of-the-art infrastructure, we ensure a transformative learning experience.`
@@ -508,9 +568,9 @@ function CollegeDetails() {
                                 {/* Animated Stats/Badges within Overview */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
                                     {[
-                                        { label: 'Ranking', value: collegeId === 1 ? 'NIRF Rank 52' : collegeId === 2 ? 'NAAC A Grade' : collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'Ranked #1 in HM' : collegeId === 8 ? '2nd Rank in U.K.' : collegeId === 9 ? 'Top Rated in Yoga' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
-                                        { label: 'Legacy', value: collegeId === 1 ? '30+ Years' : collegeId === 2 ? '25+ Years' : collegeId === 3 ? '10+ Years' : collegeId === 4 ? '20+ Years' : collegeId === 5 ? '19+ Years' : collegeId === 6 ? '70+ Years' : collegeId === 7 ? '23+ Years' : collegeId === 8 ? '34+ Years' : collegeId === 9 ? '10+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
-                                        { label: 'Global', value: collegeId === 1 ? '50k+ Alumni Network' : collegeId === 2 ? '10k+ Alumni Network' : collegeId === 3 ? '20k+ Alumni Network' : collegeId === 4 ? '22k+ Alumni Network' : collegeId === 5 ? '22k+ Alumni Network' : collegeId === 6 ? '18k+ Alumni Network' : collegeId === 7 ? '10k+ Alumni Network' : collegeId === 8 ? '15k+ Alumni Network' : collegeId === 9 ? '10k+ Alumni Network' : 'Alumni Network', sub: 'Spread across 50+ Nations', icon: '🌍' }
+                                        { label: 'Ranking', value: collegeId === 1 ? 'NIRF Rank 52' : collegeId === 2 ? 'NAAC A Grade' : collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'Ranked #1 in HM' : collegeId === 8 ? '2nd Rank in U.K.' : collegeId === 9 ? 'Top Rated in Yoga' : collegeId === 10 ? 'Top Pharmacy Col.' : collegeId === 11 ? 'Top 10 in IT' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
+                                        { label: 'Legacy', value: collegeId === 1 ? '30+ Years' : collegeId === 2 ? '25+ Years' : collegeId === 3 ? '10+ Years' : collegeId === 4 ? '20+ Years' : collegeId === 5 ? '19+ Years' : collegeId === 6 ? '70+ Years' : collegeId === 7 ? '23+ Years' : collegeId === 8 ? '34+ Years' : collegeId === 9 ? '10+ Years' : collegeId === 10 ? '30+ Years' : collegeId === 11 ? '20+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
+                                        { label: 'Global', value: collegeId === 1 ? '50k+ Alumni Network' : collegeId === 2 ? '10k+ Alumni Network' : collegeId === 3 ? '20k+ Alumni Network' : collegeId === 4 ? '22k+ Alumni Network' : collegeId === 5 ? '22k+ Alumni Network' : collegeId === 6 ? '18k+ Alumni Network' : collegeId === 7 ? '10k+ Alumni Network' : collegeId === 8 ? '15k+ Alumni Network' : collegeId === 9 ? '10k+ Alumni Network' : collegeId === 10 ? '15k+ Alumni Network' : collegeId === 11 ? '5k+ Alumni Network' : 'Alumni Network', sub: 'Spread across 50+ Nations', icon: '🌍' }
                                     ].map((stat, i) => (
                                         <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-transparent hover:border-indigo-200 hover:bg-indigo-50/50 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group/stat">
                                             <div className="text-3xl filter drop-shadow-sm group-hover/stat:scale-110 transition-transform duration-300">{stat.icon}</div>
@@ -540,7 +600,7 @@ function CollegeDetails() {
                                     <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies with record-breaking packages.</p>
 
                                     <div className="flex flex-wrap gap-4">
-                                        {(collegeId === 1 ? ['Google', 'Flipkart', 'Adobe', 'Amazon', 'Microsoft', 'TVS'] : collegeId === 2 ? ['Palo Alto', 'Adobe', 'Commvault', 'Amazon', 'Microsoft', 'Infosys'] : collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 4 ? ['ExxonMobil', 'Amazon', 'Microsoft', 'Shell', 'ONGC', 'Halliburton'] : collegeId === 5 ? ['Adobe', 'TCS', 'Wipro', 'IBM', 'HDFC Bank', 'Amazon'] : collegeId === 6 ? ['Accenture', 'Infosys', 'Wipro', 'Deloitte', 'HCL', 'ICICI Bank'] : collegeId === 7 ? ['Taj Hotels', 'Oberoi', 'Tech Mahindra', 'Wipro', 'HDFC Bank', 'Byjus'] : collegeId === 8 ? ['TCS', 'Wipro', 'Amazon', 'Infosys', 'HCL', 'Tech Mahindra'] : collegeId === 9 ? ['Patanjali', 'Curefit', 'Wipro', 'Indigo', 'Maruti Suzuki', 'Tech Mahindra'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
+                                        {(collegeId === 1 ? ['Google', 'Flipkart', 'Adobe', 'Amazon', 'Microsoft', 'TVS'] : collegeId === 2 ? ['Palo Alto', 'Adobe', 'Commvault', 'Amazon', 'Microsoft', 'Infosys'] : collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 4 ? ['ExxonMobil', 'Amazon', 'Microsoft', 'Shell', 'ONGC', 'Halliburton'] : collegeId === 5 ? ['Adobe', 'TCS', 'Wipro', 'IBM', 'HDFC Bank', 'Amazon'] : collegeId === 6 ? ['Accenture', 'Infosys', 'Wipro', 'Deloitte', 'HCL', 'ICICI Bank'] : collegeId === 7 ? ['Taj Hotels', 'Oberoi', 'Tech Mahindra', 'Wipro', 'HDFC Bank', 'Byjus'] : collegeId === 8 ? ['TCS', 'Wipro', 'Amazon', 'Infosys', 'HCL', 'Tech Mahindra'] : collegeId === 9 ? ['Patanjali', 'Curefit', 'Wipro', 'Indigo', 'Maruti Suzuki', 'Tech Mahindra'] : collegeId === 10 ? ['Cipla', 'Sun Pharma', 'GlaxoSmithKline', 'Wipro', 'Dabur', 'Mankind'] : collegeId === 11 ? ['Accenture', 'Wipro', 'TCS', 'Infosys', 'Indigo', 'Byjus'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
                                             <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
                                                 {company}
                                             </span>
@@ -553,18 +613,18 @@ function CollegeDetails() {
                                         <div>
                                             <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
                                             <div className="text-4xl lg:text-5xl font-bold text-white mt-1">
-                                                ₹ {collegeId === 1 ? '54.03' : collegeId === 2 ? '58.00' : collegeId === 3 ? '1.50' : collegeId === 4 ? '50.00' : collegeId === 5 ? '40.00' : collegeId === 6 ? '12.00' : collegeId === 7 ? '13.50' : collegeId === 8 ? '32.00' : collegeId === 9 ? '6.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
+                                                ₹ {collegeId === 1 ? '54.03' : collegeId === 2 ? '58.00' : collegeId === 3 ? '1.50' : collegeId === 4 ? '50.00' : collegeId === 5 ? '40.00' : collegeId === 6 ? '12.00' : collegeId === 7 ? '13.50' : collegeId === 8 ? '32.00' : collegeId === 9 ? '6.00' : collegeId === 10 ? '8.00' : collegeId === 11 ? '15.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
                                             </div>
                                         </div>
                                         <div className="h-px bg-white/10"></div>
                                         <div className="grid grid-cols-2 gap-6">
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Average Package</p>
-                                                <p className="text-xl font-bold">₹ {collegeId === 1 ? '6.42' : collegeId === 2 ? '5.80' : collegeId === 3 ? '11.00' : collegeId === 4 ? '7.02' : collegeId === 5 ? '5.50' : collegeId === 6 ? '4.00' : collegeId === 7 ? '5.00' : collegeId === 8 ? '5.50' : collegeId === 9 ? '2.50' : '8.50'} LPA</p>
+                                                <p className="text-xl font-bold">₹ {collegeId === 1 ? '6.42' : collegeId === 2 ? '5.80' : collegeId === 3 ? '11.00' : collegeId === 4 ? '7.02' : collegeId === 5 ? '5.50' : collegeId === 6 ? '4.00' : collegeId === 7 ? '5.00' : collegeId === 8 ? '5.50' : collegeId === 9 ? '2.50' : collegeId === 10 ? '3.50' : collegeId === 11 ? '4.00' : '8.50'} LPA</p>
                                             </div>
                                             <div>
                                                 <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
-                                                <p className="text-xl font-bold">{collegeId === 1 ? '3,500+' : collegeId === 2 ? '1,450+' : collegeId === 3 ? '2,350+' : collegeId === 4 ? '2,482+' : collegeId === 5 ? '14,500+' : collegeId === 6 ? '300+' : collegeId === 7 ? '850+' : collegeId === 8 ? '500+' : collegeId === 9 ? '62%' : '2,500+'}</p>
+                                                <p className="text-xl font-bold">{collegeId === 1 ? '3,500+' : collegeId === 2 ? '1,450+' : collegeId === 3 ? '2,350+' : collegeId === 4 ? '2,482+' : collegeId === 5 ? '14,500+' : collegeId === 6 ? '300+' : collegeId === 7 ? '850+' : collegeId === 8 ? '500+' : collegeId === 9 ? '62%' : collegeId === 10 ? '90%' : collegeId === 11 ? '90%' : '2,500+'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -692,7 +752,7 @@ function CollegeDetails() {
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                         </div>
                                         <span className="text-sm text-slate-600 leading-snug">
-                                            {collegeId === 6 ? 'Patel Nagar, Dehradun, Uttarakhand 248001' : collegeId === 7 ? 'Haridwar Road, Near Central Excise office, Danda Dharampur, Dehradun, Uttarakhand 248001' : collegeId === 8 ? 'Rajpur Road, Near Sai Mandir, Dehradun, Uttarakhand 248009' : collegeId === 9 ? '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand 248003' : `${college.location}, Uttarakhand 248002`}
+                                            {collegeId === 6 ? 'Patel Nagar, Dehradun, Uttarakhand 248001' : collegeId === 7 ? 'Haridwar Road, Near Central Excise office, Danda Dharampur, Dehradun, Uttarakhand 248001' : collegeId === 8 ? 'Rajpur Road, Near Sai Mandir, Dehradun, Uttarakhand 248009' : collegeId === 9 ? '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand 248003' : collegeId === 10 ? 'Balawala, Dehradun, Uttarakhand 248161' : collegeId === 11 ? '60, Chakrata Road, Yamuna Colony, Dehradun, Uttarakhand 248001' : `${college.location}, Uttarakhand 248002`}
                                         </span>
                                     </li>
                                     <li className="flex items-center gap-3">

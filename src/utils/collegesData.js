@@ -267,57 +267,57 @@ export const collegesData = [
         logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767020054/sbs-logo_pkmszc.svg',
         logoBgColor: '#ffffff',
         location: 'Balawala, Dehradun',
-        established: '2017',
-        accreditation: 'UGC Approved',
-        description: 'Modern university offering comprehensive programs and professional skill development.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'B.Pharma', 'BCA'],
+        established: '1994',
+        accreditation: 'NAAC Accredited',
+        description: 'Pioneer in Biomedical & Allied Health Sciences with 30 years of legacy.',
+        courses: ['B.Pharma', 'BPT', 'B.Sc', 'M.Pharma', 'MPT', 'B.Tech'],
         collegeType: 'Private University',
-        bestKnownFor: 'Emerging university with strong focus on research, innovation, and industry-ready education',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'B.Pharma', 'BCA', 'M.Tech', 'B.Sc', 'B.Com'],
+        bestKnownFor: 'Pharmacy, Physiotherapy, and Allied Health Sciences excellence',
+        mainCourses: ['B.Pharma', 'BPT', 'M.Pharma', 'MPT', 'B.Sc Biotechnology', 'B.Sc Microbiology', 'B.Tech CSE', 'B.Sc Agriculture'],
         bestCourses: [
             {
-                name: 'B.Tech Computer Science',
-                description: 'Modern engineering program with emphasis on AI, ML, and emerging technologies'
-            },
-            {
-                name: 'MBA',
-                description: 'Management program with industry collaborations and practical business exposure'
-            },
-            {
                 name: 'B.Pharma',
-                description: 'Pharmaceutical education with advanced labs and healthcare industry partnerships'
+                description: 'Top-ranked pharmacy program with advanced labs and herbal garden'
+            },
+            {
+                name: 'BPT (Physiotherapy)',
+                description: 'Renowned physiotherapy program with own OPD and clinical training'
+            },
+            {
+                name: 'M.Sc Biotechnology',
+                description: 'Research-driven program with state-of-the-art biotech laboratories'
             }
         ],
-        bestPart: 'Sardar Bhagwan Singh University is a rapidly growing institution with modern infrastructure and a focus on quality education. The university emphasizes practical learning through industry visits, internships, and live projects. With dedicated placement cell and growing industry connections, students receive placement opportunities with packages ranging from 3-6 LPA. The campus provides excellent facilities including well-equipped labs, library, sports complex, and hostel accommodation.'
+        bestPart: 'Sardar Bhagwan Singh University (formerly SBSPGI) is a pioneer in allied health and biomedical education in the region since 1994. The university is renowned for its Pharmacy and Physiotherapy programs, boasting excellent laboratories, a 25-acre green campus, and a medicinal herbal garden. With a strong alumni network of 15,000+ professionals and placement ties with top pharma/healthcare giants like Cipla and Sun Pharma, it is the top choice for health sciences.'
     },
     {
         id: 11,
         name: 'Institute Of Technology & Management',
         logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817379/logo_logo_logo_logo-new1_c1kfpu.png',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2010',
-        accreditation: 'AICTE Approved',
-        description: 'Innovative institute emphasizing technology, entrepreneurship, and career growth.',
-        courses: ['B.Tech', 'MBA', 'MCA', 'BBA', 'BCA'],
+        location: '60, Chakrata Road, Yamuna Colony, Dehradun',
+        established: '2002',
+        accreditation: 'UGC Recognized',
+        description: 'Pioneering IT and Management education in Dehradun since 2002.',
+        courses: ['BCA', 'BBA', 'B.Sc IT', 'BHM', 'M.Sc IT'],
         collegeType: 'Private Institute',
-        bestKnownFor: 'Innovation and entrepreneurship development with startup incubation support',
-        mainCourses: ['B.Tech', 'MBA', 'MCA', 'BBA', 'BCA', 'M.Tech', 'B.Tech CSE', 'B.Tech IT'],
+        bestKnownFor: 'Specialized IT, Management, and Hotel Management programs',
+        mainCourses: ['BCA', 'BBA', 'B.Sc IT', 'BHM', 'M.Sc IT', 'B.Com (Hons)', 'B.A. (Mass Comm)', 'B.Lib'],
         bestCourses: [
             {
-                name: 'B.Tech Computer Science',
-                description: 'Technology-focused program with startup culture and innovation labs'
+                name: 'BCA',
+                description: 'Core computer applications program with focus on software development and latest languages'
             },
             {
-                name: 'MBA',
-                description: 'Entrepreneurship-focused MBA with startup incubation and mentorship'
+                name: 'B.Sc IT',
+                description: 'Specialized information technology course with strong practical components'
             },
             {
-                name: 'MCA',
-                description: 'Advanced computer applications with focus on emerging technologies'
+                name: 'BHM (Hotel Management)',
+                description: 'Industry-oriented hospitality program with training in top hotels'
             }
         ],
-        bestPart: 'Institute of Technology & Management emphasizes innovation and entrepreneurship, providing students with an environment that encourages creative thinking and startup development. The institute offers incubation support for student startups and maintains industry partnerships for internships and placements with packages ranging from 3.5-6 LPA. Regular hackathons, tech fests, and innovation challenges help students develop practical skills and industry readiness.'
+        bestPart: 'Institute of Technology and Management (ITM) Dehradun, established in 2002, is a premier institute located in the heart of the city near Doon School. It is renowned for its focused approach towards IT and Management education. With 90% placement record and highest packages reaching 15 LPA, ITM offers a robust platform for careers in corporate and IT sectors. The 3-acre campus provides a close-knit learning environment with digital libraries and modern labs.'
     },
     {
         id: 12,
