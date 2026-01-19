@@ -64,7 +64,7 @@ function Header() {
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 md:h-16">
+        <div className="flex justify-between items-center h-12 md:h-14">
           {/* Logo - Left Side */}
           <Link
             to="/"
@@ -73,7 +73,7 @@ function Header() {
             <img
               src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1766824093/Gemini_Generated_Image_8r81ar8r81ar8r81__1_-removebg-preview_sal8sh.png"
               alt="College Connect Logo"
-              className="h-9 md:h-10"
+              className="h-8 md:h-9"
             />
           </Link>
 
@@ -89,7 +89,7 @@ function Header() {
                 >
                   {link.label}
                   <span
-                    className={`absolute -bottom-1 left-0 w-full h-0.5 rounded-full bg-primary-600 transform transition-all duration-300 ease-out ${isActive(link.path) ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-50'
+                    className={`absolute -bottom-0.5 left-0 w-full h-[3px] rounded-full bg-primary-600 transform transition-all duration-300 ease-out ${isActive(link.path) ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'
                       }`}
                   />
                 </Link>

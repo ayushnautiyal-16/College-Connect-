@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { collegesData } from '../../utils/collegesData';
 import CollegeHeroSlideshow from '../../components/CollegeHeroSlideshow/CollegeHeroSlideshow';
+import CollegeGallery from '../../components/CollegeGallery/CollegeGallery';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 function CollegeDetails() {
@@ -11,13 +12,41 @@ function CollegeDetails() {
     // Parse ID safely
     const collegeId = id ? parseInt(id) : null;
     const college = collegeId ? collegesData.find(c => c.id === collegeId) : null;
+    const [activeSection, setActiveSection] = useState('overview');
 
-    // Scroll animation hooks
-    const overviewRef = useScrollAnimation({ threshold: 0.1 });
-    const statsRef = useScrollAnimation({ threshold: 0.1 });
-    const coursesRef = useScrollAnimation({ threshold: 0.1 });
-    const placementsRef = useScrollAnimation({ threshold: 0.1 });
-    const facilitiesRef = useScrollAnimation({ threshold: 0.1 });
+    // Scroll Spy Effect
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['overview', 'placements', 'courses', 'infrastructure', 'gallery'];
+            const scrollPosition = window.scrollY + 200; // Offset for sticky header
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (
+                        scrollPosition >= offsetTop &&
+                        scrollPosition < offsetTop + offsetHeight
+                    ) {
+                        setActiveSection(section);
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Scroll Animation Refs
+    const aboutRef = useScrollAnimation();
+    const placementRef = useScrollAnimation();
+    const coursesRef = useScrollAnimation();
+    const infraRef = useScrollAnimation();
+    const highlightRef = useScrollAnimation();
+    const galleryRef = useScrollAnimation();
+
+    // Early return if college not found
 
     // Early return if college not found
     if (!college || !collegeId) {
@@ -109,9 +138,9 @@ function CollegeDetails() {
 
     const highlights = [
         { label: 'Established', value: collegeId === 1 ? '1993' : collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 7 ? '2001' : collegeId === 8 ? '1989' : collegeId === 9 ? '2008' : collegeId === 10 ? '1994' : collegeId === 11 ? '2002' : (college.established || '1998'), icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-blue-500 to-cyan-400' },
-        { label: 'Accreditation', value: collegeId === 1 ? 'NAAC A+' : collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'UGC Recognized' : (college.accreditation || 'NAAC A+'), icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
+        { label: 'Accreditation', value: collegeId === 1 ? 'NAAC A+' : collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'NAAC Accredited' : (college.accreditation || 'NAAC A+'), icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
         { label: 'Campus Area', value: collegeId === 1 ? '30 Acres' : collegeId === 2 ? '23 Acres' : collegeId === 3 ? '70+ Acres' : collegeId === 4 ? '44 Acres' : collegeId === 5 ? '42 Acres' : collegeId === 6 ? '80+ Acres' : collegeId === 7 ? '5 Acres' : collegeId === 8 ? '14 Acres' : collegeId === 9 ? '1.5 Acres' : collegeId === 10 ? '25 Acres' : collegeId === 11 ? '3 Acres' : '40 Acres', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'from-orange-500 to-amber-400' },
-        { label: 'Network', value: collegeId === 1 ? '50k+ Alum' : collegeId === 2 ? '10k+ Alum' : collegeId === 3 ? '20k+ Alum' : collegeId === 4 ? '22k+ Alum' : collegeId === 5 ? '22k+ Alum' : collegeId === 6 ? '18k+ Alum' : collegeId === 7 ? '10k+ Alum' : collegeId === 8 ? '15k+ Alum' : collegeId === 9 ? '10k+ Alum' : collegeId === 10 ? '15k+ Alum' : collegeId === 11 ? '5k+ Alum' : '15k+ Alum', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
+        { label: 'Network', value: collegeId === 1 ? '50k+ Alum' : collegeId === 2 ? '10k+ Alum' : collegeId === 3 ? '20k+ Alum' : collegeId === 4 ? '22k+ Alum' : collegeId === 5 ? '22k+ Alum' : collegeId === 6 ? '18k+ Alum' : collegeId === 7 ? '10k+ Alum' : collegeId === 8 ? '15k+ Alum' : collegeId === 9 ? '10k+ Alum' : collegeId === 10 ? '15k+ Alum' : collegeId === 11 ? '10k+ Alum' : '15k+ Alum', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
     ];
 
     const courses = collegeId === 1 ? [
@@ -299,16 +328,26 @@ function CollegeDetails() {
         { name: 'BBA', duration: '3 Years', icon: '👔' },
         { name: 'B.Sc Medical Lab Tech', duration: '3.5 Years', icon: '🩸' }
     ] : collegeId === 11 ? [
-        { name: 'BCA', duration: '3 Years', icon: '💻' },
-        { name: 'BBA', duration: '3 Years', icon: '👔' },
+        { name: 'BCA (General/Cyber)', duration: '3 Years', icon: '💻' },
+        { name: 'BBA (Corporate/HR)', duration: '3 Years', icon: '👔' },
         { name: 'B.Sc IT', duration: '3 Years', icon: '🖥️' },
         { name: 'BHM (Hotel Mgmt)', duration: '4 Years', icon: '🏨' },
         { name: 'M.Sc IT', duration: '2 Years', icon: '💾' },
-        { name: 'B.Com', duration: '3 Years', icon: '📊' },
-        { name: 'BA (Journalism)', duration: '3 Years', icon: '🎙️' },
-        { name: 'B.Lib', duration: '1 Year', icon: '📚' },
+        { name: 'B.Com (Hons)', duration: '3 Years', icon: '📊' },
+        { name: 'BA (Journalism & Mass)', duration: '3 Years', icon: '🎙️' },
+        { name: 'B.Lib (Library Science)', duration: '1 Year', icon: '📚' },
         { name: 'B.Sc Animation', duration: '3 Years', icon: '🎨' },
-        { name: 'DHM (Diploma Hotel Mgmt)', duration: '1 Year', icon: '👨‍🍳' }
+        { name: 'DHM (Diploma Hotel Mgmt)', duration: '1 Year', icon: '👨‍🍳' },
+        { name: 'B.Sc Computer Science', duration: '3 Years', icon: '💻' },
+        { name: 'BFA (Fine Arts)', duration: '4 Years', icon: '🎭' },
+        { name: 'M.Com', duration: '2 Years', icon: '📉' },
+        { name: 'M.Lib', duration: '1 Year', icon: '📖' },
+        { name: 'M.Sc Animation', duration: '2 Years', icon: '🎬' },
+        { name: 'BA (Yoga)', duration: '3 Years', icon: '🧘' },
+        { name: 'B.Sc (PCM/ZBC)', duration: '3 Years', icon: '🔬' },
+        { name: 'B.A. (English Hons)', duration: '3 Years', icon: '📝' },
+        { name: 'B.A. (Economics Hons)', duration: '3 Years', icon: '📈' },
+        { name: 'Certificate in French', duration: '6 Months', icon: '🇫🇷' }
     ] : [
         { name: 'B.Tech Computer Science', duration: '4 Years', icon: '💻' },
         { name: 'MBA (Marketing/Finance)', duration: '2 Years', icon: '📊' },
@@ -384,9 +423,9 @@ function CollegeDetails() {
         { name: 'Digital Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
         { name: 'Computer Labs', icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-blue-50 text-blue-600' },
         { name: 'Cafeteria', icon: 'M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z', color: 'bg-green-50 text-green-600' },
-        { name: 'Sports Area', icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-orange-50 text-orange-600' },
-        { name: 'Hostel', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', color: 'bg-red-50 text-red-600' },
-        { name: 'WiFi', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-purple-50 text-purple-600' }
+        { name: 'Sports Complex', icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-orange-50 text-orange-600' },
+        { name: 'Modern Hostel', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', color: 'bg-red-50 text-red-600' },
+        { name: 'WiFi Campus', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-purple-50 text-purple-600' }
     ] : [
         { name: 'Smart Labs', icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-blue-50 text-blue-600' },
         { name: 'Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
@@ -402,55 +441,99 @@ function CollegeDetails() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 font-sans selection:bg-indigo-100 selection:text-indigo-900">
 
-            {/* --- HERO SECTION --- */}
-            <div className="relative h-[85vh] min-h-[500px] w-full overflow-hidden">
-                <CollegeHeroSlideshow images={slideshowImages} className="absolute inset-0" />
+            {/* --- HEADER SECTION --- */}
+            <div className="container mx-auto px-4 pt-4 pb-6 animate-fade-in-down">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all duration-300 mb-3"
+                >
+                    <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    <span className="text-xs font-bold uppercase tracking-wider">Back</span>
+                </button>
 
-                {/* Modern Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-
-                {/* Back Navigation */}
-                <div className="absolute top-8 left-6 md:left-12 z-20">
-                    <button
-                        onClick={() => navigate(-1)}
-                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 transition-all duration-300"
-                    >
-                        <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                        <span className="text-sm font-medium">Back</span>
-                    </button>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-900 bg-clip-text text-transparent mb-1.5 tracking-tight animate-fade-in-up">
+                            {college.name}
+                        </h1>
+                        <div className="flex flex-wrap items-center gap-4 text-slate-500 text-sm md:text-base font-medium animate-fade-in-up delay-100">
+                            <span className="flex items-center gap-2">
+                                <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                {college.location}
+                            </span>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                {/* Hero Text Content */}
-                <div className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 pb-16">
-                    <div className="container mx-auto">
-                        <div className="max-w-4xl space-y-4 animate-fade-in-up">
-                            {/* Badges */}
-                            <div className="flex flex-wrap gap-3">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-lg shadow-orange-500/30">
-                                    {collegeId === 1 ? '★ 4.8/5 Rating' : collegeId === 2 ? '★ 4.0/5 Rating' : collegeId === 3 ? '★ 4.2/5 Rating' : collegeId === 4 ? '★ 4.1/5 Rating' : collegeId === 5 ? '★ 3.8/5 Rating' : collegeId === 6 ? '★ 3.9/5 Rating' : collegeId === 7 ? '★ 4.3/5 Rating' : collegeId === 8 ? '★ 3.5/5 Rating' : collegeId === 9 ? '★ 3.9/5 Rating' : collegeId === 10 ? '★ 4.2/5 Rating' : collegeId === 11 ? '★ 3.8/5 Rating' : '★ Top Rated'}
-                                </span>
-                                {college.accreditation && (
-                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-white/20 backdrop-blur-md text-white border border-white/20">
-                                        {collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'UGC Recognized' : college.accreditation} Accredited
-                                    </span>
-                                )}
+            {/* --- HERO GRID --- */}
+            <div className="container mx-auto px-4 mb-16 animate-fade-in-up">
+                <div className="grid lg:grid-cols-3 gap-6 h-auto lg:h-[500px]">
+                    {/* 1. HERO SLIDER */}
+                    <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 relative group h-[300px] lg:h-full">
+                        <CollegeHeroSlideshow images={slideshowImages} className="transform transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
+                        <div className="absolute bottom-6 left-6 text-white z-10 hidden md:block">
+                            <p className="text-lg font-medium opacity-90">Experience the Campus</p>
+                        </div>
+                    </div>
+
+                    {/* 2. KEY HIGHLIGHTS GRID */}
+                    <div className="lg:col-span-1 flex flex-col h-full">
+                        <div className="flex items-center gap-3 mb-6 px-1">
+                            <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-800">Key Highlights</h3>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 flex-grow h-full">
+                            {/* Card 1: Established */}
+                            <div className="bg-orange-50/80 rounded-3xl p-4 shadow-lg shadow-orange-100/50 border border-orange-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-orange-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
+                                <div className="w-10 h-10 rounded-full bg-white text-orange-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                </div>
+                                <div className="text-xl md:text-2xl font-bold text-orange-900 relative z-10">
+                                    {college.established || 'N/A'}
+                                </div>
+                                <div className="text-[10px] font-bold text-orange-400 uppercase tracking-widest mt-1 relative z-10">Established</div>
                             </div>
 
-                            {/* Title with Text Gradient Effect - Updated */}
-                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-none drop-shadow-2xl animate-page-enter">
-                                {college.name}
-                            </h1>
+                            {/* Card 2: Accreditation */}
+                            <div className="bg-emerald-50/80 rounded-3xl p-4 shadow-lg shadow-emerald-100/50 border border-emerald-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
+                                <div className="w-10 h-10 rounded-full bg-white text-emerald-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+                                </div>
+                                <div className="text-lg md:text-xl font-bold text-emerald-900 leading-tight px-1 relative z-10">
+                                    {college.accreditation ? college.accreditation.split('|')[0].trim() : 'Approved'}
+                                </div>
+                                <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mt-1 relative z-10">Accredited</div>
+                            </div>
 
-                            {/* Location & Meta */}
-                            <div className="flex items-center gap-6 text-slate-200 text-lg">
-                                <div className="flex items-center gap-2">
-                                    <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    <span>{collegeId === 6 ? 'Patel Nagar, Dehradun' : collegeId === 2 ? 'Mussoorie Diversion Road, Dehradun' : collegeId === 3 ? 'Premnagar, Dehradun' : collegeId === 4 ? 'Bidholi, Dehradun' : collegeId === 5 ? 'Chakrata Road, Dehradun' : collegeId === 9 ? '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand 248003' : collegeId === 10 ? 'Balawala, Dehradun, Uttarakhand 248161' : collegeId === 11 ? '60, Chakrata Road, Yamuna Colony, Dehradun' : college.location}</span>
+                            {/* Card 3: Campus Size */}
+                            <div className="bg-blue-50/80 rounded-3xl p-4 shadow-lg shadow-blue-100/50 border border-blue-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
+                                <div className="w-10 h-10 rounded-full bg-white text-blue-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                                 </div>
-                                <div className="hidden md:flex items-center gap-2">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-400"></div>
-                                    <span>Est. {collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 9 ? '2008' : collegeId === 10 ? '1994' : collegeId === 11 ? '2002' : (college.established || '1998')}</span>
+                                <div className="text-lg md:text-xl font-bold text-blue-900 relative z-10">
+                                    {college.campusSize || 'Large Campus'}
                                 </div>
+                                <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mt-1 relative z-10">Campus Size</div>
+                            </div>
+
+                            {/* Card 4: Placement Rate */}
+                            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-4 shadow-lg shadow-indigo-200 flex flex-col justify-center items-center text-center text-white group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
+                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2 shadow-inner group-hover:scale-110 transition-transform relative z-10">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                                </div>
+                                <div className="text-xl md:text-2xl font-bold relative z-10">
+                                    {college.placementRate || 'Excellent'}
+                                </div>
+                                <div className="text-[10px] font-bold text-indigo-100 uppercase tracking-widest mt-1 relative z-10">Placements</div>
                             </div>
                         </div>
                     </div>
@@ -458,252 +541,180 @@ function CollegeDetails() {
             </div>
 
             {/* --- CONTENT LAYOUT --- */}
-            <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-20 -mt-10 mb-20">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-20 mb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                     {/* LEFT MAIN CONTENT (8 Cols) */}
                     <div className="lg:col-span-8 space-y-8">
 
-                        {/* 1. KEY HIGHLIGHTS (Floating Cards) */}
-                        <div ref={statsRef.ref} className={`grid grid-cols-2 md:grid-cols-4 gap-4 ${statsRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700`}>
-                            {highlights.map((item, idx) => (
-                                <div key={idx} className="bg-white rounded-2xl p-4 shadow-xl shadow-slate-200/50 border border-slate-100 group hover:-translate-y-1 transition-transform duration-300">
-                                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white mb-3 shadow-md`}>
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} /></svg>
+                        {/* --- VERTICAL SECTIONS --- */}
+                        <div className="space-y-20 relative">
+
+                            {/* Decorative Line (Optional side accent) */}
+                            <div className="hidden lg:block absolute left-[-24px] top-6 bottom-6 w-px bg-gradient-to-b from-indigo-500/0 via-indigo-200/50 to-indigo-500/0"></div>
+
+                            {/* 1. ABOUT SECTION */}
+                            <div id="about" className="scroll-mt-48 space-y-8">
+                                <section
+                                    ref={aboutRef.ref}
+                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl hover:border-indigo-100 transition-all duration-700 transform ${aboutRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                >
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60 group-hover:bg-indigo-100 transition-all duration-1000"></div>
+                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
+                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        </span>
+                                        About {college.name}
+                                    </h2>
+                                    <div className="relative z-10 prose prose-lg text-slate-600 leading-relaxed mb-8">
+                                        <p>
+                                            <span className="text-5xl float-left mr-3 mt-[-10px] font-serif text-indigo-500 opacity-20">❝</span>
+                                            {college.bestPart || college.description || `Welcome to ${college.name}.`}
+                                        </p>
                                     </div>
-                                    <div className="text-2xl font-bold text-slate-800 tracking-tight">{item.value}</div>
-                                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{item.label}</div>
-                                </div>
-                            ))}
-                        </div>
 
-                        {/* 2. OVERVIEW / ABOUT */}
-                        <section ref={overviewRef.ref} className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl hover:border-indigo-100 hover:-translate-y-1 transition-all duration-500 ease-out ${overviewRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} delay-100`}>
-                            {/* Decorative Blur */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60 group-hover:bg-indigo-100 group-hover:scale-110 transition-all duration-1000"></div>
-
-                            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
-                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 group-hover:scale-110 transition-transform duration-300">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                </span>
-                                Overview
-                            </h2>
-
-                            <div className="relative z-10">
-                                <div className="prose prose-lg text-slate-600 leading-relaxed mb-8 transition-colors duration-300 group-hover:text-slate-700">
-                                    <p>
-                                        <span className="text-5xl float-left mr-3 mt-[-10px] font-serif text-indigo-500 opacity-20 animate-pulse">❝</span>
-                                        {collegeId === 1 ? (
-                                            <>
-                                                Graphic Era Deemed to be University is the culmination of the vision of its founder, Prof (Dr) Kamal Ghanshala, who had the dream to change the destiny of thousands of youth through quality and holistic education.
-                                                <br /><br />
-                                                Established in 1993, the university has now metamorphosed into a global center of learning and is known for its academic excellence, world-class faculty, and state-of-the-art infrastructure. With a legacy spanning over three decades, Graphic Era has created a niche for itself in the field of technical and professional education.
-                                            </>
-                                        ) : collegeId === 2 ? (
-                                            <>
-                                                DIT University, formerly known as Dehradun Institute of Technology, was established in 1998 and has since evolved into a premier centre of excellence. Located in the serene foothills of Mussoorie, the university offers a sprawling 21-acre campus equipped with modern infrastructure and world-class facilities.
-                                                <br /><br />
-                                                Accredited with NAAC 'A' Grade and approved by UGC, DIT University is renowned for its holistic approach to education, combining rigorous academics with extensive industry exposure. With over 25 years of legacy, it continues to foster innovation, leadership, and professional growth among students from across the nation.
-                                            </>
-                                        ) : collegeId === 3 ? (
-                                            <>
-                                                Uttaranchal University, established in 2013, is a premier institution located in Dehradun, recognized for its commitment to academic excellence and research. It is the first university in Uttarakhand to be accredited with the prestigious NAAC A+ Grade in its very first cycle.
-                                                <br /><br />
-                                                With a focus on law, engineering, and management, the university offers a world-class learning environment with state-of-the-art infrastructure. Its rigorous curriculum, experienced faculty, and strong industry partnerships ensure students are well-prepared for global challenges, making it a preferred destination for higher education.
-                                            </>
-                                        ) : collegeId === 4 ? (
-                                            <>
-                                                UPES University, established in 2003 through the UPES Act, 2003, is a visionary institution located in Dehradun. Recognized by UGC and accredited with NAAC 'A' Grade, UPES is globally renowned for its specialized programs in Energy, Petroleum, Core Sectors, and Allied areas.
-                                                <br /><br />
-                                                With a 90%+ placement track record and partnerships with industry giants, UPES offers a unique blend of domain-focused education and practical learning. The university is dedicated to developing future leaders through its forward-thinking curriculum, world-class faculty, and vibrant campus life.
-                                            </>
-                                        ) : collegeId === 5 ? (
-                                            <>
-                                                Dev Bhoomi Uttarakhand University (DBUU), established in 2005 (formerly DBIT), is a premier self-governed institution spread across a 42-acre lush green campus in Dehradun. The university offers over 120+ programs across Engineering, Management, Pharmacy, and other disciplines.
-                                                <br /><br />
-                                                Accredited AND recognized by UGC, PCI, and AICTE, DBUU focuses on creating industry-ready professionals. With its advanced "Corporate Resource Centre," the university ensures robust industry interfaces and consistent placement success, making it a top choice for students in the region.
-                                            </>
-                                        ) : collegeId === 6 ? (
-                                            <>
-                                                Shri Guru Ram Rai University (SGRRU), established in 2017 in Dehradun, Uttarakhand, by Shri Mahant Devendra Dass Ji Maharaj, is a premier 82.5-acre private university offering over 125 programs across 11 schools, including Medicine, Nursing, Agriculture, and Management.
-                                                <br /><br />
-                                                Recognized by the UGC and accredited by bodies like ICAR, NMC, and INC, SGRRU provides a research-driven environment focused on value-based education.
-                                            </>
-                                        ) : collegeId === 7 ? (
-                                            <>
-                                                Himalayan Institute of Technology (HIT), established in 2001, is a premier educational institution in Dehradun affiliated with HNB Garhwal University (Central University) and Sri Dev Suman Uttarakhand University. It is recognized by the UGC and has carved a niche for itself in professional education.
-                                                <br /><br />
-                                                Widely known for its flagship Hotel Management, Agriculture, and IT programs, HIT emphasizes practical training and holistic student development. With 23+ years of academic excellence, experienced faculty, and strong industry linkages, the institute ensures high employability and career growth for its students.
-                                            </>
-                                        ) : collegeId === 8 ? (
-                                            <>
-                                                GRD Institute of Management & Technology (GRD IMT) was established in 1989 by the Guru Ram Dass Educational Trust. Located on Rajpur Road, Dehradun, the 14-acre campus stands as a hallmark of quality education in the region.
-                                                <br /><br />
-                                                Affiliated with UTU and HNBGU, and approved by AICTE/PCI, GRD offers a blend of traditional values and modern teaching methodologies. With a focus on holistic development, the institute provides excellent infrastructure, experienced faculty, and a strong placement cell that has consistently placed students in top global firms.
-                                            </>
-                                        ) : collegeId === 9 ? (
-                                            <>
-                                                D.D. College, Dehradun, established in 2008, is a premier institution affiliated with HNB Garhwal University and Shri Dev Suman Uttarakhand University. Located in the serene Garhi Cantt area, the college is known for its discipline and affordable quality education.
-                                                <br /><br />
-                                                Offering a robust mix of traditional courses like Agriculture, Commerce, and Sciences, alongside unique programs in Yoga and Education (B.Ed), DD College focuses on holistic student growth. With modern facilities including well-equipped science labs, a rich library, and a dedicated Yoga center, it provides a nurturing environment for students to excel academically and personally.
-                                            </>
-                                        ) : collegeId === 10 ? (
-                                            <>
-                                                Sardar Bhagwan Singh University (SBS University), established in 1994 (formerly SBSPGI), is a premier institution in Dehradun dedicated to biomedical and allied health sciences. It was the first institute in North India to offer professional courses in Physiotherapy and Pharmacy.
-                                                <br /><br />
-                                                With a 25-acre lush green campus, the university focuses on value-based education and research. It boasts state-of-the-art laboratories, a medicinal herbal garden, and a dedicated Physiotherapy OPD. Accredited by NAAC and recognized by UGC, SBS University continues its legacy of producing top-notch professionals in the healthcare and life sciences sectors.
-                                            </>
-                                        ) : collegeId === 11 ? (
-                                            <>
-                                                Institute of Technology and Management (ITM), Dehradun, established in 2002, is a pioneering institution situated in the heart of the city, adjacent to the Doon School. It has played a significant role in introducing competitive IT and Management education in Uttarakhand.
-                                                <br /><br />
-                                                Affiliated with HNB Garhwal University (Central University) and Sri Dev Suman University, ITM offers a wide range of professional programs including BCA, B.Sc IT, BBA, and Hotel Management. The institute boasts a 90% placement record, specialized labs, and a focus on holistic student development, making it a preferred choice for aspiring professionals.
-                                            </>
-                                        ) : (
-                                            college.description || `Welcome to ${college.name}, a center of academic excellence and holistic development. Our institution stands as a beacon of knowledge, fostering innovation and leadership in every student. With world-class faculty and state-of-the-art infrastructure, we ensure a transformative learning experience.`
-                                        )}
-                                    </p>
-                                </div>
-
-                                {/* Animated Stats/Badges within Overview */}
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
-                                    {[
-                                        { label: 'Ranking', value: collegeId === 1 ? 'NIRF Rank 52' : collegeId === 2 ? 'NAAC A Grade' : collegeId === 3 ? 'NAAC A+ Grade' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++ Grade' : collegeId === 7 ? 'Ranked #1 in HM' : collegeId === 8 ? '2nd Rank in U.K.' : collegeId === 9 ? 'Top Rated in Yoga' : collegeId === 10 ? 'Top Pharmacy Col.' : collegeId === 11 ? 'Top 10 in IT' : 'Top 100 NIRF', sub: 'Accreditation', icon: '🏆' },
-                                        { label: 'Legacy', value: collegeId === 1 ? '30+ Years' : collegeId === 2 ? '25+ Years' : collegeId === 3 ? '10+ Years' : collegeId === 4 ? '20+ Years' : collegeId === 5 ? '19+ Years' : collegeId === 6 ? '70+ Years' : collegeId === 7 ? '23+ Years' : collegeId === 8 ? '34+ Years' : collegeId === 9 ? '10+ Years' : collegeId === 10 ? '30+ Years' : collegeId === 11 ? '20+ Years' : '30+ Years', sub: 'Of Eminence', icon: '🏛️' },
-                                        { label: 'Global', value: collegeId === 1 ? '50k+ Alumni Network' : collegeId === 2 ? '10k+ Alumni Network' : collegeId === 3 ? '20k+ Alumni Network' : collegeId === 4 ? '22k+ Alumni Network' : collegeId === 5 ? '22k+ Alumni Network' : collegeId === 6 ? '18k+ Alumni Network' : collegeId === 7 ? '10k+ Alumni Network' : collegeId === 8 ? '15k+ Alumni Network' : collegeId === 9 ? '10k+ Alumni Network' : collegeId === 10 ? '15k+ Alumni Network' : collegeId === 11 ? '5k+ Alumni Network' : 'Alumni Network', sub: 'Spread across 50+ Nations', icon: '🌍' }
-                                    ].map((stat, i) => (
-                                        <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-transparent hover:border-indigo-200 hover:bg-indigo-50/50 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group/stat">
-                                            <div className="text-3xl filter drop-shadow-sm group-hover/stat:scale-110 transition-transform duration-300">{stat.icon}</div>
-                                            <div>
-                                                <div className="font-bold text-slate-800 text-sm group-hover/stat:text-indigo-900 transition-colors">{stat.value}</div>
-                                                <div className="text-xs text-slate-400 font-medium group-hover/stat:text-indigo-500 transition-colors">{stat.label}</div>
+                                    {/* Stats Grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
+                                        {[
+                                            { label: 'Ranking', value: collegeId === 1 ? 'NIRF Rank 52' : collegeId === 11 ? 'NAAC Accredited' : 'Top Rated', sub: 'Accreditation', icon: '🏆' },
+                                            { label: 'Legacy', value: collegeId === 1 ? '30+ Years' : collegeId === 11 ? '22+ Years' : '20+ Years', sub: 'Of Eminence', icon: '🏛️' },
+                                            { label: 'Global', value: collegeId === 1 ? '50k+ Alum' : collegeId === 11 ? '10k+ Alum' : 'Alumni Network', sub: 'Worldwide', icon: '🌍' }
+                                        ].map((stat, i) => (
+                                            <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-transparent hover:bg-slate-50 transition-colors">
+                                                <div className="text-3xl filter-none opacity-100 placeholder:opacity-100">{stat.icon}</div>
+                                                <div>
+                                                    <div className="font-bold text-slate-800 text-sm">{stat.value}</div>
+                                                    <div className="text-xs text-slate-400 font-medium">{stat.label}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* 3. PLACEMENTS (Premium Dark Card) */}
-                        <section ref={placementsRef.ref} className={`relative rounded-3xl overflow-hidden p-8 text-white shadow-2xl shadow-indigo-900/20 ${placementsRef.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} transition-all duration-700 delay-200`}>
-                            {/* Dark Gradient Background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900"></div>
-                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-                            <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
-
-                            <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
-                                <div>
-                                    <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-bold uppercase tracking-widest mb-4">
-                                        Placement Success
-                                    </div>
-                                    <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white via-indigo-100 to-indigo-200 bg-clip-text text-transparent">Launch Your Career With Industry Giants</h2>
-                                    <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies with record-breaking packages.</p>
-
-                                    <div className="flex flex-wrap gap-4">
-                                        {(collegeId === 1 ? ['Google', 'Flipkart', 'Adobe', 'Amazon', 'Microsoft', 'TVS'] : collegeId === 2 ? ['Palo Alto', 'Adobe', 'Commvault', 'Amazon', 'Microsoft', 'Infosys'] : collegeId === 3 ? ['Google', 'Wipro', 'Amazon', 'Deloitte', 'TCS', 'Microsoft'] : collegeId === 4 ? ['ExxonMobil', 'Amazon', 'Microsoft', 'Shell', 'ONGC', 'Halliburton'] : collegeId === 5 ? ['Adobe', 'TCS', 'Wipro', 'IBM', 'HDFC Bank', 'Amazon'] : collegeId === 6 ? ['Accenture', 'Infosys', 'Wipro', 'Deloitte', 'HCL', 'ICICI Bank'] : collegeId === 7 ? ['Taj Hotels', 'Oberoi', 'Tech Mahindra', 'Wipro', 'HDFC Bank', 'Byjus'] : collegeId === 8 ? ['TCS', 'Wipro', 'Amazon', 'Infosys', 'HCL', 'Tech Mahindra'] : collegeId === 9 ? ['Patanjali', 'Curefit', 'Wipro', 'Indigo', 'Maruti Suzuki', 'Tech Mahindra'] : collegeId === 10 ? ['Cipla', 'Sun Pharma', 'GlaxoSmithKline', 'Wipro', 'Dabur', 'Mankind'] : collegeId === 11 ? ['Accenture', 'Wipro', 'TCS', 'Infosys', 'Indigo', 'Byjus'] : ['Google', 'Microsoft', 'Amazon', 'Adobe']).map(company => (
-                                            <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
-                                                {company}
-                                            </span>
                                         ))}
                                     </div>
-                                </div>
+                                </section>
+                            </div>
 
-                                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/10 transform transition-transform hover:scale-[1.02]">
-                                    <div className="space-y-6">
-                                        <div>
-                                            <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
-                                            <div className="text-4xl lg:text-5xl font-bold text-white mt-1">
-                                                ₹ {collegeId === 1 ? '54.03' : collegeId === 2 ? '58.00' : collegeId === 3 ? '1.50' : collegeId === 4 ? '50.00' : collegeId === 5 ? '40.00' : collegeId === 6 ? '12.00' : collegeId === 7 ? '13.50' : collegeId === 8 ? '32.00' : collegeId === 9 ? '6.00' : collegeId === 10 ? '8.00' : collegeId === 11 ? '15.00' : '54.80'} <span className="text-2xl text-indigo-300">{collegeId === 3 ? 'Cr' : 'LPA'}</span>
+
+                            {/* 2. PLACEMENT SUCCESS */}
+                            <div id="placement-success" className="scroll-mt-36">
+                                <section
+                                    ref={placementRef.ref}
+                                    className={`bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl overflow-hidden relative transition-all duration-700 transform ${placementRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                >
+                                    {/* Abstract shapes bg */}
+                                    <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
+                                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600 rounded-full blur-[80px] opacity-20 -ml-16 -mb-16"></div>
+
+                                    <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 relative z-10">
+                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                                        </span>
+                                        Placement Success
+                                    </h2>
+
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+                                        <div className="space-y-6">
+                                            <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies.</p>
+                                            <div className="flex flex-wrap gap-3">
+                                                {(collegeId === 11 ? ['Infosys', 'Wipro', 'HCL', 'Amazon', 'Genpact', 'Deloitte'] : ['Google', 'Amazon', 'Microsoft', 'Adobe', 'TCS']).map(company => (
+                                                    <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">{company}</span>
+                                                ))}
                                             </div>
                                         </div>
-                                        <div className="h-px bg-white/10"></div>
-                                        <div className="grid grid-cols-2 gap-6">
-                                            <div>
-                                                <p className="text-xs text-indigo-200 uppercase">Average Package</p>
-                                                <p className="text-xl font-bold">₹ {collegeId === 1 ? '6.42' : collegeId === 2 ? '5.80' : collegeId === 3 ? '11.00' : collegeId === 4 ? '7.02' : collegeId === 5 ? '5.50' : collegeId === 6 ? '4.00' : collegeId === 7 ? '5.00' : collegeId === 8 ? '5.50' : collegeId === 9 ? '2.50' : collegeId === 10 ? '3.50' : collegeId === 11 ? '4.00' : '8.50'} LPA</p>
+                                        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10 transform transition-transform hover:scale-[1.02]">
+                                            <div className="mb-6">
+                                                <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
+                                                <div className="text-5xl font-bold text-white mt-2">₹ {collegeId === 11 ? '15.00' : '54.03'} <span className="text-2xl text-indigo-300">LPA</span></div>
                                             </div>
-                                            <div>
-                                                <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
-                                                <p className="text-xl font-bold">{collegeId === 1 ? '3,500+' : collegeId === 2 ? '1,450+' : collegeId === 3 ? '2,350+' : collegeId === 4 ? '2,482+' : collegeId === 5 ? '14,500+' : collegeId === 6 ? '300+' : collegeId === 7 ? '850+' : collegeId === 8 ? '500+' : collegeId === 9 ? '62%' : collegeId === 10 ? '90%' : collegeId === 11 ? '90%' : '2,500+'}</p>
+                                            <div className="h-px bg-white/10 mb-6"></div>
+                                            <div className="grid grid-cols-2 gap-6">
+                                                <div>
+                                                    <p className="text-xs text-indigo-200 uppercase">Avg Package</p>
+                                                    <p className="text-xl font-bold">₹ {collegeId === 11 ? '4.00' : '6.42'} LPA</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
+                                                    <p className="text-xl font-bold">{collegeId === 11 ? '500+' : '3,500+'}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </section>
                             </div>
-                        </section>
 
-                        {/* 4. COURSES OFFERED */}
-                        <section ref={coursesRef.ref} className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-300`}>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                                </span>
-                                Courses Offered
-                            </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {courses.map((course, idx) => (
-                                    <div key={idx} className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-indigo-100 hover:shadow-md transition-all duration-300 cursor-default">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
-                                                {course.icon}
+                            {/* 3. COURSES OFFERED */}
+                            <div id="courses-offered" className="scroll-mt-36">
+                                <section
+                                    ref={coursesRef.ref}
+                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 transition-all duration-700 transform ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                >
+                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                                        </span>
+                                        Courses Offered
+                                    </h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {courses.map((course, idx) => (
+                                            <div key={idx} className="flex items-center justify-between p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-indigo-100 hover:shadow-md transition-all duration-300">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-xl">{course.icon}</div>
+                                                    <div>
+                                                        <h3 className="text-sm font-bold text-slate-800">{course.name}</h3>
+                                                        <p className="text-[10px] text-slate-500 font-medium">Full Time • On Campus</p>
+                                                    </div>
+                                                </div>
+                                                <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-bold border border-indigo-100">{course.duration}</span>
                                             </div>
-                                            <div>
-                                                <h3 className="text-sm font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">{course.name}</h3>
-                                                <p className="text-[10px] text-slate-500 font-medium mt-0.5">Full Time • On Campus</p>
-                                            </div>
-                                        </div>
-                                        <div className="text-right pl-2">
-                                            <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Duration</span>
-                                            <span className="inline-block px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-bold border border-indigo-100">
-                                                {course.duration}
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
+
+                            {/* 4. INFRASTRUCTURE & FACILITIES */}
+                            <div id="infrastructure-facilities" className="scroll-mt-36">
+                                <section
+                                    ref={infraRef.ref}
+                                    className={`space-y-8 transition-all duration-700 transform ${infraRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                                            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600">
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                                             </span>
-                                        </div>
+                                            <span>World-Class Infrastructure</span>
+                                        </h2>
                                     </div>
-                                ))}
-                            </div>
-                        </section>
-
-                        {/* 5. FACILITIES (Bento Grid) */}
-                        {/* 5. FACILITIES (Premium Interactive Grid) */}
-                        <section ref={facilitiesRef.ref} className={`space-y-8 ${facilitiesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-400`}>
-                            <div className="flex items-center justify-between">
-                                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 shadow-sm shadow-emerald-200">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                                    </span>
-                                    <span>World-Class Infrastructure</span>
-                                </h2>
-                                <span className="hidden md:block text-xs font-semibold tracking-wider text-slate-400 uppercase">State-of-the-Art Facilities</span>
-                            </div>
-
-                            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-                                {facilities.map((fac, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="group relative h-40 rounded-2xl bg-white shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-indigo-100 transition-all duration-500 ease-out cursor-default"
-                                    >
-                                        {/* Hover Gradient Background */}
-                                        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${fac.color.replace('text-', 'from-').replace('600', '50/50')} to-white pointer-events-none`}></div>
-
-                                        {/* Decorative Circle */}
-                                        <div className={`absolute -right-4 -bottom-4 w-24 h-24 rounded-full ${fac.color.replace('text-', 'bg-').replace('600', '100')} opacity-20 group-hover:scale-[2.5] transition-transform duration-700 ease-in-out`}></div>
-
-                                        <div className="relative z-10 h-full flex flex-col justify-center items-center p-4">
-                                            {/* Icon */}
-                                            <div className={`mb-3 p-3 rounded-2xl bg-slate-50 group-hover:bg-white group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300 ${fac.color}`}>
-                                                <svg className="w-8 h-8 transition-transform duration-500 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={fac.icon} />
-                                                </svg>
+                                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
+                                        {facilities.map((fac, idx) => (
+                                            <div key={idx} className="group relative h-40 rounded-2xl bg-white shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-indigo-100 transition-all duration-500">
+                                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${fac.color.replace('text-', 'from-').replace('600', '50/50')} to-white`}></div>
+                                                <div className="relative z-10 h-full flex flex-col justify-center items-center p-4">
+                                                    <div className={`mb-3 p-3 rounded-2xl bg-slate-50 group-hover:bg-white ${fac.color} transition-colors`}>
+                                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={fac.icon} /></svg>
+                                                    </div>
+                                                    <h3 className="text-base font-bold text-slate-700 group-hover:text-slate-900">{fac.name}</h3>
+                                                </div>
                                             </div>
-
-                                            {/* Text */}
-                                            <h3 className="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">{fac.name}</h3>
-                                            <div className="w-0 group-hover:w-1/2 h-0.5 mt-2 rounded-full bg-current opacity-0 group-hover:opacity-100 transition-all duration-500 text-indigo-500"></div>
-                                        </div>
+                                        ))}
                                     </div>
-                                ))}
+                                </section>
                             </div>
-                        </section>
+
+                            {/* 5. CAMPUS LIFE */}
+                            <div id="campus-life" className="scroll-mt-36">
+                                <section
+                                    ref={galleryRef.ref}
+                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 transition-all duration-700 transform ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                >
+                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-100 text-teal-600">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                        </span>
+                                        Campus Life & Gallery
+                                    </h2>
+                                    <CollegeGallery images={slideshowImages} />
+                                </section>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -752,7 +763,7 @@ function CollegeDetails() {
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                         </div>
                                         <span className="text-sm text-slate-600 leading-snug">
-                                            {collegeId === 6 ? 'Patel Nagar, Dehradun, Uttarakhand 248001' : collegeId === 7 ? 'Haridwar Road, Near Central Excise office, Danda Dharampur, Dehradun, Uttarakhand 248001' : collegeId === 8 ? 'Rajpur Road, Near Sai Mandir, Dehradun, Uttarakhand 248009' : collegeId === 9 ? '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand 248003' : collegeId === 10 ? 'Balawala, Dehradun, Uttarakhand 248161' : collegeId === 11 ? '60, Chakrata Road, Yamuna Colony, Dehradun, Uttarakhand 248001' : `${college.location}, Uttarakhand 248002`}
+                                            {college.location}, Uttarakhand
                                         </span>
                                     </li>
                                     <li className="flex items-center gap-3">
@@ -763,7 +774,6 @@ function CollegeDetails() {
                                     </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
 
