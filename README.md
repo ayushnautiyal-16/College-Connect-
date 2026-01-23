@@ -1,10 +1,10 @@
-# 🎓 Campus Finder
+# 🎓 College Connect
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=react)
 ![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Tech-React%20%7C%20TailwindCSS-deepskyblue?style=for-the-badge)
 
-**Campus Finder** is a premium, modern web application designed to simplify the college search and admission process. Built with React and tailored with high-end aesthetics, it serves as a comprehensive bridge between students and their future educational institutions.
+**College Connect** is a premium, modern web application designed to simplify the college search and admission process. Built with React and tailored with high-end aesthetics, it serves as a comprehensive bridge between students and their future educational institutions.
 
 ---
 
@@ -21,7 +21,7 @@
 
 ## 🚀 Project Overview
 
-Campus Finder helps students navigate the complex landscape of higher education. The platform allows users to:
+College Connect helps students navigate the complex landscape of higher education. The platform allows users to:
 - **Discover** top-rated colleges and universities.
 - **Explore** detailed campus information, courses, and facilities.
 - **Stay Informed** through a curated blog section covering educational trends and tips.
