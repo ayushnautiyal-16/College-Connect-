@@ -53,7 +53,7 @@ class ErrorBoundary extends React.Component {
 function App() {
   return (
     <ErrorBoundary>
-      <Router basename="/College-Connect-">
+      <Router>
         <MainLayout>
           <Routes>
             <Route path="/" element={<Home />} />

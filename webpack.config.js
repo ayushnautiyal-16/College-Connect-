@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
-    publicPath: '/College-Connect-/',
+    publicPath: './',
     clean: true,
   },
   module: {
