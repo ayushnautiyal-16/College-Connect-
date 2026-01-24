@@ -3,6 +3,11 @@ dist/
 .DS_Store
 *.log
 .env
+
+# Allow root bundle files for simple GitHub Pages deployment
+!bundle.*.js
+!bundle.*.js.LICENSE.txt
+!index.html
 .env.local
 .env.development
 .env.production
