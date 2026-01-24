@@ -35,6 +35,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: '404.html',
     }),
     new Dotenv({
       path: './.env', // Path to .env file
