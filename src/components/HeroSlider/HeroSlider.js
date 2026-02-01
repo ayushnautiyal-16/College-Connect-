@@ -29,7 +29,7 @@ function HeroSlider() {
       headline: 'Your Dream College',
       ctaText: 'Get Free Counselling',
       ctaLink: '/contact',
-      video: getAssetUrl('uttaranchal/Why Uttaranchal University is North India’s Top Choice  750+ Recruiters & 2356+ Placements in 2024! - Uttaranchal University (1080p, h264, youtube).mp4'),
+      video: getAssetUrl('UPES/Life at UPES _ UPES Dehradun(1080P_HD) (1).mp4'),
       bgGradient: 'from-primary-600 via-primary-500 to-primary-700',
       videoDuration: 20,
     },

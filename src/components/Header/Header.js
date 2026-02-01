@@ -69,20 +69,25 @@ function Header() {
           {/* Logo - Left Side */}
           <Link
             to="/"
-            className="flex items-center gap-3 hover:opacity-100 transition-all duration-300 group"
+            className="flex items-center gap-2 hover:opacity-100 transition-all duration-300 group"
           >
+            {/* Logo */}
             <div className="relative">
               <div className="absolute inset-0 bg-primary-100 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
               <img
-                src={getAssetUrl("Colleges logos/IMG_0021.JPG-removebg-preview.png")}
+                src={getAssetUrl("Colleges logos/Gemini_Generated_Image_pq2so7pq2so7pq2s-removebg-preview.png")}
                 alt="College Connect Logo"
-                className="relative h-11 md:h-14 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                className="relative h-10 md:h-12 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
-            <div className="hidden sm:flex items-center gap-3">
-              <span className="hidden lg:block text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary tracking-[0.2em] uppercase pt-0.5">
-                Creating Future Paths
+            {/* Tagline - Beside Logo */}
+            <div className="hidden lg:flex flex-col justify-center leading-none -ml-1">
+              <span className="text-[8px] font-semibold text-gray-500 tracking-[0.1em] uppercase">
+                Creating
+              </span>
+              <span className="text-[10px] font-extrabold text-primary-600 tracking-wide">
+                Future Paths
               </span>
             </div>
           </Link>

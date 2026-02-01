@@ -1,13 +1,17 @@
 import React from 'react';
 import { getAssetUrl } from '../../utils/assets';
+import { getCloudinaryImageUrl } from '../../utils/cloudinary';
 import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 function CollegeCard({ college, index = 0 }) {
-    const { id, name, logo, description, courses, location, established, accreditation, logoBgColor } = college;
+    const { id, name, logo, cardImage, description, courses, location, established, accreditation, logoBgColor } = college;
     // Trigger earlier (50px margin) for smoother feed
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.05, rootMargin: '50px' });
     const navigate = useNavigate();
+
+    // Use cardImage if available, otherwise use logo
+    const displayImage = cardImage ? getCloudinaryImageUrl(cardImage) : logo;
 
     return (
         <div
@@ -25,9 +29,9 @@ function CollegeCard({ college, index = 0 }) {
         >
             {/* College Logo/Cover Section */}
             <div className="h-48 w-full relative overflow-hidden bg-gray-100 border-b border-gray-100/80 group-hover:shadow-inner transition-all">
-                {logo ? (
+                {displayImage ? (
                     <img
-                        src={logo}
+                        src={displayImage}
                         alt={`${name} campus`}
                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
@@ -86,11 +90,7 @@ function CollegeCard({ college, index = 0 }) {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            if (id === 1) {
-                                navigate(`/college/${id}/fees`);
-                            } else {
-                                navigate('/fees');
-                            }
+                            navigate('/fees');
                         }}
                         className="col-span-1 bg-white border border-indigo-100 hover:bg-indigo-50 text-indigo-600 font-semibold py-1.5 px-2 rounded-md text-[11px] transition-colors flex items-center justify-center gap-1"
                     >

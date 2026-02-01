@@ -219,6 +219,7 @@ export const collegesData = [
         id: 5,
         name: 'Dev Bhoomi Uttarakhand University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816036/devbhoomi-logo_w9bkus.webp'),
+        cardImage: 'DBUU/campus-infra-dbuu.webp',
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Manduwala, Dehradun',
         established: '2005',
