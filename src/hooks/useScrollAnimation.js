@@ -10,18 +10,21 @@ function useScrollAnimation(options = {}) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const currentElement = elementRef.current;
+        if (isVisible) return; // Optimization: stop observing once visible
 
+        const currentElement = elementRef.current;
         const defaultOptions = {
-            threshold: 0.1, // Trigger when 10% of element is visible
-            rootMargin: '0px 0px -50px 0px', // Trigger slightly before entering viewport
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px',
             ...options,
         };
 
         const observer = new IntersectionObserver(([entry]) => {
-            // Only trigger animation once when element becomes visible
-            if (entry.isIntersecting && !isVisible) {
+            if (entry.isIntersecting) {
                 setIsVisible(true);
+                if (currentElement) {
+                    observer.unobserve(currentElement);
+                }
             }
         }, defaultOptions);
 

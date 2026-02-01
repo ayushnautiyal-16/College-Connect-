@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import { useParams, useNavigate } from 'react-router-dom';
 import { collegesData } from '../../utils/collegesData';
 import CollegeHeroSlideshow from '../../components/CollegeHeroSlideshow/CollegeHeroSlideshow';
 import CollegeGallery from '../../components/CollegeGallery/CollegeGallery';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import DarkPatternedSection from '../../components/DarkPatternedSection/DarkPatternedSection';
 
 function CollegeDetails() {
     const { id } = useParams();
@@ -45,6 +47,7 @@ function CollegeDetails() {
     const infraRef = useScrollAnimation();
     const highlightRef = useScrollAnimation();
     const galleryRef = useScrollAnimation();
+    const enquiryRef = useScrollAnimation();
 
     // Early return if college not found
 
@@ -65,74 +68,79 @@ function CollegeDetails() {
         // Mock data logic references internal images or placeholders
         const imageMap = {
             1: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767115121/CvxECGJZ-gehu-dehradun-campus-jpg_khds89.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948329/grafest-day-one-7_iczpwg.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767381831/dit-university-dehradun-229162_ws0ck4.jpg'
+                getAssetUrl('graphic era/gehu-haldwani-timeline-geu-copy-3-100.jpg'),
+                getAssetUrl('graphic era/header-image-1.jpg'),
+                getAssetUrl('graphic era/BG-Accreditation-GEU2023-New-scaled.jpg'),
+                getAssetUrl('graphic era/grafest-day-third-1.jpg'),
+                getAssetUrl('graphic era/grafest-day-third-9.jpg'),
+                getAssetUrl('graphic era/q5z0k07Y-grafest-badshah-7-jpeg.webp'),
+                getAssetUrl('graphic era/97Md0bko-grafest-badshah-1-jpeg.webp'),
+                getAssetUrl('graphic era/ScfG2Scp-IMG_4587-jpg.webp'),
+                getAssetUrl('graphic era/RkQ4Fo0h-grafest-badshah-4-jpeg.webp')
             ],
             2: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954779/1500x500_mtdnmx.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767381831/dit-university-dehradun-229162_ws0ck4.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954774/Ge54DdyWsAADfss_lnui0u.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954772/Gceo9oYXsAAhsfR_widqbr.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954779/1500x500_mtdnmx.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767381831/dit-university-dehradun-229162_ws0ck4.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954774/Ge54DdyWsAADfss_lnui0u.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767954772/Gceo9oYXsAAhsfR_widqbr.jpg')
             ],
             3: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953726/Deepa-Panday-Slider-2025-v3_wjgb2p.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953731/Box-New-color_in8431.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953729/15_yplf3g.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767031601/8_kpjirn.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953726/Deepa-Panday-Slider-2025-v3_wjgb2p.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953731/Box-New-color_in8431.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767953729/15_yplf3g.webp'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767031601/8_kpjirn.jpg')
             ],
             4: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767376541/desk-students_t0muq8.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956998/FarlyNuVQAEvYsE_s99wgi.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956994/FaHf3K7UIAIvEN0_ct1bgh.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956977/FCmXjKUVcAQLMNz_htvnaz.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767376541/desk-students_t0muq8.webp'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956998/FarlyNuVQAEvYsE_s99wgi.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956994/FaHf3K7UIAIvEN0_ct1bgh.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767956977/FCmXjKUVcAQLMNz_htvnaz.jpg')
             ],
             5: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377026/dbuu-campus-webp-1_wdiaej.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377034/5_wazjsp.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377032/17_mjo5ao.webp',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377035/one_aw66o4.webp'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377026/dbuu-campus-webp-1_wdiaej.webp'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377034/5_wazjsp.webp'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377032/17_mjo5ao.webp'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377035/one_aw66o4.webp')
             ],
             6: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377576/section002-side-image_clige2.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377575/1750750305104_ffszrd.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377577/t5_keegcv.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377576/section002-side-image_clige2.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377575/1750750305104_ffszrd.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767377577/t5_keegcv.jpg')
             ],
             7: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245387/Himalayan_Institute_of_Technology_Campus_Entry_Gate_fzzkly.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245240/slider-1_jagmt4.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245236/slider-5_us5lez.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245229/sddefault_oe0ias.webp'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245387/Himalayan_Institute_of_Technology_Campus_Entry_Gate_fzzkly.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245240/slider-1_jagmt4.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245236/slider-5_us5lez.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768245229/sddefault_oe0ias.webp')
             ],
             8: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246250/3-0x0_ktdjzr.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246223/img-slide-2_gwrz2i.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246235/1-0x0_wolccq.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246252/2-0x0_ospmps.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246248/img-slide-3_m1nflh.jpg',
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246250/3-0x0_ktdjzr.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246223/img-slide-2_gwrz2i.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246235/1-0x0_wolccq.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246252/2-0x0_ospmps.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768246248/img-slide-3_m1nflh.jpg'),
             ],
             9: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247105/Copy-of-Untitled-1_a3cfou.png', // Placeholder, user will likely provide specific slider images later.
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247096/4-1_q8sqd2.png',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247094/Untitled-design-100_ncsqlb.png',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247091/dd-college1_kujwjv.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247105/Copy-of-Untitled-1_a3cfou.png'), // Placeholder, user will likely provide specific slider images later.
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247096/4-1_q8sqd2.png'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247094/Untitled-design-100_ncsqlb.png'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768247091/dd-college1_kujwjv.jpg')
                 // Generic backup
             ],
             10: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg', // Placeholder
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328234/sbsu_gallery_0133_g97bky.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328237/sbsu_gallery_0092_fir2rb.jpg',
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328236/sbsu_gallery_0096_gbelvc.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg'), // Placeholder
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328234/sbsu_gallery_0133_g97bky.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328237/sbsu_gallery_0092_fir2rb.jpg'),
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328236/sbsu_gallery_0096_gbelvc.jpg')
             ],
             11: [
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg', // Using generic/college placeholder
-                'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg'
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1768328238/sbsu_gallery_0097_q8g1mb.jpg'), // Using generic/college placeholder
+                getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg')
             ]
         };
         return imageMap[collegeId] || [
-            'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg',
-            'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948329/grafest-day-one-7_iczpwg.jpg'
+            getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948328/grafest-day-third-1_dqyeno.jpg'),
+            getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766948329/grafest-day-one-7_iczpwg.jpg')
         ];
     };
 
@@ -435,351 +443,411 @@ function CollegeDetails() {
         { name: 'Auditorium', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', color: 'bg-red-50 text-red-600' }
     ];
 
-    const slideshowImages = getSlideshowImages(collegeId);
+    const allImages = getSlideshowImages(collegeId);
+    const heroImages = (collegeId === 1) ? allImages.slice(0, 4) : allImages;
+    const galleryImages = (collegeId === 1) ? allImages.slice(4) : allImages;
 
     // Render Logic
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+        <div className="min-h-screen bg-light-primary font-sans text-text-primary selection:bg-brand-primary/10 selection:text-brand-primary pt-24 pb-20 relative">
+            {/* Clean subtle background for content readability */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                {/* Very subtle grid pattern */}
+                <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#CBD5E1" strokeWidth="0.5" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+            </div>
+            <div className="hidden">
+                <svg className="absolute inset-0 w-full h-full opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="pillar-pattern" x="0" y="0" width="40" height="80" patternUnits="userSpaceOnUse">
+                            {/* Simple Column Fluting */}
+                            <path d="M10 0 V80 M20 0 V80 M30 0 V80" fill="none" stroke="#57534e" strokeWidth="1" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#pillar-pattern)" />
+                </svg>
 
-            {/* --- HEADER SECTION --- */}
-            <div className="container mx-auto px-4 pt-4 pb-6 animate-fade-in-down">
-                <button
-                    onClick={() => navigate(-1)}
-                    className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all duration-300 mb-3"
-                >
-                    <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                    <span className="text-xs font-bold uppercase tracking-wider">Back</span>
-                </button>
+                {/* 2. Serene Campus Greenery Gradient (Bottom Fade) */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#ecfccb]/20 to-transparent mix-blend-multiply"></div>
 
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-900 bg-clip-text text-transparent mb-1.5 tracking-tight animate-fade-in-up">
+                {/* 3. Noble Blue Gradient (Top Fade) */}
+                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-[#e0e7ff]/30 to-transparent mix-blend-multiply"></div>
+
+                {/* 4. Abstract "Ivy" Organic Shapes */}
+                <div className="absolute top-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-[#dbeafe]/40 rounded-full blur-[80px] mix-blend-darken"></div>
+                <div className="absolute bottom-[10%] left-[-10%] w-[40rem] h-[40rem] bg-[#f1f5f9]/60 rounded-full blur-[80px] mix-blend-darken"></div>
+
+                {/* 5. Paper Texture Overlay for "Real" Feel */}
+                <div className="absolute inset-0 opacity-[0.4] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")` }}></div>
+            </div>
+            <div className="hidden">
+
+                {/* 2. Abstract Geometric Composition */}
+                <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <filter id="blur-me" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
+                        </filter>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#c7d2fe" stopOpacity="0.4" />
+                            <stop offset="100%" stopColor="#e0e7ff" stopOpacity="0.1" />
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#fecaca" stopOpacity="0.4" />
+                            <stop offset="100%" stopColor="#fee2e2" stopOpacity="0.1" />
+                        </linearGradient>
+                    </defs>
+
+                    {/* Floating Shapes */}
+                    <circle cx="10%" cy="10%" r="400" fill="url(#grad1)" filter="url(#blur-me)" />
+                    <circle cx="90%" cy="50%" r="300" fill="url(#grad2)" filter="url(#blur-me)" />
+                    <circle cx="20%" cy="90%" r="350" fill="#ccfbf1" fillOpacity="0.4" filter="url(#blur-me)" />
+                </svg>
+
+                {/* 3. Crisp Geometric Accents (Unblurred) */}
+                <svg className="absolute inset-0 w-full h-full opacity-[0.4]" xmlns="http://www.w3.org/2000/svg">
+                    {/* Circle Outline */}
+                    <circle cx="85%" cy="15%" r="150" fill="none" stroke="#e0e7ff" strokeWidth="2" strokeDasharray="10 10" />
+
+                    {/* Triangle Outline */}
+                    <path d="M100 800 L300 500 L500 800 Z" fill="none" stroke="#f0f9ff" strokeWidth="2" transform="translate(-100, 100)" />
+
+                    {/* Dotted Grid Cluster */}
+                    <pattern id="dot-cluster" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1.5" fill="#e5e7eb" />
+                    </pattern>
+                    <rect x="5%" y="40%" width="200" height="200" fill="url(#dot-cluster)" />
+                </svg>
+
+                {/* 4. Glass Overlay */}
+                <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px]"></div>
+            </div>
+            <div className="hidden">
+                <div className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(#4338ca_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+
+                <svg className="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="college-icons" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                            {/* Graduation Hat */}
+                            <path d="M10 25 L40 10 L70 25 L40 40 L10 25 M70 25 V45" fill="none" stroke="#1e1b4b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            {/* Open Book */}
+                            <path d="M15 65 Q40 75 65 65 V50 Q40 60 15 50 Z" fill="none" stroke="#1e1b4b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M40 70 V55" fill="none" stroke="#1e1b4b" strokeWidth="1.5" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#college-icons)" />
+                </svg>
+
+                {/* 2. Large Watermark Elements (Fixed corners) */}
+                <svg className="absolute top-0 right-0 w-[500px] h-[500px] text-indigo-900/5 -translate-y-1/4 translate-x-1/4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
+                </svg>
+
+                <svg className="absolute bottom-0 left-0 w-[600px] h-[600px] text-indigo-900/5 translate-y-1/4 -translate-x-1/4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+                </svg>
+
+                {/* 3. Warm Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/60"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-50/30 via-transparent to-orange-50/30 mix-blend-multiply"></div>
+            </div>
+            <div className="hidden">
+                {/* Noise Texture for 'Printed' Tactile Feel (using inline SVG for safety) */}
+                <div className="absolute inset-0 opacity-[0.6] mix-blend-overlay">
+                    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <filter id="noiseFilter">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+                        </filter>
+                        <rect width="100%" height="100%" filter="url(#noiseFilter)" opacity="0.15" />
+                    </svg>
+                </div>
+
+                {/* Fluid Mesh Gradients */}
+                <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-r from-indigo-200/30 to-purple-200/30 blur-[100px] mix-blend-multiply animate-pulse-slow"></div>
+                <div className="absolute top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-l from-rose-100/40 to-orange-100/40 blur-[90px] mix-blend-multiply"></div>
+                <div className="absolute -bottom-[10%] left-[20%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-t from-blue-200/30 to-cyan-200/30 blur-[100px] mix-blend-multiply"></div>
+
+                {/* Geometric Accents (Bauhaus style) */}
+                <div className="absolute top-[15%] right-[10%] w-32 h-32 border border-gray-900/5 rounded-full z-0 opacity-60"></div>
+                <div className="absolute top-[16%] right-[12%] w-16 h-16 bg-indigo-600/5 rounded-full z-0"></div>
+                <div className="absolute bottom-[20%] left-[5%] w-64 h-64 border border-gray-900/5 rotate-45 z-0 opacity-40"></div>
+            </div>
+
+            {/* Content Wrapper ensures z-index above background */}
+            <div className="relative z-10">
+
+                {/* --- HEADER --- */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative mb-8">
+
+
+                    <div className="text-center pt-2">
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
                             {college.name}
                         </h1>
-                        <div className="flex flex-wrap items-center gap-4 text-slate-500 text-sm md:text-base font-medium animate-fade-in-up delay-100">
-                            <span className="flex items-center gap-2">
-                                <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                {college.location}
-                            </span>
+                        <div className="flex items-center justify-center gap-2 text-gray-500 text-sm font-medium">
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            {college.location}
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* --- HERO GRID --- */}
-            <div className="container mx-auto px-4 mb-16 animate-fade-in-up">
-                <div className="grid lg:grid-cols-3 gap-6 h-auto lg:h-[500px]">
-                    {/* 1. HERO SLIDER */}
-                    <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 relative group h-[300px] lg:h-full">
-                        <CollegeHeroSlideshow images={slideshowImages} className="transform transition-transform duration-700 group-hover:scale-105" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
-                        <div className="absolute bottom-6 left-6 text-white z-10 hidden md:block">
-                            <p className="text-lg font-medium opacity-90">Experience the Campus</p>
-                        </div>
-                    </div>
-
-                    {/* 2. KEY HIGHLIGHTS GRID */}
-                    <div className="lg:col-span-1 flex flex-col h-full">
-                        <div className="flex items-center gap-3 mb-6 px-1">
-                            <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-800">Key Highlights</h3>
+                {/* --- HERO SECTION --- */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
+                    <div className="grid lg:grid-cols-12 gap-6">
+                        {/* Hero Slider */}
+                        <div className="lg:col-span-8 h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-lg border border-gray-100 relative">
+                            <CollegeHeroSlideshow images={heroImages} className="h-full w-full object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 flex-grow h-full">
-                            {/* Card 1: Established */}
-                            <div className="bg-orange-50/80 rounded-3xl p-4 shadow-lg shadow-orange-100/50 border border-orange-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
-                                <div className="absolute top-0 right-0 w-16 h-16 bg-orange-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
-                                <div className="w-10 h-10 rounded-full bg-white text-orange-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                </div>
-                                <div className="text-xl md:text-2xl font-bold text-orange-900 relative z-10">
-                                    {college.established || 'N/A'}
-                                </div>
-                                <div className="text-[10px] font-bold text-orange-400 uppercase tracking-widest mt-1 relative z-10">Established</div>
-                            </div>
-
-                            {/* Card 2: Accreditation */}
-                            <div className="bg-emerald-50/80 rounded-3xl p-4 shadow-lg shadow-emerald-100/50 border border-emerald-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
-                                <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
-                                <div className="w-10 h-10 rounded-full bg-white text-emerald-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
-                                </div>
-                                <div className="text-lg md:text-xl font-bold text-emerald-900 leading-tight px-1 relative z-10">
-                                    {college.accreditation ? college.accreditation.split('|')[0].trim() : 'Approved'}
-                                </div>
-                                <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mt-1 relative z-10">Accredited</div>
-                            </div>
-
-                            {/* Card 3: Campus Size */}
-                            <div className="bg-blue-50/80 rounded-3xl p-4 shadow-lg shadow-blue-100/50 border border-blue-100 flex flex-col justify-center items-center text-center group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
-                                <div className="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-full blur-2xl -mr-6 -mt-6"></div>
-                                <div className="w-10 h-10 rounded-full bg-white text-blue-500 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform relative z-10">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                                </div>
-                                <div className="text-lg md:text-xl font-bold text-blue-900 relative z-10">
-                                    {college.campusSize || 'Large Campus'}
-                                </div>
-                                <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mt-1 relative z-10">Campus Size</div>
-                            </div>
-
-                            {/* Card 4: Placement Rate */}
-                            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-4 shadow-lg shadow-indigo-200 flex flex-col justify-center items-center text-center text-white group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden h-full min-h-[130px]">
-                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2 shadow-inner group-hover:scale-110 transition-transform relative z-10">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                                </div>
-                                <div className="text-xl md:text-2xl font-bold relative z-10">
-                                    {college.placementRate || 'Excellent'}
-                                </div>
-                                <div className="text-[10px] font-bold text-indigo-100 uppercase tracking-widest mt-1 relative z-10">Placements</div>
+                        {/* Vertical Highlights Stack - Centered */}
+                        <div className="lg:col-span-4 flex items-center">
+                            <div className="w-full grid grid-cols-1 gap-3">
+                                {highlights.map((item, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`bg-gradient-to-br ${item.color} bg-opacity-10 rounded-lg p-3 border-2 border-opacity-30 shadow-sm flex items-center gap-3 hover:shadow-lg transition-shadow duration-300 group`}
+                                        style={{
+                                            borderColor: idx === 0 ? '#3b82f6' : idx === 1 ? '#10b981' : idx === 2 ? '#f97316' : '#a855f7',
+                                            animation: `float 3s ease-in-out infinite`,
+                                            animationDelay: `${idx * 0.5}s`
+                                        }}
+                                    >
+                                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${item.color} text-white shadow-md`}>
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} /></svg>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="text-sm font-bold text-gray-900 leading-tight">
+                                                {item.value}
+                                            </div>
+                                            <div className="text-[10px] uppercase tracking-wider text-gray-600 font-semibold mt-0.5">
+                                                {item.label}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* --- CONTENT LAYOUT --- */}
-            <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-20 mb-20">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                {/* --- MAIN CONTENT --- */}
 
-                    {/* LEFT MAIN CONTENT (8 Cols) */}
-                    <div className="lg:col-span-8 space-y-8">
+                {/* 1. About Institute - Premium Clean Design with Full Width Background */}
+                <section id="about" ref={aboutRef.ref} className={`py-16 bg-light-primary transition-all duration-700 ${aboutRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <div className="max-w-5xl mx-auto px-6">
+                        <div className="bg-white rounded-2xl p-8 md:p-12 border border-border shadow-sm">
+                            <h2 className="text-xl font-bold text-text-primary mb-6">
+                                About {college.name}
+                            </h2>
 
-                        {/* --- VERTICAL SECTIONS --- */}
-                        <div className="space-y-20 relative">
+                            <div className="space-y-6">
+                                <p className="text-lg text-text-secondary leading-relaxed">
+                                    {college.bestPart || college.description || `Welcome to ${college.name}.`}
+                                </p>
+                                <p className="text-text-secondary leading-relaxed">
+                                    {college.description || `${college.name} is committed to providing world-class education with state-of-the-art facilities and experienced faculty members dedicated to student success.`}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                            {/* Decorative Line (Optional side accent) */}
-                            <div className="hidden lg:block absolute left-[-24px] top-6 bottom-6 w-px bg-gradient-to-b from-indigo-500/0 via-indigo-200/50 to-indigo-500/0"></div>
 
-                            {/* 1. ABOUT SECTION */}
-                            <div id="about" className="scroll-mt-48 space-y-8">
-                                <section
-                                    ref={aboutRef.ref}
-                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group hover:shadow-2xl hover:border-indigo-100 transition-all duration-700 transform ${aboutRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -mr-32 -mt-32 opacity-60 group-hover:bg-indigo-100 transition-all duration-1000"></div>
-                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
-                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                        </span>
-                                        About {college.name}
-                                    </h2>
-                                    <div className="relative z-10 prose prose-lg text-slate-600 leading-relaxed mb-8">
-                                        <p>
-                                            <span className="text-5xl float-left mr-3 mt-[-10px] font-serif text-indigo-500 opacity-20">❝</span>
-                                            {college.bestPart || college.description || `Welcome to ${college.name}.`}
+                {/* Admission Enquiry Section */}
+                <section ref={enquiryRef.ref} className={`py-12 bg-slate-50 transition-all duration-700 delay-100 ${enquiryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <div className="max-w-5xl mx-auto px-6">
+                        <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border">
+                            <div className="grid grid-cols-1 md:grid-cols-12">
+                                {/* Image Side */}
+                                <div className="relative h-64 md:h-auto md:col-span-5">
+                                    <img
+                                        src={getAssetUrl('graphic era/image-3.jpg')}
+                                        alt="Student Life"
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/20 to-transparent"></div>
+                                    <div className="absolute bottom-6 left-6 text-white p-4">
+                                        <h4 className="text-2xl font-bold mb-1 leading-tight text-white">Review Your Journey</h4>
+                                        <p className="text-sm text-indigo-100 opacity-90">Unlock your potential with world-class education</p>
+                                    </div>
+                                </div>
+
+                                {/* Form Side */}
+                                <div className="md:col-span-7 p-6 md:p-8 bg-indigo-50 flex flex-col justify-center">
+                                    <div className="mb-6">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">Admissions Open 2026</h3>
+                                        <p className="text-sm text-gray-500 font-medium">
+                                            Applications closing soon. Apply now to secure your seat.
                                         </p>
                                     </div>
 
-                                    {/* Stats Grid */}
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-100 pt-6">
-                                        {[
-                                            { label: 'Ranking', value: collegeId === 1 ? 'NIRF Rank 52' : collegeId === 11 ? 'NAAC Accredited' : 'Top Rated', sub: 'Accreditation', icon: '🏆' },
-                                            { label: 'Legacy', value: collegeId === 1 ? '30+ Years' : collegeId === 11 ? '22+ Years' : '20+ Years', sub: 'Of Eminence', icon: '🏛️' },
-                                            { label: 'Global', value: collegeId === 1 ? '50k+ Alum' : collegeId === 11 ? '10k+ Alum' : 'Alumni Network', sub: 'Worldwide', icon: '🌍' }
-                                        ].map((stat, i) => (
-                                            <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-transparent hover:bg-slate-50 transition-colors">
-                                                <div className="text-3xl filter-none opacity-100 placeholder:opacity-100">{stat.icon}</div>
-                                                <div>
-                                                    <div className="font-bold text-slate-800 text-sm">{stat.value}</div>
-                                                    <div className="text-xs text-slate-400 font-medium">{stat.label}</div>
-                                                </div>
-                                            </div>
-                                        ))}
+                                    <div className="space-y-4 mb-8">
+                                        <button
+                                            onClick={() => navigate('/apply')}
+                                            className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold text-base shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2"
+                                        >
+                                            Apply Now
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                                        </button>
+
+
+                                        <button
+                                            onClick={() => collegeId === 1 ? navigate(`/college/${collegeId}/fees`) : navigate('/fees')}
+                                            className="w-full py-3.5 rounded-xl bg-white border-2 border-indigo-100 text-indigo-600 font-bold text-sm hover:bg-indigo-50 hover:border-indigo-200 transition-all duration-200 flex items-center justify-center gap-2"
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            Check Fees
+                                        </button>
+
+                                        <button
+                                            onClick={() => window.open(getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf'), '_blank')}
+                                            className="w-full py-3.5 rounded-xl bg-white border-2 border-gray-100 text-gray-700 font-bold text-sm hover:border-indigo-200 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 flex items-center justify-center gap-2"
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                            Download Brochure
+                                        </button>
                                     </div>
-                                </section>
-                            </div>
 
-
-                            {/* 2. PLACEMENT SUCCESS */}
-                            <div id="placement-success" className="scroll-mt-36">
-                                <section
-                                    ref={placementRef.ref}
-                                    className={`bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl overflow-hidden relative transition-all duration-700 transform ${placementRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    {/* Abstract shapes bg */}
-                                    <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
-                                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600 rounded-full blur-[80px] opacity-20 -ml-16 -mb-16"></div>
-
-                                    <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 relative z-10">
-                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                                        </span>
-                                        Placement Success
-                                    </h2>
-
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-                                        <div className="space-y-6">
-                                            <p className="text-indigo-200/80 mb-8">Our students regularly secure top-tier positions at Fortune 500 companies.</p>
-                                            <div className="flex flex-wrap gap-3">
-                                                {(collegeId === 11 ? ['Infosys', 'Wipro', 'HCL', 'Amazon', 'Genpact', 'Deloitte'] : ['Google', 'Amazon', 'Microsoft', 'Adobe', 'TCS']).map(company => (
-                                                    <span key={company} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">{company}</span>
-                                                ))}
-                                            </div>
+                                    {/* Social Proof */}
+                                    <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+                                        <div className="flex -space-x-3">
+                                            {[1, 2, 3, 4].map(i => (
+                                                <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-indigo-50 flex items-center justify-center overflow-hidden">
+                                                    <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white"></div>
+                                                </div>
+                                            ))}
                                         </div>
-                                        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10 transform transition-transform hover:scale-[1.02]">
-                                            <div className="mb-6">
-                                                <p className="text-sm text-indigo-200 uppercase tracking-wide">Highest Package</p>
-                                                <div className="text-5xl font-bold text-white mt-2">₹ {collegeId === 11 ? '15.00' : '54.03'} <span className="text-2xl text-indigo-300">LPA</span></div>
+                                        <div className="text-sm">
+                                            <span className="font-bold text-gray-900 block">150+ students</span>
+                                            <span className="text-gray-500 text-xs">counseling today</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Contact Info */}
+                                    <div>
+                                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Contact</h4>
+                                        <div className="space-y-4">
+                                            <div className="flex items-start gap-3">
+                                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-indigo-500 shrink-0 mt-0.5">
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                                </div>
+                                                <span className="text-sm text-gray-600 font-medium leading-relaxed">
+                                                    566/6, Bell Road, Clement Town, Dehradun, Uttarakhand - 248002, Uttarakhand
+                                                </span>
                                             </div>
-                                            <div className="h-px bg-white/10 mb-6"></div>
-                                            <div className="grid grid-cols-2 gap-6">
-                                                <div>
-                                                    <p className="text-xs text-indigo-200 uppercase">Avg Package</p>
-                                                    <p className="text-xl font-bold">₹ {collegeId === 11 ? '4.00' : '6.42'} LPA</p>
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-indigo-500 shrink-0">
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                                                 </div>
-                                                <div>
-                                                    <p className="text-xs text-indigo-200 uppercase">Total Offers</p>
-                                                    <p className="text-xl font-bold">{collegeId === 11 ? '500+' : '3,500+'}</p>
-                                                </div>
+                                                <span className="text-sm text-gray-900 font-bold">+91 7078964020</span>
                                             </div>
                                         </div>
                                     </div>
-                                </section>
-                            </div>
-
-                            {/* 3. COURSES OFFERED */}
-                            <div id="courses-offered" className="scroll-mt-36">
-                                <section
-                                    ref={coursesRef.ref}
-                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 transition-all duration-700 transform ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-pink-100 text-pink-600">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                                        </span>
-                                        Courses Offered
-                                    </h2>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {courses.map((course, idx) => (
-                                            <div key={idx} className="flex items-center justify-between p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-indigo-100 hover:shadow-md transition-all duration-300">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-xl">{course.icon}</div>
-                                                    <div>
-                                                        <h3 className="text-sm font-bold text-slate-800">{course.name}</h3>
-                                                        <p className="text-[10px] text-slate-500 font-medium">Full Time • On Campus</p>
-                                                    </div>
-                                                </div>
-                                                <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] font-bold border border-indigo-100">{course.duration}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            </div>
-
-                            {/* 4. INFRASTRUCTURE & FACILITIES */}
-                            <div id="infrastructure-facilities" className="scroll-mt-36">
-                                <section
-                                    ref={infraRef.ref}
-                                    className={`space-y-8 transition-all duration-700 transform ${infraRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    <div className="flex items-center justify-between">
-                                        <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                                            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600">
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                                            </span>
-                                            <span>World-Class Infrastructure</span>
-                                        </h2>
-                                    </div>
-                                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-                                        {facilities.map((fac, idx) => (
-                                            <div key={idx} className="group relative h-40 rounded-2xl bg-white shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-indigo-100 transition-all duration-500">
-                                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${fac.color.replace('text-', 'from-').replace('600', '50/50')} to-white`}></div>
-                                                <div className="relative z-10 h-full flex flex-col justify-center items-center p-4">
-                                                    <div className={`mb-3 p-3 rounded-2xl bg-slate-50 group-hover:bg-white ${fac.color} transition-colors`}>
-                                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={fac.icon} /></svg>
-                                                    </div>
-                                                    <h3 className="text-base font-bold text-slate-700 group-hover:text-slate-900">{fac.name}</h3>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            </div>
-
-                            {/* 5. CAMPUS LIFE */}
-                            <div id="campus-life" className="scroll-mt-36">
-                                <section
-                                    ref={galleryRef.ref}
-                                    className={`bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40 transition-all duration-700 transform ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                >
-                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-100 text-teal-600">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                        </span>
-                                        Campus Life & Gallery
-                                    </h2>
-                                    <CollegeGallery images={slideshowImages} />
-                                </section>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {/* RIGHT SIDEBAR (4 Cols) - Sticky */}
-                    <div className="lg:col-span-4 space-y-6">
-                        <div className="sticky top-24 space-y-6">
-
-                            {/* Apply Now Card (Glassmorphic) */}
-                            <div className="bg-white rounded-3xl p-6 shadow-xl shadow-indigo-100 border border-slate-100 relative overflow-hidden">
-                                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-
-                                <h3 className="text-xl font-bold text-slate-900 mb-2">Admissions Open 2026</h3>
-                                <p className="text-sm text-slate-500 mb-6">Applications are filling fast. Secure your spot at {college.name} today.</p>
-
-                                <button
-                                    onClick={() => navigate('/apply')}
-                                    className="w-full py-4 rounded-xl bg-[#4338CA] text-white font-bold text-lg hover:bg-[#3730a3] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-500/20 mb-3 flex items-center justify-center gap-2"
-                                >
-                                    <span>Apply Now</span>
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                                </button>
-
-                                <button
-                                    onClick={() => window.open('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767117750/geu-brochure-2025-new-2_11zon_aalytr.pdf', '_blank')}
-                                    className="w-full py-3 rounded-xl border-2 border-slate-100 text-slate-700 font-bold hover:border-slate-200 hover:bg-slate-50 transition-all duration-200"
-                                >
-                                    Download Brochure
-                                </button>
-
-                                <div className="mt-6 flex items-center justify-center gap-2">
-                                    <div className="flex -space-x-2">
-                                        {[1, 2, 3].map(i => (
-                                            <div key={i} className="w-8 h-8 rounded-full bg-slate-200 border-2 border-white"></div>
-                                        ))}
-                                    </div>
-                                    <span className="text-xs text-slate-500 font-medium ml-1">200+ applied this week</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
 
-                            {/* Contact Info Widget */}
-                            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
-                                <h4 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Contact Details</h4>
-                                <ul className="space-y-4">
-                                    <li className="flex items-start gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 mt-0.5 shrink-0">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+
+                {/* Courses Section - Full Width Clean Background */}
+                <section id="courses" ref={coursesRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-100 ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <div className="max-w-5xl mx-auto px-6">
+                        <div className="mb-8">
+                            <h2 className="text-xl font-bold text-text-primary mb-2">Courses Offered</h2>
+                            <p className="text-text-secondary">Explore our diverse range of undergraduate and postgraduate programs</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {courses.map((course, idx) => {
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`group relative rounded-xl border border-border bg-white hover:border-brand-primary/30 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 ${coursesRef.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                                            }`}
+                                        style={{
+                                            transitionDelay: `${idx * 30}ms`
+                                        }}
+                                    >
+                                        <div className="p-4 flex items-center gap-3">
+                                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-xl">
+                                                {course.icon}
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="text-sm font-semibold text-text-primary line-clamp-1 mb-1">
+                                                    {course.name}
+                                                </h4>
+                                                <div className="flex items-center gap-1.5">
+                                                    <svg className="w-3.5 h-3.5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    <span className="text-xs text-brand-primary font-medium">
+                                                        {course.duration}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <span className="text-sm text-slate-600 leading-snug">
-                                            {college.location}, Uttarakhand
-                                        </span>
-                                    </li>
-                                    <li className="flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Infrastructure Section - Full Width Clean Background */}
+                <section id="infrastructure" ref={infraRef.ref} className={`py-16 bg-slate-50 transition-all duration-700 delay-200 ${infraRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <div className="max-w-5xl mx-auto px-6">
+                        <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                            <h2 className="text-xl font-bold text-text-primary mb-8">World-Class Facilities</h2>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {facilities.map((fac, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`group relative overflow-hidden rounded-xl border-2 ${fac.color.split(' ')[0].replace('bg-', 'border-').replace('-50', '-200')} ${fac.color.split(' ')[0]} hover:shadow-lg transition-all duration-500 hover:-translate-y-1 ${infraRef.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                                            }`}
+                                        style={{
+                                            transitionDelay: `${idx * 60}ms`
+                                        }}
+                                    >
+                                        <div className="p-5 flex flex-col items-center justify-center text-center h-32">
+                                            <div className={`w-12 h-12 rounded-xl ${fac.color.split(' ')[0].replace('-50', '-100')} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                                                <svg className={`w-6 h-6 ${fac.color.split(' ')[1]}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={fac.icon} />
+                                                </svg>
+                                            </div>
+                                            <span className="text-xs md:text-sm font-bold text-gray-900 leading-tight">
+                                                {fac.name}
+                                            </span>
                                         </div>
-                                        <span className="text-sm text-slate-600">+91 7078964020</span>
-                                    </li>
-                                </ul>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
+                </section>
 
-                </div>
-            </div>
-        </div>
+                {/* Gallery Section */}
+                {
+                    galleryImages && galleryImages.length > 0 && (
+                        <section id="gallery" ref={galleryRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-200 ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                            <div className="max-w-5xl mx-auto px-6">
+                                <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                                    <h2 className="text-xl font-bold text-text-primary mb-6">Campus Gallery</h2>
+                                    <CollegeGallery images={galleryImages} />
+                                </div>
+                            </div>
+                        </section>
+                    )
+                }
+
+            </div >
+        </div >
     );
 }
 

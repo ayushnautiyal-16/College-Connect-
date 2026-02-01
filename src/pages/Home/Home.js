@@ -9,6 +9,7 @@ import FeatureCard from '../../components/FeatureCard/FeatureCard';
 import AnimatedSectionHeader from '../../components/AnimatedSectionHeader/AnimatedSectionHeader';
 import SimpleAnimatedHeader from '../../components/SimpleAnimatedHeader/SimpleAnimatedHeader';
 import LogoTicker from '../../components/LogoTicker/LogoTicker';
+import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 import { collegesData } from '../../utils/collegesData';
 
 function Home() {
@@ -190,15 +191,20 @@ function Home() {
 
   return (
     <div className="bg-white">
-      {/* Hero Slideshow & Search */}
-      <div className="relative">
+      {/* Hero Slideshow & Search - Premium Light Background */}
+      <div className="relative bg-light-secondary">
         <HomeSearch />
         <HeroSlider />
       </div>
 
-      {/* Top Colleges Section */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      {/* Top Colleges Section - Premium Section Background */}
+      <section className="py-20 bg-light-primary relative overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234F46E5' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <AnimatedSectionHeader
             leftText="Top Colleges in"
@@ -207,12 +213,17 @@ function Home() {
           />
 
           {/* Colleges Grid */}
-          <div className="max-w-7xl mx-auto">
+          <div className="mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center">
               {displayedColleges.map((college, index) => (
-                <div key={college.id} className="w-full max-w-sm">
+                <AnimatedSection
+                  key={college.id}
+                  animationType="fade-up"
+                  delay={index % 3 * 100}
+                  className="w-full max-w-sm"
+                >
                   <CollegeCard college={college} index={index} />
-                </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -221,7 +232,7 @@ function Home() {
           <div className="text-center mt-12">
             <Link
               to="/campuses"
-              className="inline-block bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="inline-block bg-brand-primary hover:bg-brand-secondary text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
               View All Colleges
             </Link>
@@ -229,116 +240,177 @@ function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats-section" className="py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 p-8 text-center border border-gray-100">
-              <div className="text-4xl md:text-5xl font-heading font-bold text-primary-600 mb-3">
-                {students.toLocaleString()}+
+      {/* Stats Section - Premium Dark Background */}
+      <section id="stats-section" className="py-12 md:py-16 bg-dark-primary relative overflow-hidden">
+        {/* Subtle Texture Overlay */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`
+        }}></div>
+
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            <AnimatedSection animationType="fade-up" delay={0}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl shadow-md hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-1 p-6 md:p-8 text-center border border-white/20">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2">
+                  {students.toLocaleString()}+
+                </div>
+                <div className="text-white/90 text-sm md:text-base font-semibold">Students Helped</div>
               </div>
-              <div className="text-gray-600 text-base md:text-lg font-medium">Students Helped</div>
-            </div>
-            <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 p-8 text-center border border-gray-100">
-              <div className="text-4xl md:text-5xl font-heading font-bold text-primary-600 mb-3">{colleges}+</div>
-              <div className="text-gray-600 text-base md:text-lg font-medium">Colleges</div>
-            </div>
-            <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 p-8 text-center border border-gray-100">
-              <div className="text-4xl md:text-5xl font-heading font-bold text-primary-600 mb-3">{experience}+</div>
-              <div className="text-gray-600 text-base md:text-lg font-medium">Years Experience</div>
-            </div>
+            </AnimatedSection>
+            <AnimatedSection animationType="fade-up" delay={150}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl shadow-md hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-1 p-6 md:p-8 text-center border border-white/20">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2">{colleges}+</div>
+                <div className="text-white/90 text-sm md:text-base font-semibold">Partner Colleges</div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animationType="fade-up" delay={300}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl shadow-md hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-1 p-6 md:p-8 text-center border border-white/20">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2">{experience}+</div>
+                <div className="text-white/90 text-sm md:text-base font-semibold">Years Experience</div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Logo Ticker Section */}
-      <LogoTicker />
+      {/* Logo Ticker Section - Clean White */}
+      <div className="bg-white">
+        <LogoTicker />
+      </div>
 
-      {/* Features Section */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
-        {/* Decorative Background Elements */}
+      {/* Features Section - Premium Section Background */}
+      <section className="py-24 bg-light-primary relative overflow-hidden">
+        {/* Geometric Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233B82F6' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`
+        }}></div>
+
+        {/* Decorative Gradient Orbs */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-200/20 rounded-full blur-[100px]"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-200/20 rounded-full blur-[100px]"></div>
+          <div className="absolute top-[-10%] left-[-5%] w-[35%] h-[35%] bg-gradient-to-br from-indigo-300/20 to-blue-300/20 rounded-full blur-[100px]"></div>
+          <div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[35%] bg-gradient-to-tl from-purple-300/20 to-pink-300/20 rounded-full blur-[100px]"></div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-          <SimpleAnimatedHeader
-            title="Why Choose College Connect?"
-            subtitle="We provide comprehensive support for your college admission journey"
-          />
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+          <AnimatedSection animationType="slide-left">
+            <SimpleAnimatedHeader
+              title="Why Choose College Connect?"
+              subtitle="We provide comprehensive support for your college admission journey"
+            />
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => (
-              <FeatureCard
+              <AnimatedSection
                 key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                index={index}
-              />
+                animationType={index % 2 === 0 ? "slide-left" : "slide-right"}
+                delay={index * 100}
+              >
+                <FeatureCard
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                  index={index}
+                />
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Admission Process Steps */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <SimpleAnimatedHeader
-            title="How It Works"
-            subtitle="Our simple 4-step process to get you into your dream college"
-          />
+      {/* Admission Process Steps - Premium Light Background */}
+      <section className="py-24 bg-light-secondary relative overflow-hidden">
+        {/* Top Border Gradient */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+
+        {/* Subtle Radial Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/20 via-transparent to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+          <AnimatedSection animationType="slide-left">
+            <SimpleAnimatedHeader
+              title="How It Works"
+              subtitle="Our simple 4-step process to get you into your dream college"
+            />
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
             {steps.map((step, index) => (
-              <StepCard
+              <AnimatedSection
                 key={step.number}
-                number={step.number}
-                title={step.title}
-                description={step.description}
-                index={index}
-              />
+                animationType="fade-up"
+                delay={index * 150}
+              >
+                <StepCard
+                  number={step.number}
+                  title={step.title}
+                  description={step.description}
+                  index={index}
+                />
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <SimpleAnimatedHeader
-            title="Success Stories"
-            subtitle="Hear from students who achieved their dreams with our help"
-          />
+      {/* Testimonials Section - Premium Section Background */}
+      <section className="py-24 bg-light-primary relative overflow-hidden">
+
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+          <AnimatedSection animationType="slide-left">
+            <SimpleAnimatedHeader
+              title="Success Stories"
+              subtitle="Hear from students who achieved their dreams with our help"
+            />
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <TestimonialCard
+              <AnimatedSection
                 key={index}
-                name={testimonial.name}
-                college={testimonial.college}
-                rating={testimonial.rating}
-                testimonial={testimonial.testimonial}
-                index={index}
-              />
+                animationType={index % 2 === 0 ? "slide-left" : "slide-right"}
+                delay={index * 150}
+              >
+                <TestimonialCard
+                  name={testimonial.name}
+                  college={testimonial.college}
+                  rating={testimonial.rating}
+                  testimonial={testimonial.testimonial}
+                  index={index}
+                />
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-            Ready to Start Your College Journey?
-          </h2>
-          <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Take the first step towards your dream college today
-          </p>
-          <button
-            onClick={() => navigate('/apply')}
-            className="bg-white text-primary-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 hover:shadow-xl"
-          >
-            Apply Now
-          </button>
+      {/* CTA Section - Premium Dark Background */}
+      <section className="py-24 bg-dark-primary text-text-white relative overflow-hidden">
+        {/* Animated Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+
+        {/* Glowing Orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center relative z-10">
+          <AnimatedSection animationType="slide-left">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Start Your College Journey?
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animationType="slide-left" delay={200}>
+            <p className="text-xl md:text-2xl mb-10 text-white/95 max-w-3xl mx-auto leading-relaxed">
+              Take the first step towards your dream college today
+            </p>
+          </AnimatedSection>
+          <AnimatedSection animationType="fade-up" delay={400}>
+            <button
+              onClick={() => navigate('/apply')}
+              className="bg-brand-primary hover:bg-brand-secondary text-white font-bold px-10 py-4 rounded-xl text-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:shadow-2xl shadow-xl"
+            >
+              Apply Now
+            </button>
+          </AnimatedSection>
         </div>
       </section>
     </div>

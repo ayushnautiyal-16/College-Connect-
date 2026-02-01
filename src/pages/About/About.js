@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import '../Apply/Apply.css'; // Reuse premium animations
@@ -139,7 +140,7 @@ function About() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/90 via-slate-900/80 to-purple-900/90 z-10"></div>
           <img
-            src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1767379010/serious-teacher-checking-assignment-two-students_hmsmoy.jpg"
+            src={getAssetUrl("https://res.cloudinary.com/djjdvw3wc/image/upload/v1767379010/serious-teacher-checking-assignment-two-students_hmsmoy.jpg")}
             alt="Teacher guiding students"
             className="w-full h-full object-cover animate-pulse-slow"
             style={{ animationDuration: '20s' }}
@@ -219,7 +220,7 @@ function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-indigo-200 to-purple-200 rounded-[2rem] transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
               <img
-                src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1767379010/happy-teacher-with-students-background_ztskqv.jpg"
+                src={getAssetUrl("https://res.cloudinary.com/djjdvw3wc/image/upload/v1767379010/happy-teacher-with-students-background_ztskqv.jpg")}
                 alt="Team"
                 className="relative rounded-[2rem] shadow-2xl z-10 transform transition-transform duration-500 group-hover:-translate-y-2 object-cover aspect-[4/3] w-full"
               />
@@ -296,12 +297,12 @@ function About() {
             <div className={`relative transform transition-all duration-1000 delay-200 ${whyChooseRef.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <img
-                  src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1767380213/red-haired-lady-eyeglasses-holds-books-shows-ok-sign_jmfod2.jpg"
+                  src={getAssetUrl("https://res.cloudinary.com/djjdvw3wc/image/upload/v1767380213/red-haired-lady-eyeglasses-holds-books-shows-ok-sign_jmfod2.jpg")}
                   alt="Student 1"
                   className="rounded-2xl shadow-lg w-full h-64 md:h-80 object-cover transform translate-y-8 md:translate-y-12"
                 />
                 <img
-                  src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1767380216/front-view-male-student-wearing-black-backpack-holding-copybooks-files-blue-wall_i2xkzc.jpg"
+                  src={getAssetUrl("https://res.cloudinary.com/djjdvw3wc/image/upload/v1767380216/front-view-male-student-wearing-black-backpack-holding-copybooks-files-blue-wall_i2xkzc.jpg")}
                   alt="Student 2"
                   className="rounded-2xl shadow-lg w-full h-64 md:h-80 object-cover"
                 />

@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
-    publicPath: './',
+    publicPath: '/',
     clean: true,
   },
   module: {
@@ -51,7 +51,7 @@ module.exports = {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
-    port: 3001,
+    port: 3000,
     hot: true,
     historyApiFallback: {
       index: '/index.html',

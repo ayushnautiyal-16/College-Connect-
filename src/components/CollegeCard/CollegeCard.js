@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
@@ -11,7 +12,8 @@ function CollegeCard({ college, index = 0 }) {
     return (
         <div
             ref={ref}
-            className={`group bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-2 hover:scale-[1.02] overflow-hidden border border-gray-200/60 relative z-10 hover:z-20
+            onClick={() => navigate(`/college/${id}`)}
+            className={`group bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-2 hover:scale-[1.02] overflow-hidden border border-gray-200/60 relative z-10 hover:z-20 cursor-pointer
                 ${isVisible
                     ? 'opacity-100 translate-y-0 scale-100'
                     : 'opacity-0 translate-y-6 scale-[0.98]'
@@ -21,20 +23,17 @@ function CollegeCard({ college, index = 0 }) {
                 transitionDelay: `${(index % 4) * 50}ms`,
             }}
         >
-            {/* College Logo Section - Compact */}
-            <div
-                className="h-32 flex items-center justify-center p-4 border-b border-gray-100/80 relative"
-                style={{ backgroundColor: logoBgColor || '#ffffff' }}
-            >
+            {/* College Logo/Cover Section */}
+            <div className="h-48 w-full relative overflow-hidden bg-gray-100 border-b border-gray-100/80 group-hover:shadow-inner transition-all">
                 {logo ? (
                     <img
                         src={logo}
-                        alt={`${name} logo`}
-                        className="max-h-24 max-w-[80%] object-contain"
+                        alt={`${name} campus`}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-bold text-white">
+                    <div className="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-white">
                             {name.charAt(0)}
                         </span>
                     </div>
@@ -42,79 +41,72 @@ function CollegeCard({ college, index = 0 }) {
             </div>
 
             {/* College Details Section - Compact */}
-            <div className="p-5 sm:p-6">
-                <div className="flex justify-between items-start gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-gray-900 leading-snug line-clamp-2">
-                        {name}
-                    </h3>
-                    {/* Accreditation Badge - Moved here */}
-                    {accreditation && (
-                        <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100/50">
-                            {accreditation}
-                        </span>
-                    )}
-                </div>
+            <div className="p-3.5 sm:p-4">
+                <h3 className="text-base font-bold text-gray-900 leading-snug mb-2 line-clamp-1">
+                    {name}
+                </h3>
 
-                <div className="mb-4">
+                <div className="mb-3">
                     {/* Location & Established - One Line if possible */}
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 font-medium">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-gray-500 font-medium">
                         {location && (
                             <div className="flex items-center">
-                                <svg className="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <svg className="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 <span className="truncate max-w-[150px]">{location}</span>
                             </div>
                         )}
                         {established && (
                             <div className="flex items-center">
-                                <svg className="w-3.5 h-3.5 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                <svg className="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                 <span>Estd. {established}</span>
                             </div>
                         )}
                     </div>
                 </div>
 
-                <div className="relative min-h-[3.5rem]">
-                    <p className="text-gray-600 text-[13px] leading-relaxed mb-4 line-clamp-2 bg-gray-50 p-2.5 rounded-lg border border-gray-100/50">
+                <div className="relative min-h-[3rem] mb-3">
+                    <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 bg-gray-50 p-2 rounded-lg border border-gray-100/50">
                         {description || "A premier institution offering quality education with modern facilities and experienced faculty."}
                     </p>
                 </div>
 
-                {courses && courses.length > 0 && (
-                    <div className="mb-4">
-                        <div className="flex flex-wrap gap-1.5">
-                            {courses.slice(0, 3).map((course, index) => (
-                                <span
-                                    key={index}
-                                    className="px-2.5 py-0.5 bg-indigo-50 border border-indigo-100 text-indigo-700 text-[11px] font-semibold rounded"
-                                >
-                                    {course}
-                                </span>
-                            ))}
-                            {courses.length > 3 && (
-                                <span className="px-2 py-0.5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-medium rounded">
-                                    +{courses.length - 3}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                )}
+
 
                 {/* Compact Action Buttons */}
-                <div className="grid grid-cols-3 gap-2 mt-auto">
+                <div className="grid grid-cols-2 gap-2 mt-auto">
                     <button
-                        onClick={() => navigate(`/college/${id}`)}
-                        className="col-span-1 bg-white border border-gray-200 text-gray-700 hover:border-indigo-300 hover:text-indigo-600 font-semibold py-1.5 px-2 rounded text-xs transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            navigate('/apply');
+                        }}
+                        className="col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1.5 px-2 rounded-md text-[11px] shadow-sm shadow-indigo-200 transition-colors uppercase tracking-wide"
                     >
-                        Details
-                    </button>
-                    <button className="col-span-1 bg-white border border-gray-200 text-gray-700 hover:border-indigo-300 hover:text-indigo-600 font-semibold py-1.5 px-2 rounded text-xs transition-colors">
-                        Fees
+                        Apply Now
                     </button>
                     <button
-                        onClick={() => navigate('/apply')}
-                        className="col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1.5 px-2 rounded text-xs shadow-sm shadow-indigo-200 transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (id === 1) {
+                                navigate(`/college/${id}/fees`);
+                            } else {
+                                navigate('/fees');
+                            }
+                        }}
+                        className="col-span-1 bg-white border border-indigo-100 hover:bg-indigo-50 text-indigo-600 font-semibold py-1.5 px-2 rounded-md text-[11px] transition-colors flex items-center justify-center gap-1"
                     >
-                        Apply
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Fees Structure
+                    </button>
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const url = id === 1 ? getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf') : '#';
+                            if (url !== '#') window.open(url, '_blank');
+                        }}
+                        className="col-span-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold py-1.5 px-2 rounded-md text-[11px] border border-amber-100 transition-colors flex items-center justify-center gap-1.5"
+                    >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        Download Brochure
                     </button>
                 </div>
             </div>

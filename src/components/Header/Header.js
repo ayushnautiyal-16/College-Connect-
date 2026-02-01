@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
@@ -68,13 +69,22 @@ function Header() {
           {/* Logo - Left Side */}
           <Link
             to="/"
-            className="flex items-center hover:opacity-80 transition-opacity duration-200"
+            className="flex items-center gap-3 hover:opacity-100 transition-all duration-300 group"
           >
-            <img
-              src="https://res.cloudinary.com/djjdvw3wc/image/upload/v1766824093/Gemini_Generated_Image_8r81ar8r81ar8r81__1_-removebg-preview_sal8sh.png"
-              alt="College Connect Logo"
-              className="h-8 md:h-9"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary-100 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <img
+                src={getAssetUrl("Colleges logos/IMG_0021.JPG-removebg-preview.png")}
+                alt="College Connect Logo"
+                className="relative h-11 md:h-14 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            <div className="hidden sm:flex items-center gap-3">
+              <span className="hidden lg:block text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary tracking-[0.2em] uppercase pt-0.5">
+                Creating Future Paths
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation + Phone - Right Side */}

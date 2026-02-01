@@ -1,39 +1,131 @@
+import { getAssetUrl } from './assets';
+
 export const collegesData = [
     {
         id: 1,
         name: 'Graphic Era University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766814490/geu-logo-1_frexjb.webp',
+        logo: getAssetUrl('graphic era/col_14360.jpg'),
         logoBgColor: '#374151',
-        location: '566/6, Bell Road, Clement Town, Dehradun',
+        location: '566/6, Bell Road, Clement Town, Dehradun, Uttarakhand - 248002',
         established: '1993',
-        accreditation: 'NAAC A+ Grade | NBA | UGC',
-        description: 'Dehradun\'s highest-ranked university offering world-class engineering, management & humanities education.',
-        courses: ['B.Tech', 'MBA', 'BCA', 'M.Tech', 'BBA', 'B.Sc'],
+        accreditation: 'NAAC A+ Grade | NBA Accredited | UGC Recognized',
+
+        // Enhanced: Rankings
+        rankings: {
+            nirf: 'Band 151-200 (Engineering) 2023',
+            state: 'Top 3 in Uttarakhand',
+            qs: 'QS I-Gauge Diamond Rated',
+            other: 'Times Higher Education Impact Rankings participant'
+        },
+
+        description: 'Graphic Era (Deemed to be University), is the highest ranked Deemed University in Uttarakhand.',
+
+        // Enhanced: Detailed About
+        about: {
+            mission: 'To provide quality education, foster innovation, and develop industry-ready professionals with strong ethical values.',
+            vision: 'To be a globally recognized institution creating leaders who shape the future through knowledge and innovation.',
+            keyAchievements: [
+                'NAAC A+ Grade accreditation',
+                '50,000+ alumni network worldwide',
+                'MOUs with 200+ international universities',
+                'Highest package: ₹54.03 LPA (2023)',
+                'Innovation Hub with 100+ patents filed'
+            ],
+            notableAlumni: [
+                'Working in Google, Microsoft, Amazon, Adobe',
+                'Entrepreneurs with successful startups',
+                'Government officials and policy makers'
+            ]
+        },
+
+        // Enhanced: Comprehensive Course List (15+)
+        courses: [
+            'B.Tech (CSE, ME, ECE, Civil, EE)',
+            'B.Tech (AI & ML, Cyber Security, Data Science)',
+            'MBA (Marketing, Finance, HR, Operations)',
+            'MCA',
+            'M.Tech (CSE, ME, ECE)',
+            'BBA',
+            'BCA',
+            'B.Sc (IT, Agriculture, Microbiology)',
+            'B.Sc (Nursing, Biotechnology)',
+            'B.Com (Hons)',
+            'BA (Journalism & Mass Communication)',
+            'B.Pharma',
+            'D.Pharma',
+            'BHM (Hotel Management)',
+            'B.Des (Fashion, Interior)',
+            'LLB / BA LLB (Hons)',
+            'Ph.D (Engineering, Management, Sciences)'
+        ],
+
         collegeType: 'Deemed-to-be University',
         campusSize: '30+ Acres',
-        placementRate: '94%',
+
+        // Enhanced: Detailed Placement Information
+        placements: {
+            placementRate: '94%',
+            averagePackage: '₹5-8 LPA',
+            highestPackage: '₹54.03 LPA',
+            medianPackage: '₹4.5 LPA',
+            topRecruiters: [
+                'Microsoft', 'Amazon', 'Google', 'Adobe',
+                'Infosys', 'TCS', 'Wipro', 'Cognizant',
+                'Deloitte', 'PwC', 'KPMG', 'EY',
+                'Capgemini', 'Tech Mahindra', 'HCL'
+            ],
+            sectorWise: {
+                it: '65%',
+                core: '15%',
+                management: '10%',
+                others: '10%'
+            }
+        },
+
+        // Enhanced: Comprehensive Facilities List
+        facilities: [
+            'Central Library with 1,00,000+ books',
+            'Digital Library & E-Resources',
+            'State-of-the-art Computer Labs',
+            'Advanced Engineering Laboratories',
+            'Research & Development Centers',
+            'Separate Boys & Girls Hostels',
+            'Multi-cuisine Cafeteria',
+            '24/7 Medical Facility',
+            'Sports Complex (Indoor & Outdoor)',
+            'Gymnasium & Fitness Center',
+            'Auditorium (1000+ capacity)',
+            'Seminar Halls & Conference Rooms',
+            'High-speed WiFi Campus',
+            'Banking & ATM Facilities',
+            'Transportation Services',
+            'Entrepreneurship Cell',
+            'Innovation & Incubation Center',
+            'Placement Training Center'
+        ],
+
         bestKnownFor: 'Exceptional placements, NAAC A+ accreditation, and robust research infrastructure',
-        mainCourses: ['B.Tech CSE', 'B.Tech Mec', 'MBA', 'BCA', 'M.Tech', 'BBA', 'B.Sc IT', 'Ph.D'],
+        mainCourses: ['B.Tech CSE', 'B.Tech AI & ML', 'MBA', 'BCA', 'M.Tech', 'B.Pharma', 'B.Sc IT', 'Ph.D'],
         bestCourses: [
             {
-                name: 'B.Tech Computer Science',
-                description: 'Flagship program with specializations in AI, ML, and Cyber Security. Highest placement record.'
+                name: 'B.Tech Computer Science & Engineering',
+                description: 'Flagship program with specializations in AI, ML, Cyber Security, and Data Science. Highest placement record with packages up to ₹54 LPA.'
             },
             {
-                name: 'MBA',
-                description: 'Industry-integrated curriculum with dual specialization and exposure to global business practices.'
+                name: 'MBA (Master of Business Administration)',
+                description: 'Industry-integrated curriculum with dual specialization options and exposure to global business practices. Strong corporate connections.'
             },
             {
-                name: 'B.Sc IT',
-                description: 'Practical-focused IT program bridging the gap between academic concepts and industry needs.'
+                name: 'B.Sc Information Technology',
+                description: 'Practical-focused IT program bridging the gap between academic concepts and industry needs with hands-on training.'
             }
         ],
-        bestPart: 'Graphic Era University is a landmark of higher education in Uttarakhand, holding the prestigious NAAC A+ Grade. It is renowned for its unmatchable placement record, with the highest package reaching ₹ 54.03 LPA and an average of ₹ 5-8 LPA. The university hosts world-class amenities, including high-tech labs, research centers, and a vibrant campus life fueled by celebrity events and technical fests.'
+        bestPart: 'Graphic Era University (Est. 1993) is a landmark of higher education in Uttarakhand with NAAC A+ Grade accreditation. Renowned for unmatchable placement records (94% placement rate), the university has placed students in top companies like Microsoft, Google, and Amazon. With 50,000+ global alumni, world-class infrastructure, high-tech labs, and vibrant campus life featuring tech fests and celebrity events, GEU provides a perfect blend of academic excellence and holistic development.'
     },
     {
         id: 2,
         name: 'DIT University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766814490/6350d4ffdd3471666241791_usebvz.svg',
+        logo: getAssetUrl('DIT/DIT_University_image_39602.avif'),
         logoBgColor: '#030C1E',
         location: 'Mussoorie Diversion Road, Makka Wala, Dehradun',
         established: '1998',
@@ -64,7 +156,7 @@ export const collegesData = [
     {
         id: 3,
         name: 'Uttaranchal University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766814685/UU-Logo-Naac-Nirf_sptbkb.png',
+        logo: getAssetUrl('uttaranchal/uu-infra-campus.png'),
         logoBgColor: '#ffffff',
         location: 'Arcadia Grant, P.O. Chandanwari, Premnagar, Dehradun',
         established: '2013',
@@ -95,7 +187,7 @@ export const collegesData = [
     {
         id: 4,
         name: 'University of Petroleum and Energy Studies (UPES)',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766815864/UPES-LOGO-01_svjwrd.jpg',
+        logo: getAssetUrl('UPES/IMG-20251230-WA0013(5).webp'),
         logoBgColor: '#ffffff',
         location: 'Energy Acres, Bidholi, Dehradun',
         established: '2003',
@@ -126,7 +218,7 @@ export const collegesData = [
     {
         id: 5,
         name: 'Dev Bhoomi Uttarakhand University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816036/devbhoomi-logo_w9bkus.webp',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816036/devbhoomi-logo_w9bkus.webp'),
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Manduwala, Dehradun',
         established: '2005',
@@ -158,7 +250,7 @@ export const collegesData = [
     {
         id: 6,
         name: 'Shri Guru Ram Rai University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767118111/logo_3_whg5oy.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767118111/logo_3_whg5oy.png'),
         logoBgColor: '#ffffff',
         location: 'Patel Nagar, Dehradun',
         established: '2017',
@@ -189,7 +281,7 @@ export const collegesData = [
     {
         id: 7,
         name: 'Himalayan Institute of Technology (HIT)',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816124/logo-hit_gayllo.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816124/logo-hit_gayllo.png'),
         logoBgColor: '#ffffff',
         location: 'Haridwar Road, Near Central Excise office, Dehradun',
         established: '2001',
@@ -220,7 +312,7 @@ export const collegesData = [
     {
         id: 8,
         name: 'GRD Institute of Management & Technology',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'),
         logoBgColor: '#2A2866',
         location: '214, Rajpur Road, Dehradun',
         established: '2002',
@@ -252,7 +344,7 @@ export const collegesData = [
     {
         id: 10,
         name: 'Sardar Bhagwan Singh University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767020054/sbs-logo_pkmszc.svg',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767020054/sbs-logo_pkmszc.svg'),
         logoBgColor: '#ffffff',
         location: 'Balawala, Dehradun',
         established: '1994',
@@ -283,7 +375,7 @@ export const collegesData = [
     {
         id: 11,
         name: 'Institute Of Technology & Management (ITM)',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817379/logo_logo_logo_logo-new1_c1kfpu.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817379/logo_logo_logo_logo-new1_c1kfpu.png'),
         logoBgColor: '#ffffff',
         location: '60, Chakrata Road, Yamuna Colony, Dehradun',
         established: '2002',
@@ -314,7 +406,7 @@ export const collegesData = [
     {
         id: 12,
         name: 'SAI Group Of Institutions',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817452/1_vyyky6.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817452/1_vyyky6.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2011',
@@ -343,7 +435,7 @@ export const collegesData = [
     {
         id: 13,
         name: 'Shivalik College of Engineering',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767018477/shivaliklogo_wyab9r.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767018477/shivaliklogo_wyab9r.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2006',
@@ -372,7 +464,7 @@ export const collegesData = [
     {
         id: 14,
         name: 'IMS Unison University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035781/Ims_logo_new_v2gjsf.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035781/Ims_logo_new_v2gjsf.png'),
         logoBgColor: '#B6BDAD',
         location: 'Dehradun',
         established: '2006',
@@ -401,7 +493,7 @@ export const collegesData = [
     {
         id: 15,
         name: 'Combined Institute of Medical Sciences & UIHMT',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/logo-cimsr_ei3ray.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/logo-cimsr_ei3ray.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2008',
@@ -430,7 +522,7 @@ export const collegesData = [
     {
         id: 16,
         name: 'Nav Chetna Group of Colleges',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/Nav-Chetna-Logo-new-r5w8c9orrpjj4fhhddlipo289lmebs0nfghda7oyzu_wimoeo.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/Nav-Chetna-Logo-new-r5w8c9orrpjj4fhhddlipo289lmebs0nfghda7oyzu_wimoeo.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2009',
@@ -459,7 +551,7 @@ export const collegesData = [
     {
         id: 17,
         name: 'Tulas Institute',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/TulasLogo.f88dd71b_u2a3xv.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/TulasLogo.f88dd71b_u2a3xv.png'),
         logoBgColor: '#888888',
         location: 'Dehradun',
         established: '2010',
@@ -488,7 +580,7 @@ export const collegesData = [
     {
         id: 18,
         name: 'Coer University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/coer-logo_xz3idz.webp',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/coer-logo_xz3idz.webp'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2012',
@@ -517,7 +609,7 @@ export const collegesData = [
     {
         id: 19,
         name: 'Quantum University',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/qu-logo-name_kjvdad.svg',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/qu-logo-name_kjvdad.svg'),
         logoBgColor: '#ffffff',
         location: 'Roorkee, Uttarakhand',
         established: '2011',
@@ -546,7 +638,7 @@ export const collegesData = [
     {
         id: 20,
         name: 'Dolphin College',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/dibns-logo_olfuby.webp',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/dibns-logo_olfuby.webp'),
         logoBgColor: '#888888',
         location: 'Dehradun',
         established: '2007',
@@ -575,7 +667,7 @@ export const collegesData = [
     {
         id: 21,
         name: 'BFIT - Baba Farid Institute of Technology',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/Bfit-logo-1_aoxy1t.webp',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/Bfit-logo-1_aoxy1t.webp'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2005',
@@ -604,7 +696,7 @@ export const collegesData = [
     {
         id: 9,
         name: 'D.D. College Dehradun',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png', // Keeping placeholder as no specific logo URL was provided/found in snippets to replace immediately.
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'), // Keeping placeholder as no specific logo URL was provided/found in snippets to replace immediately.
         logoBgColor: '#ffffff',
         location: '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand',
         established: '2014',
@@ -633,7 +725,7 @@ export const collegesData = [
     {
         id: 22,
         name: 'Guru Nanak College',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_vlerv7.webp',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_vlerv7.webp'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2008',
@@ -662,7 +754,7 @@ export const collegesData = [
     {
         id: 23,
         name: 'JBIT - Jai Bharat Institute of Technology',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/images_h0a51d.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/images_h0a51d.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2006',
@@ -691,7 +783,7 @@ export const collegesData = [
     {
         id: 24,
         name: 'Doon Group of Colleges',
-        logo: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_2_b55nw4.png',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_2_b55nw4.png'),
         logoBgColor: '#ffffff',
         location: 'Dehradun',
         established: '2004',

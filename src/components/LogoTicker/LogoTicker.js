@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import './LogoTicker.css';
 
 function LogoTicker() {
@@ -6,27 +7,27 @@ function LogoTicker() {
     const logosRow1 = [
         {
             id: 1,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946258/Infosys_logo.svg_feindm.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946258/Infosys_logo.svg_feindm.png'),
         },
         {
             id: 2,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946258/Adobe_Corporate_logo.svg_drdl8p.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946258/Adobe_Corporate_logo.svg_drdl8p.png'),
         },
         {
             id: 3,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Amazon_logo.svg_n8i8jw.webp',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Amazon_logo.svg_n8i8jw.webp'),
         },
         {
             id: 4,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946257/Wipro_Primary_Logo_Color_RGB.svg_blpfxt.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946257/Wipro_Primary_Logo_Color_RGB.svg_blpfxt.png'),
         },
         {
             id: 9,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946253/PharmEasy_logo_opzbvr.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946253/PharmEasy_logo_opzbvr.png'),
         },
         {
             id: 10,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946253/Google_2015_logo.svg_mq6axm.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946253/Google_2015_logo.svg_mq6axm.png'),
         },
     ];
 
@@ -34,19 +35,19 @@ function LogoTicker() {
     const logosRow2 = [
         {
             id: 5,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946257/Tata_Consultancy_Services_old_logo.svg_njnfta.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946257/Tata_Consultancy_Services_old_logo.svg_njnfta.png'),
         },
         {
             id: 6,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/MANKIND.NS-3f70896f_idw63x.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/MANKIND.NS-3f70896f_idw63x.png'),
         },
         {
             id: 7,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Accenture.svg_fjqnhy.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Accenture.svg_fjqnhy.png'),
         },
         {
             id: 8,
-            url: 'https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Amul_official_logo.svg_jronsu.png',
+            url: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766946254/Amul_official_logo.svg_jronsu.png'),
         },
     ];
 

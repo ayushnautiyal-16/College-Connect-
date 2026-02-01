@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import CollegeCard from '../../components/CollegeCard/CollegeCard';
 import AnimatedSectionHeader from '../../components/AnimatedSectionHeader/AnimatedSectionHeader';
+import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 import { collegesData } from '../../utils/collegesData';
 
 function Campuses() {
@@ -35,7 +36,7 @@ function Campuses() {
 
         {/* Search */}
         {/* Search */}
-        <section className="mb-16 relative z-10">
+        <AnimatedSection animationType="fade-up" delay={100} className="mb-16 relative z-10">
           <div className="relative w-full max-w-2xl mx-auto group">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
             <div className={`relative flex items-center bg-white rounded-full p-2 transition-all duration-300 shadow-xl ${searchQuery ? 'ring-2 ring-indigo-500' : 'ring-1 ring-slate-200'}`}>
@@ -59,7 +60,7 @@ function Campuses() {
               </button>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Results Count */}
         <div className="mb-6">
@@ -73,9 +74,14 @@ function Campuses() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center">
             {filteredColleges.length > 0 ? (
               filteredColleges.map((college, index) => (
-                <div key={college.id} className="w-full max-w-sm">
+                <AnimatedSection
+                  key={college.id}
+                  animationType="fade-up"
+                  delay={(index % 4) * 100} // Stagger delay based on column/index
+                  className="w-full max-w-sm"
+                >
                   <CollegeCard college={college} index={index} />
-                </div>
+                </AnimatedSection>
               ))
             ) : (
               <div className="col-span-full text-center py-12">

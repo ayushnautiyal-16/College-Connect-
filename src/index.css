@@ -174,17 +174,17 @@
 
   /* Primary CTA Button */
   .btn-primary {
-    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 hover:shadow-lg;
+    @apply bg-brand-primary hover:bg-brand-secondary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 hover:shadow-lg;
   }
 
   /* Secondary CTA Button */
   .btn-secondary {
-    @apply bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 hover:shadow-lg;
+    @apply bg-brand-secondary hover:bg-brand-primary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 hover:shadow-lg;
   }
 
   /* Outline Button */
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out;
+    @apply border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out;
   }
 
   /* Card Component */
@@ -397,4 +397,122 @@
 
 .animate-page-enter {
   animation: pageEnter 0.8s ease-out forwards;
+}
+
+/* Subtle Floating Animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Entrance Animations - Slide from Left (for text) */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Entrance Animations - Slide from Right (for images) */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Fade and Scale Up (for cards and elements) */
+@keyframes fadeScaleUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-scale-up {
+  animation: fadeScaleUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Stagger delays for sequential animations */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Zoom In Animation (for images) */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Ensure animations fill mode */
+.animate-slide-in-left,
+.animate-slide-in-right,
+.animate-fade-scale-up,
+.animate-zoom-in {
+  animation-fill-mode: both;
 }

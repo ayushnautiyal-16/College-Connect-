@@ -251,6 +251,107 @@
     }
 }
 
-.animate-bounce-short {
-    animation: bounce-short 0.6s ease-in-out 1;
+/* ... existing animations ... */
+
+/* New Animations for Light Theme */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Entrance Animations - using 'both' to prevent FOUC (flash of unstyled content) */
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translate3d(-50px, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fadeScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animate-fade-scale-up {
+    animation: fadeScaleUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Gradient Animation */
+@keyframes gradient-xy {
+
+    0%,
+    100% {
+        background-size: 400% 400%;
+        background-position: left center;
+    }
+
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+.animate-gradient-xy {
+    animation: gradient-xy 6s ease infinite;
+}
+
+/* Animation Delays */
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+/* Text Shimmer for Light Theme */
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-text-shimmer {
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
 }

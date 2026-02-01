@@ -7,20 +7,39 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Premium Brand Colors
+        brand: {
+          primary: '#4F46E5',      // Vivid indigo - main CTAs, buttons, links
+          secondary: '#6366F1',    // Lighter indigo - secondary actions, hovers
+        },
+        // Dark Backgrounds
+        dark: {
+          primary: '#0E1428',      // Main dark background
+          secondary: '#19203B',    // Alternate dark for depth
+        },
+        // Light Backgrounds
+        light: {
+          primary: '#F8FAFC',      // Section backgrounds
+          secondary: '#FFFFFF',    // Card backgrounds
+        },
+        // Text Colors
+        text: {
+          primary: '#1E293B',      // Primary text on light backgrounds
+          secondary: '#475569',    // Secondary text on light backgrounds
+          light: '#E5E7EB',        // Light text on dark backgrounds
+          white: '#FFFFFF',        // White text on dark backgrounds
+        },
+        // Borders & Dividers
+        border: {
+          DEFAULT: '#CBD5E1',      // Default border color
+          light: '#E2E8F0',        // Lighter borders
+        },
+        // Legacy support (keep for backward compatibility)
         primary: {
-          500: '#4F46E5', // Indigo
+          500: '#4F46E5',
           600: '#4338CA',
           700: '#3730A3',
           50: '#EEF2FF',
-        },
-        secondary: {
-          500: '#10B981', // Green for CTAs
-          600: '#059669',
-          700: '#047857',
-        },
-        accent: {
-          500: '#F97316', // Orange alternative for CTAs
-          600: '#EA580C',
         },
       },
       container: {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { getAssetUrl } from '../../utils/assets';
 import { useNavigate } from 'react-router-dom';
 import '../../pages/Apply/Apply.css'; // Import custom animations
 
@@ -19,7 +20,7 @@ function HeroSlider() {
       headline: 'Admissions Open 2026',
       ctaText: 'Apply Now',
       ctaLink: '/apply',
-      video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766775114/geu-homepage-video_nrlm4m.mp4',
+      video: getAssetUrl('graphic era/geu-homepage-video.mp4'),
       bgGradient: 'from-blue-600 via-indigo-600 to-purple-600',
       videoDuration: 20, // Auto-advance after 20 seconds
     },
@@ -28,7 +29,7 @@ function HeroSlider() {
       headline: 'Your Dream College',
       ctaText: 'Get Free Counselling',
       ctaLink: '/contact',
-      video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766775565/Life_at_UPES_UPES_Dehradun_-_UPES_1080p_h264_hepxuc.mp4',
+      video: getAssetUrl('uttaranchal/Why Uttaranchal University is North India’s Top Choice  750+ Recruiters & 2356+ Placements in 2024! - Uttaranchal University (1080p, h264, youtube).mp4'),
       bgGradient: 'from-primary-600 via-primary-500 to-primary-700',
       videoDuration: 20,
     },
@@ -37,7 +38,7 @@ function HeroSlider() {
       headline: 'Expert Admission Guidance',
       ctaText: 'Expert Admission Counselling',
       ctaLink: '/campuses',
-      video: 'https://res.cloudinary.com/djjdvw3wc/video/upload/v1766776995/Why_Uttaranchal_University_is_North_India_s_Top_Choice_750_Recruiters_2356_Placements_in_2024_-_Uttaranchal_University_1080p_h264_apekiz.mp4',
+      video: getAssetUrl('uttaranchal/Why Uttaranchal University is North India’s Top Choice  750+ Recruiters & 2356+ Placements in 2024! - Uttaranchal University (1080p, h264, youtube).mp4'),
       bgGradient: 'from-green-600 via-emerald-600 to-teal-600',
       videoDuration: 20,
     },

@@ -8,6 +8,7 @@ import Blog from './pages/Blog/Blog';
 import BlogPost from './pages/BlogPost/BlogPost';
 import Contact from './pages/Contact/Contact';
 import CollegeDetails from './pages/CollegeDetails/CollegeDetails';
+import CollegeFees from './pages/CollegeFees/CollegeFees';
 import Apply from './pages/Apply/Apply';
 
 // Error Boundary Component
@@ -60,6 +61,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/campuses" element={<Campuses />} />
             <Route path="/college/:id" element={<CollegeDetails />} />
+            <Route path="/college/:id/fees" element={<CollegeFees />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
