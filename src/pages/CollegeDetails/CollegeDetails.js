@@ -144,14 +144,60 @@ function CollegeDetails() {
         ];
     };
 
+    // --- Dynamic Data Helpers ---
+    const getCourseDetails = (courseName) => {
+        if (!courseName) return { duration: 'Duration Varies', icon: '🎓' };
+        const lower = courseName.toLowerCase();
+        if (lower.includes('b.tech') || lower.includes('engineering')) return { duration: '4 Years', icon: '💻' };
+        if (lower.includes('m.tech')) return { duration: '2 Years', icon: '⚙️' };
+        if (lower.includes('mba')) return { duration: '2 Years', icon: '📊' };
+        if (lower.includes('bba')) return { duration: '3 Years', icon: '👔' };
+        if (lower.includes('bca')) return { duration: '3 Years', icon: '🖥️' };
+        if (lower.includes('mca')) return { duration: '2 Years', icon: '💻' };
+        if (lower.includes('mbbs')) return { duration: '5.5 Years', icon: '⚕️' };
+        if (lower.includes('bpts') || lower.includes('bpt')) return { duration: '4.5 Years', icon: '🦴' };
+        if (lower.includes('pharma')) return { duration: '4 Years', icon: '💊' };
+        if (lower.includes('nursing')) return { duration: '4 Years', icon: '🏥' };
+        if (lower.includes('b.sc')) return { duration: '3 Years', icon: '🔬' };
+        if (lower.includes('m.sc')) return { duration: '2 Years', icon: '🧪' };
+        if (lower.includes('hotel') || lower.includes('bhm')) return { duration: '4 Years', icon: '🏨' };
+        if (lower.includes('law') || lower.includes('llb')) return { duration: '3-5 Years', icon: '⚖️' };
+        if (lower.includes('design') || lower.includes('b.des')) return { duration: '4 Years', icon: '🎨' };
+        if (lower.includes('education') || lower.includes('b.ed')) return { duration: '2 Years', icon: '📚' };
+        if (lower.includes('commerce') || lower.includes('b.com')) return { duration: '3 Years', icon: '📉' };
+        return { duration: 'Duration Varies', icon: '🎓' };
+    };
+
+    const getFacilityDetails = (facilityName) => {
+        if (!facilityName) return { icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z', color: 'bg-gray-50 text-gray-600' };
+        const lower = facilityName.toLowerCase();
+        if (lower.includes('library')) return { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' };
+        if (lower.includes('wifi') || lower.includes('wi-fi')) return { icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0', color: 'bg-purple-50 text-purple-600' };
+        if (lower.includes('sport') || lower.includes('gym')) return { icon: 'M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-green-50 text-green-600' };
+        if (lower.includes('hostel')) return { icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', color: 'bg-orange-50 text-orange-600' };
+        if (lower.includes('lab') || lower.includes('computer')) return { icon: 'M9.75 17h4.5M9.75 17a2.25 2.25 0 01-2.25-2.25v-4.125a.75.75 0 01.164-.44l2.516-3.355a.75.75 0 00.07-.44V3h-1.5a.75.75 0 010-1.5h4.5a.75.75 0 010 1.5h-1.5v3.39c0 .156.024.309.07.44l2.516 3.355c.123.164.164.315.164.44V14.75A2.25 2.25 0 0114.25 17h-4.5z', color: 'bg-blue-50 text-blue-600' };
+        if (lower.includes('cafeteria') || lower.includes('food') || lower.includes('canteen')) return { icon: 'M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z', color: 'bg-red-50 text-red-600' };
+        if (lower.includes('medical') || lower.includes('hospital')) return { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01', color: 'bg-teal-50 text-teal-600' };
+        if (lower.includes('auditorium')) return { icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', color: 'bg-yellow-50 text-yellow-600' };
+        if (lower.includes('transport')) return { icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16v-1.5a2.5 2.5 0 00-2-2.32V11A2.5 2.5 0 008.5 8.5H7A2.5 2.5 0 004.5 11v1.18A2.5 2.5 0 002.5 14.5V16h10zM19.5 8.5H18A2.5 2.5 0 0015.5 11v1.18A2.5 2.5 0 0013.5 14.5V16h8v-1.5a2.5 2.5 0 00-2-2.32V11A2.5 2.5 0 0019.5 8.5z', color: 'bg-blue-50 text-blue-600' };
+        return { icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z', color: 'bg-gray-50 text-gray-600' };
+    };
+
     const highlights = [
-        { label: 'Established', value: collegeId === 1 ? '1993' : collegeId === 2 ? '1998' : collegeId === 3 ? '2013' : collegeId === 4 ? '2003' : collegeId === 5 ? '2005' : collegeId === 6 ? '2017' : collegeId === 7 ? '2001' : collegeId === 8 ? '1989' : collegeId === 9 ? '2008' : collegeId === 10 ? '1994' : collegeId === 11 ? '2002' : (college.established || '1998'), icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-blue-500 to-cyan-400' },
-        { label: 'Accreditation', value: collegeId === 1 ? 'NAAC A+' : collegeId === 2 ? 'UGC Approved' : collegeId === 3 ? 'NAAC A+' : collegeId === 4 ? 'NAAC A Grade' : collegeId === 5 ? 'NAAC A Grade' : collegeId === 6 ? 'NAAC A++' : collegeId === 7 ? 'UGC Recog.' : collegeId === 8 ? 'AICTE Appr.' : collegeId === 9 ? 'NAAC Assessed' : collegeId === 10 ? 'NAAC Accredited' : collegeId === 11 ? 'NAAC Accredited' : (college.accreditation || 'NAAC A+'), icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
-        { label: 'Campus Area', value: collegeId === 1 ? '30 Acres' : collegeId === 2 ? '23 Acres' : collegeId === 3 ? '70+ Acres' : collegeId === 4 ? '44 Acres' : collegeId === 5 ? '42 Acres' : collegeId === 6 ? '80+ Acres' : collegeId === 7 ? '5 Acres' : collegeId === 8 ? '14 Acres' : collegeId === 9 ? '1.5 Acres' : collegeId === 10 ? '25 Acres' : collegeId === 11 ? '3 Acres' : '40 Acres', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'from-orange-500 to-amber-400' },
-        { label: 'Network', value: collegeId === 1 ? '50k+ Alum' : collegeId === 2 ? '10k+ Alum' : collegeId === 3 ? '20k+ Alum' : collegeId === 4 ? '22k+ Alum' : collegeId === 5 ? '22k+ Alum' : collegeId === 6 ? '18k+ Alum' : collegeId === 7 ? '10k+ Alum' : collegeId === 8 ? '15k+ Alum' : collegeId === 9 ? '10k+ Alum' : collegeId === 10 ? '15k+ Alum' : collegeId === 11 ? '10k+ Alum' : '15k+ Alum', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
+        { label: 'Established', value: college.established || 'N/A', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-blue-500 to-cyan-400' },
+        { label: 'Accreditation', value: college.accreditation ? college.accreditation.split('|')[0].trim() : 'N/A', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-emerald-500 to-green-400' },
+        { label: 'Campus Area', value: college.campusSize || 'N/A', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064', color: 'from-orange-500 to-amber-400' },
+        { label: 'Ranking', value: college.rankings?.nirf || college.rankings?.other || 'Top Ranked', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', color: 'from-purple-500 to-pink-400' }
     ];
 
-    const courses = collegeId === 1 ? [
+    // Safe access to courses
+    const coursesList = college.mainCourses || college.courses || [];
+    const courses = coursesList.map(name => {
+        const details = getCourseDetails(name);
+        return { name: name, duration: details.duration, icon: details.icon };
+    });
+
+    const courses_unused = collegeId === 1 ? [
         { name: 'B.Tech (CSE, ME, ECE, Civil)', duration: '4 Years', icon: '💻' },
         { name: 'MBA (Marketing/Finance/HR)', duration: '2 Years', icon: '📊' },
         { name: 'MCA', duration: '2 Years', icon: '🖥️' },
@@ -371,7 +417,14 @@ function CollegeDetails() {
         { name: 'Hotel Management (BHM)', duration: '4 Years', icon: '🏨' }
     ];
 
-    const facilities = collegeId === 3 ? [
+    // Safe access to facilities
+    const facilitiesList = college.facilities || [];
+    const facilities = facilitiesList.map(name => {
+        const details = getFacilityDetails(name);
+        return { name: name, icon: details.icon, color: details.color };
+    });
+
+    const facilities_unused = collegeId === 3 ? [
         { name: 'Moot Court', icon: 'M12 2l-5.5 9h11L12 2zm0 3.5l2.5 4h-5l2.5-4zM2 14h20v2H2v-2zm9 4h2v4h-2v-4z', color: 'bg-amber-50 text-amber-600' },
         { name: 'Central Library', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', color: 'bg-indigo-50 text-indigo-600' },
         { name: 'Transport', icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16v-1.5a2.5 2.5 0 00-2-2.32V11A2.5 2.5 0 008.5 8.5H7A2.5 2.5 0 004.5 11v1.18A2.5 2.5 0 002.5 14.5V16h10zM19.5 8.5H18A2.5 2.5 0 0015.5 11v1.18A2.5 2.5 0 0013.5 14.5V16h8v-1.5a2.5 2.5 0 00-2-2.32V11A2.5 2.5 0 0019.5 8.5z', color: 'bg-blue-50 text-blue-600' },

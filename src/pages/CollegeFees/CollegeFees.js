@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { collegesData } from '../../utils/collegesData';
+import { getCloudinaryImageUrl } from '../../utils/cloudinary';
 import '../Apply/Apply.css'; // Re-use Apply page animations
 
 function CollegeFees() {
@@ -111,6 +112,31 @@ function CollegeFees() {
                             <div className="text-gray-500 text-xs font-bold uppercase tracking-widest">Support</div>
                         </div>
                     </div>
+
+                    {/* Fee Structure Image Preview */}
+                    {college.feesStructureImage && (
+                        <div className="mt-8 animate-fade-in-up animation-delay-500">
+                            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                Official Fee Structure
+                            </h3>
+                            <div
+                                className="relative rounded-2xl overflow-hidden shadow-xl border border-indigo-100 hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                                onClick={() => window.open(getCloudinaryImageUrl(college.feesStructureImage), '_blank')}
+                            >
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10 flex items-center justify-center">
+                                    <span className="opacity-0 group-hover:opacity-100 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                        Click to Expand
+                                    </span>
+                                </div>
+                                <img
+                                    src={getCloudinaryImageUrl(college.feesStructureImage)}
+                                    alt={`${college.name} Fee Structure`}
+                                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Right Side: Form Card - Light Theme */}

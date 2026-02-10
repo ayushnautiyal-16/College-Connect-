@@ -129,12 +129,60 @@ export const collegesData = [
         logoBgColor: '#030C1E',
         location: 'Mussoorie Diversion Road, Makka Wala, Dehradun',
         established: '1998',
-        accreditation: 'NAAC A Grade | UGC | COA',
-        description: 'A Center of Excellence for engineering, architecture, and pharmacy education.',
-        courses: ['B.Tech', 'B.Arch', 'B.Pharma', 'MBA', 'B.Des'],
+        accreditation: 'NAAC A Grade | NBA | UGC Approved | COA',
+
+        // Enhanced: Rankings
+        rankings: {
+            nirf: 'Ranked 201-300 (Engineering) | #81 (Pharmacy) 2024',
+            qs: 'QS I-Gauge Diamond Rated',
+            other: 'Top 10 Engineering Colleges in North India'
+        },
+
+        description: 'A distinguished center of higher learning known for its academic excellence, pro-active industry collaborations, and holistic development.',
+
+        // Enhanced: Detailed About
+        about: {
+            mission: 'To provide high-quality education that empowers students to achieve their full potential and contribute to societal development.',
+            vision: 'To be a globally recognized university that leads in academic excellence, research innovation, and societal transformation.',
+            keyAchievements: [
+                'Excellent placement record of 90%+',
+                'Collaborations with 70+ International Universities',
+                'Center of Excellence in AI & Robotics',
+                'VEDA - One of the best libraries in North India'
+            ],
+            notableAlumni: [
+                'Successful Entrepreneurs',
+                'Senior Engineers at Microsoft & Google',
+                'Defense Officers'
+            ]
+        },
+
+        courses: ['B.Tech', 'B.Arch', 'B.Pharma', 'MBA', 'B.Des', 'BCA', 'B.Sc'],
         collegeType: 'Private University',
         campusSize: '21 Acres',
-        placementRate: '90%',
+
+        // Enhanced: Placements
+        placements: {
+            placementRate: '90%',
+            averagePackage: '₹5.76 LPA',
+            highestPackage: '₹44.00 LPA',
+            topRecruiters: [
+                'Zscaler', 'Adobe', 'Amazon', 'Trilogy',
+                'Commvault', 'Morgan Stanley', 'Cognizant', 'Infosys'
+            ]
+        },
+
+        // Enhanced: Facilities
+        facilities: [
+            'VEDA - Central Library with 1.2L+ books',
+            'High-Performance Computing Lab',
+            'Separate Hostels with 1200+ capacity',
+            'Gymnasium "Shakti" & Sports Complex',
+            'On-campus Infirmary with 24/7 Ambulance',
+            'Smart Classrooms & Amphitheater',
+            'Cafeteria & Food Court'
+        ],
+
         bestKnownFor: 'Holistic education, architectural excellence, and strong industry linkages',
         mainCourses: ['B.Tech CSE', 'B.Arch', 'B.Pharma', 'MBA', 'B.Des', 'BCA', 'BA (Hons)', 'M.Tech'],
         bestCourses: [
@@ -151,7 +199,7 @@ export const collegesData = [
                 description: 'Research-driven pharmacy course with state-of-the-art labs and hospital training.'
             }
         ],
-        bestPart: 'DIT University, with its 25+ years of legacy, is a preferred destination for higher learning. The 21-acre campus offers a serene yet technologically advanced environment. DIT is known for its excellent placement support, with the highest package touching ₹ 58 LPA and an average of ₹ 6-7 LPA. The university provides a true "Holistic Education" experience with active student societies, national-level hackathons, and global collaborations.'
+        bestPart: 'DIT University (Est. 1998) stands as a beacon of quality education in the Himalayas. With NIRF 2024 ranking in the 201-300 band for Engineering and #81 for Pharmacy, it proves its academic mettle. The 21-acre campus features the iconic VEDA library and advanced labs. Placements are robust with the highest package reaching ₹44 LPA and top recruiters like Adobe and Zscaler visiting regularly.'
     },
     {
         id: 3,
@@ -160,12 +208,50 @@ export const collegesData = [
         logoBgColor: '#ffffff',
         location: 'Arcadia Grant, P.O. Chandanwari, Premnagar, Dehradun',
         established: '2013',
-        accreditation: 'NAAC A+ Grade | UGC | BCI',
-        description: 'The first university in Uttarakhand to receive NAAC A+ in its first cycle.',
+        accreditation: 'NAAC A+ Grade | UGC | BCI | ICAR',
+
+        rankings: {
+            nirf: 'Ranked #75 (Pharmacy) | 201-300 (Engineering) 2025',
+            other: 'Ranked #39 (Law) by India Today 2023'
+        },
+
+        description: 'The first private university in Uttarakhand to receive NAAC A+ Grade in its first cycle.',
+
+        about: {
+            mission: 'To provide a transformative educational experience through quality teaching, research, and innovation.',
+            vision: 'To be a world-class university fostering creativity, entrepreneurship, and humanistic values.',
+            keyAchievements: [
+                'NAAC A+ Grade Accreditation',
+                'Highest International Package: ₹1.24 Cr',
+                'National Moot Court Competition Winners',
+                'ICAR Accreditation for Agriculture'
+            ]
+        },
+
         courses: ['B.Tech', 'B.A. LL.B', 'MBA', 'B.Sc Agriculture', 'BCA'],
         collegeType: 'Private University',
         campusSize: '70 Acres',
-        placementRate: '85%',
+
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹4.5 - 6 LPA',
+            highestPackage: '₹1.24 Cr (Intl) | ₹40.5 LPA (Dom)',
+            topRecruiters: [
+                'Trident', 'Hitachi', 'Virtusa', 'Google',
+                'Deloitte', 'Decathlon', 'Amazon'
+            ]
+        },
+
+        facilities: [
+            'Lush Green 70-Acre Campus',
+            'Central Library with 1.25L+ books',
+            'Moot Court for Law Students',
+            'Agricultural Farms & Poly-houses',
+            'Food Court & Cafeterias',
+            'On-campus ATM & Medical Facilities',
+            'Separate Hostels'
+        ],
+
         bestKnownFor: 'Law, Engineering, and Management programs with NAAC A+ quality assurance',
         mainCourses: ['B.Tech CSE', 'B.A. LL.B (Hons)', 'MBA', 'B.Sc Agriculture', 'BCA', 'BBA', 'M.Sc'],
         bestCourses: [
@@ -179,7 +265,7 @@ export const collegesData = [
             },
             {
                 name: 'B.Sc Agriculture',
-                description: 'Practical-intensive course with organic farms and poly-house training facilities.'
+                description: 'Practical-intensive course with organic farms and poly-house training facilities, ICAR accredited.'
             }
         ],
         bestPart: 'Uttaranchal University is a hub of academic excellence, being the first in the state to achieve NAAC A+ grade in its maiden cycle. Known for its rigorous academic discipline and lush green 70-acre campus, it offers placements with a highest domestic package of ₹ 40.50 LPA and international offers up to ₹ 1.24 Cr. The university hosts vibrant cultural fests and national level seminars, ensuring complete personality development.'
@@ -191,12 +277,51 @@ export const collegesData = [
         logoBgColor: '#ffffff',
         location: 'Energy Acres, Bidholi, Dehradun',
         established: '2003',
-        accreditation: 'NAAC A Grade | QS 5 Star | NBA',
-        description: 'Asia\'s first core sector university with domain-specific super specializations.',
+        accreditation: 'NAAC A Grade | QS 5 Star | NBA | IACBE',
+
+        rankings: {
+            nirf: 'Ranked #43 (Engineering) | #45 (Research) NIRF 2025',
+            qs: 'QS 5-Star Rating (Employability, Facilities)',
+            other: 'Top 50 Universities in India'
+        },
+
+        description: 'Asia\'s first core sector university with domain-specific super specializations and world-class infrastructure.',
+
+        about: {
+            mission: 'To develop industry-focused professionals with an international outlook and foster outcome-based education.',
+            vision: 'To be an institution of global standing for developing competent talent in Energy, Transportation, and Infrastructure.',
+            keyAchievements: [
+                '92% Placement Record',
+                'Highest Package: ₹50 LPA',
+                'World-renowned domain specific programs',
+                'Collaborations with global leaders like IBM, Xebia'
+            ]
+        },
+
         courses: ['B.Tech', 'MBA', 'B.Des', 'BBA', 'LL.B'],
         collegeType: 'Private University',
         campusSize: '44 Acres',
-        placementRate: '95%',
+
+        placements: {
+            placementRate: '95%',
+            averagePackage: '₹14.6 LPA (CSE) | ₹8.5 LPA (Overall)',
+            highestPackage: '₹50.09 LPA',
+            topRecruiters: [
+                'Schlumberger', 'Microsoft', 'Hyundai', 'Airbus',
+                'Boeing', 'Adani Group', 'Reliance Industries', 'Dell'
+            ]
+        },
+
+        facilities: [
+            'Sprawling 44-Acre Campus in Himalayas',
+            'Advanced Design Studios & Computing Centers',
+            'Flight Simulators & Energy Labs',
+            'LRC - Learning Resource Center (Lib)',
+            'Food Courts & Multi-cuisine Cafeterias',
+            'Modern On-campus Hostels',
+            '24/7 Infirmary & Ambulance'
+        ],
+
         bestKnownFor: 'Domain-specific programs in Energy, Oil & Gas, Aviation, and Design',
         mainCourses: ['B.Tech CSE', 'MBA Oil & Gas', 'B.Des', 'BBA Aviation', 'B.Tech APE', 'LL.B', 'B.Tech Automotive'],
         bestCourses: [
@@ -209,8 +334,8 @@ export const collegesData = [
                 description: 'Niche management course tailored for the energy sector with global career pathways.'
             },
             {
-                name: 'B.Des (Design)',
-                description: 'Creative design program recognized globally, with outstanding studio facilities and industry mentors.'
+                name: 'B.Tech Computer Science',
+                description: 'High-demand program with specializations in Cloud, AI, and DevOps in collaboration with IBM/Xebia. Avg Package ₹14.6 LPA.'
             }
         ],
         bestPart: 'UPES Dehradun is a globally recognized institution, famous for its domain-specific programs in Energy, Transportation, and Infrastructure. With a placement record of 95%+ and highest packages exceeding ₹ 50 LPA, it is a top choice for specialized education. The university offers a stunning campus at the foothills of the Himalayas, fostering a culture of innovation, research, and holistic growth through its "School for Life" initiative.'
@@ -223,14 +348,46 @@ export const collegesData = [
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Manduwala, Dehradun',
         established: '2005',
-        accreditation: 'NAAC Accredited | BCI | PCI',
-        description: 'A multidisciplinary university known for its focus on practical skills and huge campus.',
-        courses: ['B.Tech', 'B.Pharma', 'B.Sc Agriculture', 'BBA', 'MBA'],
+        accreditation: 'NAAC A Grade | BCI | PCI | COA',
+        rankings: {
+            nirf: 'NAAC A Grade Accredited University',
+            outlook: 'Ranked #169 Engineering (Outlook-ICARE 2025)',
+            other: 'Best Emerging University by Asian Education Conclave'
+        },
+        description: 'A multidisciplinary university known for its focus on practical skills, diverse courses, and massive 42-acre campus.',
+        about: {
+            mission: 'To set benchmarks in academic excellence and foster a thriving research environment for holistic student development.',
+            vision: 'To cultivate a society of lifelong learners capable of critical thinking and leadership.',
+            keyAchievements: [
+                'NAAC A Grade Accreditation',
+                'Highest Package: ₹40 LPA',
+                '42-Acre Lush Green Campus',
+                '14,000+ Job Opportunities Created'
+            ]
+        },
+        courses: ['B.Tech', 'B.Pharma', 'B.Sc Agriculture', 'BBA', 'MBA', 'BHM', 'B.Des'],
         collegeType: 'Private University',
         campusSize: '42 Acres',
-        placementRate: '80%',
-        bestKnownFor: 'Top-notch Pharmacy, Agriculture, and Engineering programs',
-        mainCourses: ['B.Tech CSE', 'B.Pharma', 'B.Sc Agriculture', 'MBA', 'BHM', 'BBA', 'Polytechnic'],
+        placements: {
+            placementRate: '80%',
+            averagePackage: '₹5.5 LPA',
+            highestPackage: '₹40.00 LPA',
+            topRecruiters: [
+                'ServiceNow', 'Daffodil', 'Hitachi', 'Amazon',
+                'Tommy Hilfiger', 'Tech Mahindra', 'Rubico'
+            ]
+        },
+        facilities: [
+            'Sprawling 42-Acre Campus',
+            'Central Library with 45,000+ Books',
+            'Advanced Computer & Engineering Labs',
+            'On-Campus Hospital & Medical Facilities',
+            'Professional Sports Complex & Gym',
+            'Separate Hostels for Boys & Girls',
+            'Banking & ATM Facilities'
+        ],
+        bestKnownFor: 'Top-notch Pharmacy, Agriculture, and Engineering programs with NAAC A Grade quality',
+        mainCourses: ['B.Tech CSE', 'B.Pharma', 'B.Sc Agriculture', 'MBA', 'BHM', 'BBA', 'Polytechnic', 'B.Des'],
         bestCourses: [
             {
                 name: 'B.Pharma',
@@ -245,24 +402,121 @@ export const collegesData = [
                 description: 'Updated engineering syllabus with focus on coding, app development, and placement readiness.'
             }
         ],
-        bestPart: 'Dev Bhoomi Uttarakhand University (DBUU) has transformed from a top engineering college into a full-fledged university. It is celebrated for its diverse course offerings and a massive 42-acre campus. The university maintains an excellent placement rate, with the highest package reaching ₹ 40 LPA. It focuses on "Value-Based Education" and provides a supportive environment for students from diverse backgrounds.',
+        bestPart: 'Dev Bhoomi Uttarakhand University (DBUU) has transformed from a top engineering college into a full-fledged NAAC A Grade university. It is celebrated for its diverse course offerings and a massive 42-acre campus. The university maintains an excellent placement rate, with the highest package reaching ₹ 40 LPA. It focuses on "Value-Based Education" and provides a supportive environment for students from diverse backgrounds.',
         brochure: 'https://drive.google.com/file/d/1Qv8vfTB8-mWpacOS72YdXi23ePlgNjm3/view'
+    },
+    {
+        id: 13,
+        name: 'Shivalik College of Engineering',
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767018477/shivaliklogo_wyab9r.png'),
+        cardImage: 'shivalik college/U7A9935-1024x607.jpg',
+        brochure: getAssetUrl('shivalik college/PROSPECTUS_compressed.pdf'),
+        logoBgColor: '#ffffff',
+        location: 'Sihniwala, Dehradun',
+        established: '2006',
+        accreditation: 'NAAC A+ Grade | AICTE | PCI',
+        rankings: {
+            times: 'Ranked #68 Engineering (Times 2025)',
+            outlook: '#180 Engineering (Outlook-ICARE 2025)',
+            other: 'Uttarakhand’s First Autonomous Private College'
+        },
+        description: 'Premier engineering college with strong industry linkages, NAAC A+ accreditation, and technical excellence.',
+        about: {
+            mission: 'To create an environment conducive to learning and growth through value-based quality education.',
+            vision: 'To be a premier technical institution providing experiential learning and multi-disciplinary research.',
+            keyAchievements: [
+                'NAAC A+ Grade Accreditation',
+                'Highest Package: ₹36.5 LPA (Google/Autodesk)',
+                '500+ Recruiting Companies',
+                'Center of Excellence with Industry Leaders'
+            ]
+        },
+        courses: ['B.Tech', 'M.Tech', 'B.Pharma', 'Polytechnic', 'BBA'],
+        collegeType: 'Private College',
+        campusSize: '20 Acres',
+        placements: {
+            placementRate: '92%',
+            averagePackage: '₹7.00 LPA',
+            highestPackage: '₹36.50 LPA',
+            topRecruiters: [
+                'Google', 'Autodesk', 'Amazon', 'Accenture',
+                'Byjus', 'TCS', 'Wipro'
+            ]
+        },
+        facilities: [
+            '20-Acre Eco-Friendly Campus',
+            'Modern Gym & Sports Complex',
+            'Advanced Robotics & IoT Labs',
+            '24/7 Ambulance & Medical Support',
+            'Digital Library & Smart Classrooms',
+            'Comfortable Hostels with Mess',
+            'Cafeteria & Recreation Zones'
+        ],
+        bestKnownFor: 'Quality technical education with excellent faculty-student ratio and hands-on practical training',
+        mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'B.Pharma', 'BBA', 'B.Sc Agriculture'],
+        bestCourses: [
+            {
+                name: 'B.Tech Computer Science',
+                description: 'Industry-focused CSE program with modern labs, coding competitions, and placement training'
+            },
+            {
+                name: 'B.Pharma',
+                description: 'Certified pharmacy program with advanced labs and hospital training partnerships'
+            },
+            {
+                name: 'B.Tech Mechanical Engineering',
+                description: 'Core mechanical engineering with workshops, CAD labs, and industry collaborations'
+            }
+        ],
+        bestPart: 'Shivalik College of Engineering is recognized for its commitment to technical excellence, holding the prestigious NAAC A+ accreditation. As Uttarakhand\'s first autonomous private college, it offers a curriculum tailored to industry needs. The 20-acre campus is a hub of innovation with advanced labs and a placement record boasting packages up to ₹36.5 LPA. The college emphasizes experiential learning and holistic development.'
     },
     {
         id: 6,
         name: 'Shri Guru Ram Rai University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767118111/logo_3_whg5oy.png'),
+        cardImage: 'SGRR/DSC05047-2048x1365.jpg',
         logoBgColor: '#ffffff',
         location: 'Patel Nagar, Dehradun',
         established: '2017',
-        accreditation: 'UGC | NMC | INC | PCI',
+        accreditation: 'UGC | NMC | INC | PCI | NAAC A Grade (College)',
+        rankings: {
+            nirf: 'Associated with NAAC A Grade PG College',
+            other: 'Top Medical & Professional University in Region'
+        },
         description: 'A university with a 70+ year legacy of education and 1500-bed super specialty hospital.',
-        courses: ['MBBS', 'B.Sc Nursing', 'B.Pharma', 'MBA', 'B.Tech'],
+        about: {
+            mission: 'To provide a comprehensive and sustainable educational experience fostering scientific thinking and ethical values.',
+            vision: 'To be a centre of excellence nurturing innovation, creativity, and socially responsible professionals.',
+            keyAchievements: [
+                '1500-Bed Shri Mahant Indiresh Hospital',
+                '70+ Years of Educational Legacy',
+                'Wide range of Medical & Professional Courses',
+                'Strong Community Service Focus'
+            ]
+        },
+        courses: ['MBBS', 'B.Sc Nursing', 'B.Pharma', 'MBA', 'B.Tech', 'B.Sc Agriculture'],
         collegeType: 'Private University',
         campusSize: '82.5 Acres',
-        placementRate: '85%',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹4.00 LPA',
+            highestPackage: '₹12.00 LPA',
+            topRecruiters: [
+                'Max Healthcare', 'Apollo Hospitals', 'Infosys', 'Wipro',
+                'Da Milano', 'Axis Bank', 'Ipca Labs'
+            ]
+        },
+        facilities: [
+            '1500-Bed Super Specialty Hospital',
+            'Massive 80+ Acre Campus',
+            'Central Library with Digital Resources',
+            'Advanced Medical & Science Labs',
+            'Hostels for 2000+ Students',
+            'Sports Complex & Gymnasium',
+            'Bank & ATM Facilities (SBI/PNB)'
+        ],
         bestKnownFor: 'Medical, Paramedical, and Nursing education along with traditional courses',
-        mainCourses: ['MBBS', 'B.Sc Nursing', 'B.Pharma', 'MBA', 'B.Sc Agriculture', 'B.Tech', 'M.Sc'],
+        mainCourses: ['MBBS', 'B.Sc Nursing', 'B.Pharma', 'MBA', 'B.Sc Agriculture', 'B.Tech', 'M.Sc', 'B.Com (Hons)'],
         bestCourses: [
             {
                 name: 'MBBS / B.Sc Nursing',
@@ -277,21 +531,54 @@ export const collegesData = [
                 description: 'Affordable and quality management education with hospital management specialization options.'
             }
         ],
-        bestPart: 'Shri Guru Ram Rai (SGRR) University carries the rich legacy of the SGRR Education Mission (Est. 1952). It is unique for its massive 80+ acre campus and the attached Shri Mahant Indiresh Hospital, making it a prime hub for medical and health sciences. The university offers highly affordable quality education with placements reaching ₹ 12-18 LPA. It is deeply rooted in community service and holistic student growth.'
+        bestPart: 'Shri Guru Ram Rai (SGRR) University carries the rich legacy of the SGRR Education Mission (Est. 1952). It is unique for its massive 80+ acre campus and the attached Shri Mahant Indiresh Hospital, making it a prime hub for medical and health sciences. The university offers highly affordable quality education with placements reaching ₹ 12 LPA. It is deeply rooted in community service and holistic student growth.'
     },
     {
         id: 7,
         name: 'Himalayan Institute of Technology (HIT)',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816124/logo-hit_gayllo.png'),
+        cardImage: 'HIT/maxresdefault.jpg',
+        feesStructureImage: 'HIT/WhatsApp Image 2026-01-23 at 10.51.14 PM.jpeg',
         logoBgColor: '#ffffff',
         location: 'Haridwar Road, Near Central Excise office, Dehradun',
         established: '2001',
-        accreditation: 'UGC Recognized | HNBGU Affiliated',
-        description: 'Dehradun\'s top institute for Hotel Management, Agriculture, and IT.',
+        accreditation: 'NAAC A Grade | UGC Recognized | HNBGU Affiliated',
+        rankings: {
+            other: 'Ranked #1 for Hotel Management in Dehradun',
+            nirf: 'NAAC A Grade Accredited Institute'
+        },
+        description: 'Dehradun\'s top NAAC A Grade institute for Hotel Management, Agriculture, and IT.',
+        about: {
+            mission: 'To prepare students for global challenges by providing technical and professional education of the highest standard.',
+            vision: 'To be a premier institute of choice for students and industry.',
+            keyAchievements: [
+                'NAAC A Grade Accreditation',
+                'Ranked #1 in Hotel Management',
+                'Excellent Placement Record',
+                '22+ Years of Academic Excellence'
+            ]
+        },
         courses: ['BHM', 'B.Sc Agriculture', 'BCA', 'BBA', 'B.Sc IT'],
         collegeType: 'Private Institute',
         campusSize: '5 Acres',
-        placementRate: '95%',
+        placements: {
+            placementRate: '95%',
+            averagePackage: '₹5.00 LPA',
+            highestPackage: '₹13.50 LPA',
+            topRecruiters: [
+                'Oberoi Group', 'Taj Hotels', 'Wipro', 'TCS',
+                'Marriott', 'Tech Mahindra', 'Hyatt'
+            ]
+        },
+        facilities: [
+            'Advanced Training Kitchens & Restaurant',
+            'Agricultural Farms for Field Training',
+            'Smart Classrooms & Computer Labs',
+            'Well-Stocked Library',
+            'Separate Hostels with Mess',
+            'Transport Facility',
+            'Cafeteria & Sports Court'
+        ],
         bestKnownFor: 'Excellent Hotel Management and Agriculture courses with hands-on training',
         mainCourses: ['BHM', 'B.Sc Agriculture', 'B.Sc Forestry', 'BCA', 'BBA', 'M.Sc Agronomy', 'B.Com'],
         bestCourses: [
@@ -308,21 +595,52 @@ export const collegesData = [
                 description: 'Technical programs focused on software skills and IT industry placement.'
             }
         ],
-        bestPart: 'Himalayan Institute of Technology (HIT) has established itself as a premier institute since 2001. It is widely acclaimed for its Hotel Management and Agriculture programs, providing extensive practical exposure. The institute boasts a 95% placement assistance record with packages reaching up to ₹ 10-13.5 LPA. HIT is known for its experienced faculty, disciplined environment, and focus on skill-based education.'
+        bestPart: 'Himalayan Institute of Technology (HIT) has established itself as a premier institute since 2001, boasting a NAAC "A" Grade accreditation. It is widely acclaimed for its Hotel Management and Agriculture programs, providing extensive practical exposure. The institute boasts a 95% placement assistance record with packages reaching up to ₹ 13.5 LPA. HIT is known for its experienced faculty, disciplined environment, and focus on skill-based education.'
     },
     {
         id: 8,
         name: 'GRD Institute of Management & Technology',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'),
+        cardImage: 'GRD/grt-imtd-dehradun.webp',
         logoBgColor: '#2A2866',
         location: '214, Rajpur Road, Dehradun',
         established: '2002',
-        accreditation: 'AICTE Approved | PCI | UTU Affiliated',
+        accreditation: 'NAAC Accredited | AICTE | PCI | UTU Affiliated',
+        rankings: {
+            other: 'Ranked among Top Management & Tech Institutes in Dehradun'
+        },
         description: 'A prestigious institute offering quality technical and management education on Rajpur Road.',
+        about: {
+            mission: 'To prepare students for professional careers through rigorous academic and practical training.',
+            vision: 'To be a centre of learning and research that contributes to society.',
+            keyAchievements: [
+                'NAAC Accreditation',
+                'High Placement Rate',
+                'Beautiful 14-Acre Campus',
+                'Strong Alumni Network'
+            ]
+        },
         courses: ['B.Tech', 'B.Pharma', 'MBA', 'Diploma', 'BBA'],
         collegeType: 'Private Institute',
         campusSize: '14 Acres',
-        placementRate: '80%',
+        placements: {
+            placementRate: '80%',
+            averagePackage: '₹5.00 LPA',
+            highestPackage: '₹12.00 LPA',
+            topRecruiters: [
+                'Infosys', 'TCS', 'Wipro', 'HCL',
+                'Rubico', 'Amazon', 'Byjus'
+            ]
+        },
+        facilities: [
+            'Scenic 14-Acre Campus on Rajpur Road',
+            'Well-Equipped Pharma & Tech Labs',
+            'Library with Digital Access',
+            'On-Campus Hostels & Mess',
+            'Sports Ground & Gym',
+            'Transport Facility',
+            'WiFi Enabled Campus'
+        ],
         bestKnownFor: 'Engineering and Pharmacy education with a beautiful campus location',
         mainCourses: ['B.Tech CSE', 'B.Pharma', 'MBA', 'B.Tech Civil', 'B.Tech ME', 'D.Pharma', 'Polytechnic'],
         bestCourses: [
@@ -339,22 +657,52 @@ export const collegesData = [
                 description: 'Management course with dual specialization and industry interaction.'
             }
         ],
-        bestPart: 'GRD Institute of Management & Technology (GRD-IMT) is located on the scenic Rajpur Road, offering one of the most beautiful campuses in Dehradun. Established in 2002 (under the GRD Trust est. 1989), it is known for its strong discipline and academic rigor. The institute offers excellent placement support, with the highest packages going up to ₹ 18-20 LPA. It blends academic excellence with a vibrant campus life featuring various clubs and sports facilities.'
+        bestPart: 'GRD Institute of Management & Technology (GRD-IMT) is located on the scenic Rajpur Road, offering one of the most beautiful campuses in Dehradun. Established in 2002 (under the GRD Trust est. 1989), it is NAAC accredited and known for its strong discipline. The institute offers excellent placement support, with the highest packages going up to ₹ 12 LPA. It blends academic excellence with a vibrant campus life featuring various clubs and sports facilities.'
     },
 
     {
         id: 10,
         name: 'Sardar Bhagwan Singh University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767020054/sbs-logo_pkmszc.svg'),
+        cardImage: 'SBS/sbsu_gallery_0097.jpg',
         logoBgColor: '#ffffff',
         location: 'Balawala, Dehradun',
         established: '1994',
         accreditation: 'NAAC Accredited | UGC | PCI | IAP',
-        description: 'North India\'s pioneer institute in Biomedical, Pharmacy, and Physiotherapy education.',
+        rankings: {
+            other: 'North India’s Premier Institute for Allied Health Sciences'
+        },
+        description: 'North India\'s pioneer university in Biomedical, Pharmacy, and Physiotherapy education.',
+        about: {
+            mission: 'To educate and train students in professional sciences to serve humanity.',
+            vision: 'To become a centre of excellence in pharmaceutical and allied health education.',
+            keyAchievements: [
+                'Pioneers in Physiotherapy Education',
+                '25+ Acres of Green Campus',
+                '15,000+ Alumni Network',
+                'Rich Herbal Garden & Research Labs'
+            ]
+        },
         courses: ['B.Pharma', 'BPT', 'B.Sc Biotech', 'M.Pharma', 'MPT'],
         collegeType: 'Private University',
         campusSize: '25 Acres',
-        placementRate: '80%',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹3.50 LPA',
+            highestPackage: '₹8.00 LPA',
+            topRecruiters: [
+                'Cipla', 'Sun Pharma', 'Dr. Reddys', 'Mankind',
+                'Max Hospitals', 'Apollo'
+            ]
+        },
+        facilities: [
+            'Extensive Herbal Garden',
+            'Physiotherapy OPD & Clinics',
+            'Sophisticated Research Laboratories',
+            'Girls & Boys Hostels',
+            'Sports Ground & Gym',
+            'Cafeteria & WiFi Campus'
+        ],
         bestKnownFor: 'Excellence in Allied Health Sciences, Pharmacy, and Physiotherapy',
         mainCourses: ['B.Pharma', 'BPT', 'B.Sc Biotechnology', 'B.Sc Microbiology', 'M.Pharma', 'MPT', 'BMLT'],
         bestCourses: [
@@ -377,15 +725,45 @@ export const collegesData = [
         id: 11,
         name: 'Institute Of Technology & Management (ITM)',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817379/logo_logo_logo_logo-new1_c1kfpu.png'),
+        cardImage: 'ITM/itm-infra-imgnew.jpg',
         logoBgColor: '#ffffff',
         location: '60, Chakrata Road, Yamuna Colony, Dehradun',
         established: '2002',
         accreditation: 'UGC Recognized | HNBGU Affiliated',
+        rankings: {
+            other: 'Pioneer Institute for IT & Animation in Dehradun'
+        },
         description: 'The first institute to introduce IT education in Uttarakhand, focusing on holistic growth.',
+        about: {
+            mission: 'To empower students with technical and professional skills for a successful career.',
+            vision: 'To be a leader in IT and Management education in the region.',
+            keyAchievements: [
+                'First IT Institute in Uttarakhand',
+                'Strong Alumni Base in IT Sector',
+                'Central Location Advantage',
+                'Excellent Animation Studio'
+            ]
+        },
         courses: ['BCA', 'B.Sc IT', 'BBA', 'BHM', 'B.Lib'],
         collegeType: 'Private Institute',
         campusSize: '3 Acres',
-        placementRate: '90%',
+        placements: {
+            placementRate: '90%',
+            averagePackage: '₹4.00 LPA',
+            highestPackage: '₹15.00 LPA',
+            topRecruiters: [
+                'Wipro', 'TCS', 'Indigo', 'Tech Mahindra',
+                'Radisson', 'Justdial'
+            ]
+        },
+        facilities: [
+            'Centrally Located Campus',
+            'Modern IT Labs',
+            'Animation & Design Studio',
+            'Library',
+            'Cafeteria',
+            'WiFi Enabled Campus'
+        ],
         bestKnownFor: 'Pioneering IT education and specialized Management/Animation courses',
         mainCourses: ['BCA', 'B.Sc IT', 'BBA', 'BHM', 'B.Sc Animation', 'M.Sc IT', 'B.Com', 'B.Lib'],
         bestCourses: [
@@ -402,412 +780,797 @@ export const collegesData = [
                 description: 'Hotel management course with internships in premium hospitality chains.'
             }
         ],
-        bestPart: 'ITM Dehradun, established in 2002, holds the distinction of being the first institute to facilitate IT education in Uttarakhand. Located centrally on Chakrata Road, it offers easy accessibility and a focused learning environment. The institute claims a 90% placement record with packages reaching up to ₹ 15 LPA. ITM is dedicated to creating industry-ready professionals through its skill-centric curriculum and regular technical workshops.'
+        bestPart: 'ITM Dehradun, established in 2002, holds the distinction of being the first institute to facilitate IT education in Uttarakhand. Located centrally on Chakrata Road, it offers easy accessibility. The institute claims a 90% placement record with packages reaching up to ₹ 15 LPA. ITM is dedicated to creating industry-ready professionals through its skill-centric curriculum and regular technical workshops.'
     },
     {
         id: 12,
         name: 'SAI Group Of Institutions',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817452/1_vyyky6.png'),
+        cardImage: 'SAI GROUP/sai-group-of-institutions-dehradun.avif',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2011',
-        accreditation: 'AICTE Approved',
-        description: 'Prominent group offering quality engineering & management with modern facilities.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma'],
-        collegeType: 'Private Educational Group',
-        bestKnownFor: 'Comprehensive educational ecosystem with focus on overall personality development',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'B.Tech CSE', 'B.Tech ME', 'B.Tech ECE'],
+        location: 'Rajpur Road, Dehradun',
+        established: '2003',
+        accreditation: 'NAAC Accredited | HNBGU | SDSUV Affiliated',
+        rankings: {
+            other: 'Premier Institute for Paramedical & Allied Sciences'
+        },
+        description: 'A dedicated group of institutions focusing on Para-Medical, Management, and Nursing education.',
+        about: {
+            mission: 'To serve society by creating skilled healthcare and management professionals.',
+            keyAchievements: [
+                'NAAC Accreditation',
+                'Strong Hospital Linkages',
+                '20+ Years Educational Legacy'
+            ]
+        },
+        courses: ['BPT', 'B.Sc Nursing', 'B.Pharma', 'BHA', 'B.Sc Agriculture', 'BMRIT'],
+        collegeType: 'Private Group',
+        campusSize: '15 Acres',
+        placements: {
+            placementRate: '80%',
+            averagePackage: '₹3.50 LPA',
+            highestPackage: '₹6.50 LPA',
+            topRecruiters: [
+                'Max Healthcare', 'Synergy Hospital', 'Patanjali', 'Fortis',
+                'Divya Pharmacy', 'Apollo Hospitals'
+            ]
+        },
+        facilities: [
+            'Advanced Physiotherapy Labs',
+            'Pathology & Microbiology Labs',
+            'Well-stocked Library',
+            'Hostel Facilities',
+            'Transport Service',
+            'Hospital Tie-ups for Training'
+        ],
+        bestKnownFor: 'Healthcare, Nursing, and Paramedical sciences with practical training focus',
+        mainCourses: ['BPT', 'B.Sc Nursing', 'B.Pharma', 'BHA', 'B.Sc Agriculture', 'BMRIT', 'B.Sc Forestry', 'MPT'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Engineering programs with emphasis on practical skills and industry readiness'
+                name: 'Bachelor of Physiotherapy (BPT)',
+                description: 'Core healthcare program with clinical training in reputed hospitals.'
             },
             {
-                name: 'MBA',
-                description: 'Management program with leadership development and corporate exposure'
+                name: 'B.Sc Nursing',
+                description: 'Comprehensive nursing education with focus on patient care and medical ethics.'
             },
             {
                 name: 'B.Pharma',
-                description: 'Pharmaceutical education with modern labs and industry partnerships'
+                description: 'Pharmaceutical science course with industry-relevant curriculum.'
             }
         ],
-        bestPart: 'SAI Group of Institutions provides a comprehensive educational experience with well-maintained infrastructure and experienced faculty. The group emphasizes holistic development through academic excellence, sports, cultural activities, and personality development programs. With active placement cell and industry connections, students receive placement opportunities with packages averaging 3-5.5 LPA. The institutions also focus on social responsibility through various community service initiatives.'
+        bestPart: 'SAI Group of Institutions (Est. 2003) is a prominent name in Dehradun for healthcare and allied sciences education. Accredited by NAAC, it offers a range of specialized courses like BPT, Nursing, and Hospital Administration. The group is known for its practical approach, ensuring students get hands-on experience through hospital tie-ups. With a dedicated placement cell, it secures career opportunities for students in leading hospitals and healthcare organizations.'
     },
-    {
-        id: 13,
-        name: 'Shivalik College of Engineering',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767018477/shivaliklogo_wyab9r.png'),
-        logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2006',
-        accreditation: 'AICTE Approved',
-        description: 'Premier engineering college with strong industry linkages and technical excellence.',
-        courses: ['B.Tech', 'M.Tech', 'Polytechnic', 'Diploma'],
-        collegeType: 'Private Engineering College',
-        bestKnownFor: 'Quality technical education with excellent faculty-student ratio and hands-on practical training',
-        mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'M.Tech', 'Polytechnic', 'Diploma Engineering'],
-        bestCourses: [
-            {
-                name: 'B.Tech Computer Science',
-                description: 'Industry-focused CSE program with modern labs, coding competitions, and placement training'
-            },
-            {
-                name: 'B.Tech Electronics & Communication',
-                description: 'Comprehensive ECE program with advanced labs and focus on emerging technologies'
-            },
-            {
-                name: 'B.Tech Mechanical Engineering',
-                description: 'Core mechanical engineering with workshops, CAD labs, and industry collaborations'
-            }
-        ],
-        bestPart: 'Shivalik College of Engineering is recognized for its commitment to technical excellence and student-centric approach. The college features well-equipped laboratories, experienced faculty members, and a supportive learning environment. With regular industry visits, guest lectures, and workshop sessions, students gain practical exposure to real-world engineering challenges. The placement cell actively works with companies to secure opportunities with packages ranging from 3-6 LPA. The college also encourages participation in technical competitions, sports, and cultural events for overall personality development.'
-    },
+
     {
         id: 14,
         name: 'IMS Unison University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035781/Ims_logo_new_v2gjsf.png'),
+        cardImage: 'IMS/ims-unison-university-dehradun-campus.jpg',
         logoBgColor: '#B6BDAD',
-        location: 'Dehradun',
-        established: '2006',
-        accreditation: 'UGC Approved',
-        description: 'Premier university with industry-relevant curriculum and excellent career support.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Com'],
+        location: 'Makkawala Greens, Mussoorie Diversion Road, Dehradun',
+        established: '1996',
+        accreditation: 'NAAC A+ Grade | UGC | BCI Approved',
+        rankings: {
+            nirf: 'NAAC A+ Grade Accredited University',
+            other: 'Ranked Among Top Private Universities in North India'
+        },
+        description: 'A premier industry-focused university known for Law, Management, and Mass Communication.',
+        about: {
+            mission: 'To provide superior quality education and foster an environment of innovation and research.',
+            vision: 'To be a globally renowned university specializing in professional education.',
+            keyAchievements: [
+                'NAAC A+ Grade Accreditation',
+                'Highest Package: ₹16 LPA',
+                '400+ Recruiters',
+                'State-of-the-Art Infrastructure'
+            ]
+        },
+        courses: ['MBA', 'BBA', 'BA LL.B', 'BHM', 'B.A (J&MC)'],
         collegeType: 'Private University',
-        bestKnownFor: 'Management education with strong industry interface and excellent placement support',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Com', 'B.Tech CSE', 'B.Tech ECE', 'M.Tech'],
+        campusSize: '15 Acres',
+        placements: {
+            placementRate: '95%',
+            averagePackage: '₹5.86 LPA',
+            highestPackage: '₹16.00 LPA',
+            topRecruiters: [
+                'Audi', 'Sony', 'Times of India', 'Amazon',
+                'Axis Bank', 'Berger Paints', 'ITC'
+            ]
+        },
+        facilities: [
+            '47,000+ Books Central Library',
+            'Computer Labs with latest Software',
+            'Moot Court for Law Students',
+            'Mass Communication Media Studio',
+            'On-Campus Hostels with Gym',
+            'Medical Infirmary',
+            'Cafeteria & Bakery'
+        ],
+        bestKnownFor: 'Excellence in Legal Studies, Management, and Mass Communication',
+        mainCourses: ['MBA', 'BBA', 'BA LL.B (Hons)', 'BBA LL.B (Hons)', 'BHM', 'B.A (J&MC)', 'PhD'],
         bestCourses: [
             {
+                name: 'BA LL.B (Hons)',
+                description: 'Flagship 5-year integrated law program with moot court training and internships.'
+            },
+            {
                 name: 'MBA',
-                description: 'Comprehensive management program with industry exposure and live projects'
+                description: 'Industry-integrated management course with dual specialization options.'
             },
             {
-                name: 'B.Tech Computer Science',
-                description: 'Industry-aligned CSE program with focus on emerging technologies'
-            },
-            {
-                name: 'BBA',
-                description: 'Business administration with entrepreneurship and leadership focus'
+                name: 'B.A (Journalism & Mass Comm)',
+                description: 'Practical course with access to modern media studios and newsroom setups.'
             }
         ],
-        bestPart: 'IMS Unison University is known for its strong management programs and industry connections. The university provides excellent placement opportunities with average packages of 4-6 LPA. The campus offers modern infrastructure, well-equipped labs, and a vibrant learning environment with active student clubs and industry interactions.'
+        bestPart: 'IMS Unison University (IUU) boasts a legacy of over 25 years (Est. 1996). With a prestigious NAAC A+ Grade, it stands as one of the top choices for Law and Management in the region. The university records a stellar 95% placement rate with top brands like Audi and Sony recruiting. Its beautifully designed campus features a moot court, media studios, and a massive library, offering a truly premium academic experience.'
     },
     {
         id: 15,
         name: 'Combined Institute of Medical Sciences & UIHMT',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/logo-cimsr_ei3ray.png'),
+        cardImage: 'CIMS/cims-dehradun.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2008',
-        accreditation: 'UGC Approved',
-        description: 'Specialized institution for medical sciences & healthcare with industry partnerships.',
-        courses: ['B.Sc Nursing', 'BBA Healthcare', 'Hospitality', 'Medical Lab Technology', 'B.Pharma'],
+        location: 'Haridwar Road, Kuuanwala, Dehradun',
+        established: '2002',
+        accreditation: 'UGC Approved | HNBGU Affiliated | INC',
+        rankings: {
+            other: 'Reputed Institute for Nursing & Hospital Administration'
+        },
+        description: 'Specialized institution dedicated to Medical Sciences, Nursing, and Healthcare Management.',
+        about: {
+            mission: 'To create world-class healthcare professionals through rigorous training and compassion.',
+            keyAchievements: [
+                'Associated with CMI Hospital',
+                'High Placement Rate in Healthcare Sector',
+                'Comprehensive Nursing Programs'
+            ]
+        },
+        courses: ['B.Sc Nursing', 'GNM', 'B.Pharma', 'BHA', 'B.Sc Agriculture'],
         collegeType: 'Private Institute',
-        bestKnownFor: 'Specialized programs in medical sciences and healthcare management',
-        mainCourses: ['B.Sc Nursing', 'BBA Healthcare Management', 'Hospitality Management', 'Medical Lab Technology', 'B.Pharma', 'D.Pharma', 'B.Sc Medical'],
+        campusSize: '10 Acres',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹3.00 LPA',
+            highestPackage: '₹5.50 LPA',
+            topRecruiters: [
+                'Max Hospitals', 'Apollo', 'CMI Hospital', 'Kailash Hospital',
+                'Medanta', 'Fortis'
+            ]
+        },
+        facilities: [
+            'Associated Multi-Specialty Hospital',
+            'Advanced Nursing & Medical Labs',
+            'Herbal Gardens',
+            'Hostel Accommodation',
+            'Library',
+            'Sports Facilities'
+        ],
+        bestKnownFor: 'Nursing and Allied Health Sciences with hospital-based training',
+        mainCourses: ['B.Sc Nursing', 'GNM', 'ANM', 'B.Pharma', 'BHA', 'BPT', 'B.Sc Agriculture'],
         bestCourses: [
             {
                 name: 'B.Sc Nursing',
-                description: 'Comprehensive nursing program with clinical training and hospital tie-ups'
+                description: 'Degree program with intensive clinical training in attached hospitals.'
             },
             {
-                name: 'BBA Healthcare Management',
-                description: 'Healthcare management program with focus on hospital administration'
+                name: 'GNM (General Nursing)',
+                description: 'Diploma course focusing on patient care and practical nursing skills.'
             },
             {
-                name: 'Hospitality Management',
-                description: 'Hospitality and tourism management with industry internships'
+                name: 'Bachelor of Hospital Administration',
+                description: 'Management course tailored for hospital operations and healthcare administration.'
             }
         ],
-        bestPart: 'Combined Institute of Medical Sciences & UIHMT offers specialized education in healthcare and hospitality sectors. The institute maintains strong partnerships with hospitals and healthcare organizations providing students with practical training and placement opportunities. Average placement packages range from 3-5 LPA with opportunities in hospitals, clinics, and hospitality industry.'
+        bestPart: 'Combined Institute of Medical Sciences (CIMS) is a dedicated hub for healthcare education in Dehradun. Established in 2002, it is affiliated with HNBGU and recognized by the Indian Nursing Council. With its association with the CMI Hospital, it offers students unparalleled access to real-time medical training. Placements are robust in the healthcare sector, with graduates securing roles in top hospitals like Max and Apollo.'
     },
     {
         id: 16,
         name: 'Nav Chetna Group of Colleges',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/Nav-Chetna-Logo-new-r5w8c9orrpjj4fhhddlipo289lmebs0nfghda7oyzu_wimoeo.png'),
+        cardImage: 'NAV CHETNA/nav-chetna-college-dehradun.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2009',
-        accreditation: 'AICTE Approved',
-        description: 'Leading group offering quality programs with a focus on practical career skills.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma'],
-        collegeType: 'Private Educational Group',
-        bestKnownFor: 'Comprehensive educational ecosystem with focus on skill development',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'B.Tech CSE', 'B.Tech ECE', 'M.Tech'],
+        location: 'Manduwala, Dehradun',
+        established: '2005',
+        accreditation: 'UGC Recognized | Uttarakhand Govt Approved',
+        rankings: {
+            other: 'Known for Professional Courses in Dehradun'
+        },
+        description: 'A growing educational group focusing on Computer Applications, Management, and Paramedical courses.',
+        about: {
+            mission: 'To impart value-based education and develop future-ready professionals.',
+            keyAchievements: [
+                'Excellent Academic Results',
+                'Focus on Holistic Development',
+                'Modern Campus Infrastructure'
+            ]
+        },
+        courses: ['BCA', 'BBA', 'B.Sc IT', 'B.Sc Forestry', 'B.Lib'],
+        collegeType: 'Private College',
+        campusSize: '10 Acres',
+        placements: {
+            placementRate: '75%',
+            averagePackage: '₹4.30 LPA',
+            highestPackage: '₹5.75 LPA',
+            topRecruiters: [
+                'Asian Paints', 'Havells', 'Justdial', 'Axis Bank',
+                'UltraTech Cement', 'PolicyBazaar'
+            ]
+        },
+        facilities: [
+            'Lush Green Campus',
+            'Computing Labs',
+            'Library with Reading Room',
+            'Transport Facility',
+            'Sports Ground',
+            'Cafeteria'
+        ],
+        bestKnownFor: 'Affordable professional education in IT and Management',
+        mainCourses: ['BCA', 'BBA', 'B.Sc IT', 'B.Sc Forestry', 'B.Sc Agriculture', 'B.Lib', 'BHM'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Engineering programs with emphasis on practical skills and industry readiness'
+                name: 'BCA',
+                description: 'Focus on software development, web design, and programming languages.'
             },
             {
-                name: 'MBA',
-                description: 'Management program with leadership development and corporate exposure'
+                name: 'B.Sc Forestry',
+                description: 'Specialized program for careers in environmental conservation and forest management.'
             },
             {
-                name: 'B.Pharma',
-                description: 'Pharmaceutical education with modern labs and industry partnerships'
+                name: 'BHM',
+                description: 'Hotel Management course with training in hospitality operations.'
             }
         ],
-        bestPart: 'Nav Chetna Group of Colleges provides a comprehensive educational experience with well-maintained infrastructure and experienced faculty. The group emphasizes skill development through workshops, industry visits, and hands-on training. With active placement cell, students receive placement opportunities with packages averaging 3-5 LPA.'
+        bestPart: 'Nav Chetna College, established in 2005, is known for offering quality professional education at an affordable cost. Located in the education hub of Manduwala, it provides a serene environment for learning. The college focuses on practical skills and personality development. With placement packages averaging around ₹4.3 LPA and top recruiters like Asian Paints participating, it serves as a solid launchpad for careers in IT and Management.'
     },
     {
         id: 17,
         name: 'Tulas Institute',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/TulasLogo.f88dd71b_u2a3xv.png'),
-        logoBgColor: '#888888',
-        location: 'Dehradun',
-        established: '2010',
-        accreditation: 'AICTE Approved',
-        description: 'Modern institute fostering innovation and strong industry collaborations.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'M.Tech'],
+        cardImage: 'TULAS/tulas-institute-dehradun.jpg',
+        logoBgColor: '#ffffff',
+        location: 'Dhoolkot, Chakrata Road, Dehradun',
+        established: '2006',
+        accreditation: 'NAAC A+ Grade | AICTE | UA',
+        rankings: {
+            nirf: 'NAAC A+ Grade Accredited Institute',
+            other: 'Top Ranked Engineering College in North India'
+        },
+        description: 'A Premier "A+" Grade institute known for excellence in Engineering, Management, and Agriculture.',
+        about: {
+            mission: 'To promote intellectual and skilled human capital generation for sustainable development.',
+            keyAchievements: [
+                'NAAC A+ Grade',
+                'Highest Package: ₹36.5 LPA',
+                'Microsoft Innovation Centre',
+                'Apple Certified Labs'
+            ]
+        },
+        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Sc Agriculture'],
         collegeType: 'Private Institute',
-        bestKnownFor: 'Innovation-focused education with strong industry connections',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'M.Tech', 'B.Tech CSE', 'B.Tech IT', 'B.Tech ECE'],
+        campusSize: '22 Acres',
+        placements: {
+            placementRate: '90%',
+            averagePackage: '₹5.60 LPA',
+            highestPackage: '₹36.50 LPA',
+            topRecruiters: [
+                'Adobe', 'BYJUS', 'TCS', 'Wipro',
+                'Optimal', 'Cummins', 'Deutsche Bank'
+            ]
+        },
+        facilities: [
+            'Microsoft Innovation Centre',
+            'Apple Student Developer Society',
+            '22-Acre Green Campus',
+            'Well-Equipped Gym & Sports',
+            'Auditorium with 500+ Capacity',
+            'Girls & Boys Hostels'
+        ],
+        bestKnownFor: 'Technical Innovation, Apple/Microsoft Labs, and High Placements',
+        mainCourses: ['B.Tech CSE', 'B.Tech Civil', 'B.Tech ME', 'MBA', 'BBA', 'BCA', 'B.Sc Agriculture', 'BJMC'],
         bestCourses: [
             {
                 name: 'B.Tech Computer Science',
-                description: 'Technology-focused program with innovation labs and startup culture'
+                description: 'Top-tier program with access to Microsoft Innovation Centre and Apple Labs.'
+            },
+            {
+                name: 'B.Sc Agriculture',
+                description: 'Practical-rich course with own agricultural lands and research facilities.'
             },
             {
                 name: 'MBA',
-                description: 'Management program with entrepreneurship and leadership focus'
-            },
-            {
-                name: 'BCA',
-                description: 'Computer applications with emphasis on software development'
+                description: 'Corporate-focused management program with excellent placement track record.'
             }
         ],
-        bestPart: 'Tulas Institute emphasizes innovation and practical learning, providing students with an environment that encourages creative thinking. The institute offers modern labs, experienced faculty, and strong industry partnerships for internships and placements with packages ranging from 3-5.5 LPA.'
+        bestPart: 'Tulas Institute (Est. 2006) is a jewel in Dehradun’s education landscape, holding the prestigious NAAC A+ Grade. It is renowned for its state-of-the-art infrastructure, including a legitimate Microsoft Innovation Center. The institute focuses on industry-readiness, reflected in its impressive placement record with a highest package of ₹36.5 LPA. The 22-acre lush green campus offers a perfect blend of academic rigor and student life.'
     },
     {
         id: 18,
-        name: 'Coer University',
+        name: 'COER University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/coer-logo_xz3idz.webp'),
+        cardImage: 'COER/coer-university-roorkee.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2012',
-        accreditation: 'UGC Approved',
-        description: 'Modern university focused on research, innovation, and industry-ready education.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Sc'],
+        location: '7th KM on Roorkee Haridwar Road, VardhmanHW, Roorkee',
+        established: '1998',
+        accreditation: 'NAAC A+ Grade | AICTE | UGC Recognized',
+        rankings: {
+            nirf: 'NAAC A+ Grade University',
+            other: 'Best Technical University in Roorkee Region'
+        },
+        description: 'A prestigious university with a legacy of engineering excellence and 95% placement record.',
+        about: {
+            mission: 'To impart technical education of international standards and conduct research at the cutting edge.',
+            vision: 'To be a global centre of learning and innovation.',
+            keyAchievements: [
+                'NAAC A+ Grade',
+                'Highest Package: ₹44 LPA',
+                'Distinguished Alumni Network',
+                '25+ Years Legacy'
+            ]
+        },
+        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Sc Agriculture'],
         collegeType: 'Private University',
-        bestKnownFor: 'Emerging university with strong focus on research and industry-ready education',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Sc', 'M.Tech', 'B.Tech CSE', 'B.Com'],
+        campusSize: '75 Acres',
+        placements: {
+            placementRate: '95%',
+            averagePackage: '₹5.20 LPA',
+            highestPackage: '₹44.00 LPA',
+            topRecruiters: [
+                'HCL', 'Infosys', 'Wipro', 'Tech Mahindra',
+                'Rubico', 'Amazon', 'Adobe'
+            ]
+        },
+        facilities: [
+            'Sprawling 75-Acre Campus',
+            'Advanced Computing Centre',
+            'Central Library with Digital Archives',
+            'Student Activity Centre',
+            'Medical Centre & Ambulance',
+            'Hostels for 2500+ Students',
+            'Bank & ATM'
+        ],
+        bestKnownFor: 'Strong technical foundations and dominant placement record in the region',
+        mainCourses: ['B.Tech CSE', 'B.Tech Civil', 'MBA', 'BBA', 'MCA', 'BCA', 'B.Sc Agriculture', 'B.Com'],
         bestCourses: [
             {
                 name: 'B.Tech Computer Science',
-                description: 'Modern engineering program with emphasis on AI, ML, and emerging technologies'
+                description: 'Flagship program with specialization options in AI, ML, and Data Science.'
             },
             {
                 name: 'MBA',
-                description: 'Management program with industry collaborations and practical exposure'
+                description: 'Management program focused on creating future corporate leaders.'
             },
             {
-                name: 'BBA',
-                description: 'Business administration with entrepreneurship development focus'
+                name: 'B.Sc Agriculture',
+                description: 'Research-backed agriculture course with practical field exposure.'
             }
         ],
-        bestPart: 'Core University is a rapidly growing institution with modern infrastructure and a focus on quality education. The university emphasizes practical learning through industry visits, internships, and live projects. With dedicated placement cell, students receive placement opportunities with packages ranging from 3-6 LPA.'
+        bestPart: 'COER University (formerly College of Engineering Roorkee) is an institution with a rich legacy dating back to 1998. Located on the Roorkee-Haridwar highway, it boasts a massive 75-acre campus. It is NAAC A+ accredited, reflecting its academic quality. The university is famous for its disciplined academic structure and consistent placement performance, with the highest package reaching ₹44 LPA. It offers a vibrant campus life with numerous technical and cultural fests.'
     },
     {
         id: 19,
         name: 'Quantum University',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/qu-logo-name_kjvdad.svg'),
+        cardImage: 'QUANTUM/quantum-university-roorkee.jpg',
         logoBgColor: '#ffffff',
-        location: 'Roorkee, Uttarakhand',
-        established: '2011',
-        accreditation: 'UGC Approved',
-        description: 'Premier university with state-of-the-art infrastructure and strong placements.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma'],
+        location: 'Mandawar, Roorkee - Dehradun Highway, Roorkee',
+        established: '2017',
+        accreditation: 'UGC Approved | PCI | BCI | NAAC Accredited',
+        rankings: {
+            other: 'Awarded Best Private University in North India'
+        },
+        description: 'A modern university known for its unique interdisciplinary pedagogy and high placements.',
+        about: {
+            mission: 'To serve the country by providing employment-oriented global education.',
+            vision: 'To be a centre of excellence in holistic education.',
+            keyAchievements: [
+                'Highest Package: ₹33.5 LPA',
+                'Interdisciplinary Education Model',
+                'Collaboration with top industries',
+                'State-of-the-art Labs'
+            ]
+        },
+        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'B.Sc'],
         collegeType: 'Private University',
-        bestKnownFor: 'Quality education with strong industry connections and placement support',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'M.Tech', 'B.Tech CSE', 'B.Tech ECE'],
+        campusSize: '30 Acres',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹5.80 LPA',
+            highestPackage: '₹33.50 LPA',
+            topRecruiters: [
+                'Wipro', 'TCS', 'Amazon', 'Capgemini',
+                'Quick Heal', 'Axis Bank', 'Genpact'
+            ]
+        },
+        facilities: [
+            'Interdisciplinary Labs',
+            'Auditoriums & Seminar Halls',
+            'Library with E-resources',
+            'Sports Complex',
+            'Hostels with Modern Amenities',
+            'Cafeteria',
+            'Gymnasium'
+        ],
+        bestKnownFor: 'Interdisciplinary "Passion Programs" and strong placement support',
+        mainCourses: ['B.Tech CSE', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'B.Sc Agriculture', 'B.Sc Animation', 'BJMC'],
         bestCourses: [
             {
                 name: 'B.Tech Computer Science',
-                description: 'Industry-focused CSE program with modern labs and placement training'
+                description: 'Advanced CSE program with specializations in Cyber Security and AI.'
             },
             {
                 name: 'MBA',
-                description: 'Management program with leadership development and corporate exposure'
+                description: 'Dynamic management course with dual specialization and industrial visits.'
             },
             {
                 name: 'B.Pharma',
-                description: 'Pharmaceutical education with advanced labs and industry partnerships'
+                description: 'Approved pharmacy program with focus on drug research and manufacturing.'
             }
         ],
-        bestPart: 'Quantum University offers quality education with modern infrastructure and experienced faculty. The university maintains strong industry partnerships providing students with internships and placement opportunities. Average placement packages range from 4-6 LPA with highest packages reaching up to 30 LPA.'
+        bestPart: 'Quantum University is distinct for its "Interdisciplinary pedagogy" which allows students to study technology with humanities, agriculture with economics, etc. It offers "Passion Programs" allowing students to pursue recognized courses in their hobbies like photography or theater alongside their degree. With a placement record of 85% and a highest package of ₹33.5 LPA, it blends academic rigor with holistic personal growth.'
     },
     {
         id: 20,
-        name: 'Dolphin College',
+        name: 'Dolphin (PG) Institute',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/dibns-logo_olfuby.webp'),
-        logoBgColor: '#888888',
-        location: 'Dehradun',
-        established: '2007',
-        accreditation: 'AICTE Approved',
-        description: 'Quality education in engineering & management with personalized student attention.',
-        courses: ['B.Tech', 'BBA', 'BCA', 'B.Com', 'B.Sc'],
-        collegeType: 'Private College',
-        bestKnownFor: 'Affordable quality education with personalized attention and career guidance',
-        mainCourses: ['B.Tech', 'BBA', 'BCA', 'B.Com', 'B.Sc', 'B.Tech CSE', 'B.Tech IT', 'BA'],
+        cardImage: 'DOLPHIN/dolphin-institute-dehradun.jpg',
+        logoBgColor: '#ffffff',
+        location: 'Manduwala, Dehradun',
+        established: '2002',
+        accreditation: 'NAAC A+ Grade | HNBGU Affiliated',
+        rankings: {
+            nirf: 'NAAC A+ Grade Institute (CGPA 3.42)',
+            other: 'Best Institute for Biomedical & Natural Sciences'
+        },
+        description: 'A premier institute dedicated to Biomedical, Natural, and Paramedical Sciences.',
+        about: {
+            mission: 'To create a centre of excellence in the field of Para-Medical and Natural Sciences.',
+            vision: 'To provide quality education ensuring employability and ethical values.',
+            keyAchievements: [
+                'NAAC A+ Accreditation',
+                'Research-Driven Curriculum',
+                'High Placement in Pharma & Biotech',
+                'State-of-the-art Research Labs'
+            ]
+        },
+        courses: ['BPT', 'B.Sc Agriculture', 'B.Sc Forestry', 'M.Sc', 'BMLT'],
+        collegeType: 'Private Institute',
+        campusSize: '7 Acres',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹4.50 LPA',
+            highestPackage: '₹9.00 LPA',
+            topRecruiters: [
+                'Biocon', 'Cipla', 'Wockhardt', 'Fortis Healthcare',
+                'Apollo Hospitals', 'Lal Path Labs'
+            ]
+        },
+        facilities: [
+            'Advanced Biomedical Labs',
+            'Physiotherapy OPD',
+            'Polyhouse & Botanical Garden',
+            'Central Library',
+            'Hostel Facilities',
+            'Sports Complex'
+        ],
+        bestKnownFor: 'Research-focused education in Biomedical and Natural Sciences',
+        mainCourses: ['BPT', 'B.Sc Agriculture', 'B.Sc Forestry', 'B.Sc Biotechnology', 'M.Sc Microbiology', 'MPT', 'BMLT'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Practical engineering education with small class sizes for personalized learning'
+                name: 'Bachelor of Physiotherapy (BPT)',
+                description: 'Rigorous 4.5-year program with clinical internships in top hospitals.'
             },
             {
-                name: 'BCA',
-                description: 'Computer applications with focus on software development skills'
+                name: 'B.Sc Biotechnology',
+                description: 'Research-oriented program with access to advanced molecular biology labs.'
             },
             {
-                name: 'BBA',
-                description: 'Business administration with entrepreneurship and leadership focus'
+                name: 'B.Sc Forestry',
+                description: 'Field-based course focusing on forest management and conservation.'
             }
         ],
-        bestPart: 'Dolphin College is known for its student-centric approach with affordable fee structure and personalized attention. The college maintains a supportive learning environment with dedicated faculty mentoring. With consistent placement support, students secure positions with packages ranging from 2.5-4.5 LPA.'
+        bestPart: 'Dolphin (PG) Institute of Biomedical & Natural Sciences is a niche institution that excels in life sciences. Accredited with a prestigious NAAC A+ Grade, it offers high-quality education in Physiotherapy, Biotechnology, and Forestry. The institute is known for its rigorous academic environment and focus on research. Placements are particularly strong in the Pharmaceutical and Healthcare sectors, with top companies like Biocon and Cipla recruiting graduates.'
     },
     {
         id: 21,
-        name: 'BFIT - Baba Farid Institute of Technology',
+        name: 'BFIT Group of Institutions',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/Bfit-logo-1_aoxy1t.webp'),
+        cardImage: 'BFIT/bfit-dehradun-campus.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2005',
-        accreditation: 'AICTE Approved',
-        description: 'Premier technical institute with experienced faculty and placement support.',
-        courses: ['B.Tech', 'M.Tech', 'MCA', 'Polytechnic', 'Diploma'],
-        collegeType: 'Private Technical Institute',
-        bestKnownFor: 'Strong technical education foundation with experienced faculty',
-        mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'M.Tech', 'MCA', 'Polytechnic'],
+        location: 'Chakrata Road, Suddhowala, Dehradun',
+        established: '2002',
+        accreditation: 'NAAC A Grade | UGC | AICTE',
+        rankings: {
+            other: 'One of the Most Popular Colleges for Technical Education'
+        },
+        description: 'A popular institution offering a wide range of technical and professional courses with 100% placement focus.',
+        about: {
+            mission: 'To provide a platform for educational excellence and holistic development.',
+            vision: 'To be a globally recognized institution for technical education.',
+            keyAchievements: [
+                'NAAC A Grade',
+                '19,000+ Placed Students',
+                'Highest Package: ₹25 LPA',
+                'Vibrant Campus Life'
+            ]
+        },
+        courses: ['B.Sc Agriculture', 'B.Tech', 'MBA', 'BCA', 'BHM', 'B.Pharma'],
+        collegeType: 'Private Group',
+        campusSize: '10 Acres',
+        placements: {
+            placementRate: '85%',
+            averagePackage: '₹5.00 LPA',
+            highestPackage: '₹25.00 LPA',
+            topRecruiters: [
+                'HDFC Bank', 'Infosys', 'IBM', 'Policy Bazaar',
+                'Tech Mahindra', 'Amazon', 'Ashok Leyland'
+            ]
+        },
+        facilities: [
+            'Digital Library',
+            'Modern Laboratories',
+            'Hostel with Mess',
+            'Sports Complex',
+            'Cafeteria',
+            'Transport',
+            'Gym'
+        ],
+        bestKnownFor: 'Wide variety of courses and strong focus on student placements',
+        mainCourses: ['B.Sc Agriculture', 'B.Tech', 'MBA', 'BCA', 'BHM', 'B.Pharma', 'M.Sc', 'MPH', 'B.A'],
         bestCourses: [
             {
+                name: 'B.Sc Agriculture',
+                description: 'Popular course with practical field training and good placement outcome.'
+            },
+            {
                 name: 'B.Tech Computer Science',
-                description: 'Focused CSE program with strong coding culture and technical activities'
+                description: 'Core engineering program with focus on software skills and coding.'
             },
             {
-                name: 'B.Tech Electronics & Communication',
-                description: 'Comprehensive ECE program with advanced electronics labs'
-            },
-            {
-                name: 'M.Tech',
-                description: 'Advanced technical programs with research opportunities'
+                name: 'BHM',
+                description: 'Hotel Management program with training in hospitality services.'
             }
         ],
-        bestPart: 'BFIT provides a focused technical education environment with experienced faculty members dedicated to student success. The institute maintains modern labs and workshops for hands-on learning. With strong emphasis on placement training, students receive packages ranging from 3-5 LPA with opportunities in both core engineering and IT sectors.'
+        bestPart: 'BFIT Group of Institutions (Est. 2002) is accredited with NAAC A Grade and is one of the most vibrant campuses in Dehradun. Known for its "Zero Unemployment" mission, it aggressively works on student placements, boasting a highest package of ₹25 LPA. The college offers a very wide spectrum of courses from Agriculture to Engineering, making it a diverse hub of learning. The campus atmosphere is lively, with students from all over India.'
     },
     {
         id: 9,
         name: 'D.D. College Dehradun',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'), // Keeping placeholder as no specific logo URL was provided/found in snippets to replace immediately.
+        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'),
+        cardImage: 'D.D College/maxresdefault.jpg',
         logoBgColor: '#ffffff',
-        location: '25, Nimbuwala, Garhi Cantt., Dehradun, Uttarakhand',
+        location: '25, Nimbuwala, Garhi Cantt., Dehradun',
         established: '2014',
-        accreditation: 'NAAC Assessed',
-        description: 'Reputed institution offering diverse programs in Agriculture, Sciences, Commerce & Education.',
-        courses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA', 'M.Sc', 'MA', 'Yoga'],
+        accreditation: 'UGC Recognized | HNBGU Affiliated',
+        rankings: {
+            other: 'Reputed for Agriculture & Education Courses'
+        },
+        description: 'A serene campus in Garhi Cantt offering quality education in Agriculture, Education, and Commerce.',
+        about: {
+            mission: 'To provide affordable and high-quality education to all sections of society.',
+            keyAchievements: [
+                '100% Placement Assistance',
+                'Serene & Pollution Free Campus',
+                'Modern Agriculture Farms'
+            ]
+        },
+        courses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA'],
         collegeType: 'Private Institute',
-        bestKnownFor: 'Affordable quality education with focus on holistic development',
-        mainCourses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA', 'B.Sc (PCM/CBZ)', 'M.Sc Agronomy', 'M.Sc Chemistry', 'MA Yoga', 'PG Diploma in Yoga', 'BA'],
+        campusSize: '2 Acres',
+        placements: {
+            placementRate: '65%',
+            averagePackage: '₹3.50 LPA',
+            highestPackage: '₹6.00 LPA',
+            topRecruiters: [
+                'Patanjali', 'HDFC Bank', 'TCS', 'Wipro',
+                'Curefit', 'Zorba Yoga'
+            ]
+        },
+        facilities: [
+            '2-Acre Green Campus',
+            'Well-Equipped Agriculture Labs',
+            'Modern Computer Centre',
+            'Library with Reading Hall',
+            'Hostel Facilities',
+            'Cafeteria'
+        ],
+        bestKnownFor: 'Affordable quality education with focus on Agriculture and B.Ed',
+        mainCourses: ['B.Sc Agriculture', 'B.Com (Hons)', 'B.Ed', 'BBA', 'BCA', 'B.Sc (PCM/CBZ)', 'M.Sc Agronomy', 'MA Yoga'],
         bestCourses: [
             {
                 name: 'B.Sc Agriculture',
-                description: 'Focus on modern agricultural practices with field training'
+                description: 'Practical-oriented agriculture program with field training.'
             },
             {
                 name: 'B.Ed',
-                description: 'NCTE approved program for aspiring educators'
+                description: 'Popular teacher training course approved by NCTE.'
             },
             {
-                name: 'MA/PG Diploma in Yoga',
-                description: 'Specialized course maximizing wellness and career opportunities in health sector'
+                name: 'MA Yoga',
+                description: 'Specialized wellness program with career opportunities in health sector.'
             }
         ],
-        bestPart: 'D.D. College, established in 2014, has quickly emerged as a significant center for learning in Dehradun. Located in the serene Garhi Cantt area, it offers a peaceful environment conducive to studies. Affiliated with key universities like HNBGU and Sri Dev Suman University, the college is known for its affordable fee structure, diverse course offerings ranging from Agriculture to Yoga, and a commitment to student support with facilities like well-equipped labs and a rich library.'
+        bestPart: 'D.D. College, established in 2014, is situated in the peaceful Cantonment area of Garhi Cantt. It is a preferred choice for students seeking affordable quality education, especially in Agriculture and B.Ed. The college emphasizes holistic development and provides 100% placement assistance, with students securing roles in organizations like Patanjali and Curefit. Its serene environment is perfect for focused academic pursuits.'
     },
     {
         id: 22,
         name: 'Guru Nanak College',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_vlerv7.webp'),
+        cardImage: 'GURU NANAK/guru-nanak-college-dehradun.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2008',
-        accreditation: 'AICTE Approved',
-        description: 'Quality education across disciplines with dedicated faculty and student success.',
-        courses: ['B.Tech', 'BBA', 'BCA', 'B.Com', 'B.Sc'],
+        location: 'Jhajhra, Chakrata Road, Dehradun',
+        established: '2009',
+        accreditation: 'AICTE Approved | PCI | UBTE | HNBGU',
+        rankings: {
+            other: 'Known for Pharmacy and Paramedical Excellence'
+        },
+        description: 'Reputed college offering specialized programs in Pharmacy, Paramedical, and Nursing.',
+        about: {
+            mission: 'To provide quality professional education and training.',
+            keyAchievements: [
+                '95% Placement Rate',
+                'Highest Package: ₹1.01 Cr (International)',
+                '17+ B.Pharma Placements',
+                'Global Career Opportunities'
+            ]
+        },
+        courses: ['B.Pharma', 'D.Pharma', 'B.Sc Nursing', 'BMLT', 'BPT'],
         collegeType: 'Private College',
-        bestKnownFor: 'Community-focused education with personalized attention and career guidance',
-        mainCourses: ['B.Tech', 'BBA', 'BCA', 'B.Com', 'B.Sc', 'B.Tech CSE', 'BA', 'M.Sc'],
+        campusSize: '5 Acres',
+        placements: {
+            placementRate: '95%',
+            averagePackage: '₹5.00 LPA',
+            highestPackage: '₹1.01 Cr',
+            topRecruiters: [
+                'Windlas Biotech', 'Swarnimaksh Life Sciences', 'NecLife',
+                'Career Buddy Club (Dubai)', 'Apollo'
+            ]
+        },
+        facilities: [
+            'Advanced Pharmacy Labs',
+            'Herbal Gardens',
+            'Simulation Centre',
+            'Library',
+            'Hostel Facilities',
+            'Transport'
+        ],
+        bestKnownFor: 'Exceptional placements in Pharmacy and International career collaborations',
+        mainCourses: ['B.Pharma', 'D.Pharma', 'B.Sc Nursing', 'BMLT', 'BPT', 'B.Sc Optometry', 'BHM'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Practical engineering education with small class sizes for personalized learning'
+                name: 'B.Pharma',
+                description: 'Top-ranked pharmacy course with high placement record in pharma industry.'
             },
             {
-                name: 'BBA',
-                description: 'Business administration with entrepreneurship and leadership development'
+                name: 'B.Sc Nursing',
+                description: 'Professional nursing course with clinical training.'
             },
             {
-                name: 'BCA',
-                description: 'Computer applications with emphasis on software development'
+                name: 'BMLT',
+                description: 'Lab technology course with hands-on diagnostic training.'
             }
         ],
-        bestPart: 'Guru Nanak College is known for its student-centric approach with small class sizes ensuring personalized attention. The college maintains a supportive learning environment with dedicated faculty mentoring. With affordable fee structure and consistent placement support, students secure positions with packages ranging from 2.5-4.5 LPA.'
+        bestPart: 'Guru Nanak College, Dehradun, has carved a niche for itself in Pharmacy and Paramedical education. With a stated placement rate of 95% and headline-grabbing international packages (up to ₹1 Cr), it is a top destination for students aspiring for global careers in healthcare. The college facilitates international placements through collaborations like the Career Buddy Club, Dubai. It offers a focused learning environment with advanced labs and experienced faculty.'
     },
     {
         id: 23,
-        name: 'JBIT - Jai Bharat Institute of Technology',
+        name: 'JBIT - JB Institute of Technology',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/images_h0a51d.png'),
+        cardImage: 'JBIT/jbit-dehradun-campus.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
-        established: '2006',
-        accreditation: 'AICTE Approved',
-        description: 'Premier technical education with modern infrastructure and strong industry links.',
-        courses: ['B.Tech', 'M.Tech', 'MCA', 'Polytechnic', 'Diploma'],
+        location: 'Nh-72, Chakrata Road, Dehradun',
+        established: '2009',
+        accreditation: 'AICTE Approved | NAAC Approved | UTU Affiliated',
+        rankings: {
+            other: 'Top Emerging Engineering College'
+        },
+        description: 'Technical campus offering affordable education with good industry exposure.',
+        about: {
+            mission: 'To provide affordable technical education to the masses.',
+            keyAchievements: [
+                'NAAC Approval',
+                '8000+ Alumni',
+                'Highest Package: ₹9.2 LPA',
+                '25-Acre Campus'
+            ]
+        },
+        courses: ['B.Tech', 'M.Tech', 'BBA', 'BCA', 'B.Sc Agriculture'],
         collegeType: 'Private Engineering Institute',
-        bestKnownFor: 'Quality technical education with excellent faculty-student ratio',
-        mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'M.Tech', 'Polytechnic'],
+        campusSize: '25 Acres',
+        placements: {
+            placementRate: '83%',
+            averagePackage: '₹3.20 LPA',
+            highestPackage: '₹9.20 LPA',
+            topRecruiters: [
+                'Hero', 'Wipro', 'Amazon', 'Mahindra',
+                'TCS', 'HDFC Bank', 'Samsung'
+            ]
+        },
+        facilities: [
+            '25-Acre Wi-Fi Campus',
+            'Digital Library',
+            'Engineering Labs',
+            'Workshops',
+            'Hostels',
+            'Sports Facilities',
+            'Gym'
+        ],
+        bestKnownFor: 'Affordable engineering education and 100% placement support efforts',
+        mainCourses: ['B.Tech CSE', 'B.Tech ME', 'B.Tech CE', 'B.Tech ECE', 'BBA', 'BCA', 'B.Sc Agriculture', 'D.Pharma'],
         bestCourses: [
             {
                 name: 'B.Tech Computer Science',
-                description: 'Industry-focused CSE program with modern labs and coding competitions'
+                description: 'Technical program with focus on coding skills and software development.'
             },
             {
-                name: 'B.Tech Electronics & Communication',
-                description: 'Comprehensive ECE program with advanced labs and emerging technologies'
+                name: 'B.Sc Agriculture',
+                description: 'Field-oriented course with practical training in agricultural techniques.'
             },
             {
-                name: 'B.Tech Mechanical Engineering',
-                description: 'Core mechanical engineering with workshops and industry collaborations'
+                name: 'B.Tech Mechanical',
+                description: 'Core engineering course with extensive workshop practice.'
             }
         ],
-        bestPart: 'JBIT is recognized for its commitment to technical excellence and student-centric approach. The institute features well-equipped laboratories, experienced faculty members, and a supportive learning environment. With regular industry visits and workshop sessions, students gain practical exposure. The placement cell actively works with companies to secure opportunities with packages ranging from 3-6 LPA.'
+        bestPart: 'JBIT (JB Institute of Technology) is a popular choice for students seeking affordable technical education. Located on a 25-acre campus, it offers a peaceful learning environment. The institute has "NAAC Approval" and an active placement cell that brings in major companies like Hero and Wipro. With a placement rate of over 80% and packages up to ₹9.2 LPA, JBIT ensures a good ROI for its students.'
     },
     {
         id: 24,
         name: 'Doon Group of Colleges',
         logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_2_b55nw4.png'),
+        cardImage: 'DOON GROUP/doon-group-of-colleges-campus.jpg',
         logoBgColor: '#ffffff',
-        location: 'Dehradun',
+        location: 'Selaqui, Dehradun',
         established: '2004',
-        accreditation: 'AICTE Approved',
-        description: 'Quality engineering & management programs with comprehensive student development.',
-        courses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma'],
+        accreditation: 'AICTE Approved | ISO 9001:2008 Certified',
+        rankings: {
+            other: 'Known for Agriculture and Professional Courses'
+        },
+        description: 'A well-established group offering diverse courses in Agriculture, Engineering, and Management.',
+        about: {
+            mission: 'To provide quality education and training to create employable professionals.',
+            keyAchievements: [
+                'ISO Certification',
+                'Strong Agriculture Department',
+                'Training & Placement Cell',
+                'Lush Green Campus'
+            ]
+        },
+        courses: ['B.Sc Agriculture', 'B.Tech', 'MBA', 'B.Pharma', 'B.Sc Forestry'],
         collegeType: 'Private Educational Group',
-        bestKnownFor: 'Comprehensive educational ecosystem with focus on overall development',
-        mainCourses: ['B.Tech', 'MBA', 'BBA', 'BCA', 'B.Pharma', 'B.Tech CSE', 'B.Tech ME', 'B.Tech ECE'],
+        campusSize: '15 Acres',
+        placements: {
+            placementRate: '70%',
+            averagePackage: '₹4.00 LPA',
+            highestPackage: '₹6.50 LPA',
+            topRecruiters: [
+                'PepsiCo', 'Fortis', 'Mahindra', 'Coca-Cola',
+                'Apollo Hospitals', 'Tech Mahindra'
+            ]
+        },
+        facilities: [
+            'Agriculture Farms & Labs',
+            'Central Library',
+            'Computer Centre',
+            'Hostels',
+            'Transport',
+            'Canteen'
+        ],
+        bestKnownFor: 'Agriculture and Forestry courses with practical field training',
+        mainCourses: ['B.Sc Agriculture', 'B.Sc Forestry', 'B.Tech', 'MBA', 'B.Pharma', 'B.Ed', 'BHM'],
         bestCourses: [
             {
-                name: 'B.Tech',
-                description: 'Engineering programs with emphasis on practical skills and industry readiness'
+                name: 'B.Sc Agriculture',
+                description: 'Comprehensive agriculture program with own farms for practical learning.'
             },
             {
-                name: 'MBA',
-                description: 'Management program with leadership development and corporate exposure'
+                name: 'B.Sc Forestry',
+                description: 'Specialized course in forest management and conservation.'
             },
             {
                 name: 'B.Pharma',
-                description: 'Pharmaceutical education with modern labs and industry partnerships'
+                description: 'Pharmacy course with focus on pharmaceutical industry standards.'
             }
         ],
-        bestPart: 'Doon Group of Colleges provides a comprehensive educational experience with well-maintained infrastructure and experienced faculty. The group emphasizes holistic development through academic excellence, sports, cultural activities, and personality development programs. With active placement cell and industry connections, students receive placement opportunities with packages averaging 3-5.5 LPA.'
-    }
+        bestPart: 'Doon Group of Colleges (DGC), located in Selaqui, is a prominent name for Agriculture and Forestry education. Established in 2004, the group has expanded to offer Engineering and Management courses. It focuses on practical learning, especially for its agriculture students who benefit from on-campus farms. The placement cell is active, bringing in companies like PepsiCo and Fortis, ensuring a steady start for its graduates.'
+    },
 ];

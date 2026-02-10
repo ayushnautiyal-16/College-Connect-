@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 function CollegeCard({ college, index = 0 }) {
-    const { id, name, logo, cardImage, description, courses, location, established, accreditation, logoBgColor } = college;
+    const { id, name, logo, cardImage, description, courses, location, established, accreditation, logoBgColor, feesStructureImage } = college;
     // Trigger earlier (50px margin) for smoother feed
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.05, rootMargin: '50px' });
     const navigate = useNavigate();
@@ -90,7 +90,11 @@ function CollegeCard({ college, index = 0 }) {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            navigate('/fees');
+                            if (feesStructureImage) {
+                                window.open(getCloudinaryImageUrl(feesStructureImage), '_blank');
+                            } else {
+                                navigate(`/college/${id}/fees`);
+                            }
                         }}
                         className="col-span-1 bg-white border border-indigo-100 hover:bg-indigo-50 text-indigo-600 font-semibold py-1.5 px-2 rounded-md text-[11px] transition-colors flex items-center justify-center gap-1"
                     >
@@ -100,7 +104,7 @@ function CollegeCard({ college, index = 0 }) {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            const url = id === 1 ? getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf') : '#';
+                            const url = college.brochure || (id === 1 ? getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf') : '#');
                             if (url !== '#') window.open(url, '_blank');
                         }}
                         className="col-span-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold py-1.5 px-2 rounded-md text-[11px] border border-amber-100 transition-colors flex items-center justify-center gap-1.5"
