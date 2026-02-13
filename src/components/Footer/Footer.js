@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,6 @@ function Footer() {
     <footer className="bg-gray-900 text-gray-300 mt-auto">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12">
-          {/* Company Info */}
           <div>
             <h3 className="font-heading text-xl font-bold text-white mb-4">College Connect</h3>
             <p className="text-gray-400 leading-relaxed mb-4">
@@ -33,39 +32,17 @@ function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="font-heading text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/campuses" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">
-                  Colleges
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">
-                  Contact
-                </Link>
-              </li>
+              <li><Link href="/" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">Home</Link></li>
+              <li><Link href="/campuses" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">Colleges</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">About Us</Link></li>
+              <li><Link href="/blog" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">Blog</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-primary-500 transition-colors no-underline">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="font-heading text-lg font-semibold text-white mb-4">Services</h4>
             <ul className="space-y-2 text-gray-400">
@@ -77,7 +54,6 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h4 className="font-heading text-lg font-semibold text-white mb-4">Contact</h4>
             <ul className="space-y-3 text-gray-400">
@@ -97,19 +73,15 @@ function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-6 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm text-center md:text-left">
               &copy; {currentYear} College Connect. All rights reserved.
             </p>
-
-            {/* Developer Credit */}
             <div className="group flex items-center space-x-1.5 text-sm bg-gray-800/50 px-4 py-2 rounded-full border border-gray-700/50 hover:border-primary-500/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] backdrop-blur-sm cursor-default">
               <span className="text-gray-500 group-hover:text-gray-300 transition-colors duration-300">Made & Developed by</span>
               <span className="font-semibold text-gray-300 group-hover:text-primary-400 transition-colors duration-300">Ayush Nautiyal</span>
             </div>
-
             <div className="flex space-x-6 text-sm text-gray-400">
               <a href="#" className="hover:text-primary-500 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-primary-500 transition-colors">Terms of Service</a>

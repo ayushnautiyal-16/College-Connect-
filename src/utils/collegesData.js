@@ -343,7 +343,7 @@ export const collegesData = [
     {
         id: 5,
         name: 'Dev Bhoomi Uttarakhand University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816036/devbhoomi-logo_w9bkus.webp'),
+        logo: getAssetUrl('devbhoomi-logo_w9bkus.webp'),
         cardImage: 'DBUU/campus-infra-dbuu.webp',
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Manduwala, Dehradun',
@@ -408,7 +408,7 @@ export const collegesData = [
     {
         id: 13,
         name: 'Shivalik College of Engineering',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767018477/shivaliklogo_wyab9r.png'),
+        logo: getAssetUrl('shivaliklogo_wyab9r.png'),
         cardImage: 'shivalik college/U7A9935-1024x607.jpg',
         brochure: getAssetUrl('shivalik college/PROSPECTUS_compressed.pdf'),
         logoBgColor: '#ffffff',
@@ -473,7 +473,7 @@ export const collegesData = [
     {
         id: 6,
         name: 'Shri Guru Ram Rai University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767118111/logo_3_whg5oy.png'),
+        logo: getAssetUrl('logo_3_whg5oy.png'),
         cardImage: 'SGRR/DSC05047-2048x1365.jpg',
         logoBgColor: '#ffffff',
         location: 'Patel Nagar, Dehradun',
@@ -536,7 +536,7 @@ export const collegesData = [
     {
         id: 7,
         name: 'Himalayan Institute of Technology (HIT)',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816124/logo-hit_gayllo.png'),
+        logo: getAssetUrl('logo-hit_gayllo.png'),
         cardImage: 'HIT/maxresdefault.jpg',
         feesStructureImage: 'HIT/WhatsApp Image 2026-01-23 at 10.51.14 PM.jpeg',
         logoBgColor: '#ffffff',
@@ -600,7 +600,7 @@ export const collegesData = [
     {
         id: 8,
         name: 'GRD Institute of Management & Technology',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'),
+        logo: getAssetUrl('logo_pjxpio.png'),
         cardImage: 'GRD/grt-imtd-dehradun.webp',
         logoBgColor: '#2A2866',
         location: '214, Rajpur Road, Dehradun',
@@ -663,7 +663,7 @@ export const collegesData = [
     {
         id: 10,
         name: 'Sardar Bhagwan Singh University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767020054/sbs-logo_pkmszc.svg'),
+        logo: getAssetUrl('sbs-logo_pkmszc.svg'),
         cardImage: 'SBS/sbsu_gallery_0097.jpg',
         logoBgColor: '#ffffff',
         location: 'Balawala, Dehradun',
@@ -724,7 +724,7 @@ export const collegesData = [
     {
         id: 11,
         name: 'Institute Of Technology & Management (ITM)',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817379/logo_logo_logo_logo-new1_c1kfpu.png'),
+        logo: getAssetUrl('logo_logo_logo_logo-new1_c1kfpu.png'),
         cardImage: 'ITM/itm-infra-imgnew.jpg',
         logoBgColor: '#ffffff',
         location: '60, Chakrata Road, Yamuna Colony, Dehradun',
@@ -785,7 +785,7 @@ export const collegesData = [
     {
         id: 12,
         name: 'SAI Group Of Institutions',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766817452/1_vyyky6.png'),
+        logo: getAssetUrl('1_vyyky6.png'),
         cardImage: 'SAI GROUP/sai-group-of-institutions-dehradun.avif',
         logoBgColor: '#ffffff',
         location: 'Rajpur Road, Dehradun',
@@ -845,7 +845,7 @@ export const collegesData = [
     {
         id: 14,
         name: 'IMS Unison University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035781/Ims_logo_new_v2gjsf.png'),
+        logo: getAssetUrl('Ims_logo_new_v2gjsf.png'),
         cardImage: 'IMS/ims-unison-university-dehradun-campus.jpg',
         logoBgColor: '#B6BDAD',
         location: 'Makkawala Greens, Mussoorie Diversion Road, Dehradun',
@@ -908,7 +908,7 @@ export const collegesData = [
     {
         id: 15,
         name: 'Combined Institute of Medical Sciences & UIHMT',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/logo-cimsr_ei3ray.png'),
+        logo: getAssetUrl('logo-cimsr_ei3ray.png'),
         cardImage: 'CIMS/cims-dehradun.jpg',
         logoBgColor: '#ffffff',
         location: 'Haridwar Road, Kuuanwala, Dehradun',
@@ -967,7 +967,7 @@ export const collegesData = [
     {
         id: 16,
         name: 'Nav Chetna Group of Colleges',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/Nav-Chetna-Logo-new-r5w8c9orrpjj4fhhddlipo289lmebs0nfghda7oyzu_wimoeo.png'),
+        logo: getAssetUrl('Nav-Chetna-Logo-new-r5w8c9orrpjj4fhhddlipo289lmebs0nfghda7oyzu_wimoeo.png'),
         cardImage: 'NAV CHETNA/nav-chetna-college-dehradun.jpg',
         logoBgColor: '#ffffff',
         location: 'Manduwala, Dehradun',
@@ -1026,7 +1026,7 @@ export const collegesData = [
     {
         id: 17,
         name: 'Tulas Institute',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035368/TulasLogo.f88dd71b_u2a3xv.png'),
+        logo: getAssetUrl('TulasLogo.f88dd71b_u2a3xv.png'),
         cardImage: 'TULAS/tulas-institute-dehradun.jpg',
         logoBgColor: '#ffffff',
         location: 'Dhoolkot, Chakrata Road, Dehradun',
@@ -1087,7 +1087,7 @@ export const collegesData = [
     {
         id: 18,
         name: 'COER University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/coer-logo_xz3idz.webp'),
+        logo: getAssetUrl('coer-logo_xz3idz.webp'),
         cardImage: 'COER/coer-university-roorkee.jpg',
         logoBgColor: '#ffffff',
         location: '7th KM on Roorkee Haridwar Road, VardhmanHW, Roorkee',
@@ -1150,7 +1150,7 @@ export const collegesData = [
     {
         id: 19,
         name: 'Quantum University',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/qu-logo-name_kjvdad.svg'),
+        logo: getAssetUrl('qu-logo-name_kjvdad.svg'),
         cardImage: 'QUANTUM/quantum-university-roorkee.jpg',
         logoBgColor: '#ffffff',
         location: 'Mandawar, Roorkee - Dehradun Highway, Roorkee',
@@ -1212,7 +1212,7 @@ export const collegesData = [
     {
         id: 20,
         name: 'Dolphin (PG) Institute',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/dibns-logo_olfuby.webp'),
+        logo: getAssetUrl('dibns-logo_olfuby.webp'),
         cardImage: 'DOLPHIN/dolphin-institute-dehradun.jpg',
         logoBgColor: '#ffffff',
         location: 'Manduwala, Dehradun',
@@ -1274,7 +1274,7 @@ export const collegesData = [
     {
         id: 21,
         name: 'BFIT Group of Institutions',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/Bfit-logo-1_aoxy1t.webp'),
+        logo: getAssetUrl('Bfit-logo-1_aoxy1t.webp'),
         cardImage: 'BFIT/bfit-dehradun-campus.jpg',
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Suddhowala, Dehradun',
@@ -1336,7 +1336,7 @@ export const collegesData = [
     {
         id: 9,
         name: 'D.D. College Dehradun',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1766816816/logo_pjxpio.png'),
+        logo: getAssetUrl('logo_pjxpio.png'),
         cardImage: 'D.D College/maxresdefault.jpg',
         logoBgColor: '#ffffff',
         location: '25, Nimbuwala, Garhi Cantt., Dehradun',
@@ -1395,7 +1395,7 @@ export const collegesData = [
     {
         id: 22,
         name: 'Guru Nanak College',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_vlerv7.webp'),
+        logo: getAssetUrl('logo_vlerv7.webp'),
         cardImage: 'GURU NANAK/guru-nanak-college-dehradun.jpg',
         logoBgColor: '#ffffff',
         location: 'Jhajhra, Chakrata Road, Dehradun',
@@ -1455,7 +1455,7 @@ export const collegesData = [
     {
         id: 23,
         name: 'JBIT - JB Institute of Technology',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035366/images_h0a51d.png'),
+        logo: getAssetUrl('images_h0a51d.png'),
         cardImage: 'JBIT/jbit-dehradun-campus.jpg',
         logoBgColor: '#ffffff',
         location: 'Nh-72, Chakrata Road, Dehradun',
@@ -1516,7 +1516,7 @@ export const collegesData = [
     {
         id: 24,
         name: 'Doon Group of Colleges',
-        logo: getAssetUrl('https://res.cloudinary.com/djjdvw3wc/image/upload/v1767035367/logo_2_b55nw4.png'),
+        logo: getAssetUrl('logo_2_b55nw4.png'),
         cardImage: 'DOON GROUP/doon-group-of-colleges-campus.jpg',
         logoBgColor: '#ffffff',
         location: 'Selaqui, Dehradun',

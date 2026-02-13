@@ -1,15 +1,24 @@
+# Dependencies
 node_modules/
-.DS_Store
-*.log
+
+# Next.js build output
+.next/
+out/
+
+# Environment files
 .env
 .env.local
 .env.development
 .env.production
-.vercel
 .env*.local
-.env.local
-.env.development
-.env.production
 
+# Vercel
 .vercel
-.env*.local
+
+# OS files
+.DS_Store
+*.log
+
+# IDE
+.vscode/
+.idea/

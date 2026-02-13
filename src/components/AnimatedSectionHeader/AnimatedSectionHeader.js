@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import useScrollAnimation from '../../hooks/useScrollAnimation';
+import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });

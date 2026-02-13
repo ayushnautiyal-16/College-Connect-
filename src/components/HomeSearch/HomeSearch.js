@@ -1,15 +1,17 @@
+'use client';
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 function HomeSearch() {
     const [searchTerm, setSearchTerm] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchTerm.trim()) {
-            navigate('/campuses', { state: { query: searchTerm.trim() } });
+            router.push('/campuses?query=' + encodeURIComponent(searchTerm.trim()));
         }
     };
 

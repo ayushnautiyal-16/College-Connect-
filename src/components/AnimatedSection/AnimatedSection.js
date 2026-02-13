@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import useScrollAnimation from '../../hooks/useScrollAnimation';
+import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 /**
  * AnimatedSection - Wrapper component for scroll-triggered entrance animations

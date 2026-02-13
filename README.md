@@ -9,6 +9,7 @@
 ---
 
 ## 📑 Table of Contents
+
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
 - [UI/UX Highlights](#-uiux-highlights)
@@ -22,6 +23,7 @@
 ## 🚀 Project Overview
 
 College Connect helps students navigate the complex landscape of higher education. The platform allows users to:
+
 - **Discover** top-rated colleges and universities.
 - **Explore** detailed campus information, courses, and facilities.
 - **Stay Informed** through a curated blog section covering educational trends and tips.
@@ -34,20 +36,24 @@ The project emphasizes a **user-first approach**, combining functional depth wit
 ## ✨ Key Features
 
 ### 🔍 Smart College Search
+
 - **Comprehensive Listings:** Browse a wide array of campuses with ease.
 - **Detailed Profiles:** View in-depth information about each college, including location, ranking, and facilities.
 - **Advanced Filtering:** (Planned) Sort colleges by various criteria to find the best match.
 
 ### 📝 Dynamic Blog System
+
 - **Engaging Content:** Read articles on specialized topics like "MBA in Delhi," "Top Engineering Colleges," etc.
 - **Modern Layout:** A clean, card-based blog feed with hover effects and smooth transitions.
 - **Dedicated Post Views:** Immersive reading experience for individual articles.
 
 ### 🎯 Seamless Application Process
+
 - **Direct Apply:** Streamlined "Apply Now" forms to facilitate quick expressions of interest.
 - **Admissions Support:** Integrated contact forms and "Get in Touch" popups for immediate assistance.
 
 ### 📱 Fully Responsive
+
 - Optimized for desktops, tablets, and mobile devices, ensuring a consistent experience everywhere.
 
 ---
@@ -55,6 +61,7 @@ The project emphasizes a **user-first approach**, combining functional depth wit
 ## 🎨 UI/UX Highlights
 
 We have prioritized a **premium look and feel**:
+
 - **Modern Typography:** Clean, readable fonts for professional appeal.
 - **Glassmorphism:** Subtle glass effects on cards and overlays for depth.
 - **Micro-interactions:** Smooth hover states, button animations, and transition effects.
@@ -67,14 +74,14 @@ We have prioritized a **premium look and feel**:
 
 This project leverages modern web technologies for performance and maintainability:
 
-| Category | Technology |
-|----------|------------|
-| **Frontend Framework** | ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black) **React v18** |
-| **Styling** | ![TailwindCSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white) **Tailwind CSS v3** |
-| **Routing** | ![React Router](https://img.shields.io/badge/-React_Router-CA4245?logo=react-router&logoColor=white) **React Router DOM v6** |
-| **Build Tool** | ![Webpack](https://img.shields.io/badge/-Webpack-8DD6F9?logo=webpack&logoColor=black) **Webpack v5** |
-| **State Management** | React Context API & Hooks |
-| **Image Management** | Cloudinary |
+| Category               | Technology                                                                                                              |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Frontend Framework** | ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black) **React v18**                           |
+| **Styling**            | ![TailwindCSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white) **Tailwind CSS v3** |
+| **Framework**          | ![Next.js](https://img.shields.io/badge/-Next.js-000000?logo=next.js&logoColor=white) **Next.js v14 (App Router)**      |
+| **Build Tool**         | Next.js (SWC Compiler)                                                                                                  |
+| **State Management**   | React Context API & Hooks                                                                                               |
+| **Image CDN**          | AWS CloudFront + S3                                                                                                     |
 
 ---
 
@@ -83,18 +90,21 @@ This project leverages modern web technologies for performance and maintainabili
 Follow these steps to set up the project locally:
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm or yarn
 
 ### Installation
 
 1.  **Clone the repository**
+
     ```bash
     git clone https://github.com/yourusername/campus-finder.git
     cd campus-finder
     ```
 
 2.  **Install dependencies**
+
     ```bash
     npm install
     # or
@@ -102,16 +112,18 @@ Follow these steps to set up the project locally:
     ```
 
 3.  **Environment Setup**
-    - Create a `.env` file in the root directory (if not present).
-    - Add necessary API keys (e.g., Cloudinary credentials) if applicable.
+    - Create a `.env.local` file in the root directory (if not present).
+    - Add `NEXT_PUBLIC_CLOUDFRONT_URL=https://d1om6fetcnl3e0.cloudfront.net`.
 
 4.  **Run the Development Server**
+
     ```bash
     npm run dev
     # or
     npm start
     ```
-    The app will open at `http://localhost:8080` (or similar port).
+
+    The app will open at `http://localhost:3000`.
 
 5.  **Build for Production**
     ```bash
@@ -157,4 +169,3 @@ src/
 Developed with ❤️ by **Ayush Nautiyal**
 
 ---
-  

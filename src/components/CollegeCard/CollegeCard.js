@@ -1,22 +1,23 @@
+'use client';
+
 import React from 'react';
-import { getAssetUrl } from '../../utils/assets';
-import { getCloudinaryImageUrl } from '../../utils/cloudinary';
-import { useNavigate } from 'react-router-dom';
-import useScrollAnimation from '../../hooks/useScrollAnimation';
+import { getAssetUrl } from '@/utils/assets';
+import { useRouter } from 'next/navigation';
+import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 function CollegeCard({ college, index = 0 }) {
     const { id, name, logo, cardImage, description, courses, location, established, accreditation, logoBgColor, feesStructureImage } = college;
     // Trigger earlier (50px margin) for smoother feed
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.05, rootMargin: '50px' });
-    const navigate = useNavigate();
+    const router = useRouter();
 
     // Use cardImage if available, otherwise use logo
-    const displayImage = cardImage ? getCloudinaryImageUrl(cardImage) : logo;
+    const displayImage = cardImage ? getAssetUrl(cardImage) : logo;
 
     return (
         <div
             ref={ref}
-            onClick={() => navigate(`/college/${id}`)}
+            onClick={() => router.push(`/college/${id}`)}
             className={`group bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-2 hover:scale-[1.02] overflow-hidden border border-gray-200/60 relative z-10 hover:z-20 cursor-pointer
                 ${isVisible
                     ? 'opacity-100 translate-y-0 scale-100'
@@ -81,7 +82,7 @@ function CollegeCard({ college, index = 0 }) {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            navigate('/apply');
+                            router.push('/apply');
                         }}
                         className="col-span-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1.5 px-2 rounded-md text-[11px] shadow-sm shadow-indigo-200 transition-colors uppercase tracking-wide"
                     >
@@ -91,9 +92,9 @@ function CollegeCard({ college, index = 0 }) {
                         onClick={(e) => {
                             e.stopPropagation();
                             if (feesStructureImage) {
-                                window.open(getCloudinaryImageUrl(feesStructureImage), '_blank');
+                                window.open(getAssetUrl(feesStructureImage), '_blank');
                             } else {
-                                navigate(`/college/${id}/fees`);
+                                router.push(`/college/${id}/fees`);
                             }
                         }}
                         className="col-span-1 bg-white border border-indigo-100 hover:bg-indigo-50 text-indigo-600 font-semibold py-1.5 px-2 rounded-md text-[11px] transition-colors flex items-center justify-center gap-1"

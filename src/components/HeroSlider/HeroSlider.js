@@ -1,10 +1,12 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { getAssetUrl } from '../../utils/assets';
-import { useNavigate } from 'react-router-dom';
-import '../../pages/Apply/Apply.css'; // Import custom animations
+import { getAssetUrl } from '@/utils/assets';
+import { useRouter } from 'next/navigation';
+import '@/styles/apply-animations.css'; // Import custom animations
 
 function HeroSlider() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -155,7 +157,7 @@ function HeroSlider() {
   }, []);
 
   const handleCTAClick = (link) => {
-    navigate(link);
+    router.push(link);
   };
 
   return (

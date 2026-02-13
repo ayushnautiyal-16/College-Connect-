@@ -1,44 +1,37 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { getAssetUrl } from '../../utils/assets';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getAssetUrl } from '@/utils/assets';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  // Handle scroll effect for navbar shadow and auto-hide
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Shadow logic
       setIsScrolled(currentScrollY > 10);
-
-      // Auto-hide logic
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down & passed threshold -> Hide
         setIsVisible(false);
-        setIsMobileMenuOpen(false); // Close mobile menu if open
+        setIsMobileMenuOpen(false);
       } else {
-        // Scrolling up -> Show
         setIsVisible(true);
       }
-
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location]);
+  }, [pathname]);
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -49,13 +42,9 @@ function Header() {
 
   const isActive = (path) => {
     if (path === '/') {
-      return location.pathname === '/';
+      return pathname === '/';
     }
-    return location.pathname.startsWith(path);
-  };
-
-  const handleCTAClick = () => {
-    navigate('/contact');
+    return pathname.startsWith(path);
   };
 
   return (
@@ -66,12 +55,10 @@ function Header() {
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex justify-between items-center h-12 md:h-14">
-          {/* Logo - Left Side */}
           <Link
-            to="/"
+            href="/"
             className="flex items-center gap-2 hover:opacity-100 transition-all duration-300 group"
           >
-            {/* Logo */}
             <div className="relative">
               <div className="absolute inset-0 bg-primary-100 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
               <img
@@ -80,8 +67,6 @@ function Header() {
                 className="relative h-10 md:h-12 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-
-            {/* Tagline - Beside Logo */}
             <div className="hidden lg:flex flex-col justify-center leading-none -ml-1">
               <span className="text-[8px] font-semibold text-gray-500 tracking-[0.1em] uppercase">
                 Creating
@@ -92,13 +77,12 @@ function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation + Phone - Right Side */}
           <div className="hidden md:flex items-center gap-x-6 lg:gap-x-8">
             <nav className="flex items-center gap-x-6 lg:gap-x-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className={`relative group py-2 text-sm lg:text-base font-medium tracking-wide transition-colors duration-300 ${isActive(link.path) ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'
                     }`}
                 >
@@ -111,7 +95,7 @@ function Header() {
               ))}
             </nav>
             <button
-              onClick={() => navigate('/apply')}
+              onClick={() => router.push('/apply')}
               className="group relative px-6 py-2.5 rounded-full bg-primary-600 text-white text-sm font-semibold shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute inset-0 rounded-full ring-2 ring-white/20 group-hover:ring-white/40 transition-all duration-300" />
@@ -124,37 +108,25 @@ function Header() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
             aria-label="Toggle menu"
           >
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-                }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-                }`}
-            />
+            <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+            <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white border-t border-gray-100 ${isMobileMenuOpen ? 'max-h-96 opacity-100 py-4' : 'max-h-0 opacity-0 py-0'
-            }`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white border-t border-gray-100 ${isMobileMenuOpen ? 'max-h-96 opacity-100 py-4' : 'max-h-0 opacity-0 py-0'}`}
         >
           <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`transition-colors duration-200 px-4 py-3 rounded-lg flex items-center ${isActive(link.path)
                   ? 'text-primary-600 bg-primary-50 font-semibold'
                   : 'text-gray-700 font-medium hover:text-primary-600 hover:bg-gray-50'
@@ -166,7 +138,7 @@ function Header() {
             ))}
             <div className="px-4 mt-2">
               <button
-                onClick={() => { navigate('/apply'); setIsMobileMenuOpen(false); }}
+                onClick={() => { router.push('/apply'); setIsMobileMenuOpen(false); }}
                 className="bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-lg w-full transition-all duration-300 flex items-center justify-center gap-2 shadow-md active:scale-95"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

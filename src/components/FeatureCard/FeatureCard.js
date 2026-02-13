@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import useScrollAnimation from '../../hooks/useScrollAnimation';
+import useScrollAnimation from '@/hooks/useScrollAnimation';
 
 function FeatureCard({ icon, title, description, index = 0 }) {
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
