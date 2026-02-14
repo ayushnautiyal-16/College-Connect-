@@ -8,6 +8,7 @@ function GetInTouchPopup() {
     const [isClosing, setIsClosing] = useState(false);
 
     const [selectedCourse, setSelectedCourse] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         // Show popup after 8-12 seconds (random delay) on every page load
@@ -27,8 +28,10 @@ function GetInTouchPopup() {
         }, 300);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
         const formData = new FormData(e.target);
 
         // Handle "Other" course selection
@@ -44,12 +47,27 @@ function GetInTouchPopup() {
             course: course,
         };
 
-        // Here you would typically send data to your backend
-        console.log('Form submitted:', data);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
 
-        // Show success message and close
-        alert('Thank you! Our team will contact you soon.');
-        handleClose();
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Thank you! Our team will contact you soon.');
+                handleClose();
+            } else {
+                alert(result.message || 'Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            alert('Network error. Please check your connection and try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleOverlayClick = (e) => {
@@ -181,8 +199,8 @@ function GetInTouchPopup() {
                         </div>
                     )}
 
-                    <button type="submit" className="popup-submit-btn">
-                        <span>Request Free Callback</span>
+                    <button type="submit" className="popup-submit-btn" disabled={isSubmitting}>
+                        <span>{isSubmitting ? 'Submitting...' : 'Request Free Callback'}</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"

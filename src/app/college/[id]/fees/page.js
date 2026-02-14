@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { collegesData } from '@/utils/collegesData';
 import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
 
-export default function CollegeFeesPage({ params }) {
-    const { id } = use(params);
+export default function CollegeFeesPage() {
+    const { id } = useParams();
     const router = useRouter();
 
     const [formData, setFormData] = useState({

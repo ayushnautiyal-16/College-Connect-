@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { getAssetUrl } from '@/utils/assets';
 import { useRouter } from 'next/navigation';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
@@ -11,8 +12,8 @@ function CollegeCard({ college, index = 0 }) {
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.05, rootMargin: '50px' });
     const router = useRouter();
 
-    // Use cardImage if available, otherwise use logo
-    const displayImage = cardImage ? getAssetUrl(cardImage) : logo;
+    // Use cardImage if available, otherwise use logo — both are raw paths now
+    const displayImage = getAssetUrl(cardImage || logo);
 
     return (
         <div
@@ -31,10 +32,12 @@ function CollegeCard({ college, index = 0 }) {
             {/* College Logo/Cover Section */}
             <div className="h-48 w-full relative overflow-hidden bg-gray-100 border-b border-gray-100/80 group-hover:shadow-inner transition-all">
                 {displayImage ? (
-                    <img
+                    <Image
                         src={displayImage}
                         alt={`${name} campus`}
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
                 ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
@@ -105,7 +108,9 @@ function CollegeCard({ college, index = 0 }) {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            const url = college.brochure || (id === 1 ? getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf') : '#');
+                            const url = college.brochure
+                                ? (college.brochure.startsWith('http') ? college.brochure : getAssetUrl(college.brochure))
+                                : (id === 1 ? getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf') : '#');
                             if (url !== '#') window.open(url, '_blank');
                         }}
                         className="col-span-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold py-1.5 px-2 rounded-md text-[11px] border border-amber-100 transition-colors flex items-center justify-center gap-1.5"

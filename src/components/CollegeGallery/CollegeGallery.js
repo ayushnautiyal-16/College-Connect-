@@ -14,10 +14,12 @@ const CollegeGallery = ({ images }) => {
         return 3;
     };
 
-    const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+    // Start with server-safe default (3), then sync on mount to avoid hydration mismatch
+    const [visibleCount, setVisibleCount] = useState(3);
 
-    // Handle window resize
+    // Handle window resize & initial sync
     useEffect(() => {
+        setVisibleCount(getVisibleCount());
         const handleResize = () => setVisibleCount(getVisibleCount());
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);

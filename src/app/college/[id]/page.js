@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { getAssetUrl } from '@/utils/assets';
 import { collegesData } from '@/utils/collegesData';
 import CollegeHeroSlideshow from '@/components/CollegeHeroSlideshow/CollegeHeroSlideshow';
@@ -9,8 +9,8 @@ import CollegeGallery from '@/components/CollegeGallery/CollegeGallery';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import DarkPatternedSection from '@/components/DarkPatternedSection/DarkPatternedSection';
 
-export default function CollegeDetailsPage({ params }) {
-    const { id } = use(params);
+export default function CollegeDetailsPage() {
+    const { id } = useParams();
     const router = useRouter();
 
     // Parse ID safely

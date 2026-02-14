@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useEffect, useState, use } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { blogPosts } from '@/data/blogData';
 
-export default function BlogPostPage({ params }) {
-    const { id } = use(params);
+export default function BlogPostPage() {
+    const { id } = useParams();
     const router = useRouter();
     const [post, setPost] = useState(null);
 
