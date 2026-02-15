@@ -1,6 +1,31 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
+// Parse DATABASE_URL format: user:password@host:port/database
+function getDbConfig() {
+    const dbUrl = process.env.DATABASE_URL;
+    if (dbUrl) {
+        const match = dbUrl.match(/^(.+?):(.+?)@(.+?)(?::(\d+))?\/(.+)$/);
+        if (match) {
+            return {
+                user: match[1],
+                password: match[2],
+                host: match[3],
+                port: parseInt(match[4] || "3306"),
+                database: match[5],
+            };
+        }
+    }
+    // Fallback to individual env variables (for local dev)
+    return {
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        port: 3306,
+    };
+}
+
 export async function POST(request) {
     let connection;
 
@@ -37,13 +62,8 @@ export async function POST(request) {
         // ✅ Connect to MySQL
         // ===========================
 
-        connection = await mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
-            port: 3306,
-        });
+        const dbConfig = getDbConfig();
+        connection = await mysql.createConnection(dbConfig);
 
         // ===========================
         // ✅ Insert into Database
