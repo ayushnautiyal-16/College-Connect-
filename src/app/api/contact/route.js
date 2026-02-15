@@ -72,12 +72,18 @@ export async function POST(request) {
     } catch (error) {
         console.error("Contact form error:", error);
 
-        const isDev = process.env.NODE_ENV === "development";
         return NextResponse.json(
             {
                 success: false,
-                message: "Database error. Please try again.",
-                ...(isDev && { debug: error.message, code: error.code }),
+                message: error.code === "ENOTFOUND"
+                    ? "Cannot reach database server. Check DB_HOST."
+                    : error.code === "ECONNREFUSED"
+                        ? "Database connection refused. Check security group."
+                        : error.code === "ER_ACCESS_DENIED_ERROR"
+                            ? "Database credentials incorrect. Check DB_USER/DB_PASSWORD."
+                            : error.code === "ETIMEDOUT"
+                                ? "Database connection timed out. Check security group/VPC."
+                                : `Database error: ${error.code || error.message}`,
             },
             { status: 500 }
         );
