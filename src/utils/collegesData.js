@@ -32,12 +32,73 @@ export const collegesData = [
                 '50,000+ alumni network worldwide',
                 'MOUs with 200+ international universities',
                 'Highest package: ₹54.03 LPA (2023)',
-                'Innovation Hub with 100+ patents filed'
+                'Innovation Hub with 100+ patents filed',
+                'NIRF Top 200 (Engineering) 2023',
+                'QS I-Gauge Diamond Rated',
+                'Times Higher Education Impact Rankings participant',
+                'Over 200+ research publications annually',
+                'Multiple international student/faculty exchange programs',
+                'Host of Grafest, Uttarakhand’s largest tech & cultural fest',
+                'Incubation center supporting 30+ startups',
+                'Awarded "Best University for Placements" in North India',
+                'State-of-the-art supercomputing and AI research labs',
+                'Active IEEE, ACM, and professional student chapters',
+                'Strong focus on sustainability and green campus initiatives'
             ],
             notableAlumni: [
-                'Working in Google, Microsoft, Amazon, Adobe',
-                'Entrepreneurs with successful startups',
-                'Government officials and policy makers'
+                'Software Engineers at Google, Microsoft, Amazon, Adobe',
+                'Founders of successful tech startups (e.g., EdTech, FinTech)',
+                'IAS/IPS officers and government policy makers',
+                'Researchers at top global universities',
+                'Award-winning authors and public speakers'
+            ],
+            testimonials: [
+                {
+                    name: 'Amit Sharma',
+                    batch: 'B.Tech CSE 2018',
+                    text: 'Graphic Era gave me the platform to intern at Microsoft and land a dream job at Google. The faculty and placement support are world-class.'
+                },
+                {
+                    name: 'Priya Singh',
+                    batch: 'MBA 2020',
+                    text: 'The industry exposure and live projects at GEU made me corporate-ready. The campus life is vibrant and full of opportunities.'
+                }
+            ],
+            campusHighlights: [
+                'Lush green 30+ acre campus in Dehradun',
+                'Modern hostels with AC/non-AC options',
+                '24x7 WiFi, digital library, and e-learning zones',
+                'On-campus medical, banking, and shopping facilities',
+                'Multiple cafeterias and food courts',
+                'Sports complex with cricket, football, basketball, and gym',
+                'Auditorium for 1000+ audience',
+                'Dedicated innovation and entrepreneurship cell',
+                'Annual Grafest with celebrity performances (e.g., Badshah, Sunidhi Chauhan)'
+            ],
+            researchAndInnovation: {
+                patentsFiled: 100,
+                annualPublications: 200,
+                researchCenters: [
+                    'Center for Artificial Intelligence & Data Science',
+                    'Center for Renewable Energy',
+                    'Center for Advanced Robotics',
+                    'Center for Management Research'
+                ],
+                internationalCollaborations: [
+                    'University of North Alabama, USA',
+                    'University of Fraser Valley, Canada',
+                    'National University, Singapore',
+                    'University of Derby, UK'
+                ]
+            },
+            eventsAndLife: [
+                'Grafest: Tech & Cultural Fest',
+                'TEDx Graphic Era',
+                'Annual Sports Meet',
+                'Hackathons & Coding Marathons',
+                'International Conferences & Workshops',
+                'Student Exchange Programs',
+                'Social Responsibility Drives (NSS, Blood Donation, Swachh Bharat)'
             ]
         },
 

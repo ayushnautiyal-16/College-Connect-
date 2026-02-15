@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { getAssetUrl } from '@/utils/assets';
 import { useRouter } from 'next/navigation';
 import '@/styles/apply-animations.css'; // Import custom animations
+import { motion, AnimatePresence } from 'framer-motion';
 
 function HeroSlider() {
   const router = useRouter();
@@ -11,12 +12,14 @@ function HeroSlider() {
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const sliderRef = useRef(null);
-  const videoRef = useRef(null);
+  const videoRefs = useRef([]);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const progressIntervalRef = useRef(null);
+  const [loadedSlides, setLoadedSlides] = useState(new Set([0]));
 
-  const slides = [
+  // Slides data is memoized to prevent re-creation on every render
+  const slides = useMemo(() => [
     {
       id: 1,
       headline: 'Admissions Open 2026',
@@ -24,7 +27,7 @@ function HeroSlider() {
       ctaLink: '/apply',
       video: getAssetUrl('graphic era/geu-homepage-video.mp4'),
       bgGradient: 'from-blue-600 via-indigo-600 to-purple-600',
-      videoDuration: 20, // Auto-advance after 20 seconds
+      videoDuration: 20,
     },
     {
       id: 2,
@@ -44,19 +47,36 @@ function HeroSlider() {
       bgGradient: 'from-green-600 via-emerald-600 to-teal-600',
       videoDuration: 20,
     },
-  ];
+  ], []);
 
   // Reset progress when slide changes
   useEffect(() => {
     setProgress(0);
 
+    // Mark current slide and next slide as loaded (preload next)
+    setLoadedSlides((prev) => {
+      const next = new Set(prev);
+      next.add(currentSlide);
+      next.add((currentSlide + 1) % slides.length);
+      return next;
+    });
+
     // Handle video auto-advance for slides with video
     const currentSlideData = slides[currentSlide];
     if (currentSlideData && currentSlideData.video) {
-      // Reset video if it exists
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(console.error);
+      const currentVideo = videoRefs.current[currentSlide];
+
+      // Pause all other videos
+      videoRefs.current.forEach((vid, i) => {
+        if (vid && i !== currentSlide) {
+          vid.pause();
+        }
+      });
+
+      // Play current video
+      if (currentVideo) {
+        currentVideo.currentTime = 0;
+        currentVideo.play().catch(console.error);
       }
 
       // Auto-advance after video duration
@@ -99,7 +119,7 @@ function HeroSlider() {
         clearInterval(progressIntervalRef.current);
       }
     };
-  }, [isPaused, slides.length, currentSlide, slides]);
+  }, [isPaused, currentSlide, slides]);
 
   // Handle slide change
   const goToSlide = (index) => {
@@ -170,79 +190,81 @@ function HeroSlider() {
     >
       {/* Slides Container */}
       <div className="relative w-full h-full">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
-          >
-            {/* Video Background for video slides */}
-            {slide.video && (
-              <>
-                <video
-                  ref={index === currentSlide ? videoRef : null}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop={false}
-                  playsInline
-                >
-                  <source src={slide.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 via-gray-900/40 to-transparent"></div>
-              </>
-            )}
-
-            {/* Gradient Background for non-video slides */}
-            {!slide.video && (
-              <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-90`}></div>
-            )}
-
-            {/* Content Container */}
-            <div className="relative z-20 container mx-auto px-4 md:px-6 lg:px-8 h-full">
-              <div className="flex flex-col justify-end h-full pb-16 md:pb-20">
-                {/* Left Bottom - Text Content */}
-                <div
-                  className={`text-white transition-all duration-700 ease-in-out relative z-30 max-w-2xl ${index === currentSlide
-                    ? 'opacity-100 transform translate-x-0'
-                    : 'opacity-0 transform -translate-x-8'
-                    }`}
-                >
-                  <div className="relative z-10">
-                    <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white animate-text-glow">
-                      {slide.headline}
-                    </h1>
-                    <button
-                      onClick={() => handleCTAClick(slide.ctaLink)}
-                      className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
+        <AnimatePresence initial={false} mode="wait">
+          {slides.map((slide, index) =>
+            index === currentSlide && (
+              <motion.div
+                key={slide.id}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                className="absolute inset-0 w-full h-full"
+              >
+                {/* Video Background for video slides */}
+                {slide.video && loadedSlides.has(index) && (
+                  <>
+                    <video
+                      ref={(el) => { videoRefs.current[index] = el; }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      autoPlay={index === currentSlide}
+                      muted
+                      loop={false}
+                      playsInline
+                      preload={index === currentSlide ? 'auto' : 'metadata'}
+                      style={{ willChange: 'transform' }}
                     >
-                      {slide.ctaText}
-                    </button>
-                  </div>
-                </div>
+                      <source src={slide.video} type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 via-gray-900/40 to-transparent"></div>
+                  </>
+                )}
 
-                {/* Right Side - Image (only for non-video slides) */}
+                {/* Gradient Background for non-video slides */}
                 {!slide.video && (
-                  <div
-                    className={`flex-1 flex items-center justify-center transition-all duration-700 ease-in-out ${index === currentSlide
-                      ? 'opacity-100 transform translate-x-0'
-                      : 'opacity-0 transform translate-x-8'
-                      }`}
-                  >
-                    <div className="w-full max-w-md lg:max-w-lg">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl">
-                        <div className="text-8xl md:text-9xl text-center">
-                          {slide.image}
-                        </div>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-90`}></div>
+                )}
+
+                {/* Content Container */}
+                <div className="relative z-20 container mx-auto px-4 md:px-6 lg:px-8 h-full">
+                  <div className="flex flex-col justify-end h-full pb-16 md:pb-20">
+                    {/* Left Bottom - Text Content */}
+                    <div
+                      className={`text-white transition-all duration-700 ease-in-out relative z-30 max-w-2xl opacity-100 transform translate-x-0`}
+                    >
+                      <div className="relative z-10">
+                        <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white animate-text-glow">
+                          {slide.headline}
+                        </h1>
+                        <button
+                          onClick={() => handleCTAClick(slide.ctaLink)}
+                          className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
+                        >
+                          {slide.ctaText}
+                        </button>
                       </div>
                     </div>
+
+                    {/* Right Side - Image (only for non-video slides) */}
+                    {!slide.video && (
+                      <div
+                        className={`flex-1 flex items-center justify-center transition-all duration-700 ease-in-out opacity-100 transform translate-x-0`}
+                      >
+                        <div className="w-full max-w-md lg:max-w-lg">
+                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl">
+                            <div className="text-8xl md:text-9xl text-center">
+                              {slide.image}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+                </div>
+              </motion.div>
+            )
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Navigation Arrows */}

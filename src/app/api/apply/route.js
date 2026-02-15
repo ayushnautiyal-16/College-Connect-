@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 import nodemailer from "nodemailer";
 
-// Parse connection string format: user:password@host:port/database
-// Falls back to individual env variables for local dev
 function getDbConfig() {
-    // Check DB_HOST first — if it contains a full connection string, parse it
     const dbHost = (process.env.DB_HOST || "").trim();
     if (dbHost.includes("@")) {
         const match = dbHost.match(/^(.+?):(.+?)@(.+?)(?::(\d+))?\/(.+)$/);
@@ -20,7 +17,6 @@ function getDbConfig() {
         }
     }
 
-    // Also check DATABASE_URL
     const dbUrl = (process.env.DATABASE_URL || "").trim();
     if (dbUrl.includes("@")) {
         const match = dbUrl.match(/^(.+?):(.+?)@(.+?)(?::(\d+))?\/(.+)$/);
@@ -35,7 +31,6 @@ function getDbConfig() {
         }
     }
 
-    // Fallback to individual env variables (for local dev)
     return {
         host: dbHost || undefined,
         user: process.env.DB_USER,
@@ -50,61 +45,50 @@ export async function POST(request) {
 
     try {
         const body = await request.json();
-        const { name, phone, email, course } = body;
+        const { fullName, mobileNumber, preferredCollege, preferredCourse } = body;
 
         // ===========================
-        // ✅ Validation
+        // Validation
         // ===========================
 
-        if (!name || !phone || !course) {
+        if (!fullName || !mobileNumber || !preferredCollege) {
             return NextResponse.json(
-                { success: false, message: "Name, phone, and course are required." },
+                { success: false, message: "Full name, mobile number, and preferred college are required." },
                 { status: 400 }
             );
         }
 
-        if (!/^[0-9]{10}$/.test(phone)) {
+        if (!/^[0-9]{10}$/.test(mobileNumber)) {
             return NextResponse.json(
-                { success: false, message: "Phone number must be 10 digits." },
-                { status: 400 }
-            );
-        }
-
-        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            return NextResponse.json(
-                { success: false, message: "Invalid email format." },
+                { success: false, message: "Mobile number must be 10 digits." },
                 { status: 400 }
             );
         }
 
         // ===========================
-        // ✅ Connect to MySQL
+        // Connect to MySQL & Insert
         // ===========================
 
         const dbConfig = getDbConfig();
         connection = await mysql.createConnection(dbConfig);
 
-        // ===========================
-        // ✅ Insert into Database
-        // ===========================
-
         await connection.execute(
-            `INSERT INTO student_applications 
-       (full_name, phone, email, course_interest)
-       VALUES (?, ?, ?, ?)`,
-            [name, phone, email || null, course]
+            `INSERT INTO apply_now_applications 
+             (full_name, mobile_number, preferred_college, preferred_course)
+             VALUES (?, ?, ?, ?)`,
+            [fullName, mobileNumber, preferredCollege, preferredCourse || null]
         );
 
-        console.log("New student application saved:", {
-            name,
-            phone,
-            email,
-            course,
+        console.log("New apply-now application saved:", {
+            fullName,
+            mobileNumber,
+            preferredCollege,
+            preferredCourse,
             submittedAt: new Date().toISOString(),
         });
 
         // ===========================
-        // ✅ Send Email Notification
+        // Send Email Notification
         // ===========================
 
         try {
@@ -117,33 +101,33 @@ export async function POST(request) {
             });
 
             const mailOptions = {
-                from: `"CollegeConnect" <${process.env.EMAIL_USER}>`,
+                from: `"CampusFinder" <${process.env.EMAIL_USER}>`,
                 to: process.env.EMAIL_USER,
-                subject: `New Callback Request - ${name} | ${course}`,
+                subject: `New Application - ${fullName} | ${preferredCollege}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 24px; text-align: center;">
-                            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">📞 New Callback Request</h1>
+                        <div style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); padding: 24px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">🎓 New Apply Now Application</h1>
                         </div>
                         <div style="padding: 24px;">
                             <table style="width: 100%; border-collapse: collapse;">
                                 <tr>
-                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555; width: 140px;">👤 Name</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${name}</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555; width: 160px;">👤 Full Name</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${fullName}</td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555;">📱 Mobile Number</td>
                                     <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">
-                                        <a href="tel:${phone}" style="color: #667eea; text-decoration: none;">${phone}</a>
+                                        <a href="tel:${mobileNumber}" style="color: #6366f1; text-decoration: none;">${mobileNumber}</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555;">📧 Email</td>
-                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${email || "Not provided"}</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555;">🏛️ Preferred College</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${preferredCollege}</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 12px; font-weight: bold; color: #555;">📚 Course Interest</td>
-                                    <td style="padding: 12px; color: #333;">${course}</td>
+                                    <td style="padding: 12px; font-weight: bold; color: #555;">📚 Preferred Course</td>
+                                    <td style="padding: 12px; color: #333;">${preferredCourse || "Not specified"}</td>
                                 </tr>
                             </table>
                         </div>
@@ -155,31 +139,30 @@ export async function POST(request) {
             };
 
             await transporter.sendMail(mailOptions);
-            console.log("Email notification sent successfully.");
+            console.log("Apply-now email notification sent successfully.");
         } catch (emailError) {
-            // Log email error but don't fail the request — DB save was successful
-            console.error("Failed to send email notification:", emailError);
+            console.error("Failed to send apply-now email notification:", emailError);
         }
 
         return NextResponse.json(
-            { success: true, message: "Form submitted successfully." },
+            { success: true, message: "Application submitted successfully." },
             { status: 200 }
         );
 
     } catch (error) {
-        console.error("Contact form error:", error);
+        console.error("Apply form error:", error);
 
         return NextResponse.json(
             {
                 success: false,
                 message: error.code === "ENOTFOUND"
-                    ? "Cannot reach database server. Check DB_HOST."
+                    ? "Cannot reach database server."
                     : error.code === "ECONNREFUSED"
-                        ? "Database connection refused. Check security group."
+                        ? "Database connection refused."
                         : error.code === "ER_ACCESS_DENIED_ERROR"
-                            ? "Database credentials incorrect. Check DB_USER/DB_PASSWORD."
+                            ? "Database credentials incorrect."
                             : error.code === "ETIMEDOUT"
-                                ? "Database connection timed out. Check security group/VPC."
+                                ? "Database connection timed out."
                                 : `Database error: ${error.code || error.message}`,
             },
             { status: 500 }

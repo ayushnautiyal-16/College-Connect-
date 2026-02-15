@@ -105,8 +105,50 @@ function GetInTouchPopup() {
                     </svg>
                 </button>
 
+                {/* Submitting / Loading State */}
+                {isSubmitting && (
+                    <div className="popup-result submitting-result">
+                        <div className="submitting-animation">
+                            <div className="submitting-spinner">
+                                <svg className="spinner-svg" viewBox="0 0 50 50">
+                                    <circle className="spinner-circle" cx="25" cy="25" r="20" fill="none" strokeWidth="4" />
+                                </svg>
+                                <div className="spinner-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+                                        <path d="M22 2L11 13" />
+                                        <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 className="submitting-title">Submitting Your Request</h2>
+                        <p className="submitting-message">Please wait while we process your details...</p>
+
+                        <div className="submitting-steps">
+                            <div className="submitting-step active done">
+                                <div className="step-dot">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" width="12" height="12"><polyline points="20 6 9 17 4 12" /></svg>
+                                </div>
+                                <span>Validating your details</span>
+                            </div>
+                            <div className="submitting-step active">
+                                <div className="step-dot pulsing"></div>
+                                <span>Saving your application</span>
+                            </div>
+                            <div className="submitting-step">
+                                <div className="step-dot"></div>
+                                <span>Sending confirmation</span>
+                            </div>
+                        </div>
+
+                        <div className="submitting-progress-bar">
+                            <div className="submitting-progress-fill"></div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Success State */}
-                {submitStatus === 'success' && (
+                {!isSubmitting && submitStatus === 'success' && (
                     <div className="popup-result success-result">
                         <div className="result-icon-container success-icon-bg">
                             <svg className="result-icon success-check" viewBox="0 0 52 52">
@@ -139,7 +181,7 @@ function GetInTouchPopup() {
                 )}
 
                 {/* Error State */}
-                {submitStatus === 'error' && (
+                {!isSubmitting && submitStatus === 'error' && (
                     <div className="popup-result error-result">
                         <div className="result-icon-container error-icon-bg">
                             <svg className="result-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -168,7 +210,7 @@ function GetInTouchPopup() {
                 )}
 
                 {/* Form State */}
-                {submitStatus === null && (
+                {!isSubmitting && submitStatus === null && (
                     <>
                         {/* Popup Content */}
                         <div className="popup-header">

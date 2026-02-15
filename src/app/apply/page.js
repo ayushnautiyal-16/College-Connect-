@@ -17,6 +17,8 @@ export default function ApplyPage() {
     const [errors, setErrors] = useState({});
     const [isVisible, setIsVisible] = useState(false);
     const [activeField, setActiveField] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
 
     // Trigger entrance animations on mount
     useEffect(() => {
@@ -73,16 +75,43 @@ export default function ApplyPage() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            // Simulate API call
-            setTimeout(() => {
-                setSubmitted(true);
-                setFormData({ fullName: '', mobileNumber: '', preferredCollege: '', preferredCourse: '' });
-                // Reset after 5 seconds
-                setTimeout(() => setSubmitted(false), 5000);
-            }, 800);
+            setIsSubmitting(true);
+            setSubmitError(null);
+
+            const college = formData.preferredCollege === 'Other'
+                ? formData.otherCollege
+                : formData.preferredCollege;
+
+            try {
+                const response = await fetch('/api/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fullName: formData.fullName,
+                        mobileNumber: formData.mobileNumber,
+                        preferredCollege: college,
+                        preferredCourse: formData.preferredCourse || null,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    setSubmitted(true);
+                    setFormData({ fullName: '', mobileNumber: '', preferredCollege: '', otherCollege: '', preferredCourse: '' });
+                    setTimeout(() => setSubmitted(false), 5000);
+                } else {
+                    setSubmitError(result.message || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Apply form submission error:', error);
+                setSubmitError('Network error. Please try again.');
+            } finally {
+                setIsSubmitting(false);
+            }
         }
     };
 
@@ -269,16 +298,23 @@ export default function ApplyPage() {
                                         {/* Submit Button */}
                                         <button
                                             type="submit"
-                                            className="relative w-full mt-2 group overflow-hidden rounded-xl p-[1px] focus:outline-none focus:ring-4 focus:ring-indigo-500/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                                            disabled={isSubmitting}
+                                            className="relative w-full mt-2 group overflow-hidden rounded-xl p-[1px] focus:outline-none focus:ring-4 focus:ring-indigo-500/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                                         >
                                             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
                                             <div className="relative h-full w-full bg-slate-900 rounded-[11px] items-center justify-center flex transition-all duration-300 group-hover:bg-opacity-0">
                                                 <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400 group-hover:text-white py-4 px-8 tracking-widest flex items-center gap-2 text-sm uppercase transition-colors">
-                                                    Get Started Now
-                                                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform text-indigo-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                                                    {isSubmitting ? 'Submitting...' : 'Get Started Now'}
+                                                    {!isSubmitting && (
+                                                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform text-indigo-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                                                    )}
                                                 </span>
                                             </div>
                                         </button>
+
+                                        {submitError && (
+                                            <p className="text-center text-xs text-red-400 mt-2 font-medium">{submitError}</p>
+                                        )}
 
                                         <p className="text-center text-[10px] text-gray-500 mt-4 flex items-center justify-center gap-1.5 font-medium">
                                             <svg className="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
