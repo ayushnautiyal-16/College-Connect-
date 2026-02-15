@@ -1,10 +1,27 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
-// Parse DATABASE_URL format: user:password@host:port/database
+// Parse connection string format: user:password@host:port/database
+// Falls back to individual env variables for local dev
 function getDbConfig() {
-    const dbUrl = process.env.DATABASE_URL;
-    if (dbUrl) {
+    // Check DB_HOST first — if it contains a full connection string, parse it
+    const dbHost = (process.env.DB_HOST || "").trim();
+    if (dbHost.includes("@")) {
+        const match = dbHost.match(/^(.+?):(.+?)@(.+?)(?::(\d+))?\/(.+)$/);
+        if (match) {
+            return {
+                user: match[1],
+                password: match[2],
+                host: match[3],
+                port: parseInt(match[4] || "3306"),
+                database: match[5],
+            };
+        }
+    }
+
+    // Also check DATABASE_URL
+    const dbUrl = (process.env.DATABASE_URL || "").trim();
+    if (dbUrl.includes("@")) {
         const match = dbUrl.match(/^(.+?):(.+?)@(.+?)(?::(\d+))?\/(.+)$/);
         if (match) {
             return {
@@ -16,9 +33,10 @@ function getDbConfig() {
             };
         }
     }
+
     // Fallback to individual env variables (for local dev)
     return {
-        host: process.env.DB_HOST,
+        host: dbHost || undefined,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
