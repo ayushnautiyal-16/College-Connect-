@@ -72,8 +72,13 @@ export async function POST(request) {
     } catch (error) {
         console.error("Contact form error:", error);
 
+        const isDev = process.env.NODE_ENV === "development";
         return NextResponse.json(
-            { success: false, message: "Database error. Please try again." },
+            {
+                success: false,
+                message: "Database error. Please try again.",
+                ...(isDev && { debug: error.message, code: error.code }),
+            },
             { status: 500 }
         );
 
