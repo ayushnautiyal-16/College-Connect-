@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
+import nodemailer from "nodemailer";
 
 // Parse connection string format: user:password@host:port/database
 // Falls back to individual env variables for local dev
@@ -101,6 +102,64 @@ export async function POST(request) {
             course,
             submittedAt: new Date().toISOString(),
         });
+
+        // ===========================
+        // ✅ Send Email Notification
+        // ===========================
+
+        try {
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS,
+                },
+            });
+
+            const mailOptions = {
+                from: `"CampusFinder" <${process.env.EMAIL_USER}>`,
+                to: process.env.EMAIL_USER,
+                subject: `New Callback Request - ${name} | ${course}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 24px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">📞 New Callback Request</h1>
+                        </div>
+                        <div style="padding: 24px;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555; width: 140px;">👤 Name</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${name}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555;">📱 Mobile Number</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">
+                                        <a href="tel:${phone}" style="color: #667eea; text-decoration: none;">${phone}</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #555;">📧 Email</td>
+                                    <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${email || "Not provided"}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; font-weight: bold; color: #555;">📚 Course Interest</td>
+                                    <td style="padding: 12px; color: #333;">${course}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 16px; text-align: center; font-size: 12px; color: #888;">
+                            Submitted on ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST
+                        </div>
+                    </div>
+                `,
+            };
+
+            await transporter.sendMail(mailOptions);
+            console.log("Email notification sent successfully.");
+        } catch (emailError) {
+            // Log email error but don't fail the request — DB save was successful
+            console.error("Failed to send email notification:", emailError);
+        }
 
         return NextResponse.json(
             { success: true, message: "Form submitted successfully." },
