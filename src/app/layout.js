@@ -2,9 +2,11 @@ import './globals.css';
 import MainLayoutWrapper from '@/layouts/MainLayout/MainLayoutWrapper';
 
 export const metadata = {
-    title: 'College Connect - Find Your Dream College',
-    description: 'Your trusted partner in finding the perfect college and shaping your educational future.',
-    keywords: 'college, admission, counseling, Dehradun, engineering, management',
+    title: 'College Connect – Top Private Colleges in Dehradun (2026 Admissions)',
+    description:
+        'Find and compare top private colleges in Dehradun for B.Tech, MBA, BBA, BCA, Pharmacy and more. Get expert counselling for direct admission, fees and placements.',
+    keywords:
+        'Dehradun private colleges, direct admission Dehradun, B.Tech colleges Dehradun, MBA colleges Dehradun, BBA BCA admission, pharmacy colleges, college counselling',
 };
 
 export default function RootLayout({ children }) {

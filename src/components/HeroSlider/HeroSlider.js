@@ -201,8 +201,8 @@ function HeroSlider() {
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
                 className="absolute inset-0 w-full h-full"
               >
-                {/* Video Background for video slides */}
-                {slide.video && loadedSlides.has(index) && (
+                {/* Video background with lightweight preload */}
+                {slide.video && (
                   <>
                     <video
                       ref={(el) => { videoRefs.current[index] = el; }}
@@ -211,18 +211,18 @@ function HeroSlider() {
                       muted
                       loop={false}
                       playsInline
-                      preload={index === currentSlide ? 'auto' : 'metadata'}
-                      style={{ willChange: 'transform' }}
+                      preload="metadata" // avoid heavy auto-preload
                     >
                       <source src={slide.video} type="video/mp4" />
                     </video>
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 via-gray-900/40 to-transparent"></div>
+                    {/* Dark gradient overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/60 to-transparent" />
                   </>
                 )}
 
-                {/* Gradient Background for non-video slides */}
+                {/* Pure gradient fallback when there is no video configured */}
                 {!slide.video && (
-                  <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-90`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-90`} />
                 )}
 
                 {/* Content Container */}
@@ -245,20 +245,6 @@ function HeroSlider() {
                       </div>
                     </div>
 
-                    {/* Right Side - Image (only for non-video slides) */}
-                    {!slide.video && (
-                      <div
-                        className={`flex-1 flex items-center justify-center transition-all duration-700 ease-in-out opacity-100 transform translate-x-0`}
-                      >
-                        <div className="w-full max-w-md lg:max-w-lg">
-                          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl">
-                            <div className="text-8xl md:text-9xl text-center">
-                              {slide.image}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </motion.div>

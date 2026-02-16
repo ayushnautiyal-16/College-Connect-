@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Parse connection string format: user:password@host:port/database
 // Falls back to individual env variables for local dev
@@ -104,21 +105,13 @@ export async function POST(request) {
         });
 
         // ===========================
-        // ✅ Send Email Notification
+        // ✅ Send Email Notification (Resend)
         // ===========================
 
         try {
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS,
-                },
-            });
-
-            const mailOptions = {
-                from: `"CollegeConnect" <${process.env.EMAIL_USER}>`,
-                to: process.env.EMAIL_USER,
+            await resend.emails.send({
+                from: "College Connect <onboarding@resend.dev>",
+                to: [process.env.EMAIL_USER],
                 subject: `New Callback Request - ${name} | ${course}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
@@ -152,13 +145,11 @@ export async function POST(request) {
                         </div>
                     </div>
                 `,
-            };
-
-            await transporter.sendMail(mailOptions);
-            console.log("Email notification sent successfully.");
+            });
+            console.log("Email notification sent successfully via Resend.");
         } catch (emailError) {
             // Log email error but don't fail the request — DB save was successful
-            console.error("Failed to send email notification:", emailError);
+            console.error("Failed to send email notification via Resend:", emailError);
         }
 
         return NextResponse.json(

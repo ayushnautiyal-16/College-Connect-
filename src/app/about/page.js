@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import '@/styles/apply-animations.css';
 import CountUpAnimation from '@/components/CountUpAnimation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 function About() {
     const router = useRouter();
@@ -131,11 +133,32 @@ function About() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-indigo-200 drop-shadow-lg">Your Path to the</span> <br />
                         <span className="text-amber-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)] animate-text-shimmer">Right College</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-slate-200 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed opacity-90 px-4">Expert admission counseling. We match students with colleges that fit their goals and potential perfectly.</p>
-                    <button onClick={() => router.push('/contact')} className="group relative px-6 py-3 md:px-8 md:py-4 bg-white text-indigo-700 font-bold rounded-full shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden text-sm md:text-base">
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <span className="relative z-10 flex items-center gap-2">Get Free Counseling<svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></span>
-                    </button>
+                    <p className="text-lg md:text-2xl text-slate-200 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed opacity-90 px-4">
+                        Expert admission counseling. We match students with colleges that fit their goals and potential perfectly.
+                    </p>
+                    <Button
+                        size="lg"
+                        onClick={() => router.push('/contact')}
+                        className="group relative overflow-hidden shadow-2xl hover:shadow-indigo-500/50 hover:-translate-y-1 transition-transform duration-300"
+                    >
+                        <span className="absolute inset-0 bg-gradient-to-r from-indigo-50/40 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className="relative z-10 flex items-center gap-2">
+                            Get Free Counseling
+                            <svg
+                                className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                            </svg>
+                        </span>
+                    </Button>
                 </div>
                 <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20 opacity-70">
                     <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
@@ -172,18 +195,40 @@ function About() {
             <section ref={whatWeDoRef.ref} className="py-16 md:py-24 bg-white relative z-10">
                 <div className="container mx-auto px-4">
                     <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
-                        <span className="text-indigo-600 font-bold uppercase tracking-wider text-xs md:text-sm">Our Services</span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Comprehensive Support</h2>
-                        <p className="text-slate-600 text-base md:text-lg">Guiding you through every step of your admission journey with precision and care.</p>
+                        <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs md:text-sm font-semibold text-indigo-700">
+                            Our Services
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-3 mb-4">
+                            Comprehensive Support
+                        </h2>
+                        <p className="text-slate-600 text-base md:text-lg">
+                            Guiding you through every step of your admission journey with precision and care.
+                        </p>
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                         {services.map((service, idx) => (
-                            <div key={idx} className="group p-6 md:p-8 rounded-2xl bg-white border border-slate-200 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden text-center">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                                <div className="w-12 h-12 md:w-14 md:h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-4 md:mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 mx-auto">{service.icon}</div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-2 md:mb-3 group-hover:text-indigo-600 transition-colors">{service.title}</h3>
-                                <p className="text-slate-600 leading-relaxed text-sm">{service.description}</p>
-                            </div>
+                            <Card
+                                key={idx}
+                                className="group relative overflow-hidden border-slate-200/90 bg-white/90 hover:border-indigo-200 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
+                            >
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="absolute -top-10 right-0 h-24 w-24 rounded-full bg-indigo-100/80 blur-2xl" />
+                                    <div className="absolute -bottom-10 left-0 h-24 w-24 rounded-full bg-sky-100/80 blur-2xl" />
+                                </div>
+                                <CardHeader className="relative z-10 text-center pb-4">
+                                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                                        {service.icon}
+                                    </div>
+                                    <CardTitle className="text-base md:text-lg">
+                                        {service.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="relative z-10 pt-0 pb-6 text-center">
+                                    <CardDescription className="text-sm leading-relaxed">
+                                        {service.description}
+                                    </CardDescription>
+                                </CardContent>
+                            </Card>
                         ))}
                     </div>
                 </div>

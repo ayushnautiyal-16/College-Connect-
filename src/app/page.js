@@ -13,6 +13,7 @@ import AnimatedSectionHeader from '@/components/AnimatedSectionHeader/AnimatedSe
 import SimpleAnimatedHeader from '@/components/SimpleAnimatedHeader/SimpleAnimatedHeader';
 import LogoTicker from '@/components/LogoTicker/LogoTicker';
 import AnimatedSection from '@/components/AnimatedSection/AnimatedSection';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { collegesData } from '@/utils/collegesData';
 
 function Home() {
@@ -133,6 +134,33 @@ function Home() {
             number: 4,
             title: 'Admission Confirmation',
             description: 'We guide you through the entire admission process until you secure your seat.',
+        },
+    ];
+
+    const successStories = [
+        {
+            name: 'Aarav Sharma',
+            college: 'Graphic Era University, Dehradun',
+            course: 'B.Tech CSE',
+            year: '2023 Batch',
+            highlight: 'Placed in a top product company',
+            story: 'With average 12th marks and no clear college roadmap, Aarav used our counselling to shortlist realistic options. He joined Graphic Era University for CSE and, after four years of focused mentoring and profile-building support, secured a role as a software engineer at a leading product company.',
+        },
+        {
+            name: 'Simran Kaur',
+            college: 'DIT University, Dehradun',
+            course: 'BBA',
+            year: '2022 Batch',
+            highlight: 'Switched stream with confidence',
+            story: 'Simran wanted to move from Science to Management but was confused about college reputation and fees. We helped her compare DIT University with other private colleges on placements, fees, and campus life. Today she is a BBA graduate working in a reputed finance firm in NCR.',
+        },
+        {
+            name: 'Rahul Verma',
+            college: 'Uttaranchal University, Dehradun',
+            course: 'LLB (Hons.)',
+            year: '2021 Batch',
+            highlight: 'First-generation lawyer in the family',
+            story: 'Rahul was a first-generation learner with a limited budget but a strong interest in law. Through our detailed counselling and college shortlisting, he joined Uttaranchal University for LLB (Hons.) and now practices at a well-known law firm in Dehradun.',
         },
     ];
 
@@ -273,101 +301,141 @@ function Home() {
             </div>
 
             {/* Features Section */}
-            <section className="py-24 bg-light-primary relative overflow-hidden">
+            <section className="py-24 bg-gradient-to-b from-brand-primary/5 via-indigo-50 to-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.04]" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233B82F6' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234F46E5' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`
                 }}></div>
 
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                    <div className="absolute top-[-10%] left-[-5%] w-[35%] h-[35%] bg-gradient-to-br from-indigo-300/20 to-blue-300/20 rounded-full blur-[100px]"></div>
-                    <div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[35%] bg-gradient-to-tl from-purple-300/20 to-pink-300/20 rounded-full blur-[100px]"></div>
+                    <div className="absolute top-[-10%] left-[-5%] w-[35%] h-[35%] bg-gradient-to-br from-brand-primary/20 to-brand-secondary/10 rounded-full blur-[100px]" />
+                    <div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[35%] bg-gradient-to-tl from-brand-secondary/20 to-indigo-300/20 rounded-full blur-[100px]" />
                 </div>
 
                 <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-                    <AnimatedSection animationType="slide-left">
-                        <SimpleAnimatedHeader
-                            title="Why Choose College Connect?"
-                            subtitle="We provide comprehensive support for your college admission journey"
-                        />
-                    </AnimatedSection>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                        {features.map((feature, index) => (
-                            <AnimatedSection
-                                key={index}
-                                animationType={index % 2 === 0 ? "slide-left" : "slide-right"}
-                                delay={index * 100}
-                            >
-                                <FeatureCard
-                                    icon={feature.icon}
-                                    title={feature.title}
-                                    description={feature.description}
-                                    index={index}
+                    <div className="grid gap-10 lg:gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.6fr)] items-start">
+                        {/* Left narrative column */}
+                        <AnimatedSection animationType="slide-left">
+                            <div className="space-y-6">
+                                <SimpleAnimatedHeader
+                                    title="Why Choose College Connect?"
+                                    subtitle="We don’t just help you pick a college – we design your entire admission journey with clarity and confidence."
                                 />
-                            </AnimatedSection>
-                        ))}
+
+                                {/* Key points list */}
+                                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-slate-200 shadow-sm">
+                                    <h3 className="text-sm font-semibold tracking-wide text-slate-700 uppercase mb-4">
+                                        Built for students & parents
+                                    </h3>
+                                    <div className="space-y-3 text-sm md:text-base text-slate-700">
+                                        <div className="flex items-start gap-3">
+                                            <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-xs font-bold">
+                                                ✓
+                                            </span>
+                                            <p className="leading-relaxed">
+                                                <span className="font-semibold">Transparent guidance</span> – no fake promises, no hidden charges, only verified college information.
+                                            </p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 text-xs font-bold">
+                                                ✓
+                                            </span>
+                                            <p className="leading-relaxed">
+                                                <span className="font-semibold">Personalised shortlisting</span> based on your marks, budget, and preferred course &amp; city.
+                                            </p>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600 text-xs font-bold">
+                                                ✓
+                                            </span>
+                                            <p className="leading-relaxed">
+                                                <span className="font-semibold">End‑to‑end support</span> from first call to fee payment, hostel booking, and reporting to campus.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Trust badges */}
+                                <div className="flex flex-wrap gap-3">
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs md:text-sm font-semibold text-slate-800 shadow-sm border border-slate-200">
+                                        <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                                        100% Free Counselling
+                                    </span>
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-slate-900 text-white px-4 py-2 text-xs md:text-sm font-semibold shadow-sm">
+                                        <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-indigo-400" />
+                                        Verified Private Colleges
+                                    </span>
+                                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs md:text-sm font-semibold text-slate-800 shadow-sm border border-slate-200">
+                                        ⭐ 4.9/5 Student Satisfaction
+                                    </span>
+                                </div>
+                            </div>
+                        </AnimatedSection>
+
+                        {/* Right feature grid column */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                            {features.map((feature, index) => (
+                                <AnimatedSection
+                                    key={index}
+                                    animationType={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+                                    delay={index * 120}
+                                >
+                                    <FeatureCard
+                                        icon={feature.icon}
+                                        title={feature.title}
+                                        description={feature.description}
+                                        index={index}
+                                    />
+                                </AnimatedSection>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Admission Process Steps */}
-            <section className="py-24 bg-light-secondary relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/20 via-transparent to-transparent"></div>
-
+            {/* Dehradun Success Stories Section */}
+            <section className="py-24 bg-white relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-                    <AnimatedSection animationType="slide-left">
-                        <SimpleAnimatedHeader
-                            title="How It Works"
-                            subtitle="Our simple 4-step process to get you into your dream college"
-                        />
-                    </AnimatedSection>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
-                        {steps.map((step, index) => (
-                            <AnimatedSection
-                                key={step.number}
-                                animationType="fade-up"
-                                delay={index * 150}
+                    <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
+                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs md:text-sm font-semibold text-emerald-700 mb-3">
+                            Real Stories from Dehradun
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+                            Success Stories from Dehradun Colleges
+                        </h2>
+                        <p className="text-slate-600 text-sm md:text-base">
+                            A few examples of how the right counselling, college choice, and consistent guidance
+                            changed students&apos; careers.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 md:gap-8 md:grid-cols-3">
+                        {successStories.map((story, idx) => (
+                            <Card
+                                key={idx}
+                                className="flex h-full flex-col border-slate-200/90 bg-white/95 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                             >
-                                <StepCard
-                                    number={step.number}
-                                    title={step.title}
-                                    description={step.description}
-                                    index={index}
-                                />
-                            </AnimatedSection>
+                                <CardHeader className="pb-3">
+                                    <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 mb-1">
+                                        {story.highlight}
+                                    </p>
+                                    <CardTitle className="text-base md:text-lg">
+                                        {story.name}
+                                    </CardTitle>
+                                    <CardDescription className="mt-1 text-xs md:text-sm">
+                                        {story.course} &middot; {story.college}
+                                        <br />
+                                        <span className="text-slate-400">{story.year}</span>
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="pt-0 pb-5 text-sm leading-relaxed text-slate-600">
+                                    {story.story}
+                                </CardContent>
+                            </Card>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Testimonials Section */}
-            <section className="py-24 bg-light-primary relative overflow-hidden">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-                    <AnimatedSection animationType="slide-left">
-                        <SimpleAnimatedHeader
-                            title="Success Stories"
-                            subtitle="Hear from students who achieved their dreams with our help"
-                        />
-                    </AnimatedSection>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                        {testimonials.map((testimonial, index) => (
-                            <AnimatedSection
-                                key={index}
-                                animationType={index % 2 === 0 ? "slide-left" : "slide-right"}
-                                delay={index * 150}
-                            >
-                                <TestimonialCard
-                                    name={testimonial.name}
-                                    college={testimonial.college}
-                                    rating={testimonial.rating}
-                                    testimonial={testimonial.testimonial}
-                                    index={index}
-                                />
-                            </AnimatedSection>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* CTA Section */}
             <section className="py-24 bg-dark-primary text-text-white relative overflow-hidden">
