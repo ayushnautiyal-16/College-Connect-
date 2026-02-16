@@ -5,9 +5,11 @@ import { useRouter, useParams } from 'next/navigation';
 import { getAssetUrl } from '@/utils/assets';
 import { collegesData } from '@/utils/collegesData';
 import CollegeHeroSlideshow from '@/components/CollegeHeroSlideshow/CollegeHeroSlideshow';
+import CollegeDetailsHero from '@/components/CollegeDetailsHero/CollegeDetailsHero';
 import CollegeGallery from '@/components/CollegeGallery/CollegeGallery';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import DarkPatternedSection from '@/components/DarkPatternedSection/DarkPatternedSection';
+import GradientText from '@/components/GradientText/GradientText';
 
 export default function CollegeDetailsPage() {
     const { id } = useParams();
@@ -504,7 +506,7 @@ export default function CollegeDetailsPage() {
 
     // Render Logic
     return (
-        <div className="min-h-screen bg-light-primary font-sans text-text-primary selection:bg-brand-primary/10 selection:text-brand-primary pt-24 pb-20 relative">
+        <div className="min-h-screen bg-light-primary font-sans text-text-primary selection:bg-brand-primary/10 selection:text-brand-primary pb-20 relative">
             {/* Clean subtle background for content readability */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 {/* Very subtle grid pattern */}
@@ -637,60 +639,8 @@ export default function CollegeDetailsPage() {
             {/* Content Wrapper ensures z-index above background */}
             <div className="relative z-10">
 
-                {/* --- HEADER --- */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative mb-8">
-
-
-                    <div className="text-center pt-2">
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
-                            {college.name}
-                        </h1>
-                        <div className="flex items-center justify-center gap-2 text-gray-500 text-sm font-medium">
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                            {college.location}
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- HERO SECTION --- */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
-                    <div className="grid lg:grid-cols-12 gap-6">
-                        {/* Hero Slider */}
-                        <div className="lg:col-span-8 h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-lg border border-gray-100 relative">
-                            <CollegeHeroSlideshow images={heroImages} className="h-full w-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-                        </div>
-
-                        {/* Vertical Highlights Stack - Centered */}
-                        <div className="lg:col-span-4 flex items-center">
-                            <div className="w-full grid grid-cols-1 gap-3">
-                                {highlights.map((item, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`bg-gradient-to-br ${item.color} bg-opacity-10 rounded-lg p-3 border-2 border-opacity-30 shadow-sm flex items-center gap-3 hover:shadow-lg transition-shadow duration-300 group`}
-                                        style={{
-                                            borderColor: idx === 0 ? '#3b82f6' : idx === 1 ? '#10b981' : idx === 2 ? '#f97316' : '#a855f7',
-                                            animation: `float 3s ease-in-out infinite`,
-                                            animationDelay: `${idx * 0.5}s`
-                                        }}
-                                    >
-                                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${item.color} text-white shadow-md`}>
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} /></svg>
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="text-sm font-bold text-gray-900 leading-tight">
-                                                {item.value}
-                                            </div>
-                                            <div className="text-[10px] uppercase tracking-wider text-gray-600 font-semibold mt-0.5">
-                                                {item.label}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/* --- NEW SaaS-STYLE HERO SECTION --- */}
+                <CollegeDetailsHero college={college} images={heroImages} />
 
                 {/* --- MAIN CONTENT --- */}
 
@@ -818,7 +768,7 @@ export default function CollegeDetailsPage() {
                 <section id="courses" ref={coursesRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-100 ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     <div className="max-w-5xl mx-auto px-6">
                         <div className="mb-8">
-                            <h2 className="text-xl font-bold text-text-primary mb-2">Courses Offered</h2>
+                            <h2 className="text-xl font-bold text-text-primary mb-2">Courses <GradientText>Offered</GradientText></h2>
                             <p className="text-text-secondary">Explore our diverse range of undergraduate and postgraduate programs</p>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -861,7 +811,7 @@ export default function CollegeDetailsPage() {
                 <section id="infrastructure" ref={infraRef.ref} className={`py-16 bg-slate-50 transition-all duration-700 delay-200 ${infraRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     <div className="max-w-5xl mx-auto px-6">
                         <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
-                            <h2 className="text-xl font-bold text-text-primary mb-8">World-Class Facilities</h2>
+                            <h2 className="text-xl font-bold text-text-primary mb-8">World-Class <GradientText>Facilities</GradientText></h2>
                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {facilities.map((fac, idx) => (
                                     <div
@@ -895,13 +845,15 @@ export default function CollegeDetailsPage() {
                         <section id="gallery" ref={galleryRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-200 ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                             <div className="max-w-5xl mx-auto px-6">
                                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
-                                    <h2 className="text-xl font-bold text-text-primary mb-6">Campus Gallery</h2>
+                                    <h2 className="text-xl font-bold text-text-primary mb-6">Campus <GradientText>Gallery</GradientText></h2>
                                     <CollegeGallery images={galleryImages} />
                                 </div>
                             </div>
                         </section>
                     )
                 }
+
+
 
             </div >
         </div >

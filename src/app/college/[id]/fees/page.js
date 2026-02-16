@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { collegesData } from '@/utils/collegesData';
 import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
+import GradientText from '@/components/GradientText/GradientText';
 
 export default function CollegeFeesPage() {
     const { id } = useParams();
@@ -94,9 +95,7 @@ export default function CollegeFeesPage() {
 
                     <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight tracking-tight text-gray-900 animate-slide-in-left">
                         Know The Real Cost<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 animate-text-shimmer bg-[length:200%_auto]">
-                            Before You Join
-                        </span>
+                        <GradientText>Before You Join</GradientText>
                     </h1>
 
                     <p className="text-gray-600 text-lg leading-relaxed font-medium max-w-xl animate-fade-in-up animation-delay-200">
@@ -176,7 +175,7 @@ export default function CollegeFeesPage() {
                                 <div className="relative">
                                     <div className="mb-8 text-center lg:text-left">
                                         <h2 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
-                                            Request Fee Structure
+                                            Request Fee <GradientText>Structure</GradientText>
                                         </h2>
                                         <p className="text-gray-500 text-sm font-medium">
                                             Fill in your details to get the latest 2026 fee breakdown.

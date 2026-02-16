@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import AnimatedSection from '@/components/AnimatedSection/AnimatedSection';
+import GradientText from '@/components/GradientText/GradientText';
 
 export default function ContactPage() {
     const router = useRouter();
@@ -27,7 +28,7 @@ export default function ContactPage() {
 
                 <AnimatedSection animationType="fade-up" delay={200}>
                     <h1 className="font-heading text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-                        We are <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Coming Soon</span>
+                        We are <GradientText>Coming Soon</GradientText>
                     </h1>
                 </AnimatedSection>
 

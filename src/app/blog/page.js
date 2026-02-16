@@ -5,6 +5,7 @@ import { getAssetUrl } from '@/utils/assets';
 import { useRouter } from 'next/navigation';
 import { blogPosts, categories, seoTitles } from '@/data/blogData';
 import AnimatedSection from '@/components/AnimatedSection/AnimatedSection';
+import GradientText from '@/components/GradientText/GradientText';
 
 export default function BlogPage() {
     const router = useRouter();
@@ -40,9 +41,7 @@ export default function BlogPage() {
                     <AnimatedSection animationType="slide-left" delay={100}>
                         <h1 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                             Knowledge Hub for <br className="hidden md:block" />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300">
-                                Aspiring Students
-                            </span>
+                            <GradientText>Aspiring Students</GradientText>
                         </h1>
                     </AnimatedSection>
                     <AnimatedSection animationType="slide-right" delay={200}>
@@ -58,7 +57,7 @@ export default function BlogPage() {
                 {/* Categories Section */}
                 <AnimatedSection animationType="fade-up" delay={300} className="mb-16">
                     <div className="flex flex-col items-center">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Explore Topics</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Explore <GradientText>Topics</GradientText></h2>
                         <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl">
                             {categories.map((cat, index) => (
                                 <button
@@ -186,7 +185,7 @@ export default function BlogPage() {
 
                 {/* Trending / SEO Topics */}
                 <AnimatedSection animationType="slide-left" delay={200} className="mb-20">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 font-heading text-center">Trending Discussions</h2>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-8 font-heading text-center">Trending <GradientText>Discussions</GradientText></h2>
                     <div className="max-w-5xl mx-auto bg-white rounded-3xl p-8 md:p-10 shadow-lg border border-gray-100">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                             {seoTitles.map((title, index) => (
@@ -209,7 +208,7 @@ export default function BlogPage() {
 
                     <div className="relative z-10 px-6 py-16 md:px-16 md:py-20 text-center max-w-4xl mx-auto">
                         <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-                            Join Our Community of Achievers
+                            Join Our Community of <GradientText>Achievers</GradientText>
                         </h2>
                         <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
                             Subscribe to get weekly insights, scholarship alerts, and premium admission strategies directly in your inbox.

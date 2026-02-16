@@ -2,6 +2,7 @@
 
 import React from 'react';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
+import GradientText from '@/components/GradientText/GradientText';
 
 function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -13,7 +14,7 @@ function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
                 className={`text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
             >
-                {leftText} <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">{rightText}</span>
+                {leftText} <GradientText>{rightText}</GradientText>
             </h2>
 
             {/* Decorative Underline */}

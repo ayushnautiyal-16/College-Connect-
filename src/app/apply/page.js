@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
+import GradientText from '@/components/GradientText/GradientText';
 
 export default function ApplyPage() {
     const [formData, setFormData] = useState({
@@ -139,9 +140,7 @@ export default function ApplyPage() {
 
                     <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-tight text-white">
                         Your Admission,<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-[length:200%_auto]">
-                            Our Responsibility
-                        </span>
+                        <GradientText>Our Responsibility</GradientText>
                     </h1>
 
                     <p className="text-gray-400 text-lg leading-relaxed font-medium max-w-xl">
@@ -196,7 +195,7 @@ export default function ApplyPage() {
                                 <div className="relative">
                                     <div className="mb-8 text-center lg:text-left">
                                         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
-                                            Apply Now
+                                            Apply <GradientText>Now</GradientText>
                                         </h2>
                                         <p className="text-gray-400 text-sm font-medium">
                                             Fill in your details to begin your journey.

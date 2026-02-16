@@ -23,8 +23,28 @@ function CampusesContent() {
     });
 
     return (
-        <div className="bg-gray-50 min-h-screen py-16">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="min-h-screen py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #f8f6ff 25%, #fff 50%, #f0f9ff 75%, #f5f3ff 100%)' }}>
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Soft gradient blobs */}
+                <div className="absolute top-[-8%] left-[-5%] w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-[100px] animate-float" />
+                <div className="absolute bottom-[-10%] right-[-5%] w-[450px] h-[450px] bg-purple-200/25 rounded-full blur-[100px] animate-float-delayed" />
+                <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-cyan-100/25 rounded-full blur-[80px]" />
+
+                {/* Subtle dot-grid pattern */}
+                <div className="absolute inset-0 opacity-[0.035]" style={{
+                    backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
+                    backgroundSize: '24px 24px'
+                }} />
+
+                {/* Decorative accent rings */}
+                <div className="absolute top-20 right-20 w-40 h-40 border border-indigo-200/40 rounded-full hidden lg:block" />
+                <div className="absolute top-28 right-28 w-24 h-24 border border-purple-200/30 rounded-full hidden lg:block" />
+                <div className="absolute bottom-24 left-16 w-32 h-32 border border-cyan-200/30 rounded-full hidden lg:block" />
+                <div className="absolute bottom-32 left-24 w-16 h-16 border border-indigo-200/40 rounded-full hidden lg:block" />
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
                 <AnimatedSectionHeader
                     leftText="Top Colleges in"
                     rightText="Dehradun"
