@@ -9,13 +9,16 @@ frontend:
         - echo "DB_PASSWORD=$DB_PASSWORD" >> .env.production
         - echo "DB_NAME=$DB_NAME" >> .env.production
         - echo "NEXT_PUBLIC_CLOUDFRONT_URL=$NEXT_PUBLIC_CLOUDFRONT_URL" >> .env.production
+        - echo "RESEND_API_KEY=$RESEND_API_KEY" >> .env.production
+        - echo "EMAIL_USER=$EMAIL_USER" >> .env.production
+        - cat .env.production
     build:
       commands:
         - npm run build
   artifacts:
     baseDirectory: .next
     files:
-      - "**/*"
+      - '**/*'
   cache:
     paths:
       - .next/cache/**/*
