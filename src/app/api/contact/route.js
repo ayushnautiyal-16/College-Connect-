@@ -51,7 +51,18 @@ export async function POST(request) {
 
     try {
         const body = await request.json();
-        const { name, phone, email, course } = body;
+        const { name, phone, email, course, collegeId, otherCourse } = body;
+
+        // If course is empty and otherCourse is provided, use otherCourse
+        const courseName = course || otherCourse || '';
+
+        // Determine college name for special IDs
+        let collegeName = '';
+        if (collegeId === '1' || collegeId === 1) {
+            collegeName = 'Graphic Era';
+        } else if (collegeId === '2' || collegeId === 2) {
+            collegeName = 'DIT University';
+        }
 
         // ===========================
         // ✅ Validation
@@ -89,18 +100,20 @@ export async function POST(request) {
         // ✅ Insert into Database
         // ===========================
 
+
         await connection.execute(
             `INSERT INTO student_applications 
        (full_name, phone, email, course_interest)
        VALUES (?, ?, ?, ?)`,
-            [name, phone, email || null, course]
+            [name, phone, email || null, courseName]
         );
+
 
         console.log("New student application saved:", {
             name,
             phone,
             email,
-            course,
+            course: courseName,
             submittedAt: new Date().toISOString(),
         });
 
@@ -112,11 +125,11 @@ export async function POST(request) {
             await resend.emails.send({
                 from: "College Connect <onboarding@resend.dev>",
                 to: [process.env.EMAIL_USER],
-                subject: `New Callback Request - ${name} | ${course}`,
+                subject: `New Callback Request - ${name} | ${courseName}${collegeName ? ' | ' + collegeName : ''}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
                         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 24px; text-align: center;">
-                            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">📞 New Callback Request</h1>
+                            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">📞 New Callback Request${collegeName ? ' - ' + collegeName : ''}</h1>
                         </div>
                         <div style="padding: 24px;">
                             <table style="width: 100%; border-collapse: collapse;">
@@ -135,8 +148,12 @@ export async function POST(request) {
                                     <td style="padding: 12px; border-bottom: 1px solid #f0f0f0; color: #333;">${email || "Not provided"}</td>
                                 </tr>
                                 <tr>
+                                    <td style="padding: 12px; font-weight: bold; color: #555;">🏫 College</td>
+                                    <td style="padding: 12px; color: #333;">${collegeName || 'N/A'}</td>
+                                </tr>
+                                <tr>
                                     <td style="padding: 12px; font-weight: bold; color: #555;">📚 Course Interest</td>
-                                    <td style="padding: 12px; color: #333;">${course}</td>
+                                    <td style="padding: 12px; color: #333;">${courseName}</td>
                                 </tr>
                             </table>
                         </div>
