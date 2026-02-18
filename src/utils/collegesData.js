@@ -270,6 +270,7 @@ export const collegesData = [
         name: 'Uttaranchal University',
         logo: 'uttaranchal/uu-infra-campus.png',
         logoBgColor: '#ffffff',
+        feesStructureImage: 'uttaranchal/UIT FEES.pdf',
         location: 'Arcadia Grant, P.O. Chandanwari, Premnagar, Dehradun',
         established: '2013',
         accreditation: 'NAAC A+ Grade | UGC | BCI | ICAR',
@@ -409,6 +410,7 @@ export const collegesData = [
         name: 'Dev Bhoomi Uttarakhand University',
         logo: 'devbhoomi-logo_w9bkus.webp',
         cardImage: 'DBUU/campus-infra-dbuu.webp',
+        feesStructureImage: 'DBUU/PRPOSED_FEE-STRUCTURE_2026_V1.0 (1) DEV bhoomi.pdf',
         logoBgColor: '#ffffff',
         location: 'Chakrata Road, Manduwala, Dehradun',
         established: '2005',
@@ -475,6 +477,7 @@ export const collegesData = [
         logo: 'shivaliklogo_wyab9r.png',
         cardImage: 'shivalik college/U7A9935-1024x607.jpg',
         brochure: 'shivalik college/PROSPECTUS_compressed.pdf',
+        feesStructureImage: 'shivalik college/shivalik fees.jpeg',
         logoBgColor: '#ffffff',
         location: 'Sihniwala, Dehradun',
         established: '2006',
@@ -539,6 +542,7 @@ export const collegesData = [
         name: 'Shri Guru Ram Rai University',
         logo: 'logo_3_whg5oy.png',
         cardImage: 'SGRR/DSC05047-2048x1365.jpg',
+        feesStructureImage: 'SGRR/Fee Structure 2026-27 (AC) Final SGRR.pdf',
         logoBgColor: '#ffffff',
         location: 'Patel Nagar, Dehradun',
         established: '2017',
@@ -851,6 +855,7 @@ export const collegesData = [
         name: 'SAI Group Of Institutions',
         logo: '1_vyyky6.png',
         cardImage: 'SAI GROUP/sai-group-of-institutions-dehradun.avif',
+        feesStructureImage: 'SAI GROUP/Fee Structure 2025.pdf',
         logoBgColor: '#ffffff',
         location: 'Rajpur Road, Dehradun',
         established: '2003',
@@ -1402,6 +1407,7 @@ export const collegesData = [
         name: 'D.D. College Dehradun',
         logo: 'logo_pjxpio.png',
         cardImage: 'D.D College/maxresdefault.jpg',
+        feesStructureImage: 'DD college/fees structure.jpeg',
         logoBgColor: '#ffffff',
         location: '25, Nimbuwala, Garhi Cantt., Dehradun',
         established: '2014',
@@ -1461,6 +1467,7 @@ export const collegesData = [
         name: 'Guru Nanak College',
         logo: 'logo_vlerv7.webp',
         cardImage: 'GURU NANAK/guru-nanak-college-dehradun.jpg',
+        feesStructureImage: 'Guru nanak/FEE STRUCTURE (2026-2027) NEW 22.pdf',
         logoBgColor: '#ffffff',
         location: 'Jhajhra, Chakrata Road, Dehradun',
         established: '2009',
@@ -1637,4 +1644,42 @@ export const collegesData = [
         ],
         bestPart: 'Doon Group of Colleges (DGC), located in Selaqui, is a prominent name for Agriculture and Forestry education. Established in 2004, the group has expanded to offer Engineering and Management courses. It focuses on practical learning, especially for its agriculture students who benefit from on-campus farms. The placement cell is active, bringing in companies like PepsiCo and Fortis, ensuring a steady start for its graduates.'
     },
+    {
+        id: 25,
+        name: 'Maya Devi University',
+        logo: 'MAYA devi/logo.png',
+        cardImage: 'MAYA devi/campus.jpg',
+        logoBgColor: '#ffffff',
+        location: 'Selaqui, Dehradun',
+        established: '2010',
+        accreditation: 'UGC Recognized | AICTE',
+        rankings: {
+            other: 'Emerging University in Dehradun'
+        },
+        description: 'Quality education provider with diverse range of courses.',
+        about: {
+            mission: 'To impart holistic education.',
+            keyAchievements: ['Placement Support', 'Approved by State Gov']
+        },
+        courses: ['B.Tech', 'MBA', 'BHM', 'B.Pharma', 'B.Sc Agriculture'],
+        collegeType: 'Private University',
+        campusSize: '20 Acres',
+        placements: {
+            placementRate: '75%',
+            averagePackage: '₹4.00 LPA',
+            highestPackage: '₹10.00 LPA',
+            topRecruiters: ['HCL', 'Wipro', 'Tech Mahindra']
+        },
+        facilities: ['Library', 'Labs', 'Hostel', 'Transport'],
+        feesStructureImage: 'MAYA devi/MDU Fee Structure (2025-26).pdf',
+        bestKnownFor: 'Affordable technical and management education',
+        mainCourses: ['B.Tech', 'MBA', 'BHM', 'B.Pharma'],
+        bestCourses: [
+            {
+                name: 'B.Tech',
+                description: 'Engineering program with practical focus.'
+            }
+        ],
+        bestPart: 'Maya Devi University offers a serene campus environment conducive to learning.'
+    }
 ];

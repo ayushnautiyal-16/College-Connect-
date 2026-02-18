@@ -3,7 +3,8 @@
 import React from 'react';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton/WhatsAppButton';
+import EnquiryTogglePanel from '@/components/EnquiryTogglePanel/EnquiryTogglePanel';
+import FloatingSideButtons from '@/components/FloatingSideButtons/FloatingSideButtons';
 import GetInTouchPopup from '@/components/GetInTouchPopup/GetInTouchPopup';
 
 function MainLayoutWrapper({ children }) {
@@ -14,7 +15,8 @@ function MainLayoutWrapper({ children }) {
                 {children}
             </main>
             <Footer />
-            <WhatsAppButton />
+            <FloatingSideButtons />
+            <EnquiryTogglePanel />
             <GetInTouchPopup />
         </div>
     );

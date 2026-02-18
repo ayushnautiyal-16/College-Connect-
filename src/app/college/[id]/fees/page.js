@@ -112,34 +112,38 @@ export default function CollegeFeesPage() {
 
                 {/* Left Side: Text/Info */}
                 <div className={`${showForm ? 'hidden lg:block pr-4' : 'block max-w-3xl mx-auto text-center'} space-y-8`}>
-                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0f2238] backdrop-blur-md border border-white/10 shadow-sm text-xs font-bold tracking-wide text-indigo-400 uppercase animate-fade-in-up">
-                        <span className="relative flex h-2.5 w-2.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
-                        </span>
-                        Official Fee Structure 2026
-                    </div>
+                    {['1', '2'].includes(String(id)) && (
+                        <>
+                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0f2238] backdrop-blur-md border border-white/10 shadow-sm text-xs font-bold tracking-wide text-indigo-400 uppercase animate-fade-in-up">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
+                                </span>
+                                Official Fee Structure 2026
+                            </div>
 
-                    <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight tracking-tight text-white animate-slide-in-left">
-                        Fee Structure & <br />
-                        <GradientText>Financial Details</GradientText>
-                    </h1>
+                            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight tracking-tight text-white animate-slide-in-left">
+                                Fee Structure & <br />
+                                <GradientText>Financial Details</GradientText>
+                            </h1>
 
-                    <p className="text-gray-400 text-lg leading-relaxed font-medium max-w-xl animate-fade-in-up animation-delay-200">
-                        Get the official, updated fee structure for <span className="text-indigo-400 font-bold decoration-wavy underline decoration-indigo-500/30">{college.name}</span>.
-                    </p>
+                            <p className="text-gray-400 text-lg leading-relaxed font-medium max-w-xl animate-fade-in-up animation-delay-200">
+                                Get the official, updated fee structure for <span className="text-indigo-400 font-bold decoration-wavy underline decoration-indigo-500/30">{college.name}</span>.
+                            </p>
 
-                    {/* Trust Badges - Dark Theme */}
-                    <div className="grid grid-cols-2 gap-6 pt-6 animate-fade-in-up animation-delay-400">
-                        <div className="group p-6 rounded-2xl bg-[#0f2238] border border-white/10 shadow-lg shadow-black/20 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl">
-                            <div className="text-3xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">100%</div>
-                            <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Transparent</div>
-                        </div>
-                        <div className="group p-6 rounded-2xl bg-[#0f2238] border border-white/10 shadow-lg shadow-black/20 backdrop-blur-sm hover:border-fuchsia-400/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl">
-                            <div className="text-3xl font-bold text-white mb-1 group-hover:text-fuchsia-400 transition-colors">24/7</div>
-                            <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Support</div>
-                        </div>
-                    </div>
+                            {/* Trust Badges - Dark Theme */}
+                            <div className="grid grid-cols-2 gap-6 pt-6 animate-fade-in-up animation-delay-400">
+                                <div className="group p-6 rounded-2xl bg-[#0f2238] border border-white/10 shadow-lg shadow-black/20 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl">
+                                    <div className="text-3xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">100%</div>
+                                    <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Transparent</div>
+                                </div>
+                                <div className="group p-6 rounded-2xl bg-[#0f2238] border border-white/10 shadow-lg shadow-black/20 backdrop-blur-sm hover:border-fuchsia-400/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-xl">
+                                    <div className="text-3xl font-bold text-white mb-1 group-hover:text-fuchsia-400 transition-colors">24/7</div>
+                                    <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Support</div>
+                                </div>
+                            </div>
+                        </>
+                    )}
 
                     {/* Fee Structure Image Preview */}
                     {college.feesStructureImage && (
@@ -157,11 +161,19 @@ export default function CollegeFeesPage() {
                                         Click to Expand
                                     </span>
                                 </div>
-                                <img
-                                    src={getAssetUrl(college.feesStructureImage)}
-                                    alt={`${college.name} Fee Structure`}
-                                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
-                                />
+                                {college.feesStructureImage.toLowerCase().endsWith('.pdf') ? (
+                                    <div className="w-full h-80 flex flex-col items-center justify-center bg-[#07111a] text-white p-6 text-center group-hover:bg-[#0b1b2b] transition-colors duration-300">
+                                        <svg className="w-20 h-20 mb-4 text-red-500 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8l4-4 4 4h-3v4h-2z" /></svg>
+                                        <span className="text-xl font-bold mb-2">View Fee Structure PDF</span>
+                                        <span className="text-sm text-gray-400">Click to open document</span>
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={getAssetUrl(college.feesStructureImage)}
+                                        alt={`${college.name} Fee Structure`}
+                                        className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                )}
                             </div>
                         </div>
                     )}

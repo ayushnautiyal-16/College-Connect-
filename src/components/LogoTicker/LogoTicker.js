@@ -5,50 +5,21 @@ import './LogoTicker.css';
 function LogoTicker() {
     // First row logos
     const logosRow1 = [
-        {
-            id: 1,
-            url: getAssetUrl('Infosys_logo.svg_feindm.png'),
-        },
-        {
-            id: 2,
-            url: getAssetUrl('Adobe_Corporate_logo.svg_drdl8p.png'),
-        },
-        {
-            id: 3,
-            url: getAssetUrl('Amazon_logo.svg_n8i8jw.webp'),
-        },
-        {
-            id: 4,
-            url: getAssetUrl('Wipro_Primary_Logo_Color_RGB.svg_blpfxt.png'),
-        },
-        {
-            id: 9,
-            url: getAssetUrl('PharmEasy_logo_opzbvr.png'),
-        },
-        {
-            id: 10,
-            url: getAssetUrl('Google_2015_logo.svg_mq6axm.png'),
-        },
+        { id: 1, url: getAssetUrl('PARTNERS/adobe.png') },
+        { id: 2, url: getAssetUrl('PARTNERS/amazon.png') },
+        { id: 3, url: getAssetUrl('PARTNERS/american-express.png') },
+        { id: 4, url: getAssetUrl('PARTNERS/deshaw.png') },
+        { id: 5, url: getAssetUrl('PARTNERS/flipkart.png') },
+        { id: 6, url: getAssetUrl('PARTNERS/goldman-sachs.png') },
     ];
 
     // Second row logos
     const logosRow2 = [
-        {
-            id: 5,
-            url: getAssetUrl('Tata_Consultancy_Services_old_logo.svg_njnfta.png'),
-        },
-        {
-            id: 6,
-            url: getAssetUrl('MANKIND.NS-3f70896f_idw63x.png'),
-        },
-        {
-            id: 7,
-            url: getAssetUrl('Accenture.svg_fjqnhy.png'),
-        },
-        {
-            id: 8,
-            url: getAssetUrl('Amul_official_logo.svg_jronsu.png'),
-        },
+        { id: 7, url: getAssetUrl('PARTNERS/google.png') },
+        { id: 8, url: getAssetUrl('PARTNERS/morgan-stanley.png') },
+        { id: 9, url: getAssetUrl('PARTNERS/nasdaq.png') },
+        { id: 10, url: getAssetUrl('PARTNERS/uber.png') },
+        { id: 11, url: getAssetUrl('PARTNERS/zsacler.png') },
     ];
 
     // Duplicate logos for seamless infinite scroll
