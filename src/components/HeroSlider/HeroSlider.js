@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import '@/styles/apply-animations.css'; // Import custom animations
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ── Menu items for the premium image slide ─────────────────────
+
 function HeroSlider() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,10 +20,21 @@ function HeroSlider() {
   const progressIntervalRef = useRef(null);
   const [loadedSlides, setLoadedSlides] = useState(new Set([0]));
 
+
   // Slides data is memoized to prevent re-creation on every render
   const slides = useMemo(() => [
     {
       id: 1,
+      layout: 'premium-image',
+      image: getAssetUrl('UPES/desk-students.webp'),
+      headlineFirstWord: 'Explore',
+      headlineRest: 'Your Future\nWith Us',
+      ctaText: 'Expert Admission Counselling',
+      ctaLink: '/campuses',
+      slideDuration: 12,
+    },
+    {
+      id: 2,
       headline: 'Admissions Open 2026',
       ctaText: 'Apply Now',
       ctaLink: '/apply',
@@ -30,7 +43,7 @@ function HeroSlider() {
       videoDuration: 20,
     },
     {
-      id: 2,
+      id: 3,
       headline: 'Your Dream College',
       ctaText: 'Get Free Counselling',
       ctaLink: '/contact',
@@ -38,16 +51,9 @@ function HeroSlider() {
       bgGradient: 'from-primary-600 via-primary-500 to-primary-700',
       videoDuration: 20,
     },
-    {
-      id: 3,
-      headline: 'Expert Admission Guidance',
-      ctaText: 'Expert Admission Counselling',
-      ctaLink: '/campuses',
-      video: getAssetUrl('uttaranchal/Why Uttaranchal University is North India’s Top Choice  750+ Recruiters & 2356+ Placements in 2024! - Uttaranchal University (1080p, h264, youtube).mp4'),
-      bgGradient: 'from-green-600 via-emerald-600 to-teal-600',
-      videoDuration: 20,
-    },
   ], []);
+
+
 
   // Reset progress when slide changes
   useEffect(() => {
@@ -90,8 +96,9 @@ function HeroSlider() {
 
   // Auto-slide functionality with progress bar
   useEffect(() => {
-    // Skip auto-slide for any slide that has video (video handles its own timing)
     const currentSlideData = slides[currentSlide];
+
+    // Skip auto-slide for video slides (video handles its own timing)
     if (currentSlideData && currentSlideData.video) {
       return;
     }
@@ -103,16 +110,19 @@ function HeroSlider() {
       return;
     }
 
-    // Progress bar animation (0 to 100 over 5 seconds)
+    const totalDuration = (currentSlideData?.slideDuration || 5) * 1000;
+    const intervalMs = 100;
+    const increment = (100 / totalDuration) * intervalMs;
+
     progressIntervalRef.current = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           setCurrentSlide((current) => (current + 1) % slides.length);
           return 0;
         }
-        return prev + 2; // Increment by 2 for smoother animation (100 steps in 5 seconds = 2 per 100ms)
+        return prev + increment;
       });
-    }, 100); // Update every 100ms
+    }, intervalMs);
 
     return () => {
       if (progressIntervalRef.current) {
@@ -180,6 +190,79 @@ function HeroSlider() {
     router.push(link);
   };
 
+  // ── Render premium-image slide (slide 3) ──────────────────────
+  const renderPremiumImageSlide = (slide) => (
+    <>
+      {/* Background Image */}
+      <img
+        src={slide.image}
+        alt="Students studying"
+        className="absolute inset-0 w-full h-full object-cover animate-slowZoom"
+      />
+      {/* Dark overlay for contrast */}
+      <div className="absolute inset-0 bg-black/60" />
+      {/* Subtle gradient overlay from left */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-6 md:px-8 lg:px-12 h-full flex items-center">
+        <div className="max-w-[600px]">
+          {/* Serif Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 md:mb-8 drop-shadow-lg"
+            style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+          >
+            <span className="italic" style={{ color: '#2563EB' }}>{slide.headlineFirstWord}</span>{' '}
+            <span className="text-white whitespace-pre-line">{slide.headlineRest}</span>
+          </motion.h1>
+
+          {/* Cyan Accent Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="origin-left mb-8 md:mb-10"
+          >
+            <div className="w-20 h-[3px] rounded-full" style={{ backgroundColor: '#2563EB' }} />
+          </motion.div>
+
+          {/* Feature List */}
+          <motion.ul
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="flex flex-col gap-3 md:gap-4 mb-8 md:mb-10"
+          >
+            <li className="text-yellow-300 text-base md:text-lg font-medium flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-yellow-300 flex-shrink-0" />
+              Expert Career Counselling
+            </li>
+            <li className="text-yellow-300 text-base md:text-lg font-medium flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-yellow-300 flex-shrink-0" />
+              Top Ranked Colleges
+            </li>
+            <li className="text-yellow-300 text-base md:text-lg font-medium flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-yellow-300 flex-shrink-0" />
+              Scholarship Support
+            </li>
+            <li>
+              <button
+                onClick={() => handleCTAClick('/apply')}
+                className="text-emerald-400 text-lg font-semibold flex items-center gap-2 group hover:text-emerald-300 transition-colors duration-300 ease-in-out"
+              >
+                Apply Now
+                <span className="inline-block transition-transform duration-300 ease-in-out group-hover:translate-x-1">→</span>
+              </button>
+            </li>
+          </motion.ul>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div
       className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden bg-gray-900"
@@ -201,8 +284,11 @@ function HeroSlider() {
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
                 className="absolute inset-0 w-full h-full"
               >
-                {/* Video background with lightweight preload */}
-                {slide.video && (
+                {/* ── Premium Image Slide (Slide 3) ─────────── */}
+                {slide.layout === 'premium-image' && renderPremiumImageSlide(slide)}
+
+                {/* ── Video Slides ───────────────────────────── */}
+                {slide.video && !slide.layout && (
                   <>
                     <video
                       ref={(el) => { videoRefs.current[index] = el; }}
@@ -211,7 +297,7 @@ function HeroSlider() {
                       muted
                       loop={false}
                       playsInline
-                      preload="metadata" // avoid heavy auto-preload
+                      preload="metadata"
                     >
                       <source src={slide.video} type="video/mp4" />
                     </video>
@@ -220,33 +306,33 @@ function HeroSlider() {
                   </>
                 )}
 
-                {/* Pure gradient fallback when there is no video configured */}
-                {!slide.video && (
+                {/* Pure gradient fallback when there is no video or image */}
+                {!slide.video && !slide.layout && (
                   <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-90`} />
                 )}
 
-                {/* Content Container */}
-                <div className="relative z-20 container mx-auto px-4 md:px-6 lg:px-8 h-full">
-                  <div className="flex flex-col justify-end h-full pb-16 md:pb-20">
-                    {/* Left Bottom - Text Content */}
-                    <div
-                      className={`text-white transition-all duration-700 ease-in-out relative z-30 max-w-2xl opacity-100 transform translate-x-0`}
-                    >
-                      <div className="relative z-10">
-                        <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white animate-text-glow">
-                          {slide.headline}
-                        </h1>
-                        <button
-                          onClick={() => handleCTAClick(slide.ctaLink)}
-                          className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
-                        >
-                          {slide.ctaText}
-                        </button>
+                {/* Default Content Container (for non-premium slides) */}
+                {slide.layout !== 'premium-image' && (
+                  <div className="relative z-20 container mx-auto px-4 md:px-6 lg:px-8 h-full">
+                    <div className="flex flex-col justify-end h-full pb-16 md:pb-20">
+                      <div
+                        className="text-white transition-all duration-700 ease-in-out relative z-30 max-w-2xl opacity-100 transform translate-x-0"
+                      >
+                        <div className="relative z-10">
+                          <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-2xl text-white animate-text-glow">
+                            {slide.headline}
+                          </h1>
+                          <button
+                            onClick={() => handleCTAClick(slide.ctaLink)}
+                            className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm tracking-wide transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/50 animate-pulse-white hover:animate-none"
+                          >
+                            {slide.ctaText}
+                          </button>
+                        </div>
                       </div>
                     </div>
-
                   </div>
-                </div>
+                )}
               </motion.div>
             )
           )}
@@ -256,7 +342,7 @@ function HeroSlider() {
       {/* Navigation Arrows */}
       <button
         onClick={goToPrev}
-        className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 md:p-2.5 rounded-full transition-all duration-300 ease-in-out hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="absolute left-1 md:left-2 top-1/2 transform -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 md:p-2.5 rounded-full transition-all duration-300 ease-in-out hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
         aria-label="Previous slide"
       >
         <svg
@@ -309,18 +395,19 @@ function HeroSlider() {
         ))}
       </div>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
-        <div
-          className={`h-full bg-white transition-all ${isPaused ? 'duration-300' : 'duration-100'} ease-linear`}
-          style={{
-            width: `${progress}%`,
-          }}
-        />
-      </div>
+      {/* Progress Bar — hidden on image slide */}
+      {slides[currentSlide]?.layout !== 'premium-image' && (
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
+          <div
+            className={`h-full bg-white transition-all ${isPaused ? 'duration-300' : 'duration-100'} ease-linear`}
+            style={{
+              width: `${progress}%`,
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }
 
 export default HeroSlider;
-

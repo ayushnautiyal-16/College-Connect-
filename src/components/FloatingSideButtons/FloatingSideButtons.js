@@ -15,7 +15,7 @@ export default function FloatingSideButtons() {
     return (
         <>
             {/* RIGHT SIDE: Small Floating Circular Buttons */}
-            <div className="fixed right-3 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50 items-end">
+            <div className="fixed right-3 top-[40%] -translate-y-1/2 flex flex-col gap-4 z-50 items-end">
 
                 {/* WhatsApp Button (Green Filled) */}
                 <a

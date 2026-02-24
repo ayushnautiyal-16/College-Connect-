@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import EnquiryTogglePanel from '@/components/EnquiryTogglePanel/EnquiryTogglePanel';
 import FloatingSideButtons from '@/components/FloatingSideButtons/FloatingSideButtons';
 import GetInTouchPopup from '@/components/GetInTouchPopup/GetInTouchPopup';
+import Chatbot from '@/components/Chatbot/Chatbot';
 
 function MainLayoutWrapper({ children }) {
     return (
@@ -18,6 +19,7 @@ function MainLayoutWrapper({ children }) {
             <FloatingSideButtons />
             <EnquiryTogglePanel />
             <GetInTouchPopup />
+            <Chatbot />
         </div>
     );
 }

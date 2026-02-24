@@ -96,11 +96,12 @@ function Header() {
             </nav>
             <button
               onClick={() => router.push('/apply')}
-              className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95
-                         bg-white text-blue-600 ring-2 ring-blue-600 shadow-md 
-                         hover:bg-blue-600 hover:text-white hover:ring-blue-500 hover:shadow-blue-500/30"
+              className="relative overflow-hidden px-6 py-2 rounded-lg font-semibold text-sm border border-gray-300 shadow-md group transition-all duration-500 ease-in-out hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/20"
             >
-              Apply Now
+              <span className="absolute inset-0 bg-blue-600 rounded-lg transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+              <span className="relative z-10 text-gray-800 group-hover:text-white transition-colors duration-300">
+                Apply Now
+              </span>
             </button>
           </div>
 
@@ -135,14 +136,15 @@ function Header() {
             <div className="px-4 mt-2">
               <button
                 onClick={() => { router.push('/apply'); setIsMobileMenuOpen(false); }}
-                className="w-full px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-sm active:scale-95
-                           bg-white text-blue-600 ring-2 ring-blue-600 
-                           hover:bg-blue-600 hover:text-white hover:shadow-blue-500/20"
+                className="relative overflow-hidden w-full px-6 py-3 rounded-lg font-semibold border border-gray-300 shadow-sm group transition-all duration-500 ease-in-out hover:border-blue-600 active:scale-95"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-                </svg>
-                Apply Now
+                <span className="absolute inset-0 bg-blue-600 rounded-lg transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+                <span className="relative z-10 flex items-center justify-center gap-2 text-gray-800 group-hover:text-white transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                  </svg>
+                  Apply Now
+                </span>
               </button>
             </div>
           </nav>
