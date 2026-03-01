@@ -5,10 +5,13 @@ import { useRouter, useParams } from 'next/navigation';
 import { getAssetUrl } from '@/utils/assets';
 import { collegesData } from '@/utils/collegesData';
 import CollegeHeroSlideshow from '@/components/CollegeHeroSlideshow/CollegeHeroSlideshow';
-import CollegeDetailsHero from '@/components/CollegeDetailsHero/CollegeDetailsHero';
+import CollegeHeroBanner from '@/components/CollegeHeroBanner/CollegeHeroBanner';
 import CollegeGallery from '@/components/CollegeGallery/CollegeGallery';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import DarkPatternedSection from '@/components/DarkPatternedSection/DarkPatternedSection';
+import OurFacilitiesSection from '@/components/OurFacilitiesSection/OurFacilitiesSection';
+import CollegeAboutSplit from '@/components/CollegeAboutSplit/CollegeAboutSplit';
+import KeyFactsSection from '@/components/KeyFactsSection/KeyFactsSection';
 import GradientText from '@/components/GradientText/GradientText';
 
 export default function CollegeDetailsPage() {
@@ -639,30 +642,23 @@ export default function CollegeDetailsPage() {
             {/* Content Wrapper ensures z-index above background */}
             <div className="relative z-10">
 
-                {/* --- NEW SaaS-STYLE HERO SECTION --- */}
-                <CollegeDetailsHero college={college} images={heroImages} />
+                {/* --- HERO BANNER WITH SLIDESHOW --- */}
+                <CollegeHeroBanner
+                    college={college}
+                    images={heroImages}
+                />
+
+                {/* --- About Split Section (Image Collage + Text) --- */}
+                <CollegeAboutSplit college={college} images={heroImages} />
+
+                {/* --- Key Facts Section --- */}
+                <KeyFactsSection college={college} />
+
+                {/* --- Our Facilities Section --- */}
+                <OurFacilitiesSection college={college} images={allImages} />
+
 
                 {/* --- MAIN CONTENT --- */}
-
-                {/* 1. About Institute - Premium Clean Design with Full Width Background */}
-                <section id="about" ref={aboutRef.ref} className={`py-16 bg-light-primary transition-all duration-700 ${aboutRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="max-w-5xl mx-auto px-6">
-                        <div className="bg-white rounded-2xl p-8 md:p-12 border border-border shadow-sm">
-                            <h2 className="text-xl font-bold text-text-primary mb-6">
-                                About {college.name}
-                            </h2>
-
-                            <div className="space-y-6">
-                                <p className="text-lg text-text-secondary leading-relaxed">
-                                    {college.bestPart || college.description || `Welcome to ${college.name}.`}
-                                </p>
-                                <p className="text-text-secondary leading-relaxed">
-                                    {college.description || `${college.name} is committed to providing world-class education with state-of-the-art facilities and experienced faculty members dedicated to student success.`}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
 
                 {/* Admission Enquiry Section */}
@@ -714,7 +710,13 @@ export default function CollegeDetailsPage() {
 
 
                                         <button
-                                            onClick={() => window.open(getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf'), '_blank')}
+                                            onClick={() => {
+                                                if (college.brochure) {
+                                                    window.open(college.brochure, '_blank');
+                                                } else {
+                                                    window.open(getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf'), '_blank');
+                                                }
+                                            }}
                                             className="w-full py-3.5 rounded-xl bg-white border-2 border-gray-100 text-gray-700 font-bold text-sm hover:border-indigo-200 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 flex items-center justify-center gap-2"
                                         >
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
@@ -746,7 +748,7 @@ export default function CollegeDetailsPage() {
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                                 </div>
                                                 <span className="text-sm text-gray-600 font-medium leading-relaxed">
-                                                    566/6, Bell Road, Clement Town, Dehradun, Uttarakhand - 248002, Uttarakhand
+                                                    {college.location || 'Dehradun, Uttarakhand'}
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-3">
@@ -764,80 +766,6 @@ export default function CollegeDetailsPage() {
                 </section>
 
 
-                {/* Courses Section - Full Width Clean Background */}
-                <section id="courses" ref={coursesRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-100 ${coursesRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="max-w-5xl mx-auto px-6">
-                        <div className="mb-8">
-                            <h2 className="text-xl font-bold text-text-primary mb-2">Courses <GradientText>Offered</GradientText></h2>
-                            <p className="text-text-secondary">Explore our diverse range of undergraduate and postgraduate programs</p>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {courses.map((course, idx) => {
-                                return (
-                                    <div
-                                        key={idx}
-                                        className={`group relative rounded-xl border border-border bg-white hover:border-brand-primary/30 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 ${coursesRef.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                                            }`}
-                                        style={{
-                                            transitionDelay: `${idx * 30}ms`
-                                        }}
-                                    >
-                                        <div className="p-4 flex items-center gap-3">
-                                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-xl">
-                                                {course.icon}
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="text-sm font-semibold text-text-primary line-clamp-1 mb-1">
-                                                    {course.name}
-                                                </h4>
-                                                <div className="flex items-center gap-1.5">
-                                                    <svg className="w-3.5 h-3.5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                    <span className="text-xs text-brand-primary font-medium">
-                                                        {course.duration}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Infrastructure Section - Full Width Clean Background */}
-                <section id="infrastructure" ref={infraRef.ref} className={`py-16 bg-slate-50 transition-all duration-700 delay-200 ${infraRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="max-w-5xl mx-auto px-6">
-                        <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
-                            <h2 className="text-xl font-bold text-text-primary mb-8">World-Class <GradientText>Facilities</GradientText></h2>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {facilities.map((fac, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`group relative overflow-hidden rounded-xl border-2 ${fac.color.split(' ')[0].replace('bg-', 'border-').replace('-50', '-200')} ${fac.color.split(' ')[0]} hover:shadow-lg transition-all duration-500 hover:-translate-y-1 ${infraRef.isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                                            }`}
-                                        style={{
-                                            transitionDelay: `${idx * 60}ms`
-                                        }}
-                                    >
-                                        <div className="p-5 flex flex-col items-center justify-center text-center h-32">
-                                            <div className={`w-12 h-12 rounded-xl ${fac.color.split(' ')[0].replace('-50', '-100')} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                                                <svg className={`w-6 h-6 ${fac.color.split(' ')[1]}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={fac.icon} />
-                                                </svg>
-                                            </div>
-                                            <span className="text-xs md:text-sm font-bold text-gray-900 leading-tight">
-                                                {fac.name}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 {/* Gallery Section */}
                 {
