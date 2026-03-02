@@ -16,7 +16,7 @@ function HomeSearch() {
     };
 
     return (
-        <div className="absolute top-24 md:top-32 left-0 right-0 z-40 flex justify-center px-4 animate-slide-up">
+        <div className="absolute bottom-16 left-0 right-0 z-40 flex justify-center px-4 animate-slide-up md:bottom-auto md:top-28">
             <form
                 onSubmit={handleSearch}
                 className={`

@@ -1,20 +1,15 @@
 /**
  * Asset Management Utility
- * Handles image and resource URLs via AWS CloudFront CDN
+ * Images are served via Next.js rewrite: /assets/* → CloudFront CDN
+ * This hides the CloudFront URL from end users.
  */
 
-// Environment variable access (NEXT_PUBLIC_ prefix for client-side access in Next.js)
-const cloudFrontUrl = process.env.NEXT_PUBLIC_CLOUDFRONT_URL || 'https://d1om6fetcnl3e0.cloudfront.net';
-
-export const assetConfig = {
-    cloudFrontUrl,
-};
-
 /**
- * Generates the full CloudFront URL for a given asset path.
- * 
- * @param {string} path - The filename or path of the asset (e.g., 'my-image.jpg' or 'images/my-image.jpg').
- * @returns {string} The full CDN URL.
+ * Generates the asset URL for a given path.
+ * Returns /assets/encoded-path which Next.js rewrites to CloudFront behind the scenes.
+ *
+ * @param {string} path - The filename or path of the asset (e.g., 'my-image.jpg' or 'DBUU/campus.webp').
+ * @returns {string} The proxied asset URL.
  */
 export const getAssetUrl = (path) => {
     if (!path) return '';
@@ -32,7 +27,34 @@ export const getAssetUrl = (path) => {
     }
 
     // Encode path segments to handle spaces and special characters
-    const encodedPath = cleanPath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+    const encodedPath = cleanPath
+        .split('/')
+        .map(segment => encodeURIComponent(segment))
+        .join('/');
 
-    return `${assetConfig.cloudFrontUrl}/${encodedPath}`;
+    return `/assets/${encodedPath}`;
+};
+
+/**
+ * Builds a full absolute CDN URL — only use for OG/meta images
+ * that need absolute URLs for social media crawlers.
+ *
+ * @param {string} path - The raw asset path.
+ * @returns {string|null} The full absolute URL or null.
+ */
+export const getAbsoluteAssetUrl = (path) => {
+    if (!path) return null;
+    if (path.startsWith('http')) return path;
+
+    let cleanPath = path;
+    if (cleanPath.startsWith('/')) {
+        cleanPath = cleanPath.slice(1);
+    }
+
+    const encodedPath = cleanPath
+        .split('/')
+        .map(segment => encodeURIComponent(segment))
+        .join('/');
+
+    return `https://d1om6fetcnl3e0.cloudfront.net/${encodedPath}`;
 };
