@@ -17,12 +17,7 @@ const nextConfig = {
     },
     // Redirect old hash routes if needed
     async rewrites() {
-        return [
-            {
-                source: '/assets/:path*',
-                destination: 'https://d1om6fetcnl3e0.cloudfront.net/:path*',
-            },
-        ];
+        return [];
     },
 };
 

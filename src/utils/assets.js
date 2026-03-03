@@ -1,15 +1,15 @@
 /**
  * Asset Management Utility
- * Images are served via Next.js rewrite: /assets/* → CloudFront CDN
- * This hides the CloudFront URL from end users.
+ * Handles image and resource URLs via AWS CloudFront CDN
  */
 
+const cloudFrontUrl = 'https://d1om6fetcnl3e0.cloudfront.net';
+
 /**
- * Generates the asset URL for a given path.
- * Returns /assets/encoded-path which Next.js rewrites to CloudFront behind the scenes.
+ * Generates the full CloudFront URL for a given asset path.
  *
  * @param {string} path - The filename or path of the asset (e.g., 'my-image.jpg' or 'DBUU/campus.webp').
- * @returns {string} The proxied asset URL.
+ * @returns {string} The full CDN URL.
  */
 export const getAssetUrl = (path) => {
     if (!path) return '';
@@ -32,29 +32,17 @@ export const getAssetUrl = (path) => {
         .map(segment => encodeURIComponent(segment))
         .join('/');
 
-    return `/assets/${encodedPath}`;
+    return `${cloudFrontUrl}/${encodedPath}`;
 };
 
 /**
- * Builds a full absolute CDN URL — only use for OG/meta images
- * that need absolute URLs for social media crawlers.
+ * Alias for getAssetUrl — returns full absolute CDN URL.
+ * Use for OG/meta images that need absolute URLs for social media crawlers.
  *
  * @param {string} path - The raw asset path.
  * @returns {string|null} The full absolute URL or null.
  */
 export const getAbsoluteAssetUrl = (path) => {
     if (!path) return null;
-    if (path.startsWith('http')) return path;
-
-    let cleanPath = path;
-    if (cleanPath.startsWith('/')) {
-        cleanPath = cleanPath.slice(1);
-    }
-
-    const encodedPath = cleanPath
-        .split('/')
-        .map(segment => encodeURIComponent(segment))
-        .join('/');
-
-    return `https://d1om6fetcnl3e0.cloudfront.net/${encodedPath}`;
+    return getAssetUrl(path) || null;
 };
