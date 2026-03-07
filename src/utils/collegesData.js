@@ -9,6 +9,10 @@ export const collegesData = [
         name: 'Graphic Era University',
         logo: 'graphic era/col_14360.jpg',
         logoBgColor: '#374151',
+        feesStructureLinks: [
+            { label: 'Graphic Era Deemed', url: 'https://geu.ac.in/fee' },
+            { label: 'Graphic Era Hill', url: 'https://gehu.ac.in/fee' }
+        ],
         location: '566/6, Bell Road, Clement Town, Dehradun, Uttarakhand - 248002',
         established: '1993',
         accreditation: 'NAAC A+ Grade | NBA Accredited | UGC Recognized',
