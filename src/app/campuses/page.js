@@ -84,14 +84,14 @@ function CampusesContent() {
                 </div>
 
                 <section className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
                         {filteredColleges.length > 0 ? (
                             filteredColleges.map((college, index) => (
                                 <AnimatedSection
                                     key={college.id}
                                     animationType="fade-up"
                                     delay={(index % 4) * 100}
-                                    className="w-full max-w-sm"
+                                    className="w-full"
                                 >
                                     <CollegeCard college={college} index={index} />
                                 </AnimatedSection>
