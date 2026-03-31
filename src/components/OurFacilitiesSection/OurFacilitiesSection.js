@@ -6,132 +6,132 @@ import Image from 'next/image';
 // Map facility names to icons, descriptions, and gradient placeholder colors
 const facilityMeta = {
     library: {
-        description: 'Extensive collection of books, journals, and digital resources for academic research.',
+        description: 'Extensive digital and physical academic resources.',
         gradient: 'from-indigo-600 to-blue-500',
         icon: '📚',
     },
     lab: {
-        description: 'Cutting-edge equipment and technology for hands-on practical learning.',
+        description: 'Cutting-edge technology for hands-on learning.',
         gradient: 'from-blue-600 to-cyan-500',
         icon: '🔬',
     },
     computer: {
-        description: 'High-speed internet, modern workstations, and licensed software for students.',
+        description: 'Modern workstations with high-speed internet.',
         gradient: 'from-violet-600 to-purple-500',
         icon: '💻',
     },
     hostel: {
-        description: 'Comfortable living spaces with modern amenities for a secure campus life.',
+        description: 'Comfortable living spaces with modern amenities.',
         gradient: 'from-orange-500 to-amber-400',
         icon: '🏠',
     },
     sport: {
-        description: 'Professional grounds, courts, and fitness center for physical development.',
+        description: 'Professional grounds and fitness facilities.',
         gradient: 'from-green-600 to-emerald-500',
         icon: '🏅',
     },
     gym: {
-        description: 'Fully equipped fitness center with modern exercise machines and trainers.',
+        description: 'Fully equipped modern fitness center.',
         gradient: 'from-green-600 to-teal-500',
         icon: '💪',
     },
     cafeteria: {
-        description: 'Multi-cuisine dining options serving fresh, hygienic, and affordable meals.',
+        description: 'Fresh, hygienic, and affordable meals.',
         gradient: 'from-red-500 to-orange-400',
         icon: '☕',
     },
     food: {
-        description: 'Multiple food courts with diverse cuisines and comfortable seating.',
+        description: 'Diverse cuisines with comfortable seating.',
         gradient: 'from-red-500 to-rose-400',
         icon: '🍽️',
     },
     medical: {
-        description: '24/7 healthcare support with qualified doctors and emergency services.',
+        description: '24/7 healthcare support and emergency services.',
         gradient: 'from-teal-500 to-cyan-400',
         icon: '🏥',
     },
     hospital: {
-        description: 'On-campus or attached hospital for comprehensive medical care and training.',
+        description: 'Comprehensive on-campus medical care.',
         gradient: 'from-teal-600 to-emerald-400',
         icon: '🏥',
     },
     infirmary: {
-        description: 'Round-the-clock medical room with first aid, ambulance, and doctor on call.',
+        description: 'Round-the-clock first aid and doctor on call.',
         gradient: 'from-teal-500 to-green-400',
         icon: '⚕️',
     },
     transport: {
-        description: 'Regular bus services connecting campus to city and nearby areas.',
+        description: 'Regular campus-to-city transport services.',
         gradient: 'from-blue-500 to-indigo-400',
         icon: '🚌',
     },
     wifi: {
-        description: 'Campus-wide high-speed wireless internet for seamless connectivity.',
+        description: 'High-speed wireless internet connectivity.',
         gradient: 'from-purple-500 to-pink-400',
         icon: '📶',
     },
     auditorium: {
-        description: 'Large-capacity auditorium for seminars, conferences, and cultural events.',
+        description: 'Large-capacity hall for major events.',
         gradient: 'from-yellow-500 to-amber-400',
         icon: '🎭',
     },
     seminar: {
-        description: 'Well-equipped seminar halls for academic discussions and presentations.',
+        description: 'Equipped halls for academic discussions.',
         gradient: 'from-amber-500 to-yellow-400',
         icon: '🎤',
     },
     smart: {
-        description: 'Interactive digital classrooms with projectors and modern teaching aids.',
+        description: 'Interactive digital teaching classrooms.',
         gradient: 'from-cyan-500 to-blue-400',
         icon: '📱',
     },
     classroom: {
-        description: 'Spacious, well-ventilated classrooms designed for an optimal learning experience.',
+        description: 'Spacious, well-ventilated learning spaces.',
         gradient: 'from-sky-500 to-blue-400',
         icon: '🏫',
     },
     research: {
-        description: 'Dedicated R&D centers supporting innovation, patents, and publications.',
+        description: 'Dedicated centers supporting innovation.',
         gradient: 'from-fuchsia-500 to-purple-400',
         icon: '🧪',
     },
     innovation: {
-        description: 'Incubation and innovation centers fostering entrepreneurship and startups.',
+        description: 'Centers fostering entrepreneurship and startups.',
         gradient: 'from-pink-500 to-rose-400',
         icon: '💡',
     },
     placement: {
-        description: 'Dedicated placement cell with training programs and industry connections.',
+        description: 'Training programs and industry connections.',
         gradient: 'from-emerald-500 to-green-400',
         icon: '🎯',
     },
     banking: {
-        description: 'On-campus banking and ATM facilities for students and staff convenience.',
+        description: 'On-campus banking and ATM facilities.',
         gradient: 'from-slate-500 to-gray-400',
         icon: '🏧',
     },
     kitchen: {
-        description: 'Professional training kitchens with industry-standard equipment for hospitality students.',
+        description: 'Professional hospitality training kitchens.',
         gradient: 'from-orange-600 to-red-400',
         icon: '👨‍🍳',
     },
     farm: {
-        description: 'Agricultural land and poly-houses for practical field-based training.',
+        description: 'Agricultural land for field-based training.',
         gradient: 'from-lime-600 to-green-500',
         icon: '🌾',
     },
     herbal: {
-        description: 'Extensive herbal garden supporting pharmaceutical research and education.',
+        description: 'Garden supporting pharmaceutical research.',
         gradient: 'from-green-500 to-lime-400',
         icon: '🌿',
     },
     moot: {
-        description: 'Simulated courtroom for law students to practice argumentation and trial skills.',
+        description: 'Simulated courtroom for law practice.',
         gradient: 'from-amber-600 to-yellow-500',
         icon: '⚖️',
     },
     default: {
-        description: 'Modern infrastructure designed for a comfortable and productive campus experience.',
+        description: 'Modern and comfortable campus infrastructure.',
         gradient: 'from-gray-600 to-slate-500',
         icon: '✨',
     },
@@ -228,16 +228,18 @@ export default function OurFacilitiesSection({ college, images = [] }) {
                                 )}
 
                                 {/* Dark gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-2xl" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300 z-0" />
 
                                 {/* Text on image */}
-                                <div className="absolute bottom-4 left-4 right-4 text-white">
-                                    <h3 className="text-lg font-semibold leading-snug">
-                                        {facilityName}
-                                    </h3>
-                                    <p className="text-sm text-gray-200 mt-1 leading-relaxed line-clamp-2">
-                                        {meta.description}
-                                    </p>
+                                <div className="absolute inset-x-0 bottom-0 p-6 z-10 overflow-hidden">
+                                    <div className="transform transition-transform duration-500 ease-out translate-y-7 group-hover:translate-y-0">
+                                        <h3 className="text-lg font-semibold text-white leading-snug">
+                                            {facilityName}
+                                        </h3>
+                                        <p className="text-sm text-gray-300 mt-2 leading-relaxed truncate opacity-0 transition-all duration-500 ease-out group-hover:opacity-100">
+                                            {meta.description}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         );

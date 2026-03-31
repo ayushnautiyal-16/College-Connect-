@@ -119,14 +119,14 @@ const getFeatures = (college) => {
 
 // Color accents for cards
 const cardAccents = [
-    { bg: 'bg-blue-50', iconColor: 'text-blue-600', borderHover: 'hover:border-blue-200' },
-    { bg: 'bg-emerald-50', iconColor: 'text-emerald-600', borderHover: 'hover:border-emerald-200' },
-    { bg: 'bg-violet-50', iconColor: 'text-violet-600', borderHover: 'hover:border-violet-200' },
-    { bg: 'bg-amber-50', iconColor: 'text-amber-600', borderHover: 'hover:border-amber-200' },
-    { bg: 'bg-rose-50', iconColor: 'text-rose-600', borderHover: 'hover:border-rose-200' },
-    { bg: 'bg-cyan-50', iconColor: 'text-cyan-600', borderHover: 'hover:border-cyan-200' },
-    { bg: 'bg-indigo-50', iconColor: 'text-indigo-600', borderHover: 'hover:border-indigo-200' },
-    { bg: 'bg-orange-50', iconColor: 'text-orange-600', borderHover: 'hover:border-orange-200' },
+    { iconBg: 'bg-blue-50', iconColor: 'text-blue-600', borderHover: 'hover:border-blue-200' },
+    { iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600', borderHover: 'hover:border-emerald-200' },
+    { iconBg: 'bg-violet-50', iconColor: 'text-violet-600', borderHover: 'hover:border-violet-200' },
+    { iconBg: 'bg-amber-50', iconColor: 'text-amber-600', borderHover: 'hover:border-amber-200' },
+    { iconBg: 'bg-rose-50', iconColor: 'text-rose-600', borderHover: 'hover:border-rose-200' },
+    { iconBg: 'bg-cyan-50', iconColor: 'text-cyan-600', borderHover: 'hover:border-cyan-200' },
+    { iconBg: 'bg-indigo-50', iconColor: 'text-indigo-600', borderHover: 'hover:border-indigo-200' },
+    { iconBg: 'bg-orange-50', iconColor: 'text-orange-600', borderHover: 'hover:border-orange-200' },
 ];
 
 export default function WhyThisCollegeSection({ college }) {
@@ -159,17 +159,30 @@ export default function WhyThisCollegeSection({ college }) {
     return (
         <section
             ref={sectionRef}
-            className="bg-gray-50 py-20 px-6"
+            className="relative overflow-hidden py-24 px-6"
             id="why-this-college"
+            style={{
+                background: 'linear-gradient(180deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%)',
+            }}
         >
-            <div className="max-w-7xl mx-auto">
+            {/* ──── Subtle Decorative ──── */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-[-5%] right-[10%] w-[400px] h-[400px] rounded-full bg-indigo-100/30 blur-[120px]" />
+                <div className="absolute bottom-[-10%] left-[5%] w-[350px] h-[350px] rounded-full bg-blue-100/30 blur-[100px]" />
+            </div>
+
+            <div className="relative max-w-7xl mx-auto">
                 {/* ─── Heading ─── */}
                 <div
-                    className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    className={`text-center mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                         }`}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-blue-900 leading-tight">
-                        Why {college.name}?
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                        Why{' '}
+                        <span className="text-indigo-600">
+                            {college.name}
+                        </span>
+                        ?
                     </h2>
                     <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-sm md:text-base">
                         Discover what makes {college.name} a top choice for students seeking quality education, strong placements, and holistic development.
@@ -177,16 +190,16 @@ export default function WhyThisCollegeSection({ college }) {
                 </div>
 
                 {/* ─── Feature Cards Grid ─── */}
-                <div className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-8`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-6`}>
                     {features.map((feature, idx) => {
                         const accent = cardAccents[idx % cardAccents.length];
                         return (
                             <div
                                 key={idx}
                                 className={`
-                                    bg-white p-6 rounded-2xl shadow-md
+                                    bg-white p-6 rounded-2xl
                                     border border-gray-100 ${accent.borderHover}
-                                    hover:shadow-xl
+                                    shadow-sm hover:shadow-lg hover:-translate-y-1
                                     transition-all duration-300
                                     text-center
                                     group
@@ -200,7 +213,8 @@ export default function WhyThisCollegeSection({ college }) {
                                 {/* Icon */}
                                 <div
                                     className={`
-                                        w-14 h-14 mx-auto rounded-xl ${accent.bg}
+                                        w-14 h-14 mx-auto rounded-xl
+                                        ${accent.iconBg}
                                         flex items-center justify-center
                                         ${accent.iconColor}
                                         group-hover:scale-110
@@ -227,3 +241,4 @@ export default function WhyThisCollegeSection({ college }) {
         </section>
     );
 }
+

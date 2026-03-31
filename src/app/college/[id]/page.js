@@ -86,10 +86,10 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('graphic era/RkQ4Fo0h-grafest-badshah-4-jpeg.webp')
             ],
             2: [
-                getAssetUrl('1500x500_mtdnmx.jpg'),
-                getAssetUrl('dit-university-dehradun-229162_ws0ck4.jpg'),
-                getAssetUrl('Ge54DdyWsAADfss_lnui0u.jpg'),
-                getAssetUrl('Gceo9oYXsAAhsfR_widqbr.jpg')
+                getAssetUrl('DIT/conditional-banner.webp'),
+                getAssetUrl('DIT/657405f1abcd81702102513.webp'),
+                getAssetUrl('DIT/Slider-desktop.webp'),
+                getAssetUrl('DIT/DIT_University_image_39623.avif')
             ],
             3: [
                 getAssetUrl('Deepa-Panday-Slider-2025-v3_wjgb2p.jpg'),
@@ -649,19 +649,24 @@ export default function CollegeDetailsPage() {
                 />
 
                 {/* --- About Split Section (Image Collage + Text) --- */}
-                <CollegeAboutSplit college={college} images={heroImages} />
+                <div id="about-section">
+                    <CollegeAboutSplit college={college} images={heroImages} />
+                </div>
 
                 {/* --- Key Facts Section --- */}
                 <KeyFactsSection college={college} />
 
                 {/* --- Our Facilities Section --- */}
-                <OurFacilitiesSection college={college} images={allImages} />
+                <div id="infrastructure-section">
+                    <OurFacilitiesSection college={college} images={allImages} />
+                </div>
 
 
                 {/* --- MAIN CONTENT --- */}
 
 
                 {/* Admission Enquiry Section */}
+                <div id="placements-section">
                 <section ref={enquiryRef.ref} className={`py-12 bg-slate-50 transition-all duration-700 delay-100 ${enquiryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     <div className="max-w-5xl mx-auto px-6">
                         <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border">
@@ -692,7 +697,7 @@ export default function CollegeDetailsPage() {
                                     <div className="space-y-4 mb-8">
                                         <button
                                             onClick={() => router.push('/apply')}
-                                            className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold text-base shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2"
+                                            className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold text-base shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 animate-bounce hover:animate-none"
                                         >
                                             Apply Now
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -764,6 +769,7 @@ export default function CollegeDetailsPage() {
                         </div>
                     </div>
                 </section>
+                </div>
 
 
 
@@ -771,7 +777,7 @@ export default function CollegeDetailsPage() {
                 {
                     galleryImages && galleryImages.length > 0 && (
                         <section id="gallery" ref={galleryRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-200 ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                            <div className="max-w-5xl mx-auto px-6">
+                            <div id="courses-section" className="max-w-5xl mx-auto px-6">
                                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
                                     <h2 className="text-xl font-bold text-text-primary mb-6">Campus <GradientText>Gallery</GradientText></h2>
                                     <CollegeGallery images={galleryImages} />
