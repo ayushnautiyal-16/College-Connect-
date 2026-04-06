@@ -13,6 +13,10 @@ import OurFacilitiesSection from '@/components/OurFacilitiesSection/OurFacilitie
 import CollegeAboutSplit from '@/components/CollegeAboutSplit/CollegeAboutSplit';
 import KeyFactsSection from '@/components/KeyFactsSection/KeyFactsSection';
 import GradientText from '@/components/GradientText/GradientText';
+import PlacementsSection from '@/components/PlacementsSection/PlacementsSection';
+import TopCoursesSection from '@/components/TopCoursesSection/TopCoursesSection';
+import FAQSection from '@/components/FAQSection/FAQSection';
+import CollegeCard from '@/components/CollegeCard/CollegeCard';
 
 export default function CollegeDetailsPage() {
     const { id } = useParams();
@@ -656,6 +660,9 @@ export default function CollegeDetailsPage() {
                 {/* --- Key Facts Section --- */}
                 <KeyFactsSection college={college} />
 
+                {/* --- Placements Section --- */}
+                <PlacementsSection college={college} />
+
                 {/* --- Our Facilities Section --- */}
                 <div id="infrastructure-section">
                     <OurFacilitiesSection college={college} images={allImages} />
@@ -665,128 +672,47 @@ export default function CollegeDetailsPage() {
                 {/* --- MAIN CONTENT --- */}
 
 
-                {/* Admission Enquiry Section */}
-                <div id="placements-section">
-                <section ref={enquiryRef.ref} className={`py-12 bg-slate-50 transition-all duration-700 delay-100 ${enquiryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <div className="max-w-5xl mx-auto px-6">
-                        <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border">
-                            <div className="grid grid-cols-1 md:grid-cols-12">
-                                {/* Image Side */}
-                                <div className="relative h-64 md:h-auto md:col-span-5">
-                                    <img
-                                        src={getAssetUrl('graphic era/image-3.jpg')}
-                                        alt="Student Life"
-                                        className="absolute inset-0 w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/20 to-transparent"></div>
-                                    <div className="absolute bottom-6 left-6 text-white p-4">
-                                        <h4 className="text-2xl font-bold mb-1 leading-tight text-white">Review Your Journey</h4>
-                                        <p className="text-sm text-indigo-100 opacity-90">Unlock your potential with world-class education</p>
-                                    </div>
-                                </div>
-
-                                {/* Form Side */}
-                                <div className="md:col-span-7 p-6 md:p-8 bg-indigo-50 flex flex-col justify-center">
-                                    <div className="mb-6">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">Admissions Open 2026</h3>
-                                        <p className="text-sm text-gray-500 font-medium">
-                                            Applications closing soon. Apply now to secure your seat.
-                                        </p>
-                                    </div>
-
-                                    <div className="space-y-4 mb-8">
-                                        <button
-                                            onClick={() => router.push('/apply')}
-                                            className="w-full py-4 rounded-xl bg-indigo-600 text-white font-bold text-base shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 animate-bounce hover:animate-none"
-                                        >
-                                            Apply Now
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                                        </button>
+                {/* Top Courses Section */}
+                <TopCoursesSection college={college} />
 
 
-
-                                        <button
-                                            onClick={() => router.push('/college/' + collegeId + '/fees')}
-                                            className="w-full py-3.5 rounded-xl bg-white border-2 border-indigo-100 text-indigo-600 font-bold text-sm hover:bg-indigo-50 hover:border-indigo-200 transition-all duration-200 flex items-center justify-center gap-2"
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                            Check Fees
-                                        </button>
+                {/* FAQ Section */}
+                <FAQSection college={college} />
 
 
-                                        <button
-                                            onClick={() => {
-                                                if (college.brochure) {
-                                                    window.open(college.brochure, '_blank');
-                                                } else {
-                                                    window.open(getAssetUrl('graphic era/geu-brochure-2025-new-2.pdf'), '_blank');
-                                                }
-                                            }}
-                                            className="w-full py-3.5 rounded-xl bg-white border-2 border-gray-100 text-gray-700 font-bold text-sm hover:border-indigo-200 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 flex items-center justify-center gap-2"
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                            Download Brochure
-                                        </button>
-                                    </div>
+                {/* Similar Colleges Section */}
+                <section className="relative overflow-hidden py-20 px-6 bg-white">
+                    {/* Subtle background */}
+                    <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+                        <div className="absolute top-[-5%] left-[-5%] w-[350px] h-[350px] rounded-full bg-indigo-50/40 blur-[100px]" />
+                        <div className="absolute bottom-[-5%] right-[-5%] w-[300px] h-[300px] rounded-full bg-violet-50/30 blur-[80px]" />
+                    </div>
 
-                                    {/* Social Proof */}
-                                    <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
-                                        <div className="flex -space-x-3">
-                                            {[1, 2, 3, 4].map(i => (
-                                                <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-indigo-50 flex items-center justify-center overflow-hidden">
-                                                    <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white"></div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="text-sm">
-                                            <span className="font-bold text-gray-900 block">150+ students</span>
-                                            <span className="text-gray-500 text-xs">counseling today</span>
-                                        </div>
-                                    </div>
+                    <div className="relative max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                                Similar Colleges in{' '}
+                                <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                                    Dehradun
+                                </span>
+                            </h2>
+                            <p className="mt-3 text-gray-500 text-sm max-w-lg mx-auto">
+                                Compare and explore other top universities in the region
+                            </p>
+                        </div>
 
-                                    {/* Contact Info */}
-                                    <div>
-                                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Contact</h4>
-                                        <div className="space-y-4">
-                                            <div className="flex items-start gap-3">
-                                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-indigo-500 shrink-0 mt-0.5">
-                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                                </div>
-                                                <span className="text-sm text-gray-600 font-medium leading-relaxed">
-                                                    {college.location || 'Dehradun, Uttarakhand'}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-indigo-500 shrink-0">
-                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                                                </div>
-                                                <span className="text-sm text-gray-900 font-bold">+91 7078964020</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {collegesData
+                                .filter(c => c.id !== collegeId)
+                                .slice(0, 3)
+                                .map((c, index) => (
+                                    <CollegeCard key={c.id} college={c} index={index} />
+                                ))
+                            }
                         </div>
                     </div>
                 </section>
-                </div>
-
-
-
-                {/* Gallery Section */}
-                {
-                    galleryImages && galleryImages.length > 0 && (
-                        <section id="gallery" ref={galleryRef.ref} className={`py-16 bg-light-primary transition-all duration-700 delay-200 ${galleryRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                            <div id="courses-section" className="max-w-5xl mx-auto px-6">
-                                <div className="bg-white rounded-2xl p-8 shadow-sm border border-border">
-                                    <h2 className="text-xl font-bold text-text-primary mb-6">Campus <GradientText>Gallery</GradientText></h2>
-                                    <CollegeGallery images={galleryImages} />
-                                </div>
-                            </div>
-                        </section>
-                    )
-                }
-
 
 
             </div >
