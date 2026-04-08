@@ -96,10 +96,10 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('DIT/DIT_University_image_39623.avif')
             ],
             3: [
-                getAssetUrl('Deepa-Panday-Slider-2025-v3_wjgb2p.jpg'),
-                getAssetUrl('Box-New-color_in8431.jpg'),
-                getAssetUrl('15_yplf3g.webp'),
-                getAssetUrl('8_kpjirn.jpg')
+                getAssetUrl('uttaranchal/uttaranchal-university-featured.jpg'),
+                getAssetUrl('uttaranchal/1.webp'),
+                getAssetUrl('uttaranchal/15.webp'),
+                getAssetUrl('uttaranchal/r3.jpg')
             ],
             4: [
                 getAssetUrl('desk-students_t0muq8.webp'),
@@ -154,7 +154,28 @@ export default function CollegeDetailsPage() {
             getAssetUrl('grafest-day-one-7_iczpwg.jpg')
         ];
     };
-
+    // --- Facility Images Helper ---
+    const getFacilitiesImages = (collegeId) => {
+        const facilityImageMap = {
+            2: [
+                getAssetUrl('DIT/DIT_University_image_39581.avif'),
+                getAssetUrl('DIT/DIT_University_image_39615.avif'),
+                getAssetUrl('DIT/DIT_University_image_39621.avif'),
+                getAssetUrl('DIT/639aa80d7a84b1671079949.webp'),
+                getAssetUrl('DIT/1732514749_0848cbacf24012eab570.webp'),
+                getAssetUrl('DIT/Gceo9oaXMAA196J.jpg'),
+                getAssetUrl('DIT/Gceo9oZWAAA0DoO.jpg')
+            ],
+            3: [
+                getAssetUrl('uttaranchal/pic3.png'),
+                getAssetUrl('uttaranchal/hostel-life.jpg'),
+                getAssetUrl('uttaranchal/Transport.png'),
+                getAssetUrl('uttaranchal/15.jpg'),
+                getAssetUrl('uttaranchal/f14.jpg')
+            ]
+        };
+        return facilityImageMap[collegeId] || [];
+    };
     // --- Dynamic Data Helpers ---
     const getCourseDetails = (courseName) => {
         if (!courseName) return { duration: 'Duration Varies', icon: '🎓' };
@@ -507,9 +528,11 @@ export default function CollegeDetailsPage() {
         { name: 'Auditorium', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', color: 'bg-red-50 text-red-600' }
     ];
 
+
     const allImages = getSlideshowImages(collegeId);
     const heroImages = (collegeId === 1) ? allImages.slice(0, 4) : allImages;
     const galleryImages = (collegeId === 1) ? allImages.slice(4) : allImages;
+    const facilityImages = getFacilitiesImages(collegeId);
 
     // Render Logic
     return (
@@ -665,7 +688,7 @@ export default function CollegeDetailsPage() {
 
                 {/* --- Our Facilities Section --- */}
                 <div id="infrastructure-section">
-                    <OurFacilitiesSection college={college} images={allImages} />
+                    <OurFacilitiesSection college={college} images={facilityImages} />
                 </div>
 
 

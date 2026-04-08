@@ -27,6 +27,31 @@ const getPlacementDescription = (college) => {
     return `${college.name} is committed to ensuring excellent career opportunities for its students through dedicated placement support, industry partnerships, and comprehensive training programs that make graduates job-ready from day one.`;
 };
 
+// Get placement images based on college
+const getPlacementImages = (college) => {
+    const name = (college.name || '').toLowerCase();
+
+    if (name.includes('dit')) {
+        return {
+            leftImage: getAssetUrl('DIT/Screenshot 2026-04-09 000708.png'),
+            rightImage: getAssetUrl('DIT/event-image.webp')
+        };
+    }
+
+    if (name.includes('uttaranchal')) {
+        return {
+            leftImage: getAssetUrl('uttaranchal/Deepa-Panday-Slider-2025-v3.jpg'),
+            rightImage: getAssetUrl('uttaranchal/uttaranchal-University-RECRUITERS.png')
+        };
+    }
+
+    // Default (Graphic Era)
+    return {
+        leftImage: 'https://d1om6fetcnl3e0.cloudfront.net/graphic era/𝐏𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭𝐬 𝟐𝟎𝟐𝟓 & 𝟐𝟎𝟐𝟔 - 𝐆𝐄𝐇𝐔 𝐁𝐡𝐢𝐦𝐭𝐚𝐥 Another proud moment for Grap.jpg',
+        rightImage: getAssetUrl('graphic era/2_Mobile-3.jpg')
+    };
+};
+
 export default function PlacementsSection({ college }) {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef(null);
@@ -48,6 +73,7 @@ export default function PlacementsSection({ college }) {
     }, []);
 
     const description = getPlacementDescription(college);
+    const placementImages = getPlacementImages(college);
 
     return (
         <section
@@ -123,7 +149,7 @@ export default function PlacementsSection({ college }) {
                         {/* Placement banner image below text */}
                         <div className="mt-6 rounded-2xl overflow-hidden shadow-md group max-w-md">
                             <img
-                                src={`https://d1om6fetcnl3e0.cloudfront.net/graphic era/𝐏𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭𝐬 𝟐𝟎𝟐𝟓 & 𝟐𝟎𝟐𝟔 - 𝐆𝐄𝐇𝐔 𝐁𝐡𝐢𝐦𝐭𝐚𝐥 Another proud moment for Grap.jpg`}
+                                src={placementImages.leftImage}
                                 alt={`${college.name} Placement Records`}
                                 className="w-full h-auto max-h-[450px] object-cover transition-transform duration  max-w-full"
                             />
@@ -136,7 +162,7 @@ export default function PlacementsSection({ college }) {
                     >
                         <div className="relative rounded-2xl overflow-hidden shadow-lg group">
                             <Image
-                                src={getAssetUrl('graphic era/2_Mobile-3.jpg')}
+                                src={placementImages.rightImage}
                                 alt={`${college.name} Placements`}
                                 width={500}
                                 height={600}
