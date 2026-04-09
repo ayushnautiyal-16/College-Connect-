@@ -1,7 +1,9 @@
 import './globals.css';
 import MainLayoutWrapper from '@/layouts/MainLayout/MainLayoutWrapper';
+import Script from 'next/script';
 
 const SITE_URL = 'https://www.collegeconnect.co.in';
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
 export const metadata = {
     // ── Title Template ──────────────────────────────────────────
@@ -94,6 +96,24 @@ export default function RootLayout({ children }) {
                     href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
                     rel="stylesheet"
                 />
+                {GOOGLE_ADS_ID ? (
+                    <>
+                        <Script
+                            id="google-gtag"
+                            strategy="afterInteractive"
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+                        />
+                        <Script id="google-gtag-init" strategy="afterInteractive">
+                            {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ADS_ID}');
+`}
+                        </Script>
+                    </>
+                ) : null}
             </head>
             <body className="antialiased">
                 <MainLayoutWrapper>{children}</MainLayoutWrapper>
