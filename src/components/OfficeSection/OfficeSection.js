@@ -10,27 +10,6 @@ const offices = [
         phone: '+91 7302985700',
         email: 'collegeconnect47@gmail.com',
     },
-    {
-        name: 'Mussoorie Branch',
-        address1: 'Mall Road',
-        address2: 'Mussoorie, Uttarakhand 248179',
-        phone: '+91 7302985700',
-        email: 'collegeconnect47@gmail.com',
-    },
-    {
-        name: 'Haridwar Branch',
-        address1: 'Station Road',
-        address2: 'Haridwar, Uttarakhand 249401',
-        phone: '+91 7302985700',
-        email: 'collegeconnect47@gmail.com',
-    },
-    {
-        name: 'Delhi NCR Office',
-        address1: 'Connaught Place',
-        address2: 'New Delhi, Delhi 110001',
-        phone: '+91 7302985700',
-        email: 'collegeconnect47@gmail.com',
-    },
 ];
 
 export default function OfficeSection() {
@@ -70,16 +49,15 @@ export default function OfficeSection() {
                             </span>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-                            Our Offices
+                            Our Office
                         </h2>
                         <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed text-sm md:text-base">
-                            Visit us at any of our offices for personalized counselling and admission guidance.
-                            Our team is ready to help you find your perfect college.
+                            Visit our Rajpur Road, Dehradun office for personalized counselling and admission guidance.
                         </p>
                     </div>
 
                     {/* Office Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+                    <div className="grid grid-cols-1 gap-0">
                         {offices.map((office, idx) => (
                             <div
                                 key={idx}
