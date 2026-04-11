@@ -6,6 +6,7 @@ import { collegesData } from '@/utils/collegesData';
 import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
 import GradientText from '@/components/GradientText/GradientText';
+import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
 
 export default function CollegeFeesPage() {
     const { id } = useParams();
@@ -82,6 +83,7 @@ export default function CollegeFeesPage() {
                     body: JSON.stringify(payload)
                 });
                 if (response.ok) {
+                    trackGoogleAdsFormConversion();
                     setSubmitted(true);
                 } else {
                     // Optionally handle error

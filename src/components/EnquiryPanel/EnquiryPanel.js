@@ -2,58 +2,60 @@
 
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { trackGoogleAdsFormConversion } from "@/lib/trackGoogleAdsConversion";
 
+export default function EnquiryPanel() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedCourse, setSelectedCourse] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
-const [isOpen, setIsOpen] = useState(false);
-const [selectedCourse, setSelectedCourse] = useState("");
-const [isSubmitting, setIsSubmitting] = useState(false);
-const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
+        const formData = new FormData(e.target);
+        let course = formData.get("course");
+        let otherCourse = "";
+        let otherCollege = "";
+        if (course === "Other") {
+            otherCourse = formData.get("customCourse") || "Other";
+            otherCollege = formData.get("customCollege") || "";
+        }
 
-    const formData = new FormData(e.target);
-    let course = formData.get("course");
-    let otherCourse = "";
-    let otherCollege = "";
-    if (course === "Other") {
-        otherCourse = formData.get("customCourse") || "Other";
-        otherCollege = formData.get("customCollege") || "";
-    }
+        const data = {
+            name: formData.get("fullName"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            course,
+            otherCourse,
+            otherCollege,
+        };
 
-    const data = {
-        name: formData.get("fullName"),
-        phone: formData.get("phone"),
-        email: formData.get("email"),
-        course,
-        otherCourse,
-        otherCollege,
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            if (result.success) {
+                trackGoogleAdsFormConversion();
+                setSubmitStatus("success");
+            } else {
+                setSubmitStatus("error");
+                console.error("Form submission failed:", result.message || result);
+            }
+        } catch (error) {
+            setSubmitStatus("error");
+            console.error("Form submission error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
-    try {
-        const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        });
-        const result = await response.json();
-        if (result.success) {
-            setSubmitStatus("success");
-        } else {
-            setSubmitStatus("error");
-            console.error("Form submission failed:", result.message || result);
-        }
-    } catch (error) {
-        setSubmitStatus("error");
-        console.error("Form submission error:", error);
-    } finally {
-        setIsSubmitting(false);
-    }
-};
-
-return (
+    return (
     <>
         {/* 1️⃣ LEFT SIDE VERTICAL BUTTON (Visible when panel is closed) */}
         <div
@@ -228,4 +230,5 @@ return (
             </div>
         </div>
     </>
-);
+    );
+}

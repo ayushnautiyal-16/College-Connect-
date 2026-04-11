@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { trackGoogleAdsFormConversion } from "@/lib/trackGoogleAdsConversion";
 
 export default function EnquiryTogglePanel() {
     const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ export default function EnquiryTogglePanel() {
             });
             const result = await response.json();
             if (result.success) {
+                trackGoogleAdsFormConversion();
                 setSubmitStatus("success");
             } else {
                 setSubmitStatus("error");

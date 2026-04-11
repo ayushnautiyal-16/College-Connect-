@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
 import GradientText from '@/components/GradientText/GradientText';
+import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
 
 export default function ApplyPage() {
     const [formData, setFormData] = useState({
@@ -101,6 +102,7 @@ export default function ApplyPage() {
                 const result = await response.json();
 
                 if (result.success) {
+                    trackGoogleAdsFormConversion();
                     setSubmitted(true);
                     setFormData({ fullName: '', mobileNumber: '', preferredCollege: '', otherCollege: '', preferredCourse: '' });
                     setTimeout(() => setSubmitted(false), 5000);

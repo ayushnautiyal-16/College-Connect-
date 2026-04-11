@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './GetInTouchPopup.css';
+import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
 
 function GetInTouchPopup() {
     const [isVisible, setIsVisible] = useState(false);
@@ -59,6 +60,7 @@ function GetInTouchPopup() {
             const result = await response.json();
 
             if (result.success) {
+                trackGoogleAdsFormConversion();
                 setSubmitStatus('success');
             } else {
                 setSubmitStatus('error');
