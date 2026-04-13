@@ -13,6 +13,7 @@ function Footer() {
     { label: 'Programs', href: '/campuses' },
     { label: 'Contact', href: '/contact' },
     { label: 'Apply', href: '/apply' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
   ];
 
   return (
