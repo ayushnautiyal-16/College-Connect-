@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import EnquiryTogglePanel from '@/components/EnquiryTogglePanel/EnquiryTogglePanel';
@@ -9,6 +10,9 @@ import GetInTouchPopup from '@/components/GetInTouchPopup/GetInTouchPopup';
 import Chatbot from '@/components/Chatbot/Chatbot';
 
 function MainLayoutWrapper({ children }) {
+    const pathname = usePathname();
+    const isHomePage = pathname === '/';
+
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
             <Header />
@@ -16,8 +20,8 @@ function MainLayoutWrapper({ children }) {
                 {children}
             </main>
             <Footer />
-            <FloatingSideButtons />
-            <EnquiryTogglePanel />
+            {isHomePage && <FloatingSideButtons />}
+            {isHomePage && <EnquiryTogglePanel />}
             <GetInTouchPopup />
             <Chatbot />
         </div>

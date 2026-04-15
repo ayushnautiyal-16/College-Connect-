@@ -1,77 +1,70 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import {
-    GraduationCap,
-    Building2,
     Users,
+    Building2,
     BadgeCheck,
+    GraduationCap,
     Briefcase,
-    BookOpen,
     Globe,
-    Lightbulb,
 } from "lucide-react";
 import GradientText from "@/components/GradientText/GradientText";
 
 const features = [
     {
-        icon: GraduationCap,
-        title: "Top-Ranked Programs",
+        icon: Users,
+        title: "Personalized Guidance",
         description:
-            "Explore NAAC-accredited courses across Engineering, Management, Medical & more with nationally recognized curricula.",
+            "Get expert help to choose the right college based on your goals, marks, and interests.",
         color: "text-purple-400",
     },
     {
         icon: Building2,
-        title: "World-Class Infrastructure",
+        title: "Explore Top Colleges",
         description:
-            "State-of-the-art labs, smart classrooms, sprawling campuses & modern hostels designed for an immersive learning experience.",
+            "We help you discover trusted colleges in Dehradun and across India - all in one place.",
         color: "text-cyan-400",
     },
     {
-        icon: Users,
-        title: "Expert Faculty",
+        icon: BadgeCheck,
+        title: "Compare Before You Decide",
         description:
-            "Learn from industry veterans, PhD scholars & research-active professors committed to nurturing future leaders.",
+            "Easily compare colleges, courses, fees, and placements to make the right choice.",
         color: "text-green-400",
     },
     {
-        icon: BadgeCheck,
-        title: "Verified Accreditations",
+        icon: GraduationCap,
+        title: "Course Selection Made Easy",
         description:
-            "Every college is vetted for NAAC, NBA, UGC, AICTE & other national accreditation standards you can trust.",
+            "Confused between B.Tech, BBA, MBA or others? We help you pick the right course for your future.",
         color: "text-amber-400",
     },
     {
         icon: Briefcase,
-        title: "Placement Excellence",
+        title: "Verified & Trusted Information",
         description:
-            "Discover colleges with 90%+ placement records, packages up to ₹54 LPA & partnerships with Fortune 500 recruiters.",
+            "We provide accurate and updated details so you don't rely on random sources.",
         color: "text-rose-400",
     },
     {
-        icon: BookOpen,
-        title: "Diverse Course Catalog",
-        description:
-            "From B.Tech & MBA to MBBS, Law, Agriculture & Design — find the perfect program tailored to your career goals.",
-        color: "text-indigo-400",
-    },
-    {
         icon: Globe,
-        title: "Global Exposure",
+        title: "Complete Admission Support",
         description:
-            "International collaborations, student exchange programs & MoUs with 200+ global universities for a world-ready education.",
+            "From choosing a college to final admission - we guide you at every step.",
         color: "text-teal-400",
-    },
-    {
-        icon: Lightbulb,
-        title: "Innovation & Research",
-        description:
-            "Cutting-edge incubation centers, patent-filing support & dedicated R&D labs powering the next wave of breakthroughs.",
-        color: "text-orange-400",
     },
 ];
 
-function FeatureCard({ icon: Icon, title, description, color }) {
+function FeatureCard({
+    icon: Icon,
+    title,
+    description,
+    color,
+    className = "",
+    isVisible = false,
+    index = 0,
+}) {
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -80,10 +73,33 @@ function FeatureCard({ icon: Icon, title, description, color }) {
         e.currentTarget.style.setProperty("--y", `${y}px`);
     };
 
+    const burstOffsets = [
+        { x: -180, y: -95, r: -24 },
+        { x: -120, y: -150, r: -16 },
+        { x: 30, y: -165, r: -8 },
+        { x: 170, y: -95, r: 18 },
+        { x: -145, y: 120, r: -14 },
+        { x: 140, y: 130, r: 20 },
+    ];
+    const offset = burstOffsets[index % burstOffsets.length];
+    const hiddenTransform = `translate(${offset.x}px, ${offset.y}px) scale(0.24) rotate(${offset.r}deg)`;
+    const visibleTransform = "translate(0px, 0px) scale(1) rotate(0deg)";
+
     return (
         <div
-            className="group relative overflow-hidden rounded-2xl bg-[#0f172a] border border-white/10 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/5"
+            className={`group relative overflow-hidden rounded-2xl bg-[#0f172a] border border-white/10 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/5 ${className}`}
             onMouseMove={handleMouseMove}
+            style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? visibleTransform : hiddenTransform,
+                filter: isVisible ? "blur(0px)" : "blur(4px)",
+                transitionProperty: "transform, opacity, filter",
+                transitionDuration: "760ms, 520ms, 760ms",
+                transitionTimingFunction:
+                    "cubic-bezier(0.18, 0.95, 0.24, 1), ease-out, cubic-bezier(0.18, 0.95, 0.24, 1)",
+                transitionDelay: `${index * 85}ms`,
+                willChange: "transform, opacity, filter",
+            }}
         >
             {/* Cursor Spotlight */}
             <div
@@ -114,8 +130,26 @@ function FeatureCard({ icon: Icon, title, description, color }) {
 }
 
 export default function FeaturesSection() {
+    const sectionRef = useRef(null);
+    const [isSectionInView, setIsSectionInView] = useState(false);
+
+    useEffect(() => {
+        const sectionElement = sectionRef.current;
+        if (!sectionElement) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsSectionInView(entry.isIntersecting);
+            },
+            { threshold: 0.22, rootMargin: "0px 0px -10% 0px" }
+        );
+
+        observer.observe(sectionElement);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="relative overflow-hidden bg-[#060b18] py-20">
+        <section ref={sectionRef} className="relative overflow-hidden bg-[#060b18] py-20">
             {/* Background radial glow */}
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/10 blur-[120px]" />
@@ -133,15 +167,27 @@ export default function FeaturesSection() {
                         <GradientText>the Right College</GradientText>
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-                        Comprehensive insights, verified data & expert guidance — all in one
-                        place to make your college decision stress-free.
+                        We don&apos;t just list colleges - we guide you step by step to the
+                        best decision.
                     </p>
                 </div>
 
                 {/* Feature Grid */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {features.map((feature, index) => (
-                        <FeatureCard key={index} {...feature} />
+                        <FeatureCard
+                            key={index}
+                            {...feature}
+                            isVisible={isSectionInView}
+                            index={index}
+                            className={
+                                index === 4
+                                    ? "lg:col-start-2"
+                                    : index === 5
+                                      ? "lg:col-start-3"
+                                      : ""
+                            }
+                        />
                     ))}
                 </div>
             </div>

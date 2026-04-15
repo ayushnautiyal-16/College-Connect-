@@ -13,8 +13,8 @@ function GetInTouchPopup() {
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
     useEffect(() => {
-        // Show popup after 8-12 seconds (random delay) on every page load
-        const delay = Math.random() * 4000 + 8000; // 8000ms to 12000ms
+        // Show popup after 15 seconds on every page load
+        const delay = 15000;
         const timer = setTimeout(() => {
             setIsVisible(true);
         }, delay);
@@ -332,20 +332,6 @@ function GetInTouchPopup() {
                                     </button>
                                 </form>
 
-                                {/* Trust Badge */}
-                                <div className="popup-footer">
-                                    <p>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                            className="trust-icon"
-                                        >
-                                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
-                                        </svg>
-                                        100% Free. No Spam. Your data is secure.
-                                    </p>
-                                </div>
                             </>
                         )}
                     </div>

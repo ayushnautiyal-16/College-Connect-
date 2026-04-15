@@ -102,10 +102,10 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('uttaranchal/r3.jpg')
             ],
             4: [
-                getAssetUrl('desk-students_t0muq8.webp'),
-                getAssetUrl('FarlyNuVQAEvYsE_s99wgi.jpg'),
-                getAssetUrl('FaHf3K7UIAIvEN0_ct1bgh.jpg'),
-                getAssetUrl('FCmXjKUVcAQLMNz_htvnaz.jpg')
+                getAssetUrl('UPES/1762940598phpFuQ09g.jpeg'),
+                getAssetUrl('UPES/1762940673php0dG9ci.jpeg'),
+                getAssetUrl('UPES/1762940943phpIO6chb.jpeg'),
+                getAssetUrl('UPES/banner-campus-life-desk.webp')
             ],
             5: [
                 getAssetUrl('dbuu-campus-webp-1_wdiaej.webp'),
@@ -172,9 +172,28 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('uttaranchal/Transport.png'),
                 getAssetUrl('uttaranchal/15.jpg'),
                 getAssetUrl('uttaranchal/f14.jpg')
+            ],
+            4: [
+                getAssetUrl('UPES/IMG-20251230-WA0013(5).webp'),
+                getAssetUrl('UPES/hqdefault (1).jpg'),
+                getAssetUrl('UPES/hqdefault.jpg'),
+                getAssetUrl('UPES/take-tour-soae_0.webp'),
+                getAssetUrl('UPES/Campus Life Student Safety.webp')
             ]
         };
         return facilityImageMap[collegeId] || [];
+    };
+
+    const getAboutImages = (collegeId, fallbackImages) => {
+        const aboutImageMap = {
+            4: [
+                getAssetUrl('UPES/campus-gallery-b.webp'),
+                getAssetUrl('UPES/FarlyNuVQAEvYsE.jpg'),
+                getAssetUrl('UPES/FCmXjKUUYAAMbWe.jpg')
+            ]
+        };
+
+        return aboutImageMap[collegeId] || fallbackImages;
     };
     // --- Dynamic Data Helpers ---
     const getCourseDetails = (courseName) => {
@@ -531,6 +550,7 @@ export default function CollegeDetailsPage() {
 
     const allImages = getSlideshowImages(collegeId);
     const heroImages = (collegeId === 1) ? allImages.slice(0, 4) : allImages;
+    const aboutImages = getAboutImages(collegeId, heroImages);
     const galleryImages = (collegeId === 1) ? allImages.slice(4) : allImages;
     const facilityImages = getFacilitiesImages(collegeId);
 
@@ -677,7 +697,7 @@ export default function CollegeDetailsPage() {
 
                 {/* --- About Split Section (Image Collage + Text) --- */}
                 <div id="about-section">
-                    <CollegeAboutSplit college={college} images={heroImages} />
+                    <CollegeAboutSplit college={college} images={aboutImages} />
                 </div>
 
                 {/* --- Key Facts Section --- */}

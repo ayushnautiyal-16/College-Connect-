@@ -45,6 +45,13 @@ const getPlacementImages = (college) => {
         };
     }
 
+    if (name.includes('upes')) {
+        return {
+            leftImage: getAssetUrl('UPES/Screenshot 2026-04-14 173328.png'),
+            rightImage: getAssetUrl('UPES/IMG-20251230-WA0012(3).webp')
+        };
+    }
+
     // Default (Graphic Era)
     return {
         leftImage: 'https://d1om6fetcnl3e0.cloudfront.net/graphic era/𝐏𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭𝐬 𝟐𝟎𝟐𝟓 & 𝟐𝟎𝟐𝟔 - 𝐆𝐄𝐇𝐔 𝐁𝐡𝐢𝐦𝐭𝐚𝐥 Another proud moment for Grap.jpg',
@@ -135,41 +142,55 @@ export default function PlacementsSection({ college }) {
                     </h2>
                 </div>
 
-                {/* Main content — Left description + image, Right image */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
-
-                    {/* ─── LEFT: Description + Banner Image ─── */}
+                {/* Main content — Format 1: Editorial Split */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+                    {/* LEFT: Large Hero Visual */}
                     <div
-                        className={`lg:col-span-3 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
+                        className={`transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
                     >
-                        <p className="text-gray-300 leading-relaxed text-base">
-                            {description}
-                        </p>
-
-                        {/* Placement banner image below text */}
-                        <div className="mt-6 rounded-2xl overflow-hidden shadow-md group max-w-md">
+                        <div className="relative h-full min-h-[280px] md:min-h-[420px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl group">
                             <img
                                 src={placementImages.leftImage}
                                 alt={`${college.name} Placement Records`}
-                                className="w-full h-auto max-h-[450px] object-cover transition-transform duration  max-w-full"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+                            <div className="absolute bottom-5 left-5 right-5">
+                                <p className="text-white text-lg md:text-2xl font-semibold mt-1">Placement Ecosystem at {college.name}</p>
+                            </div>
                         </div>
                     </div>
 
-                    {/* ─── RIGHT: Placement Image ─── */}
+                    {/* RIGHT: Editorial Content + Supporting Visual */}
                     <div
-                        className={`lg:col-span-2 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
+                        className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
                     >
-                        <div className="relative rounded-2xl overflow-hidden shadow-lg group">
-                            <Image
-                                src={placementImages.rightImage}
-                                alt={`${college.name} Placements`}
-                                width={500}
-                                height={600}
-                                className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-                            />
-                            {/* Subtle gradient overlay at bottom */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
+                        <div className="h-full rounded-3xl border border-white/12 bg-[#111a33]/85 backdrop-blur-sm p-6 md:p-8 flex flex-col">
+                            <p className="text-gray-200 leading-relaxed text-[15px] md:text-base">
+                                {description}
+                            </p>
+
+                            <div className="mt-5 grid grid-cols-2 gap-3">
+                                <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2">
+                                    <p className="text-[11px] uppercase tracking-wider text-violet-300 font-semibold">Career Prep</p>
+                                    <p className="text-white text-sm mt-1">Interview & aptitude training</p>
+                                </div>
+                                <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2">
+                                    <p className="text-[11px] uppercase tracking-wider text-cyan-300 font-semibold">Recruiters</p>
+                                    <p className="text-white text-sm mt-1">Strong hiring partnerships</p>
+                                </div>
+                            </div>
+
+                            <div className="mt-5 relative rounded-2xl overflow-hidden border border-white/10 group">
+                                <Image
+                                    src={placementImages.rightImage}
+                                    alt={`${college.name} Placements`}
+                                    width={700}
+                                    height={420}
+                                    className="w-full h-[280px] md:h-[340px] object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
+                            </div>
                         </div>
                     </div>
                 </div>
