@@ -130,7 +130,7 @@ export default function BlogPage() {
                         "@type": "Blog",
                         "name": "College Connect Blog – Best Colleges in Dehradun",
                         "description": "Expert articles on best colleges in Dehradun including admission guides, fees structure, placements, hostel, and scholarship information.",
-                        "url": "https://collegeconnect.co.in/blog",
+                        "url": "https://collegeconnectedu.com/blog",
                         "publisher": {
                             "@type": "Organization",
                             "name": "College Connect",
@@ -141,7 +141,7 @@ export default function BlogPage() {
                             "description": p.excerpt,
                             "author": { "@type": "Person", "name": p.author },
                             "datePublished": p.date,
-                            "url": `https://collegeconnect.co.in/blog/${p.id}`,
+                            "url": `https://collegeconnectedu.com/blog/${p.id}`,
                         })),
                     }),
                 }}

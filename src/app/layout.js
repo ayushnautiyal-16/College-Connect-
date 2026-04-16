@@ -2,7 +2,7 @@ import './globals.css';
 import MainLayoutWrapper from '@/layouts/MainLayout/MainLayoutWrapper';
 import Script from 'next/script';
 
-const SITE_URL = 'https://www.collegeconnect.co.in';
+const SITE_URL = 'https://www.collegeconnectedu.com';
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
 export const metadata = {
