@@ -37,7 +37,7 @@ export async function POST(request) {
         // ===========================
 
         await resend.emails.send({
-            from: "College Connect <onboarding@resend.dev>",
+            from: "College Connect <noreply@collegeconnectedu.com>",
             to: [process.env.EMAIL_USER],
             subject: `🤖 New Chatbot Lead - ${name} | ${course}`,
             html: `

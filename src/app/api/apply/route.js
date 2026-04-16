@@ -94,7 +94,7 @@ export async function POST(request) {
 
         try {
             await resend.emails.send({
-                from: "College Connect <onboarding@resend.dev>",
+            from: "College Connect <noreply@collegeconnectedu.com>",
                 to: [process.env.EMAIL_USER],
                 subject: `New Application - ${fullName} | ${preferredCollege}`,
                 html: `
