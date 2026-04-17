@@ -179,7 +179,7 @@ export default function WhyThisCollegeSection({ college }) {
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                         Why{' '}
-                        <span className="text-indigo-600">
+                        <span className="text-orange-600">
                             {college.name}
                         </span>
                         ?

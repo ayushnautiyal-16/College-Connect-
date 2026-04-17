@@ -4,8 +4,28 @@ import React from 'react';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import GradientText from '@/components/GradientText/GradientText';
 
-function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
+function AnimatedSectionHeader({ leftText, rightText, subtitle, colorTheme = "indigo" }) {
     const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
+    const shimmerGradients = {
+        indigo: "linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #a855f7, #6366f1)",
+        orange: "linear-gradient(90deg, #ea580c, #f43f5e, #f97316, #f43f5e, #ea580c)",
+    };
+
+    const styles = {
+        indigo: {
+            leftDot: "bg-gradient-to-r from-transparent to-indigo-400",
+            diamond: "bg-gradient-to-br from-indigo-500 to-purple-500",
+            rightDot: "bg-gradient-to-l from-transparent to-purple-400"
+        },
+        orange: {
+            leftDot: "bg-gradient-to-r from-transparent to-orange-400",
+            diamond: "bg-gradient-to-br from-orange-500 to-rose-500",
+            rightDot: "bg-gradient-to-l from-transparent to-rose-400"
+        }
+    };
+
+    const currentStyle = styles[colorTheme] || styles.indigo;
 
     return (
         <div ref={ref} className="text-center mb-16 relative">
@@ -16,12 +36,12 @@ function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
             >
                 {leftText}{' '}
                 <span className="relative inline-block">
-                    <GradientText>{rightText}</GradientText>
+                    <GradientText colorTheme={colorTheme}>{rightText}</GradientText>
                     {/* Shimmer underline under gradient word */}
                     <span
                         className={`absolute -bottom-1 left-0 h-[3px] rounded-full transition-all duration-1000 ease-out ${isVisible ? 'w-full' : 'w-0'}`}
                         style={{
-                            background: 'linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #a855f7, #6366f1)',
+                            background: shimmerGradients[colorTheme] || shimmerGradients.indigo,
                             backgroundSize: '200% 100%',
                             animation: isVisible ? 'shimmer 3s linear infinite' : 'none',
                             transitionDelay: '600ms',
@@ -32,9 +52,9 @@ function AnimatedSectionHeader({ leftText, rightText, subtitle }) {
 
             {/* Decorative Underline with Diamond */}
             <div className={`flex items-center justify-center gap-2 mb-8 transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                <div className={`h-[2px] rounded-full bg-gradient-to-r from-transparent to-indigo-400 transition-all duration-1000 delay-500 ${isVisible ? 'w-12' : 'w-0'}`} />
-                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500" />
-                <div className={`h-[2px] rounded-full bg-gradient-to-l from-transparent to-purple-400 transition-all duration-1000 delay-500 ${isVisible ? 'w-12' : 'w-0'}`} />
+                <div className={`h-[2px] rounded-full transition-all duration-1000 delay-500 ${currentStyle.leftDot} ${isVisible ? 'w-12' : 'w-0'}`} />
+                <div className={`w-2 h-2 rounded-full ${currentStyle.diamond}`} />
+                <div className={`h-[2px] rounded-full transition-all duration-1000 delay-500 ${currentStyle.rightDot} ${isVisible ? 'w-12' : 'w-0'}`} />
             </div>
 
             {/* Subtitle with blur reveal */}

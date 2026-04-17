@@ -108,10 +108,12 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('UPES/banner-campus-life-desk.webp')
             ],
             5: [
-                getAssetUrl('dbuu-campus-webp-1_wdiaej.webp'),
-                getAssetUrl('5_wazjsp.webp'),
-                getAssetUrl('17_mjo5ao.webp'),
-                getAssetUrl('one_aw66o4.webp')
+                getAssetUrl('DBUU/campus-3.webp'),
+                getAssetUrl('DBUU/campus-infra-dbuu.webp'),
+                getAssetUrl('DBUU/campus-life-home.webp'),
+                getAssetUrl('DBUU/campus.webp'),
+                getAssetUrl('DBUU/campus2.webp'),
+                getAssetUrl('DBUU/campus6.webp')
             ],
             6: [
                 getAssetUrl('section002-side-image_clige2.jpg'),
@@ -147,6 +149,13 @@ export default function CollegeDetailsPage() {
             11: [
                 getAssetUrl('sbsu_gallery_0097_q8g1mb.jpg'), // Using generic/college placeholder
                 getAssetUrl('grafest-day-third-1_dqyeno.jpg')
+            ],
+            13: [
+                getAssetUrl('shivalik college/U7A9935-1024x607.jpg'),
+                getAssetUrl('shivalik college/shivalikcampus.jpg'),
+                getAssetUrl('shivalik college/campus.jpg'),
+                getAssetUrl('shivalik college/campus9.jpg'),
+                getAssetUrl('shivalik college/DVk3jX0UQAAnJAc.jpg')
             ]
         };
         return imageMap[collegeId] || [
@@ -179,6 +188,26 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('UPES/hqdefault.jpg'),
                 getAssetUrl('UPES/take-tour-soae_0.webp'),
                 getAssetUrl('UPES/Campus Life Student Safety.webp')
+            ],
+            5: [
+                getAssetUrl('DBUU/campus-infra-dbuu.webp'),
+                getAssetUrl('DBUU/library.webp'),
+                getAssetUrl('DBUU/Computer-Lab1.webp'),
+                getAssetUrl('DBUU/Amb3.webp'),
+                getAssetUrl('DBUU/Gym2.webp'),
+                getAssetUrl('DBUU/hostel-facility-2.webp'),
+                getAssetUrl('DBUU/ATM.webp')
+            ],
+            13: [
+                getAssetUrl('shivalik college/shivalikcampus.jpg'),
+                getAssetUrl('shivalik college/gym.jpg'),
+                getAssetUrl('shivalik college/cselab1.jpg'),
+                getAssetUrl('shivalik college/amublance.jpg'),
+                getAssetUrl('shivalik college/libraryimageschnages.jpg'),
+                getAssetUrl('shivalik college/mess.jpg'),
+                getAssetUrl('shivalik college/cafetriaimage.jpg'),
+                getAssetUrl('shivalik college/transport.jpg'),
+                getAssetUrl('shivalik college/fest1.webp')
             ]
         };
         return facilityImageMap[collegeId] || [];
@@ -190,6 +219,16 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('UPES/campus-gallery-b.webp'),
                 getAssetUrl('UPES/FarlyNuVQAEvYsE.jpg'),
                 getAssetUrl('UPES/FCmXjKUUYAAMbWe.jpg')
+            ],
+            5: [
+                getAssetUrl('DBUU/campus5.webp'),
+                getAssetUrl('DBUU/Fest.webp'),
+                getAssetUrl('DBUU/fest2.webp')
+            ],
+            13: [
+                getAssetUrl('shivalik college/campus7.jpg'),
+                getAssetUrl('shivalik college/camous4.jpg'),
+                getAssetUrl('shivalik college/fest3.jpg')
             ]
         };
 
@@ -736,7 +775,7 @@ export default function CollegeDetailsPage() {
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                                 Similar Colleges in{' '}
-                                <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">
                                     Dehradun
                                 </span>
                             </h2>

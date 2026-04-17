@@ -151,7 +151,7 @@ export default function CollegeAboutSplit({ college, images = [] }) {
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                             About{' '}
-                            <span className="text-indigo-600">
+                            <span className="text-orange-600">
                                 {college.name}
                             </span>
                         </h2>

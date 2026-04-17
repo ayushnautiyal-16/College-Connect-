@@ -85,7 +85,7 @@ export default function CollegeStatsSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-indigo-950/20">
 
                     {/* ════════ Left — Image ════════ */}
-                    <div className="relative h-64 lg:h-auto min-h-[400px] bg-[#0f2238]">
+                    <div className="relative h-[250px] sm:h-64 lg:h-auto md:min-h-[400px] bg-[#0f2238]">
                         <img
                             src={getAssetUrl('graphic era/placement-geu2023-website-copy-2.jpg')}
                             alt="College campus placements"
@@ -98,7 +98,7 @@ export default function CollegeStatsSection() {
 
                     {/* ════════ Right — Content Panel ════════ */}
                     <div
-                        className="p-8 md:p-12 lg:p-14 flex flex-col justify-center"
+                        className="p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center"
                         style={{ background: 'linear-gradient(160deg, #0f2238 0%, #132a4a 50%, #162d4d 100%)' }}
                     >
                         {/* Small Label */}
@@ -107,7 +107,7 @@ export default function CollegeStatsSection() {
                         </span>
 
                         {/* Heading */}
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 md:mb-6">
                             Trusted by Thousands{' '}
                             <br className="hidden md:block" />
                             of <GradientText>Students</GradientText>
@@ -135,10 +135,10 @@ export default function CollegeStatsSection() {
                                         }`}
                                     style={{ transitionDelay: `${idx * 150}ms` }}
                                 >
-                                    <div className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
                                         {stat.value}
                                     </div>
-                                    <div className="text-gray-400 text-sm mt-2 font-medium">
+                                    <div className="text-gray-400 text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
                                         {stat.label}
                                     </div>
                                 </div>

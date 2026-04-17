@@ -344,6 +344,8 @@ export const collegesData = [
         name: 'University of Petroleum and Energy Studies (UPES)',
         logo: 'UPES/IMG-20251230-WA0013(5).webp',
         logoBgColor: '#ffffff',
+        feesStructureImage: 'UPES/UPES-Information-Bulletin.pdf',
+        brochure: 'UPES/UPES-Information-Bulletin.pdf',
         location: 'Energy Acres, Bidholi, Dehradun',
         established: '2003',
         accreditation: 'NAAC A Grade | QS 5 Star | NBA | IACBE',
@@ -480,7 +482,7 @@ export const collegesData = [
         name: 'Shivalik College of Engineering',
         logo: 'shivaliklogo_wyab9r.png',
         cardImage: 'shivalik college/U7A9935-1024x607.jpg',
-        brochure: 'shivalik college/PROSPECTUS_compressed.pdf',
+        brochure: 'https://docs.google.com/viewerng/viewer?url=https://shivalikcollege.edu.in/wp-content/uploads/2025/01/PROSPECTUS_compressed.pdf',
         feesStructureImage: 'shivalik college/shivalik fees.jpeg',
         logoBgColor: '#ffffff',
         location: 'Sihniwala, Dehradun',
@@ -521,7 +523,9 @@ export const collegesData = [
             '24/7 Ambulance & Medical Support',
             'Digital Library & Smart Classrooms',
             'Comfortable Hostels with Mess',
-            'Cafeteria & Recreation Zones'
+            'Cafeteria & Recreation Zones',
+            'Transport',
+            'Cultural Fests'
         ],
         bestKnownFor: 'Quality technical education with excellent faculty-student ratio and hands-on practical training',
         mainCourses: ['B.Tech CSE', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil', 'B.Pharma', 'BBA', 'B.Sc Agriculture'],

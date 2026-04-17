@@ -165,7 +165,7 @@ export default function CollegeDetailsHero({ college, images = [] }) {
 
                             {/* College Name */}
                             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
-                                <GradientText>{college.name || 'Our College'}</GradientText>
+                                <GradientText colorTheme="orange">{college.name || 'Our College'}</GradientText>
                             </h1>
 
                             {/* Description */}

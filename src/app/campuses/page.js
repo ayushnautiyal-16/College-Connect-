@@ -23,25 +23,27 @@ function CampusesContent() {
     });
 
     return (
-        <div className="min-h-screen py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #f8f6ff 25%, #fff 50%, #f0f9ff 75%, #f5f3ff 100%)' }}>
-            {/* Decorative background elements */}
+        <div className="min-h-screen pt-24 pb-20 relative bg-[#faf6ff] overflow-hidden">
+            {/* Opalescent Glassmorphism & Mesh Background */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* Soft gradient blobs */}
-                <div className="absolute top-[-8%] left-[-5%] w-[500px] h-[500px] bg-indigo-200/30 rounded-full blur-[100px] animate-float" />
-                <div className="absolute bottom-[-10%] right-[-5%] w-[450px] h-[450px] bg-purple-200/25 rounded-full blur-[100px] animate-float-delayed" />
-                <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-cyan-100/25 rounded-full blur-[80px]" />
+                {/* 1. Base Gradient Blobs (Animated) */}
+                <div className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] bg-gradient-to-br from-violet-400/30 to-fuchsia-400/30 rounded-full blur-[100px] animate-float" style={{ animationDuration: '12s' }} />
+                <div className="absolute top-[20%] right-[-10%] w-[50%] h-[60%] bg-gradient-to-bl from-cyan-400/30 to-blue-500/30 rounded-full blur-[120px] animate-float-delayed" style={{ animationDuration: '14s' }} />
+                <div className="absolute bottom-[-10%] left-[15%] w-[55%] h-[55%] bg-gradient-to-tr from-rose-400/25 to-amber-400/25 rounded-full blur-[100px] animate-float" style={{ animationDuration: '15s', animationDelay: '2s' }} />
 
-                {/* Subtle dot-grid pattern */}
-                <div className="absolute inset-0 opacity-[0.035]" style={{
-                    backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }} />
+                {/* 2. Abstract Geometric Glass Rings */}
+                <div className="absolute top-[10%] right-[12%] w-64 h-64 border border-white/60 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.4)] animate-float-delayed z-0" />
+                <div className="absolute bottom-[20%] left-[8%] w-48 h-48 border border-white/50 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.4)] animate-float z-0" style={{ animationDuration: '9s' }} />
+                
+                {/* 3. Global Frosted Glass Overlay - This creates the milky, sophisticated blur */}
+                <div className="absolute inset-0 bg-white/55 backdrop-blur-[60px] z-0" />
 
-                {/* Decorative accent rings */}
-                <div className="absolute top-20 right-20 w-40 h-40 border border-indigo-200/40 rounded-full hidden lg:block" />
-                <div className="absolute top-28 right-28 w-24 h-24 border border-purple-200/30 rounded-full hidden lg:block" />
-                <div className="absolute bottom-24 left-16 w-32 h-32 border border-cyan-200/30 rounded-full hidden lg:block" />
-                <div className="absolute bottom-32 left-24 w-16 h-16 border border-indigo-200/40 rounded-full hidden lg:block" />
+                {/* 4. Fine Grain Noise Texture for deep premium aesthetic */}
+                <div className="absolute inset-0 opacity-[0.35] mix-blend-overlay z-0"
+                     style={{
+                         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                     }}
+                />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">

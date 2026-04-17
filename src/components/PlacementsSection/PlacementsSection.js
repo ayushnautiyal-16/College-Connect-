@@ -52,6 +52,20 @@ const getPlacementImages = (college) => {
         };
     }
 
+    if (name.includes('dev bhoomi')) {
+        return {
+            leftImage: getAssetUrl('DBUU/Screenshot 2026-04-17 235818.png'),
+            rightImage: getAssetUrl('DBUU/Screenshot 2026-04-17 235932.png')
+        };
+    }
+
+    if (name.includes('shivalik')) {
+        return {
+            leftImage: getAssetUrl('shivalik college/Screenshot 2026-04-18 002352.png'),
+            rightImage: getAssetUrl('shivalik college/Screenshot 2026-04-18 002826.png')
+        };
+    }
+
     // Default (Graphic Era)
     return {
         leftImage: 'https://d1om6fetcnl3e0.cloudfront.net/graphic era/𝐏𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭𝐬 𝟐𝟎𝟐𝟓 & 𝟐𝟎𝟐𝟔 - 𝐆𝐄𝐇𝐔 𝐁𝐡𝐢𝐦𝐭𝐚𝐥 Another proud moment for Grap.jpg',
@@ -136,7 +150,7 @@ export default function PlacementsSection({ college }) {
                 <div className={`text-center mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                     <h2 className="text-3xl md:text-4xl font-bold text-white">
                         Placements at{' '}
-                        <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
                             {college.name}
                         </span>
                     </h2>

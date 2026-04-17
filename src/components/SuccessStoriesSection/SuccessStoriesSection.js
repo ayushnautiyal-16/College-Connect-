@@ -109,11 +109,12 @@ export default function SuccessStoriesSection() {
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* ──── Heading ──── */}
                 <div className={`text-center mb-10 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-                    <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-[11px] font-semibold text-indigo-600 tracking-wide uppercase mb-3">
+                    <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-[10px] md:text-[11px] font-semibold text-indigo-600 tracking-wide uppercase mb-3">
                         Real Student Stories
                     </span>
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
                         Success Stories from Our{' '}
+                        <br className="block sm:hidden" />
                         <GradientText>Students</GradientText>
                     </h2>
                     <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm md:text-base">
@@ -126,7 +127,7 @@ export default function SuccessStoriesSection() {
                     {testimonials.map((t, idx) => (
                         <div
                             key={idx}
-                            className={`bg-white p-5 md:p-5.5 rounded-xl shadow-sm border border-gray-100/80 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                            className={`bg-white p-4 sm:p-5 outline-none rounded-xl shadow-sm border border-gray-100/80 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                             style={{ transitionDelay: `${200 + idx * 100}ms`, transitionDuration: '700ms' }}
                         >
                             {/* Star Rating */}

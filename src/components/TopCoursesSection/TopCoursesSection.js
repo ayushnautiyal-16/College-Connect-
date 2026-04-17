@@ -236,22 +236,43 @@ export default function TopCoursesSection({ college }) {
         <section
             id="courses-section"
             ref={sectionRef}
-            className="relative overflow-hidden py-20 px-6 bg-white"
+            className="relative overflow-hidden py-24 px-6 bg-[#fffaf5]"
         >
-            {/* Subtle background */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent" />
-                <div className="absolute top-[-5%] right-[-5%] w-[350px] h-[350px] rounded-full bg-indigo-50/60 blur-[100px]" />
-                <div className="absolute bottom-[-5%] left-[-5%] w-[300px] h-[300px] rounded-full bg-violet-50/50 blur-[80px]" />
+            {/* Warm Amber & Rose Elegance Background */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#fff7ed] via-white to-[#fdf2f8]" />
+                
+                {/* Organic Amber/Rose Orbs */}
+                <div className="absolute top-[-10%] right-[5%] w-[600px] h-[600px] rounded-[30%] bg-gradient-to-br from-amber-200/30 to-orange-300/20 blur-[100px] rotate-45 animate-pulse" style={{ animationDuration: '9s' }} />
+                <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-[40%] bg-gradient-to-tr from-rose-200/30 to-pink-300/20 blur-[90px] rotate-[-20deg] animate-pulse" style={{ animationDuration: '14s', animationDelay: '1s' }} />
+                <div className="absolute top-[30%] left-[25%] w-[400px] h-[400px] rounded-full bg-gradient-to-r from-yellow-200/10 to-amber-100/10 blur-[80px] animate-pulse" style={{ animationDuration: '11s', animationDelay: '3s' }} />
+
+                {/* Elegant Topographic / Wave Lines */}
+                <svg className="absolute inset-0 w-[150%] h-[150%] opacity-[0.04] translate-x-[-25%] translate-y-[-25%]" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="400" cy="400" r="100" fill="none" stroke="#ea580c" strokeWidth="2" />
+                    <circle cx="400" cy="400" r="200" fill="none" stroke="#ea580c" strokeWidth="2" />
+                    <circle cx="400" cy="400" r="300" fill="none" stroke="#ea580c" strokeWidth="2" />
+                    <circle cx="400" cy="400" r="400" fill="none" stroke="#ea580c" strokeWidth="2" strokeDasharray="10 20" />
+                    <circle cx="400" cy="400" r="500" fill="none" stroke="#ea580c" strokeWidth="2" strokeDasharray="5 15" />
+                </svg>
+
+                {/* Soft Noise */}
+                <div className="absolute inset-0 opacity-[0.25] mix-blend-overlay"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E")`
+                    }}
+                />
             </div>
 
-            <div className="relative max-w-6xl mx-auto">
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent z-0" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-0" />
+
+            <div className="relative z-10 max-w-6xl mx-auto">
                 {/* Heading */}
                 <div className={`text-center mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                         Top Courses at{' '}
-                        <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">
                             {college.name}
                         </span>
                     </h2>
@@ -261,15 +282,15 @@ export default function TopCoursesSection({ college }) {
                 </div>
 
                 {/* Category Filter Tabs */}
-                <div className={`flex flex-wrap justify-center gap-2 mb-10 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className={`flex flex-wrap justify-center gap-2.5 mb-12 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
-                            className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 ${
+                            className={`px-5 py-2.5 rounded-xl text-[13px] font-bold transition-all duration-300 border ${
                                 activeCategory === cat
-                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600'
+                                    ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-[0_4px_15px_rgba(249,115,22,0.3)] scale-105'
+                                    : 'bg-white/80 backdrop-blur-md text-gray-600 border-orange-100 shadow-sm hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200'
                             }`}
                         >
                             {cat}
@@ -287,9 +308,10 @@ export default function TopCoursesSection({ college }) {
                             <div
                                 key={idx}
                                 className={`
-                                    ${colors.bg} rounded-xl p-5 border ${colors.border}
-                                    hover:shadow-lg hover:-translate-y-1 transition-all duration-300
-                                    cursor-pointer group
+                                    bg-white rounded-2xl p-6 border ${colors.border}
+                                    shadow-[0_4px_15px_-3px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-5px_rgba(234,88,12,0.1)] 
+                                    hover:-translate-y-2 transition-all duration-500 ease-out
+                                    cursor-pointer group relative overflow-hidden
                                     ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
                                 `}
                                 style={{
@@ -298,13 +320,14 @@ export default function TopCoursesSection({ college }) {
                                 }}
                                 onClick={() => router.push('/apply')}
                             >
-                                <div className="flex items-start gap-3.5">
+                                <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-orange-50/60 to-transparent opacity-0 group-hover:opacity-100 group-hover:-translate-x-full transition-all duration-[1200ms] transform translate-x-full pointer-events-none z-0" />
+                                <div className="relative z-10 flex items-start gap-4">
                                     {/* Premium gradient icon */}
                                     <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white shadow-md flex-shrink-0 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300`}>
                                         {icon}
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-indigo-700 transition-colors duration-200">
+                                        <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors duration-200">
                                             {course.name}
                                         </h3>
                                         <div className="flex items-center gap-2 mt-2">
@@ -342,7 +365,7 @@ export default function TopCoursesSection({ college }) {
                         <div className="relative" ref={feesPopupRef}>
                             <button
                                 onClick={handleFeesClick}
-                                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold text-sm shadow-sm hover:bg-indigo-100 hover:border-indigo-300 transform hover:-translate-y-0.5 transition-all duration-300 group"
+                                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-orange-50 text-orange-700 border border-orange-200 font-bold text-sm shadow-sm hover:bg-orange-100 hover:border-orange-300 transform hover:-translate-y-0.5 transition-all duration-300 group"
                             >
                                 Fee Structure
                                 {college?.feesStructureLinks && college.feesStructureLinks.length > 0 ? (
@@ -357,8 +380,8 @@ export default function TopCoursesSection({ college }) {
                             </button>
 
                             {showFeesPopup && college?.feesStructureLinks && college.feesStructureLinks.length > 0 && (
-                                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2.5 w-[245px] rounded-[10px] overflow-hidden z-50 bg-white border border-indigo-100 shadow-[0_12px_30px_rgba(99,102,241,0.16)]">
-                                    <div className="px-3 py-1.5 text-[9px] leading-none font-bold tracking-[0.16em] text-center uppercase text-white bg-gradient-to-r from-indigo-600 to-violet-600">
+                                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2.5 w-[245px] rounded-[10px] overflow-hidden z-50 bg-white border border-orange-100 shadow-[0_12px_30px_rgba(234,88,12,0.16)]">
+                                    <div className="px-3 py-1.5 text-[9px] leading-none font-bold tracking-[0.16em] text-center uppercase text-white bg-gradient-to-r from-orange-500 to-rose-500">
                                         Select Campus
                                     </div>
                                     {college.feesStructureLinks.map((link, i) => (
@@ -368,9 +391,9 @@ export default function TopCoursesSection({ college }) {
                                                 window.open(link.url, '_blank');
                                                 setShowFeesPopup(false);
                                             }}
-                                            className="w-full text-left px-3 py-2.5 text-[13px] font-medium text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-700 transition-colors duration-200 flex items-center justify-between gap-2"
+                                            className="w-full text-left px-3 py-2.5 text-[13px] font-medium text-slate-700 hover:bg-orange-50/80 hover:text-orange-600 transition-colors duration-200 flex items-center justify-between gap-2"
                                             style={{
-                                                borderBottom: i < college.feesStructureLinks.length - 1 ? '1px solid #eef2ff' : 'none',
+                                                borderBottom: i < college.feesStructureLinks.length - 1 ? '1px solid #fff7ed' : 'none',
                                             }}
                                         >
                                             <span className="truncate">{link.label}</span>

@@ -167,9 +167,8 @@ export default function OurFacilitiesSection({ college, images = [] }) {
             if (el) observer.unobserve(el);
         };
     }, []);
-
     const facilitiesList = college.facilities || [];
-    const displayFacilities = facilitiesList.slice(0, 8);
+    const displayFacilities = facilitiesList.slice(0, 12);
 
     if (displayFacilities.length === 0) return null;
 
@@ -178,7 +177,7 @@ export default function OurFacilitiesSection({ college, images = [] }) {
             <div className="max-w-7xl mx-auto">
                 {/* Heading */}
                 <h2
-                    className={`text-3xl md:text-4xl font-bold text-center text-blue-700 mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    className={`text-3xl md:text-4xl font-bold text-center text-orange-600 mb-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                         }`}
                 >
                     Our Facilities

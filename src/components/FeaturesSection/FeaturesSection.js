@@ -149,7 +149,7 @@ export default function FeaturesSection() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden bg-[#060b18] py-20">
+        <section ref={sectionRef} className="relative overflow-hidden bg-[#060b18] py-12 md:py-20 text-center sm:text-left">
             {/* Background radial glow */}
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/10 blur-[120px]" />
@@ -162,8 +162,9 @@ export default function FeaturesSection() {
                     <p className="mb-2 text-sm font-medium uppercase tracking-widest text-purple-400">
                         Why College Connect
                     </p>
-                    <h2 className="text-3xl font-bold text-white sm:text-4xl">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white sm:text-4xl text-center">
                         Everything You Need to Choose{" "}
+                        <br className="block sm:hidden" />
                         <GradientText>the Right College</GradientText>
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-gray-400">

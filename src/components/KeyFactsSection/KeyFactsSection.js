@@ -65,10 +65,10 @@ const getKeyFacts = (college) => {
         title: college.campusSize ? `${college.campusSize} Campus` : 'Modern Campus',
         type: 'paragraph',
         content: college.accreditation
-            ? `${college.accreditation.replace(/\|/g, ' \u00b7 ')}. A world-class campus equipped with modern labs, libraries, sports facilities, and comfortable hostels.`
-            : `A world-class campus equipped with modern labs, libraries, sports facilities, and comfortable hostels for holistic student development.`,
-        buttonText: 'Explore Campus',
-        scrollTarget: 'gallery',
+            ? `${college.accreditation.replace(/\|/g, ' \u00b7 ')}. Discover our state-of-the-art infrastructure, featuring advanced laboratories, digital libraries, professional sports complexes, and premium student hostels.`
+            : `Discover our state-of-the-art infrastructure, featuring advanced laboratories, digital libraries, professional sports complexes, and premium student hostels designed for holistic development.`,
+        buttonText: 'Explore Facilities',
+        scrollTarget: 'infrastructure-section',
     });
 
     const courseList = college.mainCourses || college.courses || [];
