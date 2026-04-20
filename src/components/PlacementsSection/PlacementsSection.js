@@ -66,6 +66,13 @@ const getPlacementImages = (college) => {
         };
     }
 
+    if (name.includes('shri guru ram rai') || name.includes('sgrr')) {
+        return {
+            leftImage: getAssetUrl('SGRR/placements.webp'),
+            rightImage: getAssetUrl('SGRR/placemtnsSGRR.png')
+        };
+    }
+
     // Default (Graphic Era)
     return {
         leftImage: 'https://d1om6fetcnl3e0.cloudfront.net/graphic era/𝐏𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭𝐬 𝟐𝟎𝟐𝟓 & 𝟐𝟎𝟐𝟔 - 𝐆𝐄𝐇𝐔 𝐁𝐡𝐢𝐦𝐭𝐚𝐥 Another proud moment for Grap.jpg',

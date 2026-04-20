@@ -116,9 +116,10 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('DBUU/campus6.webp')
             ],
             6: [
-                getAssetUrl('section002-side-image_clige2.jpg'),
-                getAssetUrl('1750750305104_ffszrd.jpg'),
-                getAssetUrl('t5_keegcv.jpg')
+                getAssetUrl('SGRR/1hbanner_Admission-Open-2026.jpg'),
+                getAssetUrl('SGRR/23hbanner_Live-in-Convert-2025__095-0999999999999999999.jpg'),
+                getAssetUrl('SGRR/DSC05047-2048x1365.jpg'),
+                getAssetUrl('SGRR/section002-side-image.jpg')
             ],
             7: [
                 getAssetUrl('Himalayan_Institute_of_Technology_Campus_Entry_Gate_fzzkly.jpg'),
@@ -198,6 +199,15 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('DBUU/hostel-facility-2.webp'),
                 getAssetUrl('DBUU/ATM.webp')
             ],
+            6: [
+                getAssetUrl('SGRR/images.jpg'),
+                getAssetUrl('SGRR/campus.gif'),
+                getAssetUrl('SGRR/126_library.jpg'),
+                getAssetUrl('SGRR/Advanced Medical & Science Labs.jpg'),
+                getAssetUrl('SGRR/896imguf_hostel-banner.jpg'),
+                getAssetUrl('SGRR/gym.png'),
+                getAssetUrl('shivalik college/atm.webp')
+            ],
             13: [
                 getAssetUrl('shivalik college/shivalikcampus.jpg'),
                 getAssetUrl('shivalik college/gym.jpg'),
@@ -224,6 +234,11 @@ export default function CollegeDetailsPage() {
                 getAssetUrl('DBUU/campus5.webp'),
                 getAssetUrl('DBUU/Fest.webp'),
                 getAssetUrl('DBUU/fest2.webp')
+            ],
+            6: [
+                getAssetUrl('SGRR/7_sgr-about___.jpg'),
+                getAssetUrl('SGRR/about_00998___.jpg'),
+                getAssetUrl('SGRR/GrYMWFdXIAApnJ_.jpg')
             ],
             13: [
                 getAssetUrl('shivalik college/campus7.jpg'),
