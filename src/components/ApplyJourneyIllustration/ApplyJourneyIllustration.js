@@ -32,7 +32,7 @@ const steps = [
         active: true,
     },
     {
-        label: 'Dream College Journey',
+        label: 'Start Your Dream College Journey',
         description: 'We handle the paperwork, documents, and enrollment process — you just show up on day one!',
         icon: (
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

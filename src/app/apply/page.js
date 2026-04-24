@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getAssetUrl } from '@/utils/assets';
@@ -12,6 +12,7 @@ import CollegeCard from '@/components/CollegeCard/CollegeCard';
 import TestimonialCard from '@/components/TestimonialCard/TestimonialCard';
 import ApplyJourneyIllustration from '@/components/ApplyJourneyIllustration/ApplyJourneyIllustration';
 import ApplyPageBackground from '@/components/ApplyPageBackground/ApplyPageBackground';
+import HeroSectionBackground from '@/components/HeroSectionBackground/HeroSectionBackground';
 import WhyChooseUsV4 from '@/components/WhyChooseUsV4/WhyChooseUsV4';
 import FAQSection from '@/components/FAQSection/FAQSection';
 
@@ -113,9 +114,8 @@ export default function ApplyPage() {
 
                 if (result.success) {
                     trackGoogleAdsFormConversion();
-                    setSubmitted(true);
                     setFormData({ fullName: '', mobileNumber: '', preferredCollege: '', otherCollege: '', preferredCourse: '' });
-                    setTimeout(() => setSubmitted(false), 5000);
+                    router.push('/thank-you');
                 } else {
                     setSubmitError(result.message || 'Something went wrong. Please try again.');
                 }
@@ -127,6 +127,23 @@ export default function ApplyPage() {
             }
         }
     };
+
+    /* ── Scroll Reveal Observer ── */
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        const els = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
+        els.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     const topColleges = collegesData.slice(0, 3);
 
@@ -147,36 +164,24 @@ export default function ApplyPage() {
             name: 'Amit Patel',
             college: 'Uttaranchal University',
             rating: 5,
-            testimonial: 'Professional service and expert guidance. I got admission in my dream college thanks to College Connect.',
+            testimonial: 'I was confused about which college to choose. College Connect made it easy with their expert guidance and helped me secure admission quickly.',
         },
     ];
 
     return (
-        <div className="min-h-screen relative flex flex-col font-sans overflow-x-hidden" style={{ background: 'linear-gradient(to bottom, #f0f7ff, #e8f4ff)' }}>
-            {/* Full-page decorative SVG background */}
-            <ApplyPageBackground />
-
+        <div className="min-h-screen relative flex flex-col font-sans overflow-x-hidden bg-[#f0f5ff]">
             {/* HERO SECTION WITH FORM */}
-            <section className="relative pt-16 md:pt-20 lg:pt-24 pb-10 md:pb-14 overflow-hidden z-10">
-                {/* Decorative Background Elements */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute -top-60 -right-40 w-80 h-60 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-                    <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
-                </div>
+            <section className="relative pt-8 md:pt-10 lg:pt-12 pb-10 md:pb-14 overflow-hidden z-10">
+                
+                {/* ── Hero-Specific Premium Background ── */}
+                <HeroSectionBackground />
 
                 <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-start">
                         {/* Left Content */}
                         <div className="flex flex-col gap-8 md:gap-10 pt-0">
                             {/* Heading Group */}
-                            <div className="flex flex-col gap-5">
-                                {/* Badge */}
-                                <div className="inline-flex self-start items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 rounded-full bg-indigo-100 border border-indigo-200 text-xs md:text-sm font-semibold text-indigo-700 shadow-sm">
-                                    <svg className="w-3 h-3 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4l1-1h4l1 1h4a2 2 0 012 2v14a2 2 0 01-2 2zm-7-4h2v2h-2v-2zm-4-4h2v2H8v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM8 7h2v2H8V7zm4 0h2v2h-2V7zm4 0h2v2h-2V7z" /></svg>
-                                    Admissions Open for 2026 Batch
-                                </div>
-
+                            <div className="flex flex-col gap-5 pt-4">
                                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-snug tracking-tight">
                                     Get Direct Admission in <br className="hidden sm:block" />
                                     <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 bg-clip-text text-transparent block mt-1 pb-1">
@@ -195,30 +200,36 @@ export default function ApplyPage() {
                                     </span>
                                 </div>
 
-                                <p className="text-sm sm:text-base md:text-md text-gray-600 leading-relaxed max-w-2xl pt-1">
-                                    Expert Admission Guidance for Private Universities &amp; Colleges in Dehradun.
-                                </p>
                             </div>
 
-                            {/* Key Benefits */}
-                            <ul className="flex flex-col gap-3">
-                                {[
-                                    "Get admission in top Dehradun colleges",
-                                    "No hidden charges / No donation guidance",
-                                    "Personalized career counselling",
-                                    "Application & documentation support",
-                                    "Scholarship guidance available"
-                                ].map((benefit, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-gray-700 font-medium group">
-                                        <div className="mt-0.5 rounded-full bg-indigo-50 group-hover:bg-indigo-100 transition-colors p-1 shrink-0">
-                                            <svg className="w-3.5 h-3.5 text-indigo-600 translate-x-px group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </div>
-                                        {benefit}
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="flex flex-col gap-3 md:gap-4">
+                                <h3 className="text-xs sm:text-sm md:text-base font-bold text-indigo-700 uppercase tracking-wider flex items-center gap-2">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    Expert Admission Guidance for Private Universities &amp; Colleges in Dehradun.
+                                </h3>
+
+                                {/* Key Benefits */}
+                                <ul className="flex flex-col gap-2.5">
+                                    {[
+                                        "Get admission in top Dehradun colleges",
+                                        "No hidden charges / No donation guidance",
+                                        "Personalized career counselling",
+                                        "Application & documentation support",
+                                        "Scholarship guidance available"
+                                    ].map((benefit, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-xs sm:text-sm md:text-base text-gray-800 font-semibold group bg-white/40 border border-white/60 px-3 py-2.5 md:px-4 md:py-3 rounded-xl shadow-[0_2px_10px_-2px_rgba(0,0,0,0.03)] backdrop-blur-md hover:bg-white/70 hover:shadow-md hover:-translate-y-px transition-all cursor-default">
+                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 shadow-sm shadow-indigo-500/20 shrink-0 group-hover:scale-110 transition-transform">
+                                                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <span className="tracking-tight">{benefit}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
                             {/* Stats */}
                             <div className="grid grid-cols-2 gap-4 md:gap-6 pt-2 border-t border-gray-100">
@@ -245,8 +256,10 @@ export default function ApplyPage() {
 
                                 {/* Form Content Wrapper */}
                                 <div className="relative z-10">
-                                    {/* Limited Seats Badge */}
-                                    <div className="absolute -top-8 -right-2 md:-top-10 md:-right-4 flex items-center gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full text-white shadow-md shadow-orange-500/30 border border-orange-400/50">
+                                    {/* Removed absolute Admissions Open Badge */}
+
+                                    {/* Limited Seats Badge (Top Right) */}
+                                    <div className="absolute -top-8 -right-2 md:-top-10 md:-right-4 flex items-center gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full text-white shadow-md shadow-orange-500/30 border border-orange-400/50 z-20">
                                         <span className="relative flex h-2 w-2">
                                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-200 opacity-75"></span>
                                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-100 opacity-50" style={{ animationDelay: '500ms' }}></span>
@@ -276,7 +289,15 @@ export default function ApplyPage() {
                                     </div>
                                 ) : (
                                     <div>
-                                        <div className="mb-6 md:mb-8">
+                                        <div className="mb-6 md:mb-8 flex flex-col items-start">
+                                            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-100 border border-indigo-200 rounded-full mb-3 md:mb-4 shadow-sm">
+                                                <svg className="w-3.5 h-3.5 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4l1-1h4l1 1h4a2 2 0 012 2v14a2 2 0 01-2 2zm-7-4h2v2h-2v-2zm-4-4h2v2H8v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM8 7h2v2H8V7zm4 0h2v2h-2V7zm4 0h2v2h-2V7z" />
+                                                </svg>
+                                                <span className="text-[10px] md:text-xs font-bold text-indigo-700 uppercase tracking-wider">
+                                                    Admissions Open 2026
+                                                </span>
+                                            </div>
                                             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 md:mb-2">
                                                 Quick Apply
                                             </h2>
@@ -385,7 +406,7 @@ export default function ApplyPage() {
                                                 disabled={isSubmitting}
                                                 className="w-full mt-6 md:mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 text-base rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                             >
-                                                {isSubmitting ? 'Submitting...' : 'Continue Application'}
+                                                {isSubmitting ? 'Submitting...' : 'Submit Application'}
                                                 {!isSubmitting && (
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                                                 )}
@@ -415,7 +436,7 @@ export default function ApplyPage() {
 
 
             {/* TOP COLLEGES SECTION */}
-            <section className="py-10 md:py-14 relative z-10">
+            <section className="py-10 md:py-14 relative z-10 scroll-reveal">
                 <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
                     <div className="text-center mb-8 md:mb-12">
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 leading-tight">
@@ -451,7 +472,7 @@ export default function ApplyPage() {
             </section>
 
             {/* JOURNEY ILLUSTRATION SECTION */}
-            <section className="py-16 md:py-20 relative overflow-hidden z-10" style={{
+            <section className="py-16 md:py-20 relative overflow-hidden z-10 scroll-reveal" style={{
                 background: 'linear-gradient(135deg, #0f0a1e 0%, #131030 25%, #0e1528 50%, #0c1220 75%, #0a0f1a 100%)',
             }}>
                 {/* ── Layer 1: Subtle grid pattern ── */}
@@ -505,11 +526,7 @@ export default function ApplyPage() {
             </section>
 
             {/* TESTIMONIALS SECTION */}
-            <section className="py-10 md:py-14 relative overflow-hidden z-10">
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
-                </div>
+            <section className="py-10 md:py-14 relative overflow-hidden z-10 scroll-reveal">
 
                 <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 relative z-10">
                     <div className="text-center mb-8 md:mb-12">

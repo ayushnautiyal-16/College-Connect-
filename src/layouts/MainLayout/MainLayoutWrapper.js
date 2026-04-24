@@ -12,18 +12,20 @@ import Chatbot from '@/components/Chatbot/Chatbot';
 function MainLayoutWrapper({ children }) {
     const pathname = usePathname();
     const isHomePage = pathname === '/';
+    const isThankYouPage = pathname === '/thank-you';
+    const isApplyPage = pathname === '/apply';
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50">
-            <Header />
+        <div className={`flex flex-col min-h-screen ${isApplyPage ? '' : 'bg-gray-50'}`}>
+            {(!isApplyPage && !isThankYouPage) && <Header />}
             <main className="flex-1 w-full">
                 {children}
             </main>
             <Footer />
             {isHomePage && <FloatingSideButtons />}
             {isHomePage && <EnquiryTogglePanel />}
-            <GetInTouchPopup />
-            <Chatbot />
+            {!isThankYouPage && <GetInTouchPopup />}
+            {!isThankYouPage && <Chatbot />}
         </div>
     );
 }
