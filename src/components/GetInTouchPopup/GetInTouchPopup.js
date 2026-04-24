@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import './GetInTouchPopup.css';
 import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
 
 function GetInTouchPopup() {
+    const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -13,6 +15,11 @@ function GetInTouchPopup() {
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
     useEffect(() => {
+        // Don't show popup on the /apply route
+        if (pathname === '/apply') {
+            return;
+        }
+
         // Show popup after 15 seconds on every page load
         const delay = 15000;
         const timer = setTimeout(() => {
@@ -20,7 +27,7 @@ function GetInTouchPopup() {
         }, delay);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [pathname]);
 
     const handleClose = () => {
         setIsClosing(true);

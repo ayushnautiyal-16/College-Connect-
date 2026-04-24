@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import GradientText from '@/components/GradientText/GradientText';
 
+/* ───────────────────────── testimonial data ───────────────────────── */
 const testimonials = [
     {
         name: 'Aarav Sharma',
         role: 'B.Tech CSE · Graphic Era University, 2023',
         quote:
             'With average 12th marks and no clear college roadmap, I used College Connect\'s counselling to shortlist realistic options. I joined Graphic Era for CSE and secured a role as a software engineer at a leading product company.',
-        avatar: '',
         highlight: 'Placed at a top product company',
     },
     {
@@ -17,7 +17,6 @@ const testimonials = [
         role: 'BBA · DIT University, 2022',
         quote:
             'I wanted to move from Science to Management but was confused about fees and reputation. College Connect helped me compare colleges on placements and campus life. Today I work in a reputed finance firm in NCR.',
-        avatar: '',
         highlight: 'Stream switch with confidence',
     },
     {
@@ -25,7 +24,6 @@ const testimonials = [
         role: 'LLB (Hons.) · Uttaranchal University, 2021',
         quote:
             'As a first-generation learner with a limited budget, I had a strong interest in law. Through detailed counselling and college shortlisting, I joined Uttaranchal University and now practice at a well-known law firm.',
-        avatar: '',
         highlight: 'First-gen lawyer in the family',
     },
     {
@@ -33,37 +31,131 @@ const testimonials = [
         role: 'MBA · UPES Dehradun, 2023',
         quote:
             'College Connect guided me from selecting the right MBA specialization to preparing for interviews. Their step-by-step support made the entire journey stress-free and I landed a great role right after campus placements.',
-        avatar: '',
         highlight: 'Landed dream MBA placement',
     },
+];
+
+/* ───────────────────────── card color themes ──────────────────────── */
+const cardThemes = [
     {
-        name: 'Karan Singh',
-        role: 'B.Pharma · SBSU, 2022',
-        quote:
-            'I was unsure about which pharmacy college to choose. The team helped me compare fee structures and placement records. I graduated from SBSU and now work in a leading pharmaceutical company.',
-        avatar: '',
-        highlight: 'Found the perfect fit',
+        // amber / golden
+        bg: 'rgba(255,243,224,0.55)',
+        border: '#e8c170',
+        dotFill: '#fef3c7',
+        dotStroke: '#d4a24e',
+        dotText: '#92610a',
+        connectorStroke: '#d4a24e',
+        starFill: '#d4a24e',
     },
     {
-        name: 'Ananya Joshi',
-        role: 'BCA · Doon Business School, 2023',
-        quote:
-            'Coming from a small town, I had no idea how to navigate the admission process. College Connect made everything seamless — from application to hostel arrangement. I\'m now a confident IT professional.',
-        avatar: '',
-        highlight: 'Small-town to IT professional',
+        // teal / mint
+        bg: 'rgba(224,247,243,0.55)',
+        border: '#5cb8a5',
+        dotFill: '#ccfbf1',
+        dotStroke: '#3fa48f',
+        dotText: '#1a5c50',
+        connectorStroke: '#3fa48f',
+        starFill: '#3fa48f',
+    },
+    {
+        // soft violet
+        bg: 'rgba(238,232,255,0.55)',
+        border: '#a78bdb',
+        dotFill: '#ede9fe',
+        dotStroke: '#8b6ec0',
+        dotText: '#4e2f8c',
+        connectorStroke: '#8b6ec0',
+        starFill: '#8b6ec0',
+    },
+    {
+        // rose / pink
+        bg: 'rgba(255,230,235,0.55)',
+        border: '#e07a8f',
+        dotFill: '#ffe4e6',
+        dotStroke: '#d0566e',
+        dotText: '#8c2640',
+        connectorStroke: '#d0566e',
+        starFill: '#d0566e',
     },
 ];
 
-// Color palettes for avatar gradients
-const gradientPalettes = [
-    'linear-gradient(135deg, #667eea, #764ba2)',
-    'linear-gradient(135deg, #f093fb, #f5576c)',
-    'linear-gradient(135deg, #4facfe, #00f2fe)',
-    'linear-gradient(135deg, #43e97b, #38f9d7)',
-    'linear-gradient(135deg, #fa709a, #fee140)',
-    'linear-gradient(135deg, #a18cd1, #fbc2eb)',
-];
+/* ───────────── SVG geometry helpers (sine wave thread) ─────────── */
+const SVG_W = 1200;
+const SVG_H = 620;
+const THREAD_Y_CENTER = SVG_H / 2;        // 310
+const AMPLITUDE = 120;                     // how far peaks/valleys go
+const WAVE_SEGMENTS = testimonials.length; // one crest/trough per testimonial
+const SEGMENT_W = SVG_W / WAVE_SEGMENTS;
 
+/**
+ * Build a hand-drawn-style sine-wave path string.
+ * `jitter` adds organic imperfection; `yShift` offsets vertically for
+ * the parallel-thread look.
+ */
+function buildThreadPath(jitter = 0, yShift = 0) {
+    const seed = jitter * 7 + 3;
+    const pts = [];
+    const steps = WAVE_SEGMENTS * 20; // high resolution
+    for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const x = t * SVG_W;
+        const baseY =
+            THREAD_Y_CENTER +
+            Math.sin(t * Math.PI * WAVE_SEGMENTS) * AMPLITUDE;
+        // tiny pseudo-random wobble
+        const wobble =
+            Math.sin(x * 0.08 + seed) * jitter +
+            Math.cos(x * 0.12 + seed * 2) * jitter * 0.6;
+        pts.push([x, baseY + wobble + yShift]);
+    }
+    // build SVG cubic bezier spline through the points
+    let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for (let i = 1; i < pts.length - 1; i++) {
+        const cp1x = (pts[i - 1][0] + pts[i][0]) / 2;
+        const cp1y = pts[i][1];
+        const cp2x = (pts[i][0] + pts[i + 1][0]) / 2;
+        const cp2y = pts[i][1];
+        d += ` S ${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)}`;
+    }
+    const last = pts[pts.length - 1];
+    d += ` L ${last[0].toFixed(1)} ${last[1].toFixed(1)}`;
+    return d;
+}
+
+/** Calculate (x,y) of the i-th peak or valley on the wave */
+function dotPosition(index) {
+    // peaks at 0.25, valleys at 0.75 within each segment
+    const isTop = index % 2 === 0; // alternates
+    const localT = isTop ? 0.5 : 0.5;
+    const t = (index + localT) / WAVE_SEGMENTS;
+    const x = t * SVG_W;
+    const y =
+        THREAD_Y_CENTER + Math.sin(t * Math.PI * WAVE_SEGMENTS) * AMPLITUDE;
+    return { x, y, isTop };
+}
+
+/* ───────────────────────── star SVG ───────────────────────────── */
+function SketchStar({ cx, cy, r, fill, stroke }) {
+    const pts = [];
+    for (let i = 0; i < 10; i++) {
+        const angle = (Math.PI / 5) * i - Math.PI / 2;
+        const radius = i % 2 === 0 ? r : r * 0.45;
+        pts.push(
+            `${cx + Math.cos(angle) * radius},${cy + Math.sin(angle) * radius}`
+        );
+    }
+    return (
+        <polygon
+            points={pts.join(' ')}
+            fill={fill}
+            stroke={stroke}
+            strokeWidth="0.6"
+            opacity="0.9"
+        />
+    );
+}
+
+/* ═══════════════════════ MAIN COMPONENT ══════════════════════════ */
 export default function SuccessStoriesSection() {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef(null);
@@ -75,118 +167,433 @@ export default function SuccessStoriesSection() {
                     if (entry.isIntersecting) setIsVisible(true);
                 });
             },
-            { threshold: 0.15 }
+            { threshold: 0.1 }
         );
         const el = sectionRef.current;
         if (el) observer.observe(el);
-        return () => { if (el) observer.unobserve(el); };
+        return () => {
+            if (el) observer.unobserve(el);
+        };
     }, []);
 
     const getInitials = (name) =>
-        name.split(' ').map((n) => n[0]).join('').toUpperCase();
+        name
+            .split(' ')
+            .map((n) => n[0])
+            .join('')
+            .toUpperCase();
+
+    /* pre-compute the three parallel thread paths */
+    const threadPaths = useMemo(
+        () => [
+            buildThreadPath(1.5, -3),
+            buildThreadPath(0, 0),
+            buildThreadPath(2, 3.5),
+        ],
+        []
+    );
+
+    /* pre-compute dot positions */
+    const dots = useMemo(
+        () => testimonials.map((_, i) => dotPosition(i)),
+        []
+    );
+
+    /* ──── card dimensions (% of viewBox) ──── */
+    const CARD_W = 260;
+    const CARD_H_APPROX = 250;
+    const CONNECTOR_LEN = 50;
 
     return (
-        <section ref={sectionRef} className="pt-8 pb-14 md:pt-10 md:pb-20 px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #f8f6ff 25%, #fff 50%, #f0f9ff 75%, #f5f3ff 100%)' }}>
-            {/* Decorative background elements */}
+        <section
+            ref={sectionRef}
+            className="relative overflow-hidden py-10 md:py-16 px-4"
+            style={{ background: '#fffdf8' }}
+        >
+            {/* ── notebook ruled lines background ── */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {Array.from({ length: 30 }).map((_, i) => (
+                    <div
+                        key={i}
+                        className="absolute left-0 right-0"
+                        style={{
+                            top: `${i * 36 + 18}px`,
+                            height: '1px',
+                            background:
+                                'repeating-linear-gradient(90deg, transparent 0 3px, rgba(180,200,220,0.18) 3px 60px)',
+                        }}
+                    />
+                ))}
+                {/* left red margin line */}
+                <div
+                    className="absolute top-0 bottom-0 hidden lg:block"
+                    style={{
+                        left: '60px',
+                        width: '1.5px',
+                        background: 'rgba(220,130,130,0.13)',
+                    }}
+                />
+            </div>
+
+            {/* ── warm decorative blobs ── */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* Soft gradient blobs */}
-                <div className="absolute top-[-5%] right-[-5%] w-[500px] h-[500px] bg-indigo-200/25 rounded-full blur-[100px]" />
-                <div className="absolute bottom-[-8%] left-[-5%] w-[450px] h-[450px] bg-purple-200/20 rounded-full blur-[100px]" />
-                <div className="absolute top-[50%] left-[55%] w-[300px] h-[300px] bg-cyan-100/20 rounded-full blur-[80px]" />
-
-                {/* Subtle dot-grid pattern */}
-                <div className="absolute inset-0 opacity-[0.03]" style={{
-                    backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)',
-                    backgroundSize: '24px 24px'
-                }} />
-
-                {/* Decorative accent rings */}
-                <div className="absolute top-16 right-16 w-36 h-36 border border-indigo-200/30 rounded-full hidden lg:block" />
-                <div className="absolute top-24 right-24 w-20 h-20 border border-purple-200/25 rounded-full hidden lg:block" />
-                <div className="absolute bottom-20 left-12 w-28 h-28 border border-cyan-200/25 rounded-full hidden lg:block" />
+                <div
+                    className="absolute top-[-8%] right-[-6%] w-[420px] h-[420px] rounded-full blur-[120px]"
+                    style={{ background: 'rgba(251,191,36,0.08)' }}
+                />
+                <div
+                    className="absolute bottom-[-6%] left-[-4%] w-[380px] h-[380px] rounded-full blur-[100px]"
+                    style={{ background: 'rgba(167,139,219,0.07)' }}
+                />
+                <div
+                    className="absolute top-[45%] left-[50%] w-[300px] h-[300px] rounded-full blur-[100px]"
+                    style={{ background: 'rgba(92,184,165,0.06)' }}
+                />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* ──── Heading ──── */}
-                <div className={`text-center mb-10 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-                    <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-[10px] md:text-[11px] font-semibold text-indigo-600 tracking-wide uppercase mb-3">
-                        Real Student Stories
+                <div
+                    className={`text-center mb-3 md:mb-5 transition-all duration-1000 ${
+                        isVisible
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-6'
+                    }`}
+                >
+                    <span className="inline-flex items-center rounded-full bg-amber-50 border border-amber-200/60 px-4 py-1.5 text-[11px] md:text-xs font-semibold text-amber-700 tracking-wide uppercase mb-4 font-caveat text-base md:text-lg">
+                        ✦ Real Student Stories
                     </span>
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
                         Success Stories from Our{' '}
                         <br className="block sm:hidden" />
                         <GradientText>Students</GradientText>
                     </h2>
-                    <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm md:text-base">
-                        How the right counselling and college choice transformed these students&apos; careers.
+                    <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm md:text-base font-lora italic">
+                        How the right counselling and college choice transformed
+                        these students&apos; careers.
                     </p>
                 </div>
 
-                {/* ──── Testimonials Grid ──── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-                    {testimonials.map((t, idx) => (
-                        <div
-                            key={idx}
-                            className={`bg-white p-4 sm:p-5 outline-none rounded-xl shadow-sm border border-gray-100/80 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                            style={{ transitionDelay: `${200 + idx * 100}ms`, transitionDuration: '700ms' }}
-                        >
-                            {/* Star Rating */}
-                            <div className="flex items-center gap-0.5 mb-3">
-                                {[...Array(5)].map((_, i) => (
-                                    <svg key={i} className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                ))}
-                            </div>
-
-                            {/* Quote text */}
-                            <p className="text-gray-600 text-[13px] leading-relaxed flex-1">
-                                &ldquo;{t.quote}&rdquo;
-                            </p>
-
-                            {/* Highlight tag */}
-                            <div className="mt-3 mb-4">
-                                <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                    {t.highlight}
-                                </span>
-                            </div>
-
-                            {/* Divider */}
-                            <div className="border-t border-gray-100 pt-4">
-                                <div className="flex items-center gap-3">
-                                    {/* Avatar */}
-                                    {t.avatar ? (
-                                        <img
-                                            src={t.avatar}
-                                            alt={t.name}
-                                            className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100"
-                                        />
-                                    ) : (
+                {/* ──────── MOBILE LAYOUT (vertical stack) ──────── */}
+                <div className="block lg:hidden space-y-6">
+                    {testimonials.map((t, idx) => {
+                        const theme = cardThemes[idx % cardThemes.length];
+                        return (
+                            <div
+                                key={idx}
+                                className={`relative transition-all duration-700 ${
+                                    isVisible
+                                        ? 'opacity-100 translate-y-0'
+                                        : 'opacity-0 translate-y-10'
+                                }`}
+                                style={{
+                                    transitionDelay: `${200 + idx * 120}ms`,
+                                }}
+                            >
+                                {/* dot */}
+                                <div className="flex justify-center mb-3">
+                                    <div
+                                        className="relative w-14 h-14 rounded-full flex items-center justify-center"
+                                        style={{
+                                            border: `2.5px dashed ${theme.dotStroke}`,
+                                        }}
+                                    >
                                         <div
-                                            className="w-10 h-10 rounded-full flex items-center justify-center ring-2 ring-gray-100 flex-shrink-0"
-                                            style={{ background: gradientPalettes[idx % gradientPalettes.length] }}
+                                            className="w-10 h-10 rounded-full flex items-center justify-center font-caveat text-lg font-bold"
+                                            style={{
+                                                background: theme.dotFill,
+                                                color: theme.dotText,
+                                            }}
                                         >
-                                            <span className="text-white text-xs font-bold">
-                                                {getInitials(t.name)}
-                                            </span>
-                                        </div>
-                                    )}
-                                    {/* Info */}
-                                    <div className="min-w-0">
-                                        <div className="text-sm font-semibold text-gray-900 truncate">
-                                            {t.name}
-                                        </div>
-                                        <div className="text-xs text-gray-500 truncate">
-                                            {t.role}
+                                            {getInitials(t.name)}
                                         </div>
                                     </div>
                                 </div>
+                                {/* wobbly connector */}
+                                <div className="flex justify-center mb-2">
+                                    <svg
+                                        width="2"
+                                        height="28"
+                                        viewBox="0 0 2 28"
+                                    >
+                                        <line
+                                            x1="1"
+                                            y1="0"
+                                            x2="1"
+                                            y2="22"
+                                            stroke={theme.connectorStroke}
+                                            strokeWidth="1.5"
+                                            strokeDasharray="4 3"
+                                            opacity="0.6"
+                                        />
+                                        <polygon
+                                            points="1,28 -1.5,22 3.5,22"
+                                            fill={theme.connectorStroke}
+                                            opacity="0.5"
+                                        />
+                                    </svg>
+                                </div>
+                                {/* card */}
+                                <div
+                                    className="rounded-2xl p-5 relative"
+                                    style={{
+                                        background: theme.bg,
+                                        border: `1.5px solid ${theme.border}`,
+                                        backdropFilter: 'blur(6px)',
+                                    }}
+                                >
+                                    {/* stars */}
+                                    <div className="flex gap-1 mb-3">
+                                        {[...Array(5)].map((_, i) => (
+                                            <svg
+                                                key={i}
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <SketchStar
+                                                    cx={8}
+                                                    cy={8}
+                                                    r={7}
+                                                    fill={theme.starFill}
+                                                    stroke={theme.dotStroke}
+                                                />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <p className="font-lora italic text-gray-700 text-[14px] leading-relaxed mb-4">
+                                        &ldquo;{t.quote}&rdquo;
+                                    </p>
+                                    <div className="border-t pt-3" style={{ borderColor: `${theme.border}66` }}>
+                                        <p className="font-caveat text-xl font-bold text-gray-800">
+                                            {t.name}
+                                        </p>
+                                        <p className="font-caveat text-[15px] text-gray-500">
+                                            {t.role}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
+                </div>
+
+                {/* ──────── DESKTOP LAYOUT (SVG thread + positioned cards) ──────── */}
+                <div
+                    className={`hidden lg:block relative transition-all duration-1000 ${
+                        isVisible
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ transitionDelay: '300ms' }}
+                >
+                    <div className="relative w-full" style={{ paddingBottom: `${(SVG_H / SVG_W) * 100}%` }}>
+                        <svg
+                            viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="absolute inset-0 w-full h-full"
+                            style={{ overflow: 'visible' }}
+                        >
+                            {/* ── thread paths ── */}
+                            {threadPaths.map((d, i) => (
+                                <path
+                                    key={i}
+                                    d={d}
+                                    stroke={
+                                        i === 1
+                                            ? '#c8912e'
+                                            : i === 0
+                                            ? '#d4a24e'
+                                            : '#dbb66a'
+                                    }
+                                    strokeWidth={i === 1 ? '2.5' : '1.5'}
+                                    strokeLinecap="round"
+                                    opacity={i === 1 ? '0.7' : '0.35'}
+                                    fill="none"
+                                    strokeDasharray={
+                                        i === 1 ? 'none' : '6 4'
+                                    }
+                                />
+                            ))}
+
+                            {/* ── dots, connectors, cards ── */}
+                            {dots.map((dot, idx) => {
+                                const theme =
+                                    cardThemes[idx % cardThemes.length];
+                                const t = testimonials[idx];
+                                const cardAbove = idx % 2 === 0;
+                                const cardX = dot.x - CARD_W / 2;
+                                const connStartY = cardAbove
+                                    ? dot.y - 26
+                                    : dot.y + 26;
+                                const connEndY = cardAbove
+                                    ? dot.y - 26 - CONNECTOR_LEN
+                                    : dot.y + 26 + CONNECTOR_LEN;
+                                const cardY = cardAbove
+                                    ? connEndY - CARD_H_APPROX - 4
+                                    : connEndY + 4;
+                                const arrowDir = cardAbove ? 1 : -1;
+                                const arrowTipY = connStartY;
+                                const arrowBaseY =
+                                    connStartY - arrowDir * 8;
+
+                                return (
+                                    <g key={idx}>
+                                        {/* wobbly dashed connector */}
+                                        <path
+                                            d={`M ${dot.x} ${connStartY} C ${dot.x + 2} ${(connStartY + connEndY) / 2 - 3}, ${dot.x - 2} ${(connStartY + connEndY) / 2 + 3}, ${dot.x} ${connEndY}`}
+                                            stroke={theme.connectorStroke}
+                                            strokeWidth="1.5"
+                                            strokeDasharray="5 4"
+                                            opacity="0.55"
+                                            fill="none"
+                                            strokeLinecap="round"
+                                        />
+                                        {/* tiny arrow tip */}
+                                        <polygon
+                                            points={`${dot.x},${arrowTipY} ${dot.x - 4},${arrowBaseY} ${dot.x + 4},${arrowBaseY}`}
+                                            fill={theme.connectorStroke}
+                                            opacity="0.45"
+                                        />
+
+                                        {/* ── outer dashed ring ── */}
+                                        <circle
+                                            cx={dot.x}
+                                            cy={dot.y}
+                                            r="24"
+                                            fill="none"
+                                            stroke={theme.dotStroke}
+                                            strokeWidth="1.5"
+                                            strokeDasharray="4 3.5"
+                                            opacity="0.5"
+                                        />
+                                        {/* ── middle ring ── */}
+                                        <circle
+                                            cx={dot.x}
+                                            cy={dot.y}
+                                            r="19"
+                                            fill="white"
+                                            stroke={theme.dotStroke}
+                                            strokeWidth="1"
+                                            opacity="0.7"
+                                        />
+                                        {/* ── inner pastel fill ── */}
+                                        <circle
+                                            cx={dot.x}
+                                            cy={dot.y}
+                                            r="16"
+                                            fill={theme.dotFill}
+                                        />
+                                        {/* ── initials ── */}
+                                        <text
+                                            x={dot.x}
+                                            y={dot.y + 1}
+                                            textAnchor="middle"
+                                            dominantBaseline="central"
+                                            fill={theme.dotText}
+                                            fontSize="12"
+                                            fontWeight="700"
+                                            fontFamily="Caveat, cursive"
+                                        >
+                                            {getInitials(t.name)}
+                                        </text>
+
+                                        {/* ───── testimonial card (foreignObject) ───── */}
+                                        <foreignObject
+                                            x={cardX}
+                                            y={cardY}
+                                            width={CARD_W}
+                                            height={CARD_H_APPROX}
+                                            style={{ overflow: 'visible' }}
+                                        >
+                                            <div
+                                                xmlns="http://www.w3.org/1999/xhtml"
+                                                className="rounded-xl p-4 h-full flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg"
+                                                style={{
+                                                    background: theme.bg,
+                                                    border: `1.5px solid ${theme.border}`,
+                                                    backdropFilter:
+                                                        'blur(8px)',
+                                                    boxShadow: `0 2px 16px rgba(0,0,0,0.04), inset 0 0 60px rgba(255,255,255,0.25)`,
+                                                }}
+                                            >
+                                                {/* stars */}
+                                                <div>
+                                                    <div className="flex gap-0.5 mb-2">
+                                                        {[...Array(5)].map(
+                                                            (_, i) => (
+                                                                <svg
+                                                                    key={i}
+                                                                    width="14"
+                                                                    height="14"
+                                                                    viewBox="0 0 14 14"
+                                                                >
+                                                                    <SketchStar
+                                                                        cx={7}
+                                                                        cy={7}
+                                                                        r={6}
+                                                                        fill={
+                                                                            theme.starFill
+                                                                        }
+                                                                        stroke={
+                                                                            theme.dotStroke
+                                                                        }
+                                                                    />
+                                                                </svg>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                    <p
+                                                        className="text-gray-700 leading-relaxed"
+                                                        style={{
+                                                            fontFamily:
+                                                                'Lora, Georgia, serif',
+                                                            fontStyle:
+                                                                'italic',
+                                                            fontSize: '12px',
+                                                            lineHeight: '1.55',
+                                                        }}
+                                                    >
+                                                        &ldquo;{t.quote}&rdquo;
+                                                    </p>
+                                                </div>
+
+                                                {/* author */}
+                                                <div
+                                                    className="pt-2 mt-2"
+                                                    style={{
+                                                        borderTop: `1px solid ${theme.border}55`,
+                                                    }}
+                                                >
+                                                    <p
+                                                        className="text-gray-800 font-bold"
+                                                        style={{
+                                                            fontFamily:
+                                                                'Caveat, cursive',
+                                                            fontSize: '17px',
+                                                        }}
+                                                    >
+                                                        {t.name}
+                                                    </p>
+                                                    <p
+                                                        className="text-gray-500"
+                                                        style={{
+                                                            fontFamily:
+                                                                'Caveat, cursive',
+                                                            fontSize: '13px',
+                                                        }}
+                                                    >
+                                                        {t.role}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </foreignObject>
+                                    </g>
+                                );
+                            })}
+                        </svg>
+                    </div>
                 </div>
             </div>
         </section>

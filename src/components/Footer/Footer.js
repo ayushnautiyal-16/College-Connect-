@@ -17,7 +17,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="w-full py-8 md:py-10 px-6 bg-[#0b1b2b] border-t border-white/[0.06]">
+    <footer className="relative z-10 w-full py-8 md:py-10 px-6 bg-[#0b1b2b] border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto text-center">
 
         {/* Logo / Brand */}
