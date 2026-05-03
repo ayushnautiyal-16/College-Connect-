@@ -20,10 +20,16 @@ function GetInTouchPopup() {
             return;
         }
 
-        // Show popup after 15 seconds on every page load
-        const delay = 15000;
+        // Only show the popup once per browser session
+        if (sessionStorage.getItem('popupShown') === 'true') {
+            return;
+        }
+
+        // Show popup after 5 seconds on first visit only
+        const delay = 5000;
         const timer = setTimeout(() => {
             setIsVisible(true);
+            sessionStorage.setItem('popupShown', 'true');
         }, delay);
 
         return () => clearTimeout(timer);
