@@ -3,10 +3,13 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import { trackGoogleAdsFormConversion } from "@/lib/trackGoogleAdsConversion";
+import { COLLEGES_LIST, COURSES_LIST } from "@/utils/collegesList";
+import CustomDropdown from "@/components/CustomDropdown/CustomDropdown";
 
 export default function EnquiryPanel() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState("");
+    const [selectedCollege, setSelectedCollege] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
@@ -16,21 +19,16 @@ export default function EnquiryPanel() {
         setSubmitStatus(null);
 
         const formData = new FormData(e.target);
-        let course = formData.get("course");
-        let otherCourse = "";
-        let otherCollege = "";
-        if (course === "Other") {
-            otherCourse = formData.get("customCourse") || "Other";
-            otherCollege = formData.get("customCollege") || "";
-        }
+        const course = formData.get("course");
+        const college = formData.get("college");
 
         const data = {
             name: formData.get("fullName"),
             phone: formData.get("phone"),
             email: formData.get("email"),
             course,
-            otherCourse,
-            otherCollege,
+            otherCourse: "",
+            otherCollege: college || "",
         };
 
         try {
@@ -166,51 +164,31 @@ export default function EnquiryPanel() {
                             </div>
 
                             {/* Course Selection */}
-                            <div className="relative">
-                                <select
-                                    required
-                                    name="course"
-                                    value={selectedCourse}
-                                    onChange={(e) => setSelectedCourse(e.target.value)}
-                                    className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow bg-gray-50 text-gray-700"
-                                >
-                                    <option value="">Select Course</option>
-                                    <option value="B.Tech">B.Tech</option>
-                                    <option value="MBA">MBA</option>
-                                    <option value="BBA">BBA</option>
-                                    <option value="BCA">BCA</option>
-                                    <option value="Medical">Medical</option>
-                                    <option value="Law">Law</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                                </div>
-                            </div>
+                            <CustomDropdown
+                                options={COURSES_LIST}
+                                value={selectedCourse}
+                                onChange={setSelectedCourse}
+                                placeholder="Select Course"
+                                name="course"
+                                required
+                                variant="light"
+                                icon={
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                }
+                            />
 
-                            {/* Conditional Other Input */}
-                            {selectedCourse === "Other" && (
-                                <>
-                                    <div className="animate-fade-in-up mb-2">
-                                        <input
-                                            type="text"
-                                            name="customCourse"
-                                            required
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow placeholder-gray-400 bg-gray-50"
-                                            placeholder="Specify Course"
-                                        />
-                                    </div>
-                                    <div className="animate-fade-in-up">
-                                        <input
-                                            type="text"
-                                            name="customCollege"
-                                            required
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow placeholder-gray-400 bg-gray-50"
-                                            placeholder="Enter College Name"
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            {/* College Selection */}
+                            <CustomDropdown
+                                options={COLLEGES_LIST}
+                                value={selectedCollege}
+                                onChange={setSelectedCollege}
+                                placeholder="Select College (optional)"
+                                name="college"
+                                variant="light"
+                                icon={
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                }
+                            />
 
                             {/* Submit Button */}
                             <button

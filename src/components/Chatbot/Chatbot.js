@@ -31,7 +31,10 @@ const COURSE_OPTIONS = [
     "BHM (Hotel Management)",
     "B.A. LL.B",
     "B.Sc Nursing / MBBS",
-    "Other",
+    "B.Com / Commerce",
+    "B.Des / Design",
+    "MCA",
+    "Diploma / Polytechnic",
 ];
 
 export default function Chatbot() {

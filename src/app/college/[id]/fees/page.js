@@ -7,6 +7,8 @@ import { getAssetUrl } from '@/utils/assets';
 import '@/styles/apply-animations.css';
 import GradientText from '@/components/GradientText/GradientText';
 import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
+import { COURSES_LIST } from '@/utils/collegesList';
+import CustomDropdown from '@/components/CustomDropdown/CustomDropdown';
 
 export default function CollegeFeesPage() {
     const { id } = useParams();
@@ -15,8 +17,7 @@ export default function CollegeFeesPage() {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
-        course: '',
-        otherCourse: ''
+        course: ''
     });
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -58,9 +59,6 @@ export default function CollegeFeesPage() {
             newErrors.phone = 'Valid 10-digit number required';
         }
         if (!formData.course) newErrors.course = 'Please select a course';
-        if (formData.course === 'Other' && !formData.otherCourse?.trim()) {
-            newErrors.otherCourse = 'Please specify the details';
-        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -71,10 +69,8 @@ export default function CollegeFeesPage() {
         if (validateForm()) {
             setLoading(true);
             try {
-                // If course is 'Other', send the custom course name
                 const payload = {
                     ...formData,
-                    course: formData.course === 'Other' ? formData.otherCourse : formData.course,
                     collegeId: id
                 };
                 const response = await fetch('/api/contact', {
@@ -287,57 +283,31 @@ export default function CollegeFeesPage() {
 
 
                                             {/* Course Select */}
+                                            {/* Course Select */}
                                             <div className="group space-y-1.5">
-                                                <label className="text-[10px] font-bold text-gray-500 group-focus-within:text-cyan-600 uppercase tracking-widest ml-1 transition-colors">
+                                                <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1 transition-colors">
                                                     Interested Course
                                                 </label>
-                                                <div className="relative transition-all duration-300 transform focus-within:-translate-y-0.5">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-                                                        <svg className="w-5 h-5 text-gray-400 group-focus-within:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                                    </div>
-                                                    <select
-                                                        name="course"
-                                                        value={formData.course}
-                                                        onChange={handleChange}
-                                                        className={`w-full pl-12 pr-10 py-3 rounded-xl bg-[#0b1b2b] border border-white/10 outline-none font-semibold text-white cursor-pointer appearance-none focus:bg-[#132840] focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/10 transition-all duration-300 shadow-sm ${errors.course ? 'border-red-400/50 focus:border-red-500 bg-red-900/10' : ''}`}
-                                                    >
-                                                        <option value="" disabled hidden className="text-gray-400 bg-[#0b1b2b]">Select a course...</option>
-                                                        <option value="B.Tech" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">B.Tech - Engineering</option>
-                                                        <option value="MBA" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">MBA - Management</option>
-                                                        <option value="BBA" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">BBA - Business Administration</option>
-                                                        <option value="BCA" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">BCA - Computer Applications</option>
-                                                        <option value="B.Pharma" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">B.Pharma - Pharmacy</option>
-                                                        <option value="Other" className="text-white bg-[#0b1b2b] hover:bg-[#132840] py-2">Other Programs</option>
-                                                    </select>
-                                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-cyan-500 transition-colors">
-                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                                    </div>
-                                                </div>
+                                                <CustomDropdown
+                                                    options={COURSES_LIST}
+                                                    value={formData.course}
+                                                    onChange={(val) => {
+                                                        setFormData(prev => ({ ...prev, course: val }));
+                                                        if (errors.course) setErrors(prev => ({ ...prev, course: '' }));
+                                                    }}
+                                                    placeholder="Select a course..."
+                                                    name="course"
+                                                    required
+                                                    error={!!errors.course}
+                                                    variant="dark"
+                                                    icon={
+                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                                    }
+                                                />
                                                 {errors.course && <span className="text-[11px] text-red-500 ml-1 flex items-center gap-1 font-semibold tracking-wide animate-pulse">{errors.course}</span>}
                                             </div>
 
-                                            {/* Other Course Input */}
-                                            {formData.course === 'Other' && (
-                                                <div className="group space-y-1.5 animate-fade-in-up">
-                                                    <label className="text-[10px] font-bold text-gray-500 group-focus-within:text-cyan-600 uppercase tracking-widest ml-1 transition-colors">
-                                                        Specific Course Details
-                                                    </label>
-                                                    <div className="relative transition-all duration-300 transform focus-within:-translate-y-0.5">
-                                                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                            <svg className="w-5 h-5 text-gray-400 group-focus-within:text-cyan-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                                        </div>
-                                                        <input
-                                                            type="text"
-                                                            name="otherCourse"
-                                                            value={formData.otherCourse}
-                                                            onChange={handleChange}
-                                                            className={`w-full pl-12 pr-4 py-3 rounded-xl bg-[#0b1b2b] border border-white/10 outline-none font-semibold text-white placeholder-gray-500 focus:bg-[#132840] focus:border-cyan-400 focus:ring-4 focus:ring-cyan-500/10 transition-all duration-300 shadow-sm ${errors.otherCourse ? 'border-red-400/50 focus:border-red-500 bg-red-900/10' : ''}`}
-                                                            placeholder="Enter Course name"
-                                                        />
-                                                    </div>
-                                                    {errors.otherCourse && <span className="text-[11px] text-red-500 ml-1 flex items-center gap-1 font-semibold tracking-wide animate-pulse">{errors.otherCourse}</span>}
-                                                </div>
-                                            )}
+
 
                                             {/* Submit Button */}
                                             <button

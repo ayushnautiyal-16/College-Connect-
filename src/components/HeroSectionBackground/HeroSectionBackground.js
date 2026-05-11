@@ -5,59 +5,69 @@ import React from 'react';
 export default function HeroSectionBackground() {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
-            {/* Base Background Color */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#e0e7ff] via-[#dbeafe] to-[#eef2ff]" />
+            {/* Base Gradient — matches WhyChooseUs palette */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 25%, #c7d2fe 60%, #e0e7ff 100%)' }} />
 
-            {/* Premium Flowing Vector Waves (Top Right) */}
-            <svg 
-                className="absolute top-0 right-0 w-[800px] h-[800px] text-[#1d4e89]/15 transform translate-x-1/4 -translate-y-1/4"
-                viewBox="0 0 800 800" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path 
-                    fillRule="evenodd" 
-                    clipRule="evenodd" 
-                    d="M400 800C620.914 800 800 620.914 800 400C800 179.086 620.914 0 400 0C179.086 0 0 179.086 0 400C0 620.914 179.086 800 400 800ZM400 700C565.685 700 700 565.685 700 400C700 234.315 565.685 100 400 100C234.315 100 100 234.315 100 400C100 565.685 234.315 700 400 700Z" 
-                    fill="currentColor"
-                />
-                <circle cx="400" cy="400" r="200" fill="currentColor" opacity="0.5" />
+            {/* Bottom Wave Separator — blends into page */}
+            <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ height: '80px' }}>
+                <path d="M0,50 C240,10 480,70 720,40 C960,10 1200,60 1440,30 L1440,80 L0,80 Z" fill="#f0f5ff" />
             </svg>
 
-            {/* Premium Flowing Vector Waves (Bottom Left) */}
-            <svg 
-                className="absolute bottom-0 left-0 w-[600px] h-[600px] text-[#c5a059]/15 transform -translate-x-1/3 translate-y-1/4"
-                viewBox="0 0 600 600" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <circle cx="300" cy="300" r="300" fill="currentColor" />
-                <circle cx="300" cy="300" r="150" fill="currentColor" opacity="0.3" />
+            {/* Dot Grid Pattern — same as WhyChooseUs */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="heroDots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1.2" fill="#4f46e5" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#heroDots)" />
             </svg>
 
-            {/* Floating Glassmorphic Shapes */}
-            <div className="absolute top-[15%] left-[5%] w-24 h-24 rounded-2xl bg-white/30 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_rgba(29,78,137,0.15)] transform rotate-12 animate-[float_6s_ease-in-out_infinite]" />
-            <div className="absolute bottom-[20%] right-[8%] w-32 h-32 rounded-full bg-white/20 backdrop-blur-lg border border-white/60 shadow-[0_8px_32px_rgba(197,160,89,0.15)] transform -rotate-12 animate-[float_8s_ease-in-out_infinite_1s]" />
+            {/* Floating Gradient Orbs — matching colors */}
+            <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-indigo-300/30 to-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+            <div className="absolute top-1/3 -right-20 w-96 h-96 bg-gradient-to-tl from-blue-300/30 to-cyan-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s' }} />
+            <div className="absolute bottom-10 left-1/3 w-72 h-72 bg-gradient-to-r from-sky-200/20 to-indigo-200/20 rounded-full blur-3xl" />
 
-            {/* Glowing Accent Orbs for Depth */}
-            <div className="absolute top-[20%] right-[15%] w-64 h-64 rounded-full bg-[#1d4e89]/20 blur-[80px]" />
-            <div className="absolute bottom-[10%] left-[20%] w-72 h-72 rounded-full bg-[#6096ba]/20 blur-[100px]" />
+            {/* Top-right dashed circle rings */}
+            <svg className="absolute -top-10 -right-10 w-52 h-52 opacity-[0.08] text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="90" strokeWidth="1.5" strokeDasharray="8 6" />
+                <circle cx="100" cy="100" r="60" strokeWidth="1" strokeDasharray="4 8" />
+                <circle cx="100" cy="100" r="30" strokeWidth="1" strokeDasharray="3 6" />
+            </svg>
 
-            {/* Subtle Grid Pattern for Academic Feel */}
-            <div 
-                className="absolute inset-0 opacity-[0.06]"  
-                style={{
-                    backgroundImage: `linear-gradient(#1d4e89 1px, transparent 1px), linear-gradient(90deg, #1d4e89 1px, transparent 1px)`,
-                    backgroundSize: '40px 40px',
-                    maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%)'
-                }} 
-            />
+            {/* Bottom-left hexagon */}
+            <svg className="absolute -bottom-8 -left-8 w-44 h-44 opacity-[0.05] text-purple-600" fill="currentColor" viewBox="0 0 200 200">
+                <polygon points="100,10 180,50 180,130 100,170 20,130 20,50" />
+            </svg>
+
+            {/* Floating diamond — right side */}
+            <svg className="absolute top-24 right-[20%] w-10 h-10 opacity-[0.08] text-indigo-500 animate-bounce" style={{ animationDuration: '5s' }} viewBox="0 0 24 24" fill="currentColor">
+                <rect x="4" y="4" width="16" height="16" rx="2" transform="rotate(45 12 12)" />
+            </svg>
+
+            {/* Floating triangle — left side */}
+            <svg className="absolute top-[40%] left-[8%] w-8 h-8 opacity-[0.07] text-blue-500 animate-bounce" style={{ animationDuration: '6s', animationDelay: '2s' }} viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 22,20 2,20" />
+            </svg>
+
+            {/* Slow spinning plus — top center */}
+            <svg className="absolute top-16 left-[45%] w-7 h-7 opacity-[0.08] text-indigo-400 animate-spin" style={{ animationDuration: '25s' }} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M12 2v20M2 12h20" />
+            </svg>
+
+            {/* Small circle — bottom right area */}
+            <svg className="absolute bottom-[25%] right-[12%] w-6 h-6 opacity-[0.06] text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+            </svg>
+
+            {/* Glassmorphic floating cards */}
+            <div className="absolute top-[18%] left-[6%] w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_rgba(79,70,229,0.08)] transform rotate-12 animate-[heroFloat_6s_ease-in-out_infinite]" />
+            <div className="absolute bottom-[22%] right-[6%] w-28 h-28 rounded-full bg-white/15 backdrop-blur-lg border border-white/50 shadow-[0_8px_32px_rgba(99,102,241,0.08)] transform -rotate-12 animate-[heroFloat_8s_ease-in-out_infinite_1.5s]" />
 
             <style jsx>{`
-                @keyframes float {
+                @keyframes heroFloat {
                     0%, 100% { transform: translateY(0) rotate(var(--tw-rotate)); }
-                    50% { transform: translateY(-20px) rotate(calc(var(--tw-rotate) + 5deg)); }
+                    50% { transform: translateY(-18px) rotate(calc(var(--tw-rotate) + 4deg)); }
                 }
             `}</style>
         </div>

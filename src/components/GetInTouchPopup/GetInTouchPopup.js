@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import './GetInTouchPopup.css';
 import { trackGoogleAdsFormConversion } from '@/lib/trackGoogleAdsConversion';
+import { COURSES_LIST } from '@/utils/collegesList';
+import CustomDropdown from '@/components/CustomDropdown/CustomDropdown';
 
 function GetInTouchPopup() {
     const pathname = usePathname();
@@ -49,12 +51,7 @@ function GetInTouchPopup() {
         setIsSubmitting(true);
 
         const formData = new FormData(e.target);
-
-        // Handle "Other" course selection
-        let course = formData.get('course');
-        if (course === 'Other') {
-            course = formData.get('customCourse') || 'Other';
-        }
+        const course = formData.get('course');
 
         const data = {
             name: formData.get('name'),
@@ -295,38 +292,19 @@ function GetInTouchPopup() {
 
                                     <div className="form-group">
                                         <label htmlFor="course">Course Interest *</label>
-                                        <select
-                                            id="course"
+                                        <CustomDropdown
+                                            options={COURSES_LIST}
+                                            value={selectedCourse}
+                                            onChange={setSelectedCourse}
+                                            placeholder="Select your course"
                                             name="course"
                                             required
-                                            value={selectedCourse}
-                                            onChange={(e) => setSelectedCourse(e.target.value)}
-                                        >
-                                            <option value="">Select your course</option>
-                                            <option value="B.Tech">B.Tech / Engineering</option>
-                                            <option value="MBA">MBA / Management</option>
-                                            <option value="BBA">BBA / Business Administration</option>
-                                            <option value="BCA">BCA / Computer Applications</option>
-                                            <option value="B.Pharma">B.Pharma / Pharmacy</option>
-                                            <option value="LLB">LLB / Law</option>
-                                            <option value="B.Sc">B.Sc / Science</option>
-                                            <option value="Other">Other</option>
-                                        </select>
+                                            variant="light"
+                                            icon={
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                            }
+                                        />
                                     </div>
-
-                                    {/* Conditional input for "Other" course */}
-                                    {selectedCourse === 'Other' && (
-                                        <div className="form-group animate-slide-in">
-                                            <label htmlFor="customCourse">Specify Course *</label>
-                                            <input
-                                                type="text"
-                                                id="customCourse"
-                                                name="customCourse"
-                                                placeholder="Enter specific course name"
-                                                required
-                                            />
-                                        </div>
-                                    )}
 
                                     <button type="submit" className="popup-submit-btn" disabled={isSubmitting}>
                                         <span>{isSubmitting ? 'Submitting...' : 'Request Free Callback'}</span>
