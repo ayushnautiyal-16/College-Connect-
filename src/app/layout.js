@@ -1,6 +1,5 @@
 import './globals.css';
 import MainLayoutWrapper from '@/layouts/MainLayout/MainLayoutWrapper';
-import Script from 'next/script';
 
 const SITE_URL = 'https://www.collegeconnectedu.com';
 
@@ -89,10 +88,8 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
-                {/* Google Tag Manager - Head */}
-                <Script
-                    id="gtm-script"
-                    strategy="afterInteractive"
+                {/* Google Tag Manager - must be raw script in head for early loading */}
+                <script
                     dangerouslySetInnerHTML={{
                         __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -108,13 +105,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap"
                     rel="stylesheet"
                 />
-                {/* 
-                  Google Ads (AW-18007804678) is managed by GTM — 
-                  do NOT load gtag.js directly here, it conflicts with GTM's Google Tag.
-                */}
             </head>
             <body className="antialiased">
-                {/* Google Tag Manager - Body (noscript fallback) */}
+                {/* Google Tag Manager (noscript) - immediately after body open */}
                 <noscript>
                     <iframe
                         src="https://www.googletagmanager.com/ns.html?id=GTM-WWX2F7DX"
